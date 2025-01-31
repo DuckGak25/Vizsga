@@ -1,0 +1,119 @@
+div .pantry {
+    height: fit-content;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.row {
+  backdrop-filter: blur(2px);
+  padding-top: 5.3vw;
+}
+
+.btn {
+  margin: 5px;
+}
+
+.recipes {
+    width: 69.6%;
+}
+
+.pantry {
+    width: 28%;
+    text-align: center;
+}
+
+div {
+    margin: 0;
+}
+
+
+
+
+.pantry {
+    padding: 20px;
+  }
+  
+  h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  
+  h2 {
+    font-size: 1.5em;
+    margin-top: 20px;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  li {
+    margin: 5px 0;
+  }
+  
+  .ingredientcategory {
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+    padding: 20px;
+    border: 1px color(grey);
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 350px;
+    max-width: 450px;
+    min-width: 350px;
+    height: fit-content;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    display: block;
+    transition: transform 0.4s ease, box-shadow 0.3s ease;
+  }
+
+
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+    .recipes {
+        display: none;
+    }
+    .pantry {
+      padding-top: 5.3vw;
+      width: 90%;
+      margin: 0 auto;
+    }
+}
+
+@media (min-width: 769px) {
+  div .pantry {
+    margin: 10px;
+  }
+}
+
+.pantry .form-check {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.checkboxing input {
+  display: none; /* Az input elrejtése */
+}
+
+/* A label keretének megváltoztatása, ha a checkbox be van jelölve */
+.checkboxing input:checked + label {
+  border-color: rgba(23, 178, 142, 0.814); /* Border szín, ha a checkbox be van jelölve */
+  background-color: rgba(230, 255, 230, 0.9); /* Háttér szín, ha a checkbox be van jelölve */
+}
+
+/* Checkbox label */
+.checkboxing label {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 8px 12px; /* Padding a label kerületén */
+  border-radius: 15px; /* Kerekített sarkok */
+  border: 2px solid rgba(169, 32, 32, 0.3); /* Alapértelmezett border szín */
+  transition: border-color 0.3s, background-color 0.3s; /* Animáció a simább váltásért */
+}

@@ -1,0 +1,50 @@
+<div class="content">
+  <form (ngSubmit)="createRecipe()" #recipeForm="ngForm">
+    <div>
+      <label for="title">Cím:</label>
+      <input 
+        [(ngModel)]="newRecipe.title" 
+        name="title" 
+        required 
+        placeholder="Cím" 
+        id="title" />
+    </div>
+    <div>
+      <label for="description">Leírás:</label>
+      <textarea 
+        [(ngModel)]="newRecipe.description" 
+        name="description" 
+        required 
+        placeholder="Leírás" 
+        id="description"></textarea>
+    </div>
+    <div>
+      <label for="categories">Kategóriák:</label>
+      <input 
+        [(ngModel)]="newRecipe.categories" 
+        name="categories" 
+        required 
+        placeholder="Kategóriák" 
+        id="categories" />
+    </div>
+    <div>
+      <label for="ingredients">Hozzávalók:</label>
+      <select 
+        [(ngModel)]="newRecipe.ingredients" 
+        name="ingredients" 
+        multiple 
+        id="ingredients">
+        <option 
+          *ngFor="let ingredient of ingredients" 
+          [value]="ingredient.id">
+          {{ ingredient.name }}
+        </option>
+      </select>
+    </div>
+    <button 
+      type="submit" 
+      [disabled]="!recipeForm.valid">
+      Recept létrehozása
+    </button>
+  </form>
+</div>

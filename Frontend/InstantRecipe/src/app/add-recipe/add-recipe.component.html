@@ -1,0 +1,70 @@
+<div class="content">
+    <div class="card">
+      <h1>Recept hozzáadása</h1>
+      <form (ngSubmit)="createRecipe()">
+        <!-- Recept neve -->
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            class="form-control"
+            id="title"
+            name="title"
+            placeholder="Recept neve"
+            [(ngModel)]="newRecipe.title"
+          />
+          <label for="title">Recept neve</label>
+        </div>
+        
+        <!-- Leírás -->
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            class="form-control"
+            id="description"
+            name="description"
+            placeholder="Leírás"
+            [(ngModel)]="newRecipe.description"
+          />
+          <label for="description">Leírás</label>
+        </div>
+        
+        
+        <!-- Összetevők listája -->
+        <div class="ingredient-list">
+          <!-- Keresőmező -->
+          <input
+            type="text"
+            [(ngModel)]="searchTerm"
+            name="search"
+            placeholder="Keresés összetevők között..."
+            class="form-control mb-3"
+          />
+          
+          <!-- Összetevők törlése gomb -->
+          <button type="button" (click)="clearSelectedIngredients()" class="btn btn-danger mb-3">
+            Kiválasztott összetevők törlése
+          </button>
+          
+          <!-- Kategorizált összetevők -->
+          <div *ngFor="let category of (categorizedIngredients | keyvalue)">
+            <h2>{{ category.key }}</h2>
+            <div *ngFor="let ingredient of filterIngredients(category.value)" class="form-check">
+              <div class="checkboxing">
+                <input
+                  type="checkbox"
+                  [value]="ingredient"
+                  id="{{ingredient}}"
+                  (change)="onIngredientChange($event, ingredient)"
+                />
+                <label for="{{ingredient}}">{{ ingredient }}</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Hozzáadás gomb -->
+        <button class="btn btn-danger" type="submit">Hozzáad</button>
+      </form>
+    </div>
+  </div>
+  

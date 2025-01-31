@@ -1,0 +1,24 @@
+<div class="site" *ngIf="recipe">
+    <div class="content title bg-light">
+      <h1>{{ recipe.title }}</h1>
+    </div>
+  <div class="row">
+    
+      <div class="ingredients content bg-light mr-2">
+        <strong>Hozzávalók:</strong>
+        <ul>
+          <li *ngFor="let ingredient of recipe.ingredients">
+            {{ ingredient.name }} - {{ ingredient.pivot?.quantity }}
+          </li>
+        </ul>
+      </div>
+    
+
+
+      <div [innerHTML]="recipe.description" class="description content bg-light"></div>
+  </div>
+
+
+</div>
+
+

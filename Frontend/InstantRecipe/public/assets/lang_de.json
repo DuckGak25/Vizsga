@@ -1,0 +1,36 @@
+{
+    "name": "Sofort-Rezept",
+    "actLang": "Deutsch",
+    "flagLink": "https://www.harley-davidson.com/content/dam/h-d/images/assets/ui/flags/germany.png",
+    "langSelection": [
+        {"text": "Magyar", "sign": "hu"},
+        {"text": "English", "sign": "en"},
+        {"text": "Deutsch", "sign": "de"}
+    ],
+    "navItem": [
+        {"text": "Startseite", "link": "home"},
+        {"text": "Was ist in der Speisekammer?", "link": "pantry"},
+        {"text": "Registrierung", "link": "register"},
+        {"text": "Anmeldung", "link": "login"}
+    ],
+
+    "homeText1": "Nicht bestellen,",
+    "homeText2": "Koche zu Hause!",
+    "homecontent1title": "Ich würde es mir ansehen",
+    "homecontent1card": [
+    {"text": "Was ist in der Vorratskammer?", "link": "pantry", "pic": "https://attic.sh/zizosqhtkc9g4lsjyv358gus0nzs"},
+    {"text": "Ein Konto erstellen", "link": "register", "pic": "https://attic.sh/c6gfetxd7dv3hkarz1s8uh46sxny"},
+    {"text": "Rezepte", "link": "recipes", "pic": "https://attic.sh/c11difv7b9aivntjpscdehbld4z2"}
+    ],
+    "homecontent2title": "Tägliche Rezepte",
+    "registerTitle": "Registrierung",
+    "loginTitle": "Anmeldung",
+    "passwordText": "Passwort",
+    "confirmPasswordText": "Passwort bestätigen",
+    "emailLabel": "E-Mail-Adresse",
+    "nameLabel": "Name",
+    "alreadyAccountLabel": "Sie haben bereits ein Konto?",
+    "signInGoogle": "Anmelden mit Google"
+
+        
+}

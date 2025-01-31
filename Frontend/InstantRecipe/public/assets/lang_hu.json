@@ -1,0 +1,45 @@
+{
+    "name": "Instant Recept",
+    "flagLink": "https://www.harley-davidson.com/content/dam/h-d/images/assets/ui/flags/hungary.png",
+    "langSelection":[
+        {"text":"Magyar", "sign":"hu"},
+        {"text":"English", "sign":"en"},
+        {"text":"Deutsch", "sign":"de"}
+       ],
+    "navItem":[
+        {"text":"Kezdőlap", "link":"home"},
+        {"text":"Mi van a kamrában?", "link":"pantry"},
+        {"text":"Regisztráció", "link":"register"},
+        {"text":"Bejelentkezés", "link":"login"},
+        {"text":"Admin", "link":"addrecipe"}
+    ],
+
+    "homeText1": "Ne rendelj,",
+    "homeText2": "Főzz otthon!",
+
+    "homecontent1title": "Megnézném a helyedben",
+    "homecontent1card": [
+        {"text": "Mi van a kamrában?", "link": "pantry", "pic": "https://attic.sh/zizosqhtkc9g4lsjyv358gus0nzs"},
+        {"text": "Hozd létre a fiókod", "link": "register", "pic": "https://attic.sh/c6gfetxd7dv3hkarz1s8uh46sxny"},
+        {"text": "Receptek", "link": "recipes", "pic": "https://attic.sh/c11difv7b9aivntjpscdehbld4z2"}
+    ],
+    "homecontent2title": "Napi receptek",
+    "homecontent2card": [
+        {"text": "Paprikás krumpli", "link": "pantry", "pic": "https://attic.sh/zizosqhtkc9g4lsjyv358gus0nzs"},
+        {"text": "Húsleves", "link": "register", "pic": "https://attic.sh/c6gfetxd7dv3hkarz1s8uh46sxny"},
+        {"text": "BBQ csirkeszárny", "link": "recipes", "pic": "https://attic.sh/c11difv7b9aivntjpscdehbld4z2"},
+        {"text": "Nuggets", "link": "recipes", "pic": "https://attic.sh/c11difv7b9aivntjpscdehbld4z2"},
+        {"text": "Nuggets", "link": "recipes", "pic": "https://attic.sh/c11difv7b9aivntjpscdehbld4z2"},
+        {"text": "Nuggets", "link": "recipes", "pic": "https://attic.sh/c11difv7b9aivntjpscdehbld4z2"}
+    ],
+    "registerTitle": "Regisztráció",
+    "loginTitle": "Bejelentkezés",
+    "passwordText": "Jelszó",
+    "confirmPasswordText": "Jelszó megerősítése",
+    "emailLabel": "E-mail cím",
+    "nameLabel": "Név",
+    "alreadyAccountLabel": "Már van fiókod?",
+    "signInGoogle": "Bejelentkezés a Google-lel",
+
+    "loginTitle": "Bejelentkezés"
+}

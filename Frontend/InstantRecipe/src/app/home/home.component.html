@@ -1,0 +1,59 @@
+<div class="et">
+<!--  <div class="carousel" >
+      <ngb-carousel [interval]="3000" [pauseOnHover]="true" class="w-100 custom-carousel">
+        <ng-template ngbSlide>
+          <img src="https://www.harthamparkestate.co.uk/wp-content/uploads/2024/05/eating-well-at-work-chippenham-corsham-scaled-aspect-ratio-1800-600-4.jpg" alt="First Slide" class="d-block w-100">
+        </ng-template>
+        <ng-template ngbSlide>
+          <div class="carouselinfo" alt="Second Slide">
+              <h1>Szia</h1>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum neque provident quae vitae earum repudiandae dicta et odio maiores quam? Nostrum eaque repellat cumque voluptatum.</p>
+  
+          </div>
+          <img src="https://threepennytaproom.com/wp-content/uploads/2023/01/feast-5-scaled-aspect-ratio-1800-600-1800x600.jpg" alt="Second Slide" class="d-block w-100">
+  
+        </ng-template>
+        <ng-template ngbSlide>
+          <img src="https://i0.wp.com/www.wildvoyager.com/wp-content/uploads/2021/07/africa.jpg?fit=1800%2C600&ssl=1" alt="Second Slide" class="d-block w-100">
+        </ng-template>
+      </ngb-carousel>
+    </div>
+  -->
+    <div class="banner">
+      <h1>{{homeText1}}</h1>
+      <h1>{{homeText2}}</h1>
+    </div>
+  
+    <div class="content">
+        <div class="cont2" data-aos="fade-up">
+          
+          <div class="content2">
+            <h1>{{homecontent2title}}</h1>
+            <div class="col" *ngFor="let recipe of recipes">
+              <div class="card" data-aos="fade-up">
+                <h2>{{ recipe.title }}</h2>
+                <div class="gorecipe">
+                  <a [routerLink]="['/recipes', recipe.id]">
+                    <button class="btn btn-danger">Ugrás a receptre</button>
+                  </a>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+
+        <div class="cont1" data-aos="fade-up">
+          
+          <div class="content1" >
+            <h1>{{homecontent1title}}</h1>
+            <div class="col" *ngFor="let homecontent1card of homecontent1cards">
+              <div class="card" data-aos="fade-up"
+                  [style.background-image]="'url(' + homecontent1card.pic + ')'"
+                  (click)="navigateTo(homecontent1card.link)">
+                <h2>{{ homecontent1card.text }}</h2>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>

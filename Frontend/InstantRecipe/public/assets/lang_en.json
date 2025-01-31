@@ -1,0 +1,34 @@
+{
+    "name": "Instant Recipe",
+    "actLang": "English",
+    "flagLink": "https://www.harley-davidson.com/content/dam/h-d/images/assets/ui/flags/hungary.png",
+    "langSelection":[
+        {"text":"Magyar", "sign":"hu"},
+        {"text":"English", "sign":"en"},
+        {"text":"Deutsch", "sign":"de"}
+       ],
+    "navItem":[
+        {"text":"Home", "link":"home"},
+        {"text":"What's in the pantry?", "link":"pantry"},
+        {"text":"Registration", "link":"register"},
+        {"text":"Login", "link":"login"}
+    ],
+
+    "homeText1": "Don't order,",
+    "homeText2": "Cook at home!",
+    "homecontent1title": "I'd check it out",
+    "homecontent1card": [
+        {"text": "What's in the pantry?", "link": "pantry", "pic": "https://attic.sh/zizosqhtkc9g4lsjyv358gus0nzs"},
+        {"text": "Create an account", "link": "register", "pic": "https://attic.sh/c6gfetxd7dv3hkarz1s8uh46sxny"},
+        {"text": "Recipes", "link": "recipes", "pic": "https://attic.sh/c11difv7b9aivntjpscdehbld4z2"}
+    ],
+    "homecontent2title": "Daily recipes",
+    "registerTitle": "Registration",
+    "loginTitle": "Login",
+    "passwordText": "Password",
+    "confirmPasswordText": "Confirm Password",
+    "emailLabel": "Email Address",
+    "nameLabel": "Name",
+    "alreadyAccountLabel": "Already have an account?",
+    "signInGoogle": "Sign in with Google"
+}
