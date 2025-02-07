@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { EditorModule } from '@tinymce/tinymce-angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +22,7 @@ import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { TesztComponent } from './teszt/teszt.component';
 import { RecipeListComponent } from './recipe-list/recipe-list.component';
 import { AddRecipeComponent } from './add-recipe/add-recipe.component';
+import { RecipesListComponent } from './components/recipes-list/recipes-list.component';
 
 
 
@@ -40,6 +42,8 @@ import { AddRecipeComponent } from './add-recipe/add-recipe.component';
     TesztComponent,
     RecipeListComponent,
     AddRecipeComponent,
+    RecipesListComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -47,7 +51,8 @@ import { AddRecipeComponent } from './add-recipe/add-recipe.component';
     NgbModule,
     FormsModule,
     NgbCollapse,
-    HttpClientModule
+    HttpClientModule,
+    EditorModule
   ],
   providers: [
     provideHttpClient()

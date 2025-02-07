@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Recipe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\RecipeRequest;
+use App\Http\Resources\Recipe as RecipeResource;
 
 
 class RecipeController extends Controller
@@ -53,5 +55,32 @@ class RecipeController extends Controller
     
         return response()->json($recipe, 201);  
     }
+
+    public function deleteRecipe($id)
+    {
+        $recipe = Recipe::find($id);
+    
+        if (!$recipe) {
+            return response()->json(['message' => 'Nem található recept'], 404);
+        }
+    
+        $recipe->delete();
+    
+        return response()->json(['message' => 'Recept sikeresen törölve'], 200);
+    }
+
+    public function destroy($id)
+    {
+        $recipe = Recipe::find($id);
+    
+        if ($recipe) {
+            $recipe->delete();
+            return response()->json(['message' => 'Recept törölve!'], 200);
+        } else {
+            return response()->json(['message' => 'Recept nem található!'], 404);
+        }
+    }
+    
+    
 }
 

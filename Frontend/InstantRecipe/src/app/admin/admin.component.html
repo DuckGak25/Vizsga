@@ -1,1 +1,18 @@
-<p>admin works!</p>
+<div class="et">
+    <div class="content1">
+                <div class="title">
+                    <h1>Adminisztráció</h1>
+                </div>
+            <div class="row">
+                    <div class="col" *ngFor="let adminPage of adminPages">
+                        <div class="card"
+                            (click)="navigateTo(adminPage.link)"
+                            [style.background-image]="'url(' + adminPage.image + ')'"
+                            style="background-image: url(/assets/images/icons/pencil.line@5x.png);"
+                            >
+                          <h2>{{ adminPage.text }}</h2>
+                        </div>
+                      </div>
+            </div>
+    </div>
+</div>

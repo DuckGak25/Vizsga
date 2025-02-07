@@ -1,0 +1,33 @@
+<div class="content">
+    <div class="card">
+
+        <!-- modal.component.html -->
+        <div class="modal" *ngIf="isVisible" data-aos="zoom-in">
+            <div class="modal-content">
+                <span class="close" (click)="close()">×</span>
+                <h2>Törlés</h2>
+                <p>{{modalContent}}</p>
+                <button (click)="close()" class="btn btn-primary">Close</button>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <h1>Receptek</h1>
+            <div class="list-card" *ngFor="let recipe of recipes">
+                <div class="row">
+                    <div class="col">
+                        <h2>#{{recipe.id}}</h2>
+                    </div>
+                    <div class="col">
+                        <h2>{{recipe.title}}</h2>
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-success" disabled>{{editButton}}</button>
+                        <button class="btn btn-danger" (click)="deleteRecipe(recipe)">{{deleteButton}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

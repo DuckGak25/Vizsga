@@ -1,7 +1,7 @@
 <div class="content">
     <div class="card">
       <h1>Recept hozzáadása</h1>
-      <form (ngSubmit)="createRecipe()">
+      <form >
         <!-- Recept neve -->
         <div class="form-floating mb-3">
           <input
@@ -17,15 +17,13 @@
         
         <!-- Leírás -->
         <div class="form-floating mb-3">
-          <input
-            type="text"
-            class="form-control"
-            id="description"
-            name="description"
-            placeholder="Leírás"
-            [(ngModel)]="newRecipe.description"
-          />
-          <label for="description">Leírás</label>
+          <editor
+          [init]="editorConfig"
+          apiKey="9uesm71yy1ns25hhwg2553qmtvshhaud699moglz5xba0kkq"
+          [(ngModel)]="newRecipe.description" [ngModelOptions]="{standalone: true}">
+        </editor>
+        
+
         </div>
         
         
@@ -63,7 +61,7 @@
         </div>
         
         <!-- Hozzáadás gomb -->
-        <button class="btn btn-danger" type="submit">Hozzáad</button>
+        <button class="btn btn-danger" type="submit" (click)="createRecipe()">Hozzáad</button>
       </form>
     </div>
   </div>

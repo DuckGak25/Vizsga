@@ -10,3 +10,5 @@ Route::get('/recipes/{id}/ingredients', [RecipeController::class, 'showIngredien
 Route::get('/ingredients', [RecipeController::class, 'showAllIngredients']);
 
 Route::post('/postrecipe', [RecipeController::class, 'postRecipes']);
+
+

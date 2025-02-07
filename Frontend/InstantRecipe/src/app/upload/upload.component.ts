@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { RecipeService } from '../recipe.service';
 import { Ingredient } from '../models/ingredient.model';
 import { Recipe } from '../models/recipe.model';
+import { EditorComponent } from '@tinymce/tinymce-angular';
 
 @Component({
   selector: 'app-add-recipe',
   templateUrl: './add-recipe.component.html',
-  styleUrls: ['./add-recipe.component.css']
+  styleUrls: ['./add-recipe.component.css'],
+  imports: [EditorComponent]
 })
 export class AddRecipeComponent implements OnInit {
   ingredients: Ingredient[] = [];
@@ -22,6 +24,17 @@ export class AddRecipeComponent implements OnInit {
     description: '',
     categories: '',
     ingredients: []
+  };
+
+  content: string = '';
+  editorConfig = {
+    height: 300,
+    menubar: false,
+    plugins: 'lists link image charmap print preview anchor',
+    toolbar:
+      'undo redo | formatselect | bold italic backcolor | \
+      alignleft aligncenter alignright alignjustify | \
+      bullist numlist outdent indent | removeformat'
   };
 
   constructor(private recipeService: RecipeService) {}

@@ -11,7 +11,7 @@
         {"text":"Mi van a kamrában?", "link":"pantry"},
         {"text":"Regisztráció", "link":"register"},
         {"text":"Bejelentkezés", "link":"login"},
-        {"text":"Admin", "link":"addrecipe"}
+        {"text":"Admin", "link":"admin"}
     ],
 
     "homeText1": "Ne rendelj,",
@@ -41,5 +41,15 @@
     "alreadyAccountLabel": "Már van fiókod?",
     "signInGoogle": "Bejelentkezés a Google-lel",
 
-    "loginTitle": "Bejelentkezés"
+    "editButton": "Szerkeszt",
+    "deleteButton": "Törlés",
+    "saveButton": "Mentes",
+    "cancelButton": "Megszakitás",
+    "addButton": "Hozzáadás",
+
+    "adminPages": [
+        {"text": "Felhasználok kezelése", "link": "admin/addrecipe", "image": "assets/images/icons/person.2.badge.gearshape@5x.png"},
+        {"text": "Recept hozzáadása", "link": "admin/addrecipe", "image": "assets/images/icons/plus.square.on.square@5x.png"},
+        {"text": "Receptek szerkesztése", "link": "admin/recipes-list", "image": "assets/images/icons/pencil.line@5x.png"}
+    ]
 }

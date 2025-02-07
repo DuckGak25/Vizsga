@@ -217,5 +217,11 @@ return [
     'same_site' => 'lax',
     'http_only' => true,
 
+    'csrf' => [
+        'cookie' => [
+            'http_only' => false,
+        ],
+    ],
+
 
 ];

@@ -31,11 +31,10 @@ export class HomeComponent implements OnInit {
   constructor(private config: ConfigService, private router: Router, private recipeService: RecipeService) {
 
 
-    // Figyelj a navigációs eseményekre
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe(() => {
-        this.loadContent(); // Betöltés újra
+        this.loadContent();
       });
   }
 

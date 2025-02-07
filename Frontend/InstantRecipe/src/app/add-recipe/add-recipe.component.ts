@@ -2,11 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { RecipeService } from '../recipe.service';
 import { Ingredient } from '../models/ingredient.model';
 import { Recipe } from '../models/recipe.model';
+import { EditorComponent } from '@tinymce/tinymce-angular';
+import { RawEditorOptions } from 'tinymce';
 
 @Component({
   selector: 'app-add-recipe',
   templateUrl: './add-recipe.component.html',
-  styleUrls: ['./add-recipe.component.css']
+  styleUrls: ['./add-recipe.component.css'],
+
 })
 export class AddRecipeComponent implements OnInit {
   ingredients: Ingredient[] = [];
@@ -24,24 +27,33 @@ export class AddRecipeComponent implements OnInit {
     ingredients: []
   };
 
+  editorConfig: any = {
+    height: 400,
+    menubar: false,
+    directionality: 'ltr',
+    plugins: `
+      advlist autolink link image lists charmap preview anchor 
+      searchreplace visualblocks code fullscreen insertdatetime wordcount
+    `, 
+    toolbar: 'undo redo | bold italic underline | formatselect |  bullist numlist  | removeformat',
+
+  };
+  
   constructor(private recipeService: RecipeService) {}
 
   ngOnInit(): void {
-    // Összetevők betöltése
     this.recipeService.getIngredients().subscribe((data: Ingredient[]) => {
       this.ingredients = data;
       this.categorizeIngredients();
       this.restoreSelectedIngredients();
     });
 
-    // Receptek betöltése
     this.recipeService.getRecipes().subscribe((data: Recipe[]) => {
       this.allRecipes = data;
       this.filteredRecipes = this.allRecipes;
     });
   }
 
-  // Összetevők kategorizálása
   categorizeIngredients(): void {
     this.ingredients.forEach(ingredient => {
       const category = ingredient.category || 'Uncategorized';
@@ -110,8 +122,8 @@ export class AddRecipeComponent implements OnInit {
     localStorage.setItem('selectedIngredients', JSON.stringify(Array.from(this.selectedIngredients)));
   }
 
-  // Új recept létrehozása
-  createRecipe() {
+  createRecipe(): void {
+    console.log('Küldött recept adatok:', this.newRecipe);
     this.recipeService.createRecipe(this.newRecipe).subscribe(response => {
       console.log('Recipe created successfully', response);
       this.resetForm();
@@ -119,6 +131,11 @@ export class AddRecipeComponent implements OnInit {
       console.error('Error creating recipe', error);
     });
   }
+
+  updateDescription(event: any): void {
+    this.newRecipe.description = event.level.content;
+  }
+  
 
   // Űrlap törlése
   resetForm() {

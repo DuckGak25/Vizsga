@@ -12,6 +12,7 @@ import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { TesztComponent } from './teszt/teszt.component';
 import { RecipeListComponent } from './recipe-list/recipe-list.component';
 import { AddRecipeComponent } from './add-recipe/add-recipe.component';
+import { RecipesListComponent } from './components/recipes-list/recipes-list.component';
 
 
 const routes: Routes = [
@@ -24,8 +25,9 @@ const routes: Routes = [
   {path: "admin", component: AdminComponent},
   { path: 'recipes/:id', component: RecipeDetailComponent },
   { path: 'teszt', component: TesztComponent },
+  { path: 'admin/recipes-list', component: RecipesListComponent },
 
-  {path: "addrecipe", component: AddRecipeComponent},
+  {path: "admin/addrecipe", component: AddRecipeComponent},
   {path:"", redirectTo:'/home', pathMatch:'full'},
 ];
 

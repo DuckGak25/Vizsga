@@ -1,0 +1,125 @@
+ /* Content */
+ .et {
+    padding-top: 5.3vw;
+    height: fit-content;
+    backdrop-filter: blur(2px);
+}
+
+.et ::-webkit-scrollbar {
+    display: none;
+}
+
+
+.content h1 {
+    font-weight: 600;
+    padding: 30px;
+}
+
+.content1, .content2 {
+
+    overflow-x: auto;
+    padding: 40px 20px 40px 20px;
+    right: 0;
+    overflow-y: hidden;
+    border-radius: 20px;
+    background-color: #eeeceb;
+    /*background-color: rgb(45, 45, 45);*/
+    margin: 30px auto;
+    max-width: 98%;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
+}
+
+.cont1 {    
+    position: sticky;
+    top: 25%;
+    gap: 30px;
+    
+}
+
+.card {
+    background-position: left-center;
+}
+
+
+
+ 
+
+
+.cont1, .cont2 {
+    animation: appear 0.5s ease-in-out forwards;
+}
+
+ /* Mobil */
+@media (max-width: 768px) { 
+    .content1, .content2 {
+        padding: 15px;
+        scrollbar-width: 0;
+        scroll-behavior:auto;
+    }
+    .content h1 {
+        padding: 20px;
+    }
+
+    .et {
+        padding-top: 65px;
+    
+    }
+
+    .card {
+        height: 400px;
+    }
+    .navbar-collapse {
+        top: -100%;
+    }
+    .carousel {
+        display: none;
+    }
+
+
+}
+
+/* Asztali */
+@media (min-width: 769px) {  
+    .card {
+        height: 500px;
+    }
+}
+
+.title h1 {
+    margin-bottom: 20px;
+
+}
+
+ /* Kártya */
+.card {
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+    padding: 50px;
+    border: 1px color(grey);
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    max-width: 480px;
+    min-width: 350px;
+    min-height: 600px;
+    margin-right: 30px;
+    background-size: 75%;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    transition: transform 0.4s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.01);
+    box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.2);
+}
+
+
+
+
+
+
+
+    
