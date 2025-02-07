@@ -13,6 +13,7 @@ import { TesztComponent } from './teszt/teszt.component';
 import { RecipeListComponent } from './recipe-list/recipe-list.component';
 import { AddRecipeComponent } from './add-recipe/add-recipe.component';
 import { RecipesListComponent } from './components/recipes-list/recipes-list.component';
+import { UsersComponent } from './components/users/users.component';
 
 
 const routes: Routes = [
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'recipes/:id', component: RecipeDetailComponent },
   { path: 'teszt', component: TesztComponent },
   { path: 'admin/recipes-list', component: RecipesListComponent },
+  {path: 'admin/users', component: UsersComponent},
 
   {path: "admin/addrecipe", component: AddRecipeComponent},
   {path:"", redirectTo:'/home', pathMatch:'full'},

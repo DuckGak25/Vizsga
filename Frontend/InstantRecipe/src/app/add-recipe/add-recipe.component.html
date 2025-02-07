@@ -16,12 +16,53 @@
         </div>
         
         <!-- Leírás -->
-        <div class="form-floating mb-3">
-          <editor
-          [init]="editorConfig"
-          apiKey="9uesm71yy1ns25hhwg2553qmtvshhaud699moglz5xba0kkq"
-          [(ngModel)]="newRecipe.description" [ngModelOptions]="{standalone: true}">
-        </editor>
+        <div class="form-floating mb-3 row">
+          
+          <div class="col">
+            <h2>Leírás</h2>  
+            <editor
+            name="description"
+            [init]="editorConfig"
+            apiKey="9uesm71yy1ns25hhwg2553qmtvshhaud699moglz5xba0kkq"
+            [(ngModel)]="newRecipe.description" [ngModelOptions]="{standalone: true}">
+                    </editor>
+          </div>
+          <div class="col">
+            <h2>Elvárás</h2>
+            <img src="/assets/images/description_requirements.png" alt="description requirements" class="img-fluid">
+          </div>
+      </div>
+
+        <div class="form-floating mt-3">
+          <input
+            type="text"
+            class="form-control"
+            id="categories"
+            name="categories"
+            placeholder="Kategoria"
+            [(ngModel)]="newRecipe.categories"
+          />
+          <label for="categories">Kategoria</label>
+        </div>
+
+        <div class="selected-ingredients mt-3">
+          <h2>Kiválasztott Összetevők</h2>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Összetevő neve</th>
+                <th>Mennyiség</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let ingredient of selectedIngredients">
+                <td>{{ ingredient }}</td>
+                <td>
+                  <input type="text" [(ngModel)]="ingredientQuantities[ingredient]" placeholder="Mennyiség" class="form-control">
+                </td>
+              </tr>
+          </table>
+        
         
 
         </div>

@@ -15,6 +15,7 @@ export class AddRecipeComponent implements OnInit {
   ingredients: Ingredient[] = [];
   categorizedIngredients: { [key: string]: Set<string> } = {};
   selectedIngredients: Set<string> = new Set();
+  ingredientQuantities: { [key: string]: string } = {};
   allRecipes: Recipe[] = [];
   filteredRecipes: Recipe[] = [];
   searchTerm: string = '';
@@ -28,7 +29,7 @@ export class AddRecipeComponent implements OnInit {
   };
 
   editorConfig: any = {
-    height: 400,
+    height: 450,
     menubar: false,
     directionality: 'ltr',
     plugins: `

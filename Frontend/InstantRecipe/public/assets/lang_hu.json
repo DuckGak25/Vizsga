@@ -48,7 +48,7 @@
     "addButton": "Hozzáadás",
 
     "adminPages": [
-        {"text": "Felhasználok kezelése", "link": "admin/addrecipe", "image": "assets/images/icons/person.2.badge.gearshape@5x.png"},
+        {"text": "Felhasználok kezelése", "link": "admin/users", "image": "assets/images/icons/person.2.badge.gearshape@5x.png"},
         {"text": "Recept hozzáadása", "link": "admin/addrecipe", "image": "assets/images/icons/plus.square.on.square@5x.png"},
         {"text": "Receptek szerkesztése", "link": "admin/recipes-list", "image": "assets/images/icons/pencil.line@5x.png"}
     ]

@@ -23,6 +23,8 @@ import { TesztComponent } from './teszt/teszt.component';
 import { RecipeListComponent } from './recipe-list/recipe-list.component';
 import { AddRecipeComponent } from './add-recipe/add-recipe.component';
 import { RecipesListComponent } from './components/recipes-list/recipes-list.component';
+import { UsersComponent } from './components/users/users.component';
+
 
 
 
@@ -43,6 +45,7 @@ import { RecipesListComponent } from './components/recipes-list/recipes-list.com
     RecipeListComponent,
     AddRecipeComponent,
     RecipesListComponent,
+    UsersComponent,
 
   ],
   imports: [
