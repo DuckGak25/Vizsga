@@ -1,7 +1,6 @@
 <div class="content">
     <div class="card">
       <h1>Recept hozzáadása</h1>
-      <form >
         <!-- Recept neve -->
         <div class="form-floating mb-3">
           <input
@@ -56,9 +55,16 @@
             </thead>
             <tbody>
               <tr *ngFor="let ingredient of selectedIngredients">
-                <td>{{ ingredient }}</td>
+                <td>{{ ingredient.name }}</td>
                 <td>
-                  <input type="text" [(ngModel)]="ingredientQuantities[ingredient]" placeholder="Mennyiség" class="form-control">
+                  <input 
+                    type="text" 
+                    [(ngModel)]="ingredientQuantities[ingredient.id]" 
+                    (ngModelChange)="updateIngredientQuantity(ingredient.id, $event)"
+                    placeholder="Mennyiség" 
+                    class="form-control"
+                  />
+
                 </td>
               </tr>
           </table>
@@ -70,7 +76,6 @@
         
         <!-- Összetevők listája -->
         <div class="ingredient-list">
-          <!-- Keresőmező -->
           <input
             type="text"
             [(ngModel)]="searchTerm"
@@ -92,10 +97,11 @@
                 <input
                   type="checkbox"
                   [value]="ingredient"
-                  id="{{ingredient}}"
+                  [id]="'ingredient-' + ingredient.id"
                   (change)="onIngredientChange($event, ingredient)"
                 />
-                <label for="{{ingredient}}">{{ ingredient }}</label>
+                <label [for]="'ingredient-' + ingredient.id">{{ ingredient.name }}</label>
+
               </div>
             </div>
           </div>
@@ -103,7 +109,7 @@
         
         <!-- Hozzáadás gomb -->
         <button class="btn btn-danger" type="submit" (click)="createRecipe()">Hozzáad</button>
-      </form>
+        <button class="btn btn-danger" type="button" (click)="addIngredients()" [disabled]="!createdRecipeId">Összetevők hozzáadása</button>
     </div>
   </div>
   

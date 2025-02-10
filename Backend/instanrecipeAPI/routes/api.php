@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RecipeController;
+use App\Http\Controllers\RecipeIngredientController;
 
 
 
@@ -14,3 +15,8 @@ Route::get('/ingredients', [RecipeController::class, 'showIngredients']);
 Route::post('/postrecipe', [RecipeController::class, 'postRecipes']);
 
 Route::delete('deleterecipe/{id}', [RecipeController::class, 'deleteRecipe']);
+
+
+Route::post('/storerecipes', [RecipeController::class, 'store']);
+
+Route::post('/recipe-ingredients', [RecipeIngredientController::class, 'storeIngredients']);

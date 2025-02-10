@@ -33,6 +33,10 @@ export class RecipeService {
     return this.http.post<Recipe>(`${this.apiUrl}/api/postrecipe`, recipe);
   }
 
+  addIngredients(ingredientData: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/api/recipe-ingredients`, ingredientData);
+  }
+
 
   deleteRecipe(id: number) {
     return this.http.delete(`http://localhost:8000/api/deleterecipe/${id}`);

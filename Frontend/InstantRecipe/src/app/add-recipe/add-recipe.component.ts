@@ -2,30 +2,29 @@ import { Component, OnInit } from '@angular/core';
 import { RecipeService } from '../recipe.service';
 import { Ingredient } from '../models/ingredient.model';
 import { Recipe } from '../models/recipe.model';
-import { EditorComponent } from '@tinymce/tinymce-angular';
 import { RawEditorOptions } from 'tinymce';
 
 @Component({
   selector: 'app-add-recipe',
   templateUrl: './add-recipe.component.html',
   styleUrls: ['./add-recipe.component.css'],
-
 })
 export class AddRecipeComponent implements OnInit {
   ingredients: Ingredient[] = [];
-  categorizedIngredients: { [key: string]: Set<string> } = {};
-  selectedIngredients: Set<string> = new Set();
-  ingredientQuantities: { [key: string]: string } = {};
+  categorizedIngredients: { [key: string]: Set<Ingredient> } = {};
+  selectedIngredients: Set<Ingredient> = new Set();
+  ingredientQuantities: { [key: number]: string } = {};
   allRecipes: Recipe[] = [];
   filteredRecipes: Recipe[] = [];
   searchTerm: string = '';
+  createdRecipeId: number | null = null;
 
   newRecipe: Recipe = {
     id: 0,
     title: '',
     description: '',
     categories: '',
-    ingredients: []
+    ingredients: [],
   };
 
   editorConfig: any = {
@@ -37,7 +36,6 @@ export class AddRecipeComponent implements OnInit {
       searchreplace visualblocks code fullscreen insertdatetime wordcount
     `, 
     toolbar: 'undo redo | bold italic underline | formatselect |  bullist numlist  | removeformat',
-
   };
   
   constructor(private recipeService: RecipeService) {}
@@ -61,85 +59,133 @@ export class AddRecipeComponent implements OnInit {
       if (!this.categorizedIngredients[category]) {
         this.categorizedIngredients[category] = new Set();
       }
-      this.categorizedIngredients[category].add(ingredient.name);
+      this.categorizedIngredients[category].add(ingredient);
     });
   }
 
-  // Összetevők kiválasztása
-  onIngredientChange(event: Event, ingredient: string) {
+
+  onIngredientChange(event: Event, ingredient: Ingredient) {
     const checkbox = event.target as HTMLInputElement;
     if (checkbox.checked) {
       this.selectedIngredients.add(ingredient);
+      
+
+      if (!this.ingredientQuantities[ingredient.id]) {
+        this.ingredientQuantities[ingredient.id] = '';
+      }
     } else {
       this.selectedIngredients.delete(ingredient);
+      delete this.ingredientQuantities[ingredient.id];
     }
     this.filterRecipes();
     this.saveSelectedIngredients();
   }
+  
 
-  // Receptek szűrése
+
   filterRecipes() {
     if (this.selectedIngredients.size === 0) {
       this.filteredRecipes = this.allRecipes;
     } else {
       this.filteredRecipes = this.allRecipes.filter(recipe =>
         Array.from(this.selectedIngredients).some(ingredient =>
-          recipe.ingredients.some(i => i.name === ingredient)
+          recipe.ingredients.some(i => i.id === ingredient.id)
         )
       );
     }
   }
 
-  // Összetevők szűrése a keresési kifejezés alapján
-  filterIngredients(ingredients: Set<string>): string[] {
+
+  filterIngredients(ingredients: Set<Ingredient>): Ingredient[] {
     if (!this.searchTerm) {
       return Array.from(ingredients);
     }
     const lowerCaseSearchTerm = this.searchTerm.toLowerCase();
     return Array.from(ingredients).filter(ingredient =>
-      ingredient.toLowerCase().includes(lowerCaseSearchTerm)
+      ingredient.name.toLowerCase().includes(lowerCaseSearchTerm)
     );
   }
 
-  // Kiválasztott összetevők törlése
+
   clearSelectedIngredients() {
     this.selectedIngredients.clear();
     localStorage.removeItem('selectedIngredients');
     this.filteredRecipes = this.allRecipes;
   }
 
-  // Kiválasztott összetevők visszaállítása
+
   restoreSelectedIngredients() {
     const savedIngredients = localStorage.getItem('selectedIngredients');
     if (savedIngredients) {
-      const ingredientsArray = JSON.parse(savedIngredients);
-      ingredientsArray.forEach((ingredient: string) => this.selectedIngredients.add(ingredient));
+      const ingredientsArray: Ingredient[] = JSON.parse(savedIngredients);
+      ingredientsArray.forEach(ingredient => this.selectedIngredients.add(ingredient));
       this.filterRecipes();
     }
   }
 
-  // Kiválasztott összetevők mentése
+
   saveSelectedIngredients() {
     localStorage.setItem('selectedIngredients', JSON.stringify(Array.from(this.selectedIngredients)));
-  }
-
-  createRecipe(): void {
-    console.log('Küldött recept adatok:', this.newRecipe);
-    this.recipeService.createRecipe(this.newRecipe).subscribe(response => {
-      console.log('Recipe created successfully', response);
-      this.resetForm();
-    }, error => {
-      console.error('Error creating recipe', error);
-    });
   }
 
   updateDescription(event: any): void {
     this.newRecipe.description = event.level.content;
   }
+
+  updateIngredientQuantity(ingredientId: number, quantity: string) {
+    this.ingredientQuantities[ingredientId] = quantity;
+  }
+  
   
 
-  // Űrlap törlése
   resetForm() {
     this.newRecipe = { id: 0, title: '', description: '', categories: '', ingredients: [] };
+    this.selectedIngredients.clear();
   }
+
+  createRecipe() {
+    const recipeData: Recipe = {
+      id: this.newRecipe.id,
+      title: this.newRecipe.title,
+      description: this.newRecipe.description,
+      categories: this.newRecipe.categories,
+      ingredients: [],
+    };
+
+    this.recipeService.createRecipe(recipeData).subscribe(
+      (response: any) => {
+        console.log('Recipe created successfully', response);
+        this.createdRecipeId = response.id;
+      },
+      (error) => {
+        console.error('Error creating recipe', error);
+      }
+    );
+  }
+
+  addIngredients() {
+    if (!this.createdRecipeId) {
+      console.error('No recipe ID found');
+      return;
+    }
+  
+    const ingredientData = {
+      recipe_id: this.createdRecipeId,
+      ingredients: Array.from(this.selectedIngredients).map(ingredient => ({
+        ingredient_id: ingredient.id,
+        quantity: this.ingredientQuantities[ingredient.id] || ''
+      }))
+    };
+  
+    this.recipeService.addIngredients(ingredientData).subscribe(
+      (response) => {
+        console.log('Ingredients added successfully', response);
+        this.selectedIngredients.clear();
+      },
+      (error) => {
+        console.error('Error adding ingredients', error);
+      }
+    );
+  }
+  
 }
