@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RecipeService } from '../recipe.service';
 import { Ingredient } from '../models/ingredient.model';
 import { Recipe } from '../models/recipe.model';
+import { ConfigService } from '../config.service';
 
 @Component({
   selector: 'app-pantry',
@@ -16,9 +17,15 @@ export class PantryComponent implements OnInit {
   filteredRecipes: Recipe[] = [];
   searchTerm: string = '';
 
-  constructor(private recipeService: RecipeService) {}
+  defaultIngredients: Ingredient[] = []
+
+  pantryHeaderTitle = "";
+  pantryHeaderText = "";
+
+  constructor(private recipeService: RecipeService, private config: ConfigService) {}
 
   ngOnInit(): void {
+    this.loadContent();
     this.recipeService.getIngredients().subscribe((data: Ingredient[]) => {
       this.ingredients = data;
       this.categorizeIngredients();
@@ -31,15 +38,37 @@ export class PantryComponent implements OnInit {
     });
   }
 
+  loadContent() {
+    this.config.getContent().subscribe((content) => {
+
+      this.pantryHeaderTitle = content.pantryHeaderTitle || '';
+      this.pantryHeaderText = content.pantryHeaderText || '';
+
+    });
+  }
+
   categorizeIngredients(): void {
     this.ingredients.forEach(ingredient => {
       const category = ingredient.category || 'Uncategorized';
+  
+      if (category === 'alapvető') {
+        this.defaultIngredients.push(ingredient);
+        return;
+      }
+  
       if (!this.categorizedIngredients[category]) {
         this.categorizedIngredients[category] = new Set();
       }
       this.categorizedIngredients[category].add(ingredient.name);
     });
   }
+  
+
+  // filterIngredients(ingredient: Ingredient) {
+  //    if (ingredient.category === "Alapvető") {
+  //        this.ingredients.
+  //      }
+  //  }
 
   onIngredientChange(event: Event, ingredient: string) {
     const checkbox = event.target as HTMLInputElement;
