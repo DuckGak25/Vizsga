@@ -16,6 +16,8 @@
         
         <!-- Leírás -->
         <div class="form-floating mb-3 row">
+
+          
           
           <div class="col">
             <h2>Leírás</h2>  
@@ -38,78 +40,79 @@
             class="form-control"
             id="categories"
             name="categories"
-            placeholder="Kategoria"
+            placeholder="Kategória"
             [(ngModel)]="newRecipe.categories"
           />
-          <label for="categories">Kategoria</label>
+          <label for="categories">Kategória</label>
         </div>
 
-        <div class="selected-ingredients mt-3">
-          <h2>Kiválasztott Összetevők</h2>
-          <table class="table">
-            <thead>
-              <tr>
-                <th class="col">Összetevő neve</th>
-                <th class="col">Mennyiség</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let ingredient of selectedIngredients">
-                <td>{{ ingredient.name }}</td>
-                <td>
-                  <input 
-                    type="text" 
-                    [(ngModel)]="ingredientQuantities[ingredient.id]" 
-                    (ngModelChange)="updateIngredientQuantity(ingredient.id, $event)"
-                    placeholder="Mennyiség" 
-                    class="form-control"
-                  />
+        <div class="row">
 
-                </td>
-              </tr>
-          </table>
-        
-        
-
-        </div>
-        
-        
-        <!-- Összetevők listája -->
-        <div class="ingredient-list">
-          <input
-            type="text"
-            [(ngModel)]="searchTerm"
-            name="search"
-            placeholder="Keresés összetevők között..."
-            class="form-control mb-3"
-          />
+          <div class="ingredient-list mt-3 col">
+            <h2>Összetevők</h2>
+            <input type="text" [(ngModel)]="searchTerm" name="search" placeholder="Keresés összetevők között..." class="form-control mb-3 mt-3" />
           
-          <!-- Összetevők törlése gomb -->
-          <button type="button" (click)="clearSelectedIngredients()" class="btn btn-danger mb-3">
-            Kiválasztott összetevők törlése
-          </button>
+            <!-- Összetevők törlése gomb -->
+            <button type="button" (click)="clearSelectedIngredients()" class="btn btn-danger mb-3">
+              Kiválasztott összetevők törlése
+            </button>
           
-          <!-- Kategorizált összetevők -->
-          <div *ngFor="let category of (categorizedIngredients | keyvalue)">
-            <h2>{{ category.key }}</h2>
-            <div *ngFor="let ingredient of filterIngredients(category.value)" class="form-check">
-              <div class="checkboxing">
-                <input
-                  type="checkbox"
-                  [value]="ingredient"
-                  [id]="'ingredient-' + ingredient.id"
-                  (change)="onIngredientChange($event, ingredient)"
-                />
-                <label [for]="'ingredient-' + ingredient.id">{{ ingredient.name }}</label>
-
+            <!-- Kategorizált összetevők -->
+            <div *ngFor="let category of categorizedIngredients | keyvalue">
+              <!-- Az adott kategórián belüli szűrt összetevők -->
+              <ng-container *ngIf="filterIngredients(category.value).length > 0">
+                <h3>{{ category.key }}</h3>
+                <div *ngFor="let ingredient of filterIngredients(category.value)" class="form-check">
+                  <div class="checkboxing">
+                    <input type="checkbox" [value]="ingredient" [id]="'ingredient-' + ingredient.id" (change)="onIngredientChange($event, ingredient)" class="form-check-input"/>
+                    <label [for]="'ingredient-' + ingredient.id">{{ ingredient.name }}</label>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+            <div class="post-ingredient mt-3">
+              <h2>Összetevő hozzáadása</h2>
+              <div class="form-floating mb-3 row">
+                <div class="col">
+                  <input type="text" class="form-control col" id="ingredient" name="ingredient" placeholder="Összetevő" [(ngModel)]="newIngredient.name"/>
+                </div>
+                <div class="col">
+                  <input type="text" class="form-control" id="category" name="category" placeholder="Kategória" [(ngModel)]="newIngredient.category">
+                </div>
+                <div class="col">
+                  <button class="btn btn-success" (click)="postIngredient(newIngredient)" style="width: 100%;">Hozzáadás</button>
+                </div>
               </div>
             </div>
           </div>
+
+          <div class="selected-ingredients mt-3 col">
+            <h2>Kiválasztott Összetevők</h2>
+            <table class="table">
+
+              <tbody>
+                <tr *ngFor="let ingredient of selectedIngredients">
+                  <td>{{ ingredient.name }}</td>
+                  <td>
+                    <input type="text" [(ngModel)]="ingredientQuantities[ingredient.id]" (ngModelChange)="updateIngredientQuantity(ingredient.id, $event)" placeholder="Mennyiség" class="form-control"/>
+                  </td>
+                  <td>
+                    <button class="btn btn-danger" (click)="removeIngredient(ingredient)">Eltávolítás</button>
+                  </td>
+                </tr>
+            </table>
+          
+          
+          </div>
+          
+          
+          <!-- Összetevők listája -->
+          
         </div>
+        
         
         <!-- Hozzáadás gomb -->
         <button class="btn btn-danger" type="submit" (click)="createRecipe()">Hozzáad</button>
-        <button class="btn btn-danger" type="button" (click)="addIngredients()" [disabled]="!createdRecipeId">Összetevők hozzáadása</button>
     </div>
   </div>
   

@@ -62,7 +62,6 @@ export class RecipesListComponent {
     this.recipeService.deleteRecipe(recipe.id).subscribe(() => {
       this.recipes = this.recipes.filter((r) => r.id !== recipe.id);
       this.modalContent = `Sikeresen törölted a receptet: ${recipe.title}`;
-      this.isVisible = true;
     }, (error) => {
       console.error('Hiba a recept törlése közben', error);
     });

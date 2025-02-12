@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\RecipeIngredientController;
+use App\Http\Controllers\IngredientController;
 
 
 
@@ -20,3 +21,8 @@ Route::delete('deleterecipe/{id}', [RecipeController::class, 'deleteRecipe']);
 Route::post('/storerecipes', [RecipeController::class, 'store']);
 
 Route::post('/recipe-ingredients', [RecipeIngredientController::class, 'storeIngredients']);
+
+
+Route::post('/addingredient', [IngredientController::class, 'addIngredient']);
+Route::put('/modifyingredient', [IngredientController::class, 'modifyIngredient']);
+Route::delete('/destroyingredient/{id}', [IngredientController::class, 'destroyIngredient']);

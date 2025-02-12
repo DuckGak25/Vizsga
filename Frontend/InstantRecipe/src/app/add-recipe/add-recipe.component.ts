@@ -3,6 +3,7 @@ import { RecipeService } from '../recipe.service';
 import { Ingredient } from '../models/ingredient.model';
 import { Recipe } from '../models/recipe.model';
 import { RawEditorOptions } from 'tinymce';
+import { CheckboxControlValueAccessor } from '@angular/forms';
 
 @Component({
   selector: 'app-add-recipe',
@@ -18,6 +19,11 @@ export class AddRecipeComponent implements OnInit {
   filteredRecipes: Recipe[] = [];
   searchTerm: string = '';
   createdRecipeId: number | null = null;
+  newIngredient: Ingredient = {
+    id: 0,
+    name: '',
+    category: ''
+  }
 
   newRecipe: Recipe = {
     id: 0,
@@ -47,10 +53,7 @@ export class AddRecipeComponent implements OnInit {
       this.restoreSelectedIngredients();
     });
 
-    this.recipeService.getRecipes().subscribe((data: Recipe[]) => {
-      this.allRecipes = data;
-      this.filteredRecipes = this.allRecipes;
-    });
+    this.getRecipes()
   }
 
   categorizeIngredients(): void {
@@ -79,6 +82,15 @@ export class AddRecipeComponent implements OnInit {
     }
     this.filterRecipes();
     this.saveSelectedIngredients();
+  }
+
+  removeIngredient(ingredient: Ingredient) {
+    const checkbox = document.getElementById(`ingredient-${ingredient.id}`) as HTMLInputElement;
+    checkbox.checked = false;
+    this.selectedIngredients.delete(ingredient);
+    this.filterRecipes();
+    this.saveSelectedIngredients();
+    this.ingredientQuantities[ingredient.id] = '';
   }
   
 
@@ -115,6 +127,7 @@ export class AddRecipeComponent implements OnInit {
 
 
   restoreSelectedIngredients() {
+
     const savedIngredients = localStorage.getItem('selectedIngredients');
     if (savedIngredients) {
       const ingredientsArray: Ingredient[] = JSON.parse(savedIngredients);
@@ -156,11 +169,13 @@ export class AddRecipeComponent implements OnInit {
       (response: any) => {
         console.log('Recipe created successfully', response);
         this.createdRecipeId = response.id;
+        this.addIngredients();
       },
       (error) => {
         console.error('Error creating recipe', error);
       }
     );
+
   }
 
   addIngredients() {
@@ -185,7 +200,27 @@ export class AddRecipeComponent implements OnInit {
       (error) => {
         console.error('Error adding ingredients', error);
       }
-    );
+    )
+
+
+  }
+
+  async postIngredient(ingredient: Ingredient) {
+    try {
+      const response = await this.recipeService.postIngredients(ingredient).toPromise();
+      console.log('Ingredient added successfully', response);
+      
+      await this.getRecipes();
+    } catch (error) {
+      console.error('Error adding ingredient', error);
+    }
+  }
+
+  getRecipes() {
+    this.recipeService.getRecipes().subscribe((data: Recipe[]) => {
+      this.allRecipes = data;
+      this.filteredRecipes = this.allRecipes;
+    });
   }
   
 }

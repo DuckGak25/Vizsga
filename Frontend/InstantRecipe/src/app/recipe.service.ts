@@ -41,6 +41,18 @@ export class RecipeService {
   deleteRecipe(id: number) {
     return this.http.delete(`http://localhost:8000/api/deleterecipe/${id}`);
   }
+
+  postIngredients(ingredient: Ingredient) {
+    return this.http.post<Ingredient>(`${this.apiUrl}/api/addingredient`, ingredient);
+  }
+
+  modifyIngredient(ingredient: Ingredient) {
+    return this.http.put<Ingredient>(`${this.apiUrl}/api/modifyingredient`, ingredient);
+  }
+
+  destroyIngredient(ingredient: Ingredient) {
+    return this.http.delete<Ingredient>(`${this.apiUrl}/api/destroyingredient/${ingredient.id}`);
+  }
   
   
   

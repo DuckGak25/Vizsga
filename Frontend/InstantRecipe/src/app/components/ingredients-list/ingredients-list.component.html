@@ -1,0 +1,48 @@
+<div class="content">
+    <div class="card">
+
+        <div class="card-body">
+            <h1>Összetevők</h1>
+            <p>Az összetevők közt kereshetsz is az "Összetevő neve" mezőben és ha nincs találat hozzá is adhatod</p>
+            <div class="post-ingredient mt-3">
+                <div class="form-floating mb-3 row">
+                  <div class="col">
+                    <input type="text" class="form-control col" id="ingredient" name="ingredient" placeholder="Összetevő neve" [(ngModel)]="newIngredient.name"/>
+                  </div>
+                  <div class="col">
+                    <input type="text" class="form-control" id="category" name="category" placeholder="Kategória" [(ngModel)]="newIngredient.category">
+                  </div>
+                  <div class="col">
+                    <button class="btn btn-success" (click)="postIngredient(newIngredient)" style="width: 100%;" *ngIf="newIngredient.name && newIngredient.category">Hozzáadás</button>
+                    <button class="btn btn-success" style="width: 100%;" *ngIf="!newIngredient.name || !newIngredient.category" disabled>Hozzáadás</button>
+                  </div>
+                </div>
+              </div>
+                    <div class="list-card" *ngFor="let ingredient of filterIngredients()">
+                        <div class="row">
+                            <div class="col">
+                                <input type="text" [(ngModel)]="ingredient.id" class="form-control" disabled>
+                                
+                            </div>
+                            <div class="col">
+                                <input type="text" [(ngModel)]="ingredient.name" class="form-control">
+                            </div>
+                            <div class="col">
+        
+                                <input type="text" [(ngModel)]="ingredient.category" class="form-control">
+                            </div>
+        
+                            <div class="col">
+                                <button class="btn btn-success" (click)="editIngredient(ingredient)" style="width: 46%;">{{editButton}}</button>
+                                <button class="btn btn-danger" (click)="deleteIngredient(ingredient)" style="width: 46%;">{{deleteButton}}</button>
+        
+                            </div>
+                        </div>
+                    </div>
+
+
+            
+        </div>
+
+    </div>
+</div>
