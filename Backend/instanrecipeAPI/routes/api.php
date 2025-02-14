@@ -26,3 +26,5 @@ Route::post('/recipe-ingredients', [RecipeIngredientController::class, 'storeIng
 Route::post('/addingredient', [IngredientController::class, 'addIngredient']);
 Route::put('/modifyingredient', [IngredientController::class, 'modifyIngredient']);
 Route::delete('/destroyingredient/{id}', [IngredientController::class, 'destroyIngredient']);
+
+Route::get('/recipewithingredients', [RecipeIngredientController::class, 'getRecipeWithIngredients']);

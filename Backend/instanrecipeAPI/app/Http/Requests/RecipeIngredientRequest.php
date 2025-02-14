@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class IngredientModRequest extends FormRequest
+class RecipeIngredientRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,17 +22,14 @@ class IngredientModRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name" => "required|string|max:255",
-            "category" => "required|string"
+            "recipe_id" => "required|integer|exists:recipes,id"
         ];
     }
 
     public function messages()
     {
         return [
-            'name.required' => 'Name is required.',
-            'category.required' => 'Category is required.',
-
+            'recipe_id.required' => 'A recipe is required.',
         ];
     }
 }
