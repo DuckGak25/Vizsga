@@ -80,7 +80,7 @@ export class IngredientsListComponent {
       const response = await lastValueFrom(this.recipeService.destroyIngredient(ingredient));
       console.log('Ingredient deleted successfully', response);
   
-      await this.getRecipes(); // Csak akkor hívódik meg, ha a törlés befejeződött
+      await this.getRecipes();
     } catch (error) {
       console.error('Error deleting ingredient', error);
     }

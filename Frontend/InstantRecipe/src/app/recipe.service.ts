@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Recipe } from '../app/models/recipe.model';
 import { Ingredient } from '../app/models/ingredient.model';
+import { RecipeIngredient } from './models/recipe-ingredient.model';
 
 @Injectable({
   providedIn: 'root'
@@ -52,6 +53,17 @@ export class RecipeService {
 
   destroyIngredient(ingredient: Ingredient) {
     return this.http.delete<Ingredient>(`${this.apiUrl}/api/destroyingredient/${ingredient.id}`);
+  }
+
+  modifyRecipe(recipe: Recipe) {
+    return this.http.put<Recipe>(`${this.apiUrl}/api/modifyrecipe`, recipe);
+  }
+
+  deleteIngredientFromRecipe(recipeIngredient: RecipeIngredient) {
+    const params = new HttpParams()
+      .set('recipe_id', recipeIngredient.recipe_id.toString())
+      .set('ingredient_id', recipeIngredient.ingredient_id.toString());
+    return this.http.delete<RecipeIngredient>(`${this.apiUrl}/api/deleteingredients`, { params });
   }
   
   

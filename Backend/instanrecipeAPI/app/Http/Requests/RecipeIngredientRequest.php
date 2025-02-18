@@ -11,7 +11,7 @@ class RecipeIngredientRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class RecipeIngredientRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "recipe_id" => "required|integer|exists:recipes,id"
+            "recipe_id" => "required|integer|exists:recipes,id",
+            "ingredient_id" => "required|integer|exists:ingredients,id",
+            "quantity" => "string",
         ];
     }
 
@@ -30,6 +32,7 @@ class RecipeIngredientRequest extends FormRequest
     {
         return [
             'recipe_id.required' => 'A recipe is required.',
+            'ingredient_id.required' => 'An ingredient is required.',
         ];
     }
 }

@@ -14,6 +14,7 @@ Route::get('/recipes/{id}/ingredients', [RecipeController::class, 'showIngredien
 Route::get('/ingredients', [RecipeController::class, 'showIngredients']);
 
 Route::post('/postrecipe', [RecipeController::class, 'postRecipes']);
+Route::put('/modifyrecipe', [RecipeController::class, 'modifyRecipe']);
 
 Route::delete('deleterecipe/{id}', [RecipeController::class, 'deleteRecipe']);
 
@@ -28,3 +29,7 @@ Route::put('/modifyingredient', [IngredientController::class, 'modifyIngredient'
 Route::delete('/destroyingredient/{id}', [IngredientController::class, 'destroyIngredient']);
 
 Route::get('/recipewithingredients', [RecipeIngredientController::class, 'getRecipeWithIngredients']);
+
+Route::put('/editingredients', [RecipeIngredientController::class, 'editIngredient']);
+
+Route::delete('/deleteingredients', [RecipeIngredientController::class, 'deleteIngredient']);

@@ -1,5 +1,5 @@
 <div class="content">
-    <div class="card">
+  <div class="card">
 
         <!-- modal.component.html -->
         <div class="modal" *ngIf="isVisible" data-aos="zoom-in">
@@ -13,8 +13,8 @@
 
         <div class="card-body">
             <h1>Receptek</h1>
-            <div class="list-card" *ngFor="let recipe of recipes">
-                <div class="row">
+          <div class="list-card" *ngFor="let recipe of recipes">
+              <div class="row">
                     <div class="col">
                         <h2>#{{recipe.id}}</h2>
                     </div>
@@ -56,7 +56,7 @@
                             </div>
                             <div class="col">
                               <h2>Elvárás</h2>
-                              <img src="/assets/images/description_requirements.png" alt="description requirements" class="img-fluid">
+                              <img src="/assets/images/description_requirements.png" alt="description requirements" class="img-fluid" style="height: 450px;">
                             </div>
                         </div>
                   
@@ -123,27 +123,27 @@
                                       <input type="text" [(ngModel)]="ingredientQuantities[ingredient.id]" (ngModelChange)="updateIngredientQuantity(ingredient.id, $event)" [placeholder]="ingredient.pivot?.quantity" class="form-control"/>
                                     </td>
                                     <td>
-                                      <button class="btn btn-danger" (click)="removeIngredient(ingredient)">Eltávolítás</button>
+                                      <button class="btn btn-danger" (click)="deleteIngredientFromRecipe(ingredient)">Eltávolítás</button>
                                     </td>
                                   </tr>
+                                  
                               </table>
                             
                             
                             </div>
                             
                             
-                            <!-- Összetevők listája -->
                             
                           </div>
                           
                           
                           <!-- Hozzáadás gomb -->
                           <!-- <button class="btn btn-danger" type="submit" (click)="createRecipe()">Hozzáad</button> -->
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
+                          <button (click)="saveRecipe(recipe)" class="btn btn-primary" type="submit" style="width: 100%;">Mentés</button>
+                  </div>
+              </div>
+          </div>
     </div>
+
+  </div>
 </div>

@@ -5,6 +5,7 @@ import { Recipe } from '../../models/recipe.model';
 import AOS from 'aos';
 import { Ingredient } from '../../models/ingredient.model';
 import { RawEditorOptions } from 'tinymce';
+import { RecipeIngredient } from '../../models/recipe-ingredient.model';
 
 @Component({
   selector: 'app-recipes-list',
@@ -25,17 +26,22 @@ export class RecipesListComponent {
     name: '',
     category: ''
   }
+  recipeIngredient: RecipeIngredient = {
+    recipe_id: 0,
+    ingredient_id: 0,
+    quantity: ''
+  };
+
   selectedRecipeId: number | null = null;
   searchTerm: string = '';
 
   isVisible: boolean = false;
-
   modalTitle = '';
   modalContent = '';
 
   actLang = "Magyar";
-
   recipeIngredientsMap: { [key: number]: Ingredient[] } = {};
+
 
 
 
@@ -101,6 +107,7 @@ export class RecipesListComponent {
     this.selectedRecipeId = recipe.id;
     this.selectedIngredients.clear();
     this.selectedIngredients = new Set(recipe.ingredients);
+    this.recipeIngredient.recipe_id = recipe.id;
     // this.open();
   }
 
@@ -126,9 +133,6 @@ export class RecipesListComponent {
     });
   }
 
-
-  
-  
   // Modális ablak bezárása
   close() {
     AOS.init({
@@ -175,7 +179,7 @@ export class RecipesListComponent {
   getRecipes() {
     this.recipeService.getRecipes().subscribe((data: Recipe[]) => {
       this.recipes = data;
-      console.log(this.recipes); // Ellenőrzés a konzolon
+      console.log(this.recipes);
     });
   }
 
@@ -210,9 +214,21 @@ export class RecipesListComponent {
     localStorage.removeItem('selectedIngredients');
   }
 
-
+  saveRecipe(recipe: Recipe) {
+      this.recipeService.modifyRecipe(recipe).subscribe(() => {
+        this.modalContent = `Sikeresen mentetted a receptet: ${recipe.title}`;
+      });
 
   }
+
+  deleteIngredientFromRecipe(ingredient: Ingredient) {
+    this.recipeIngredient.ingredient_id = ingredient.id;
+    this.recipeService.deleteIngredientFromRecipe(this.recipeIngredient).subscribe(() => {
+      this.modalContent = `Sikeresen törölted a hozzávalót: ${this.recipeIngredient}`;
+    });
+  }
+
+}
   
   
   

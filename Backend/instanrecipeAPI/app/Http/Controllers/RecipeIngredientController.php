@@ -63,4 +63,41 @@ class RecipeIngredientController extends Controller
         return response()->json($recipe);
     }
 
+    public function editIngredient(Request $request) {
+        $validated = $request->validate([
+            'id' => 'required|integer|exists:ingredients,id',
+            'name' => 'required|string|max:255',
+            'category' => 'required|string|max:255',
+        ]);
+
+        $ingredient = Ingredient::find($validated['id']);
+        $ingredient->name = $validated['name'];
+        $ingredient->category = $validated['category'];
+        $ingredient->save();
+
+        return response()->json($ingredient);
+    }
+
+    public function deleteIngredient(Request $request) {
+        $recipe_id = $request->query('recipe_id');
+        $ingredient_id = $request->query('ingredient_id');
+    
+        if (!$recipe_id || !$ingredient_id) {
+            return response()->json(['message' => 'Missing parameters'], 400);
+        }
+    
+        $deleted = DB::table('recipe_ingredient')
+            ->where('recipe_id', $recipe_id)
+            ->where('ingredient_id', $ingredient_id)
+            ->delete();
+    
+        if ($deleted) {
+            return response()->json(['message' => 'Ingredient deleted successfully'], 200);
+        } else {
+            return response()->json(['message' => 'Ingredient not found'], 404);
+        }
+    }
+    
+    
+
 }

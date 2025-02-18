@@ -126,7 +126,17 @@ public function storeIngredients(Request $request)
 }
 
 
+public function modifyRecipe(RecipeRequest $request) {
+    $validated = $request->validated();
 
+    $recipe = Recipe::find($request->id);
+    $recipe->title = $validated['title'];
+    $recipe->description = $validated['description'];
+    $recipe->categories = $validated['categories'];
+    $recipe->save();
+
+    return response()->json($recipe);
+}
 
     
     
