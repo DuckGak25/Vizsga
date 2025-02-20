@@ -10,9 +10,9 @@ class CreateRecipeIngredientTable extends Migration
     {
         Schema::create('recipe_ingredient', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('recipe_id')->constrained()->onDelete('cascade'); // Kapcsolat a receptekkel
-            $table->foreignId('ingredient_id')->constrained()->onDelete('cascade'); // Kapcsolat a hozzávalókkal
-            $table->integer('quantity'); // Mennyiség mező
+            $table->foreignId('ingredient_id');
+            $table->foreignId('recipe_id');
+            $table->string("quantity");
         });
     }
 

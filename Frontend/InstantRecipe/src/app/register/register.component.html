@@ -5,25 +5,25 @@
       
       <!-- Név mező -->
       <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="name" placeholder="Jack">
+        <input type="text" [(ngModel)]="name" placeholder="Név" class="form-control">
         <label for="name">{{nameLabel}}</label>
       </div>
 
       <!-- Email mező -->
       <div class="form-floating mb-3">
-        <input type="email" class="form-control" id="email" placeholder="name@example.com">
+        <input type="email" [(ngModel)]="email" placeholder="Email" class="form-control">
         <label for="email">{{emailLabel}}</label>
       </div>
 
       <!-- Jelszó mező -->
       <div class="form-floating mb-3">
-        <input type="password" class="form-control" id="pass" placeholder="Password">
+        <input type="password" [(ngModel)]="password" placeholder="Jelszó" class="form-control">
         <label for="pass">{{passwordText}}</label>
       </div>
 
       <!-- Jelszó megerősítés mező -->
       <div class="form-floating">
-        <input type="password" class="form-control" id="pass2" placeholder="Confirm Password">
+        <input type="password" [(ngModel)]="confirm_password" placeholder="Jelszó megerősítése" class="form-control">
         <label for="pass2">{{confirmPasswordText}}</label>
       </div>
 
@@ -32,7 +32,7 @@
               <a routerLink="/login">{{alreadyAccountLabel}}</a>
             </div>
       <!-- Regisztráció gomb -->
-      <button class="btn btn-success mr-3">{{registerTitle}} </button>
+      <button class="btn btn-success mr-3" (click)="register()">{{registerTitle}} </button>
       
       <!-- Google bejelentkezés gomb -->
       <button type="button" class="google-sign-in-button ml-3">

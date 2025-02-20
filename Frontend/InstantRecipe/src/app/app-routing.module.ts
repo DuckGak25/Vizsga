@@ -15,6 +15,8 @@ import { AddRecipeComponent } from './add-recipe/add-recipe.component';
 import { RecipesListComponent } from './components/recipes-list/recipes-list.component';
 import { UsersComponent } from './components/users/users.component';
 import { IngredientsListComponent } from './components/ingredients-list/ingredients-list.component';
+import { AdminGuard } from './guards/admin.guard';
+import { SuperGuard } from './guards/super.guard';
 
 
 const routes: Routes = [
@@ -24,12 +26,12 @@ const routes: Routes = [
   {path: "app-loading", component: AppLoadingComponent},
   {path: "register", component: RegisterComponent},
   {path: "login", component: LoginComponent},
-  {path: "admin", component: AdminComponent},
+  {path: "admin", component: AdminComponent, canActivate: [SuperGuard, AdminGuard] },
   { path: 'recipes/:id', component: RecipeDetailComponent },
   { path: 'teszt', component: TesztComponent },
   { path: 'admin/recipes-list', component: RecipesListComponent },
   { path: 'admin/ingredients-list', component: IngredientsListComponent },
-  {path: 'admin/users', component: UsersComponent},
+  {path: 'admin/users', component: UsersComponent, canActivate: [SuperGuard] },
 
   {path: "admin/addrecipe", component: AddRecipeComponent},
   {path:"", redirectTo:'/home', pathMatch:'full'},

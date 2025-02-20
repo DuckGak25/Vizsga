@@ -9,7 +9,7 @@ import { RecipeIngredient } from './models/recipe-ingredient.model';
   providedIn: 'root'
 })
 export class RecipeService {
-  private apiUrl = 'http://localhost:8000';
+  private apiUrl = 'http://localhost:8000/api';
 
   constructor(private http: HttpClient) {}
 
@@ -31,39 +31,39 @@ export class RecipeService {
 
   createRecipe(recipe: Recipe): Observable<Recipe> {
     console.log(recipe)
-    return this.http.post<Recipe>(`${this.apiUrl}/api/postrecipe`, recipe);
+    return this.http.post<Recipe>(`${this.apiUrl}/postrecipe`, recipe);
   }
 
   addIngredients(ingredientData: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/api/recipe-ingredients`, ingredientData);
+    return this.http.post<any>(`${this.apiUrl}/recipe-ingredients`, ingredientData);
   }
 
 
   deleteRecipe(id: number) {
-    return this.http.delete(`http://localhost:8000/api/deleterecipe/${id}`);
+    return this.http.delete(`http://localhost:8000/deleterecipe/${id}`);
   }
 
   postIngredients(ingredient: Ingredient) {
-    return this.http.post<Ingredient>(`${this.apiUrl}/api/addingredient`, ingredient);
+    return this.http.post<Ingredient>(`${this.apiUrl}/addingredient`, ingredient);
   }
 
   modifyIngredient(ingredient: Ingredient) {
-    return this.http.put<Ingredient>(`${this.apiUrl}/api/modifyingredient`, ingredient);
+    return this.http.put<Ingredient>(`${this.apiUrl}/modifyingredient`, ingredient);
   }
 
   destroyIngredient(ingredient: Ingredient) {
-    return this.http.delete<Ingredient>(`${this.apiUrl}/api/destroyingredient/${ingredient.id}`);
+    return this.http.delete<Ingredient>(`${this.apiUrl}/destroyingredient/${ingredient.id}`);
   }
 
   modifyRecipe(recipe: Recipe) {
-    return this.http.put<Recipe>(`${this.apiUrl}/api/modifyrecipe`, recipe);
+    return this.http.put<Recipe>(`${this.apiUrl}/modifyrecipe`, recipe);
   }
 
   deleteIngredientFromRecipe(recipeIngredient: RecipeIngredient) {
     const params = new HttpParams()
       .set('recipe_id', recipeIngredient.recipe_id.toString())
       .set('ingredient_id', recipeIngredient.ingredient_id.toString());
-    return this.http.delete<RecipeIngredient>(`${this.apiUrl}/api/deleteingredients`, { params });
+    return this.http.delete<RecipeIngredient>(`${this.apiUrl}/deleteingredients`, { params });
   }
   
   

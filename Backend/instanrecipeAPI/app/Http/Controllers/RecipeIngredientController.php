@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\DB;
 
 class RecipeIngredientController extends Controller
 {
-    public function storeIngredients(Request $request)
+    public function storeIngredients(RecipeIngredientRequest $request)
     {
 
         $validated = $request->validate([
@@ -26,8 +26,6 @@ class RecipeIngredientController extends Controller
             'ingredients.*.ingredient_id' => 'required|integer|exists:ingredients,id',
             'ingredients.*.quantity' => 'nullable|string',
         ]);
-
-
         foreach ($validated['ingredients'] as $ingredient) {
             RecipeIngredient::create([
                 'recipe_id' => $validated['recipe_id'],
@@ -37,45 +35,38 @@ class RecipeIngredientController extends Controller
         }
 
 
-        return response()->json(['message' => 'Ingredients added successfully'], 201);
+        return response()->json(['message' => 'Sikeres !'], 201);
     }
 
-    public function destroy(Request $request)
+    public function destroyRecipeIngredient($id)
     {
-        $recipe_id = $request->input('recipe_id');
-        $ingredient_id = $request->input('ingredient_id');
-        $quantity = $request->input('quantity');
-        $recipe_ingredient = RecipeIngredient::where('recipe_id', $recipe_id)
+        $id = RecipeIngredient::find($id);
+        $id->delete();
+        return response()->json(['message' => 'Sikeres !'], 200);
+    }
+
+    
+    public function editRecipeIngredient(RecipeIngredientRequest $request) {
+        $validated = $request->validated();
+        $recipe_id = $validated['recipe_id'];
+        $ingredient_id = $validated['ingredient_id'];
+        $quantity = $validated['quantity'];
+    
+        $recipe_ingredient = DB::table('recipe_ingredient')
+            ->where('recipe_id', $recipe_id)
             ->where('ingredient_id', $ingredient_id)
-            ->where('quantity', $quantity)
-            ->first();            
-
-        if ($recipe_ingredient) {
-            $recipe_ingredient->delete();
-            return response()->json(['message' => 'Ingredient deleted successfully'], 200);
-        } else {            
-            return response()->json(['message' => 'Ingredient not found'], 404);
+            ->first();
+    
+        if (!$recipe_ingredient) {
+            return response()->json(['message' => 'Recipe ingredient not found'], 404);
         }
-    }
-
-    public function getRecipeWithIngredients(RecipeIngredientRequest $request) {
-        $recipe = Recipe::with('ingredients')->find($request->id);
-        return response()->json($recipe);
-    }
-
-    public function editIngredient(Request $request) {
-        $validated = $request->validate([
-            'id' => 'required|integer|exists:ingredients,id',
-            'name' => 'required|string|max:255',
-            'category' => 'required|string|max:255',
-        ]);
-
-        $ingredient = Ingredient::find($validated['id']);
-        $ingredient->name = $validated['name'];
-        $ingredient->category = $validated['category'];
-        $ingredient->save();
-
-        return response()->json($ingredient);
+    
+        DB::table('recipe_ingredient')
+            ->where('recipe_id', $recipe_id)
+            ->where('ingredient_id', $ingredient_id)
+            ->update(['quantity' => $quantity]);
+    
+        return response()->json(['message' => 'Recipe ingredient updated successfully'], 200);
     }
 
     public function deleteIngredient(Request $request) {

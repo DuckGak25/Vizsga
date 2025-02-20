@@ -24,6 +24,8 @@ export class RecipesComponent implements OnInit {
   }
 
   getIngredients(ingredient: Ingredient): string[] {
-    return Object.keys(this.ingredients);
-  }
+     return Object.keys(this.ingredients);
+   }
+
+
 }

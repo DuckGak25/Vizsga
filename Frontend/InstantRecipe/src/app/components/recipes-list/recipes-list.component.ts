@@ -27,6 +27,7 @@ export class RecipesListComponent {
     category: ''
   }
   recipeIngredient: RecipeIngredient = {
+    id: 0,
     recipe_id: 0,
     ingredient_id: 0,
     quantity: ''
@@ -226,6 +227,26 @@ export class RecipesListComponent {
     this.recipeService.deleteIngredientFromRecipe(this.recipeIngredient).subscribe(() => {
       this.modalContent = `Sikeresen törölted a hozzávalót: ${this.recipeIngredient}`;
     });
+  }
+
+  saveIngredient() {
+    const ingredientData = {
+      recipe_id: this.selectedRecipeId,
+      ingredients: Array.from(this.selectedIngredients).map(ingredient => ({
+        ingredient_id: ingredient.id,
+        quantity: this.ingredientQuantities[ingredient.id]
+      }))
+    };
+  
+    this.recipeService.addIngredients(ingredientData).subscribe(
+      (response) => {
+        console.log('Ingredients added successfully', response);
+        this.selectedIngredients.clear();
+      },
+      (error) => {
+        console.error('Error adding ingredients', error);
+      }
+    )
   }
 
 }

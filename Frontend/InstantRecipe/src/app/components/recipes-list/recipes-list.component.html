@@ -1,7 +1,7 @@
 <div class="content">
   <div class="card">
 
-        <!-- modal.component.html -->
+        <!-- modal -->
         <div class="modal" *ngIf="isVisible" data-aos="zoom-in">
             <div class="modal-content">
                 <span class="close" (click)="close()">×</span>
@@ -73,19 +73,14 @@
                           </div>
                   
                           <div class="row">
-                  
+                  <!--
                             <div class="ingredient-list mt-3 col" >
                               <h2>Összetevők</h2>
                               <input type="text" [(ngModel)]="searchTerm" name="search" placeholder="Keresés összetevők között..." class="form-control mb-3 mt-3" />
-                            
-                              <!-- Összetevők törlése gomb -->
                               <button type="button" (click)="clearSelectedIngredients()" class="btn btn-danger mb-3">
                                 Kiválasztott összetevők törlése
                               </button>
-                            
-                              <!-- Kategorizált összetevők -->
                               <div *ngFor="let category of categorizedIngredients | keyvalue">
-                                <!-- Az adott kategórián belüli szűrt összetevők -->
                                 <ng-container *ngIf="filterIngredients(category.value).length > 0">
                                   <h3>{{ category.key }}</h3>
                                   <div *ngFor="let ingredient of filterIngredients(category.value)" class="form-check">
@@ -111,6 +106,7 @@
                                 </div>
                               </div>
                             </div>
+                          -->
                   
                             <div class="selected-ingredients mt-3 col">
                               <h2>Kiválasztott Összetevők</h2>
@@ -120,25 +116,16 @@
                                   <tr *ngFor="let ingredient of selectedIngredients">
                                     <td>{{ ingredient.name }}</td>
                                     <td>
-                                      <input type="text" [(ngModel)]="ingredientQuantities[ingredient.id]" (ngModelChange)="updateIngredientQuantity(ingredient.id, $event)" [placeholder]="ingredient.pivot?.quantity" class="form-control"/>
+                                      {{ getIngredientQuantity(ingredient) }}
+                                      <!-- <input type="text" [(ngModel)]="ingredientQuantities[ingredient.id]" (ngModelChange)="updateIngredientQuantity(ingredient.id, $event)" [placeholder]="ingredient.pivot?.quantity" class="form-control"/> -->
                                     </td>
                                     <td>
                                       <button class="btn btn-danger" (click)="deleteIngredientFromRecipe(ingredient)">Eltávolítás</button>
                                     </td>
                                   </tr>
-                                  
                               </table>
-                            
-                            
                             </div>
-                            
-                            
-                            
                           </div>
-                          
-                          
-                          <!-- Hozzáadás gomb -->
-                          <!-- <button class="btn btn-danger" type="submit" (click)="createRecipe()">Hozzáad</button> -->
                           <button (click)="saveRecipe(recipe)" class="btn btn-primary" type="submit" style="width: 100%;">Mentés</button>
                   </div>
               </div>

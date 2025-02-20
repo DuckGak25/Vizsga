@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ConfigService } from '../config.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -20,7 +21,12 @@ export class RegisterComponent {
   actLang = 'Magyar';
   loading: boolean = false;
 
-  constructor(private config: ConfigService, private router: Router) {
+  name = '';
+  email = '';
+  password = '';
+  confirm_password = '';
+
+  constructor(private config: ConfigService, private router: Router, private auth: AuthService) {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe(() => {
@@ -57,4 +63,40 @@ export class RegisterComponent {
     this.actLang = lang.text;
     this.config.changeLanguage(lang.sign);
   }
+
+  register() {
+    if (this.password !== this.confirm_password) {
+      alert('A jelszavak nem egyeznek!');
+      return;
+    }
+  
+    this.auth.register({
+      name: this.name,
+      email: this.email,
+      password: this.password,
+      password_confirmation: this.confirm_password
+    }).subscribe(
+      () => {
+        alert('Sikeres regisztráció!');
+      },
+      (error) => {
+        console.error('Hiba:', error);
+  
+        if (error.status === 422) {
+          const errors = error.error.errors;
+          if (errors.email) {
+            alert(errors.email[0]);
+          } else if (errors.password) {
+            alert(errors.password[0]);
+          } else {
+            alert('Hibás adatok!');
+          }
+        } else {
+          alert(error.error.message || 'Szerverhiba történt.');
+        }
+      }
+    );
+  }
+  
+  
 }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ConfigService } from '../config.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,10 @@ export class LoginComponent {
   actLang = 'Magyar';
   loading: boolean = false;
 
-  constructor(private config: ConfigService, private router: Router) {
+  email = '';
+  password = '';
+
+  constructor(private config: ConfigService, private router: Router, private auth: AuthService) {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe(() => {
@@ -57,4 +61,26 @@ export class LoginComponent {
     this.actLang = lang.text;
     this.config.changeLanguage(lang.sign);
   }
+  
+  login() {
+    this.auth.login({ email: this.email, password: this.password }).subscribe(
+      (response) => {
+        localStorage.setItem('auth_token', response.token);
+        localStorage.setItem('user', JSON.stringify(response.user));
+        alert('Sikeres bejelentkezés!');
+        
+        if (this.auth.isAdmin()) {
+          this.router.navigate(['/admin']);
+        } else {
+          this.router.navigate(['/']);
+        }
+      },
+      (error) => {
+        alert('Hibás email vagy jelszó!');
+      }
+    );
+  }
+  
+  
+  
 }

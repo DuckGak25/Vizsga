@@ -16,9 +16,6 @@
         
         <!-- Leírás -->
         <div class="form-floating mb-3 row">
-
-          
-          
           <div class="col">
             <h2>Leírás</h2>  
             <editor
@@ -89,7 +86,6 @@
           <div class="selected-ingredients mt-3 col">
             <h2>Kiválasztott Összetevők</h2>
             <table class="table">
-
               <tbody>
                 <tr *ngFor="let ingredient of selectedIngredients">
                   <td>{{ ingredient.name }}</td>
@@ -99,19 +95,11 @@
                   <td>
                     <button class="btn btn-danger" (click)="removeIngredient(ingredient)">Eltávolítás</button>
                   </td>
+                  
                 </tr>
             </table>
-          
-          
           </div>
-          
-          
-          <!-- Összetevők listája -->
-          
         </div>
-        
-        
-        <!-- Hozzáadás gomb -->
         <button class="btn btn-danger" type="submit" (click)="createRecipe()">Hozzáad</button>
     </div>
   </div>

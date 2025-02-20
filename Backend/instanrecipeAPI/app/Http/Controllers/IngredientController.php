@@ -38,6 +38,19 @@ class IngredientController extends Controller
     {
         $ingredient = Ingredient::find($id);
         $ingredient->delete();
-        return response()->json(['message' => 'Ingredient deleted successfully'], 200);
+        return response()->json(['message' => 'Sikeres !'], 200);
     }
+    public function getIngredients()
+    {
+        $ingredient = Ingredient::all();
+        return response()->json($ingredient, 200);
+    }
+    public function getIngredient(IngredientRequest $request){
+        $request->validated();
+
+        $ingredient = Ingredient::find($request["id"]);
+        return response()->json($ingredient, 200);
+
+    }
+    
 }

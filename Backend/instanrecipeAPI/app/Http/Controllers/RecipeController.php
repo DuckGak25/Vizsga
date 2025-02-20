@@ -17,9 +17,9 @@ class RecipeController extends Controller
         return response()->json($recipes);
     }
 
-    public function show($id)
+    public function show(RecipeRequest $request)
     {
-        $recipe = Recipe::with('ingredients')->find($id);
+        $recipe = Recipe::with('ingredients')->find($request->id);
         
         if (!$recipe) {
             return response()->json(['message' => 'Nem található recept'], 404);
@@ -29,22 +29,16 @@ class RecipeController extends Controller
     }
 
     
-    public function showIngredients($id)
+    public function showIngredients(RecipeRequest $request)
     {
-        $recipe = Recipe::find($id);
+        $recipe = Recipe::find($request->id);
 
         $ingredients = $recipe->ingredients;
 
         return response()->json($ingredients);
     }
 
-    public function showAllIngredients()
-    {
-        $ingredients = DB::table('ingredients')->get();
-        return response()->json($ingredients);
-    }
-
-    public function postRecipes(Request $request)
+    public function postRecipes(RecipeRequest $request)
     {
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
@@ -69,31 +63,9 @@ class RecipeController extends Controller
         return response()->json(['message' => 'Recept sikeresen törölve'], 200);
     }
 
-    public function destroy($id)
-    {
-        $recipe = Recipe::find($id);
-    
-        if ($recipe) {
-            $recipe->delete();
-            return response()->json(['message' => 'Recept törölve!'], 200);
-        } else {
-            return response()->json(['message' => 'Recept nem található!'], 404);
-        }
-    }
-
-
-
-
-public function store(Request $request)
+public function store(RecipeRequest $request)
 {
-
-    $validated = $request->validate([
-        'title' => 'required|string|max:255',
-        'description' => 'nullable|string',
-        'categories' => 'nullable|string',
-    ]);
-
-
+    $validated = $request->validated();
     $recipe = Recipe::create([
         'title' => $validated['title'],
         'description' => $validated['description'],
@@ -103,28 +75,6 @@ public function store(Request $request)
 
     return response()->json($recipe, 201);
 }
-
-
-public function storeIngredients(Request $request)
-{
-    $validated = $request->validate([
-        'recipe_id' => 'required|integer|exists:recipes,id',
-        'ingredients' => 'required|array',
-        'ingredients.*.ingredient_id' => 'required|integer|exists:ingredients,id',
-        'ingredients.*.quantity' => 'nullable|string',
-    ]);
-
-    foreach ($validated['ingredients'] as $ingredient) {
-        RecipeIngredient::create([
-            'recipe_id' => $validated['recipe_id'],
-            'ingredient_id' => $ingredient['ingredient_id'],
-            'quantity' => $ingredient['quantity'],
-        ]);
-    }
-
-    return response()->json(['message' => 'Ingredients added successfully'], 201);
-}
-
 
 public function modifyRecipe(RecipeRequest $request) {
     $validated = $request->validated();
