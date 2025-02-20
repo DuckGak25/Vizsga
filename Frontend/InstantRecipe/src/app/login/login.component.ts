@@ -80,6 +80,11 @@ export class LoginComponent {
       }
     );
   }
+
+  removeToken() {
+    localStorage.removeItem('user');
+    console.log('Token removed');
+  }
   
   
   

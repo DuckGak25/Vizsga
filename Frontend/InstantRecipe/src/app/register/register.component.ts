@@ -74,14 +74,14 @@ export class RegisterComponent {
       name: this.name,
       email: this.email,
       password: this.password,
-      password_confirmation: this.confirm_password
+      confirm_password: this.confirm_password
     }).subscribe(
-      () => {
+      (response) => {
+        console.log('Sikeres regisztráció:', response); // Debugging
         alert('Sikeres regisztráció!');
       },
       (error) => {
         console.error('Hiba:', error);
-  
         if (error.status === 422) {
           const errors = error.error.errors;
           if (errors.email) {
@@ -97,6 +97,7 @@ export class RegisterComponent {
       }
     );
   }
+  
   
   
 }

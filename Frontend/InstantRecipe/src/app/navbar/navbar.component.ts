@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfigService } from '../config.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -14,20 +15,30 @@ export class NavbarComponent {
   dropDownNavCollapse = true;
   navItems: any[] = [];
   langSelection: any[] = [];
+  logout = "";
   search = "";
   flagLink = "";
   name = "";
+  login = "";
+  register = "";
   actLang = "Magyar";
   hamburgerActive = false;
+  someValue: boolean | undefined;
 
-  constructor(private config: ConfigService, private router: Router) {
+
+  constructor(private config: ConfigService, private router: Router, private auth: AuthService, private cdr: ChangeDetectorRef) {
     config.getContent().subscribe((content) => {
       this.langSelection = content.langSelection || [];
       this.navItems = content.navItem || [];
       this.name = content.name || '';
       this.search = content.search || '';
       this.flagLink = content.flagLink || '';
+      this.logout = content.logout || '';
+      this.login = content.login || '';
+      this.register = content.register || '';
+
     });
+    
   }
 
   toggleNavbar() {
@@ -45,6 +56,10 @@ export class NavbarComponent {
       this.actLang = savedLanguage === 'en' ? 'English' : savedLanguage === 'de' ? 'Deutsch' : 'Magyar';
       this.config.changeLanguage(savedLanguage);
     }
+    setTimeout(() => {
+      this.someValue = false;
+      this.cdr.detectChanges();  // Trigger a change detection manually
+    });
   }
 
   toggleLangSelector() {
@@ -56,5 +71,17 @@ export class NavbarComponent {
     this.config.changeLanguage(lang.sign);
     localStorage.setItem('selectedLanguage', lang.sign);
     this.langSelectorCollapse = true; 
+  }
+
+  logOut() {
+    this.auth.logout();
+  }
+
+  getUser() {
+    return this.auth.getUser();
+  }
+
+  isAdmin() {
+    return this.auth.isAdmin();
   }
 }

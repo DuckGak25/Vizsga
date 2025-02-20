@@ -9,6 +9,7 @@
                             (click)="navigateTo(adminPage.link)"
                             [style.background-image]="'url(' + adminPage.image + ')'"
                             style="background-image: url(/assets/images/icons/pencil.line@5x.png);"
+                            *ngIf="this.user.admin >= adminPage.admin"
                             >
                           <h2>{{ adminPage.text }}</h2>
                         </div>

@@ -25,7 +25,7 @@ export class ConfigService {
     this.http.get("/assets/lang_"+this.langSign+".json").subscribe(
       (res)=>
         {
-          console.log(res)
+
           this.content.next(res)
         }
       )

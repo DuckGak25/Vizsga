@@ -12,6 +12,7 @@ export class AdminComponent {
   actLang = "Magyar"
 
   adminPages: any[] = [];
+  user: any = JSON.parse(localStorage.getItem('user') || '{}');
 
 
   constructor(private config: ConfigService, private router: Router) {}
@@ -34,6 +35,8 @@ export class AdminComponent {
     this.actLang = lang.text;
     this.config.changeLanguage(lang.sign);
   }
+
+
 
 
 }

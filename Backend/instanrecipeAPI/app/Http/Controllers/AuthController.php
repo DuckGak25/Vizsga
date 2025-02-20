@@ -19,11 +19,10 @@ class AuthController extends ResponseController
         $request->validated();
 
         $user = User::create([
-
             "name" => $request["name"],
             "email" => $request["email"],
             "password" => bcrypt( $request["password"]),
-            "admin" => 2
+            "admin" => 1
         ]);
 
         return $this->sendResponse( $user->name, "Sikeres regisztráció");
@@ -54,13 +53,22 @@ class AuthController extends ResponseController
 
     
 
-    public function logout() {
+public function logout(Request $request) {
+    $user = $request->user();
 
-        auth( "sanctum" )->user()->currentAccessToken()->delete();
-        $name = auth( "sanctum" )->user()->name;
-
-        return $this->sendResponse( $name, "Sikeres kijelentkezés");
+    if ($user) {
+        $user->currentAccessToken()->delete();
+        return response()->json([
+            'message' => 'Sikeres kijelentkezés',
+            'user' => $user->name
+        ], 200);
     }
+
+    return response()->json([
+        'message' => 'Nem volt bejelentkezett felhasználó'
+    ], 401);
+}
+
 
 
 

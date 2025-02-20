@@ -9,13 +9,14 @@ export class AdminGuard implements CanActivate {
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): boolean {
-      if (this.authService.isAdmin()) {
+    canActivate(): boolean {
+      const user = JSON.parse(localStorage.getItem('user') || '{}');
+  
+      if (user && user.admin === 1 || user.admin === 2) {
         return true;
+      } else {
+        this.router.navigate(['/']);
+        return false;
       }
-      this.router.navigate(['/home']);
-      return false;
-  }
+    }
 }

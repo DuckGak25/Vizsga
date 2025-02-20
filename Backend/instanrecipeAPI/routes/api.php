@@ -44,6 +44,5 @@ Route::post( "/login", [ AuthController::class, "login" ]);
 
 Route::middleware(['auth:sanctum'])->group( function () {
     Route::post( "/logout", [ AuthController::class, "logout" ]);
-    Route::get("/isadmin", [ TestController::class, "isAdmin" ]);
     Route::put("/setadmin", [ UserController::class, "setAdmin" ]);
 });

@@ -26,14 +26,14 @@ const routes: Routes = [
   {path: "app-loading", component: AppLoadingComponent},
   {path: "register", component: RegisterComponent},
   {path: "login", component: LoginComponent},
-  {path: "admin", component: AdminComponent, canActivate: [SuperGuard, AdminGuard] },
+  {path: "admin", component: AdminComponent, canActivate: [AdminGuard] },
   { path: 'recipes/:id', component: RecipeDetailComponent },
   { path: 'teszt', component: TesztComponent },
-  { path: 'admin/recipes-list', component: RecipesListComponent },
-  { path: 'admin/ingredients-list', component: IngredientsListComponent },
+  { path: 'admin/recipes-list', component: RecipesListComponent, canActivate: [AdminGuard] },
+  { path: 'admin/ingredients-list', component: IngredientsListComponent, canActivate: [AdminGuard] },
   {path: 'admin/users', component: UsersComponent, canActivate: [SuperGuard] },
 
-  {path: "admin/addrecipe", component: AddRecipeComponent},
+  {path: "admin/addrecipe", component: AddRecipeComponent, canActivate: [AdminGuard]},
   {path:"", redirectTo:'/home', pathMatch:'full'},
 ];
 
