@@ -10,7 +10,7 @@ import { Ingredient } from '../models/ingredient.model';
 })
 export class RecipeListComponent implements OnInit {
   recipes: Recipe[] = [];
-  ingredients: Ingredient[] = [];
+  ingredient: Ingredient[] = [];
 
   constructor(private recipeService: RecipeService) {}
 
@@ -20,7 +20,7 @@ export class RecipeListComponent implements OnInit {
     });
 
     this.recipeService.getIngredients().subscribe((data: Ingredient[]) => {
-      this.ingredients = data;
+      this.ingredient = data;
     });
   }
 }

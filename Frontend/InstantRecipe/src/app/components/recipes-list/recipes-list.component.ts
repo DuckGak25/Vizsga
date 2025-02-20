@@ -33,7 +33,7 @@ export class RecipesListComponent {
     quantity: ''
   };
 
-  selectedRecipeId: number | null = null;
+  selectedRecipeId: number = 0;
   searchTerm: string = '';
 
   isVisible: boolean = false;
@@ -230,27 +230,31 @@ export class RecipesListComponent {
   }
 
   saveIngredient() {
-    const ingredientData = {
+    const ingredientDataArray = Array.from(this.selectedIngredients).map(ingredient => ({
       recipe_id: this.selectedRecipeId,
-      ingredients: Array.from(this.selectedIngredients).map(ingredient => ({
-        ingredient_id: ingredient.id,
-        quantity: this.ingredientQuantities[ingredient.id]
-      }))
-    };
+      ingredient_id: ingredient.id,
+      quantity: this.ingredientQuantities[ingredient.id] || ''
+    }));
   
-    this.recipeService.addIngredients(ingredientData).subscribe(
-      (response) => {
-        console.log('Ingredients added successfully', response);
-        this.selectedIngredients.clear();
-      },
-      (error) => {
-        console.error('Error adding ingredients', error);
-      }
-    )
+    for (let i = 0; i < ingredientDataArray.length; i++) {
+      const ingredientData = ingredientDataArray[i];
+      this.recipeService.addIngredients(ingredientData).subscribe(
+        (response) => {
+          console.log(`Hozzávaló ${i + 1} sikeresn hozzáadva`, response);
+        },
+        (error) => {
+          console.error(`Hiba a hozzávaló ${i + 1} hozzáadásakor`, error);
+          if (error.error && error.error.errors) {
+            console.error('Validációs hiba:', error.error.errors);
+          }
+        }
+      );
+    }
+  
+    this.selectedIngredients.clear();
   }
-
+  
+  
+  
+  
 }
-  
-  
-  
-

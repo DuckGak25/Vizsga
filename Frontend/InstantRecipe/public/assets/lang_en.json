@@ -48,10 +48,10 @@
     "addButton": "Add",
 
     "adminPages": [
-        {"text": "Manage Users", "link": "admin/users", "image": "assets/images/icons/person.2.badge.gearshape@5x.png", "admin": 2},
         {"text": "Add Recipe", "link": "admin/addrecipe", "image": "assets/images/icons/plus.square.on.square@5x.png", "admin": 1},
         {"text": "Edit Recipes", "link": "admin/recipes-list", "image": "assets/images/icons/pencil.line@5x.png", "admin": 1},
-        {"text": "Edit Ingredients", "link": "admin/ingredients-list", "image": "assets/images/icons/pencil.line@5x.png", "admin": 1}
+        {"text": "Edit Ingredients", "link": "admin/ingredients-list", "image": "assets/images/icons/pencil.and.list.clipboard@5x.png", "admin": 1},
+        {"text": "Manage Users", "link": "admin/users", "image": "assets/images/icons/person.2.badge.gearshape@5x.png", "admin": 2}
     ],
 
     "pantryHeaderTitle": "Basic Ingredients",

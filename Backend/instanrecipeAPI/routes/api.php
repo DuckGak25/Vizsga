@@ -17,7 +17,7 @@ Route::get('/ingredients', [IngredientController::class, 'getIngredients']);
 Route::post('/postrecipe', [RecipeController::class, 'postRecipes']);
 Route::put('/modifyrecipe', [RecipeController::class, 'modifyRecipe']);
 
-Route::delete('deleterecipe/{id}', [RecipeController::class, 'deleteRecipe']);
+Route::delete('/deleterecipe/{id}', [RecipeController::class, 'deleteRecipe']);
 
 
 Route::post('/storerecipes', [RecipeController::class, 'store']);

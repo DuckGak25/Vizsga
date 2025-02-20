@@ -18,7 +18,7 @@ export class AddRecipeComponent implements OnInit {
   allRecipes: Recipe[] = [];
   filteredRecipes: Recipe[] = [];
   searchTerm: string = '';
-  createdRecipeId: number | null = null;
+  createdRecipeId: number = 0;
   newIngredient: Ingredient = {
     id: 0,
     name: '',
@@ -177,33 +177,38 @@ export class AddRecipeComponent implements OnInit {
     );
 
   }
-
   addIngredients() {
     if (!this.createdRecipeId) {
-      console.error('No recipe ID found');
+      console.error('A recept nem található!');
       return;
     }
   
-    const ingredientData = {
-      recipe_id: this.createdRecipeId,
-      ingredients: Array.from(this.selectedIngredients).map(ingredient => ({
+      const ingredientDataArray = Array.from(this.selectedIngredients).map(ingredient => ({
+        recipe_id: this.createdRecipeId,
         ingredient_id: ingredient.id,
         quantity: this.ingredientQuantities[ingredient.id] || ''
-      }))
-    };
-  
-    this.recipeService.addIngredients(ingredientData).subscribe(
-      (response) => {
-        console.log('Ingredients added successfully', response);
-        this.selectedIngredients.clear();
-      },
-      (error) => {
-        console.error('Error adding ingredients', error);
+      }));
+    
+      for (let i = 0; i < ingredientDataArray.length; i++) {
+        const ingredientData = ingredientDataArray[i];
+        this.recipeService.addIngredients(ingredientData).subscribe(
+          (response) => {
+            console.log(`Hozzávaló ${i + 1} sikeresn hozzáadva`, response);
+          },
+          (error) => {
+            console.error(`Hiba a hozzávaló ${i + 1} hozzáadásakor`, error);
+            if (error.error && error.error.errors) {
+              console.error('Validációs hiba:', error.error.errors);
+            }
+          }
+        );
       }
-    )
-
-
-  }
+      alert('Sikeresen hozzáadtad a receptet!');
+      this.selectedIngredients.clear();
+    }
+    
+  
+  
 
   async postIngredient(ingredient: Ingredient) {
     try {

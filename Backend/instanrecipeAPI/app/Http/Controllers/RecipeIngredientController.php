@@ -19,24 +19,21 @@ class RecipeIngredientController extends Controller
 {
     public function storeIngredients(RecipeIngredientRequest $request)
     {
-
         $validated = $request->validate([
             'recipe_id' => 'required|integer|exists:recipes,id',
-            'ingredients' => 'required|array',
-            'ingredients.*.ingredient_id' => 'required|integer|exists:ingredients,id',
-            'ingredients.*.quantity' => 'nullable|string',
+            'ingredient_id' => 'required|integer',
+            'quantity' => 'nullable|string',
         ]);
-        foreach ($validated['ingredients'] as $ingredient) {
-            RecipeIngredient::create([
-                'recipe_id' => $validated['recipe_id'],
-                'ingredient_id' => $ingredient['ingredient_id'],
-                'quantity' => $ingredient['quantity'],
-            ]);
-        }
-
-
-        return response()->json(['message' => 'Sikeres !'], 201);
+    
+        RecipeIngredient::create([
+            'recipe_id' => $validated['recipe_id'],
+            'ingredient_id' => $validated['ingredient_id'],
+            'quantity' => $validated['quantity'],
+        ]);
+    
+        return response()->json(['message' => 'Sikeres hozzávaló hozzáadás'], 201);
     }
+    
 
     public function destroyRecipeIngredient($id)
     {

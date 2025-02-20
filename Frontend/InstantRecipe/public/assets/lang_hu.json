@@ -48,10 +48,10 @@
     "addButton": "Hozzáadás",
 
     "adminPages": [
-        {"text": "Felhasználok kezelése", "link": "admin/users", "image": "assets/images/icons/person.2.badge.gearshape@5x.png", "admin": 2},
         {"text": "Recept hozzáadása", "link": "admin/addrecipe", "image": "assets/images/icons/plus.square.on.square@5x.png", "admin": 1 },
         {"text": "Receptek szerkesztése", "link": "admin/recipes-list", "image": "assets/images/icons/pencil.line@5x.png", "admin": 1},
-        {"text": "Hozzávalók szerkesztése", "link": "admin/ingredients-list", "image": "assets/images/icons/pencil.line@5x.png", "admin": 1}
+        {"text": "Hozzávalók szerkesztése", "link": "admin/ingredients-list", "image": "assets/images/icons/pencil.and.list.clipboard@5x.png", "admin": 1},
+        {"text": "Felhasználok kezelése", "link": "admin/users", "image": "assets/images/icons/person.2.badge.gearshape@5x.png", "admin": 2}
     ],
 
     "pantryHeaderTitle": "Alapvető élelmiszerek",
