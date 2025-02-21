@@ -51,7 +51,8 @@ export class AuthService {
       () => {
         localStorage.removeItem('auth_token');
         localStorage.removeItem('user');
-        this.router.navigate(['/login']);
+        // this.router.navigate(['/login']);
+        window.location.href = '/login';
       },
       (error) => {
         console.error('Hiba a kijelentkezés során:', error);

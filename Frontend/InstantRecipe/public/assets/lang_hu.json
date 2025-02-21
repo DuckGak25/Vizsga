@@ -53,6 +53,7 @@
         {"text": "Hozzávalók szerkesztése", "link": "admin/ingredients-list", "image": "assets/images/icons/pencil.and.list.clipboard@5x.png", "admin": 1},
         {"text": "Felhasználok kezelése", "link": "admin/users", "image": "assets/images/icons/person.2.badge.gearshape@5x.png", "admin": 2}
     ],
+    "adminWelcome": "Szia",
 
     "pantryHeaderTitle": "Alapvető élelmiszerek",
     "pantryHeaderText": "Pár hozzávalót alapvetőnek gondolunk minden háztartásban, ezért ezeket nem tudjátok kiválasztani: "

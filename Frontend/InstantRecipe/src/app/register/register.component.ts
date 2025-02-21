@@ -77,7 +77,7 @@ export class RegisterComponent {
       confirm_password: this.confirm_password
     }).subscribe(
       (response) => {
-        console.log('Sikeres regisztráció:', response); // Debugging
+        console.log('Sikeres regisztráció:', response);
         alert('Sikeres regisztráció!');
       },
       (error) => {

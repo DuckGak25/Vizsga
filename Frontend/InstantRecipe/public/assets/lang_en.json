@@ -2,9 +2,9 @@
     "name": "Instant Recipe",
     "flagLink": "https://www.harley-davidson.com/content/dam/h-d/images/assets/ui/flags/hungary.png",
     "langSelection":[
-        {"text":"Hungarian", "sign":"hu"},
+        {"text":"Magyar", "sign":"hu"},
         {"text":"English", "sign":"en"},
-        {"text":"German", "sign":"de"}
+        {"text":"Deutsch", "sign":"de"}
     ],
     "navItem":[
         {"text":"Home", "link":"home"},
@@ -53,6 +53,7 @@
         {"text": "Edit Ingredients", "link": "admin/ingredients-list", "image": "assets/images/icons/pencil.and.list.clipboard@5x.png", "admin": 1},
         {"text": "Manage Users", "link": "admin/users", "image": "assets/images/icons/person.2.badge.gearshape@5x.png", "admin": 2}
     ],
+    "adminWelcome": "Hey",
 
     "pantryHeaderTitle": "Basic Ingredients",
     "pantryHeaderText": "We consider a few ingredients as essential in every household, so you cannot select these: "

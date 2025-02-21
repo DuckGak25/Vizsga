@@ -11,6 +11,7 @@ export class AdminComponent {
 
   actLang = "Magyar"
 
+  adminWelcome = '';
   adminPages: any[] = [];
   user: any = JSON.parse(localStorage.getItem('user') || '{}');
 
@@ -24,6 +25,7 @@ export class AdminComponent {
   loadContent() {
     this.config.getContent().subscribe((content) => {
       this.adminPages = content.adminPages || [];
+      this.adminWelcome = content.adminWelcome || '';
     });
   }
 

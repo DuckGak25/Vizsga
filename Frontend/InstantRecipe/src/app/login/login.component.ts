@@ -70,9 +70,10 @@ export class LoginComponent {
         alert('Sikeres bejelentkezés!');
         
         if (this.auth.isAdmin()) {
-          this.router.navigate(['/admin']);
+          // this.router.navigate(['/admin']);
+          window.location.href = '/admin';
         } else {
-          this.router.navigate(['/']);
+          window.location.href = '/';
         }
       },
       (error) => {
