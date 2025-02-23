@@ -54,9 +54,7 @@ export class RegisterComponent {
   }
 
   navigateTo(link: string) {
-    this.router.navigate([link]).then(() => {
-      window.scrollTo(0, 0);
-    });
+    window.location.href = link;
   }
 
   langChange(lang: any) {

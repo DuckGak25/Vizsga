@@ -17,11 +17,12 @@ import { UsersComponent } from './components/users/users.component';
 import { IngredientsListComponent } from './components/ingredients-list/ingredients-list.component';
 import { AdminGuard } from './guards/admin.guard';
 import { SuperGuard } from './guards/super.guard';
+import { UserGuard } from './guards/user.guard';
 
 
 const routes: Routes = [
   {path:"home", component: HomeComponent},
-  {path: "pantry", component: PantryComponent},
+  {path: "pantry", component: PantryComponent, canActivate: [UserGuard] },
   {path: "recipes", component: RecipesComponent},
   {path: "app-loading", component: AppLoadingComponent},
   {path: "register", component: RegisterComponent},

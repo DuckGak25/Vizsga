@@ -71,11 +71,30 @@
                             />
                             <label for="categories">Kategória</label>
                           </div>
-                  
+                          <div class="selected-ingredients mt-3 ml-4 row">
+                            <h2>Összetevők</h2>
+                            <table class="table table-hover ingredientTable">
+                              <thead>
+                                <tr>
+                                  <th scope="col">Neve</th>
+                                  <th scope="col">Mennyiség</th>
+                                  <th scope="col">Művelet</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr *ngFor="let ingredient of recipe.ingredients">
+                                  <td>{{ ingredient.name }}</td>
+                                  <td>{{ ingredient.pivot?.quantity }}</td>
+                                  <td>
+                                    <button class="btn btn-danger" (click)="deleteIngredientFromRecipe(ingredient)">Eltávolítás</button>
+                                  </td>
+                                </tr>
+                            </table>
+
+                          </div>
                           <div class="row">
-                  <!--
+                            
                             <div class="ingredient-list mt-3 col" >
-                              <h2>Összetevők</h2>
                               <input type="text" [(ngModel)]="searchTerm" name="search" placeholder="Keresés összetevők között..." class="form-control mb-3 mt-3" />
                               <button type="button" (click)="clearSelectedIngredients()" class="btn btn-danger mb-3">
                                 Kiválasztott összetevők törlése
@@ -106,25 +125,24 @@
                                 </div>
                               </div>
                             </div>
-                          -->
-                  
-                            <div class="selected-ingredients mt-3 col">
+                            <div class="selected-ingredients mt-4 col">
                               <h2>Kiválasztott Összetevők</h2>
                               <table class="table">
-                  
                                 <tbody>
                                   <tr *ngFor="let ingredient of selectedIngredients">
                                     <td>{{ ingredient.name }}</td>
                                     <td>
-                                      {{ getIngredientQuantity(ingredient) }}
-                                      <!-- <input type="text" [(ngModel)]="ingredientQuantities[ingredient.id]" (ngModelChange)="updateIngredientQuantity(ingredient.id, $event)" [placeholder]="ingredient.pivot?.quantity" class="form-control"/> -->
+                                      <input type="text" [(ngModel)]="ingredientQuantities[ingredient.id]" (ngModelChange)="updateIngredientQuantity(ingredient.id, $event)" placeholder="Mennyiség" class="form-control"/>
                                     </td>
                                     <td>
-                                      <button class="btn btn-danger" (click)="deleteIngredientFromRecipe(ingredient)">Eltávolítás</button>
+                                      <button class="btn btn-danger" (click)="removeIngredient(ingredient)">Eltávolítás</button>
                                     </td>
+                                    
                                   </tr>
                               </table>
                             </div>
+                  
+                            
                           </div>
                           <button (click)="saveRecipe(recipe)" class="btn btn-primary" type="submit" style="width: 100%;">Mentés</button>
                   </div>

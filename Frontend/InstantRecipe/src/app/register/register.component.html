@@ -29,15 +29,11 @@
 
             <!-- Bejelentkezési link -->
             <div class="mb-1">
-              <a routerLink="/login">{{alreadyAccountLabel}}</a>
+              <a (click)="navigateTo('/login')">{{alreadyAccountLabel}}</a>
             </div>
       <!-- Regisztráció gomb -->
       <button class="btn btn-success mr-3" (click)="register()">{{registerTitle}} </button>
       
-      <!-- Google bejelentkezés gomb -->
-      <button type="button" class="google-sign-in-button ml-3">
-        {{signInGoogle}}
-      </button>
 
 
     </div>

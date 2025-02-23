@@ -21,6 +21,7 @@ export class NavbarComponent {
   name = "";
   login = "";
   register = "";
+  pantry = "";
   actLang = "Magyar";
   hamburgerActive = false;
   someValue: boolean | undefined;
@@ -36,6 +37,7 @@ export class NavbarComponent {
       this.logout = content.logout || '';
       this.login = content.login || '';
       this.register = content.register || '';
+      this.pantry = content.pantry || '';
 
     });
     

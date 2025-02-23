@@ -11,16 +11,16 @@ use App\Http\Resources\Recipe as RecipeResource;
 
 class RecipeController extends Controller
 {
+
     public function index()
     {
         $recipes = Recipe::with('ingredients')->get();
         return response()->json($recipes);
     }
 
-    public function show(RecipeRequest $request)
+    public function show($id)
     {
-        $recipe = Recipe::with('ingredients')->find($request->id);
-        
+        $recipe = Recipe::with('ingredients')->find($id);
         if (!$recipe) {
             return response()->json(['message' => 'Nem található recept'], 404);
         }
@@ -42,7 +42,8 @@ class RecipeController extends Controller
     {
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
-            'description' => 'required|string'
+            'description' => 'required|string',
+            'categories' => 'string'
         ]);
     
         $recipe = Recipe::create($validatedData);

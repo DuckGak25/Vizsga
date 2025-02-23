@@ -4,9 +4,14 @@
       <div class="card">
         <h1>{{ pantryHeaderTitle }}</h1>
         <p><strong>{{ pantryHeaderText }}</strong></p>
-        <ul *ngFor="let ingredient of defaultIngredients" class="list">
-          <li>{{ingredient.name}}</li>
+        <ul class="list">
+          <li *ngFor="let ingredient of defaultIngredients; let last = last" class="defaultIngredients" >
+            <strong>{{ ingredient.name }}</strong>
+          </li>
         </ul>
+        
+        
+
       </div>
     </div>
   </div>

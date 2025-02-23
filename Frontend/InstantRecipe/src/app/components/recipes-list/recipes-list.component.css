@@ -17,6 +17,20 @@
     padding-top: 5.3rem;
 }
 
+.ingredientTable {
+  margin: 0 auto;
+}
+
+.ingredientTable th {
+  padding-left: 50px;
+}
+
+td {
+  padding-left: 50px;
+  vertical-align: middle;
+  font-size: larger;
+}
+
 button {
     margin-right: 10px;
 }

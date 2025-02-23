@@ -50,7 +50,6 @@ export class AddRecipeComponent implements OnInit {
     this.recipeService.getIngredients().subscribe((data: Ingredient[]) => {
       this.ingredients = data;
       this.categorizeIngredients();
-      this.restoreSelectedIngredients();
     });
 
     this.getRecipes()
@@ -125,18 +124,6 @@ export class AddRecipeComponent implements OnInit {
     this.filteredRecipes = this.allRecipes;
   }
 
-
-  restoreSelectedIngredients() {
-
-    const savedIngredients = localStorage.getItem('selectedIngredients');
-    if (savedIngredients) {
-      const ingredientsArray: Ingredient[] = JSON.parse(savedIngredients);
-      ingredientsArray.forEach(ingredient => this.selectedIngredients.add(ingredient));
-      this.filterRecipes();
-    }
-  }
-
-
   saveSelectedIngredients() {
     localStorage.setItem('selectedIngredients', JSON.stringify(Array.from(this.selectedIngredients)));
   }
@@ -148,8 +135,6 @@ export class AddRecipeComponent implements OnInit {
   updateIngredientQuantity(ingredientId: number, quantity: string) {
     this.ingredientQuantities[ingredientId] = quantity;
   }
-  
-  
 
   resetForm() {
     this.newRecipe = { id: 0, title: '', description: '', categories: '', ingredients: [] };
@@ -227,5 +212,7 @@ export class AddRecipeComponent implements OnInit {
       this.filteredRecipes = this.allRecipes;
     });
   }
+
+
   
 }

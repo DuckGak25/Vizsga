@@ -7,9 +7,9 @@
         {"text":"Deutsch", "sign":"de"}
        ],
     "navItem":[
-        {"text":"Startseite", "link":"home"},
-        {"text":"Was ist in der Speisekammer?", "link":"pantry"}
+        {"text":"Startseite", "link":"home"}
     ],
+    "pantry":"Was ist in der Speisekammer?",
     "logout": "Abmelden",
     "login": "Anmelden",
     "register": "Registrieren",
@@ -40,6 +40,7 @@
     "nameLabel": "Name",
     "alreadyAccountLabel": "Hast du bereits ein Konto?",
     "signInGoogle": "Mit Google anmelden",
+    "notRegistered": "Hast du noch kein Konto?",
 
     "editButton": "Bearbeiten",
     "deleteButton": "Löschen",

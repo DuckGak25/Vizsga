@@ -7,9 +7,9 @@
         {"text":"Deutsch", "sign":"de"}
        ],
     "navItem":[
-        {"text":"Kezdőlap", "link":"home"},
-        {"text":"Mi van a kamrában?", "link":"pantry"}
+        {"text":"Kezdőlap", "link":"home"}
     ],
+    "pantry": "Mi van a kamrában?",
     "logout": "Kijelentkezés",
     "login": "Bejelentkezés",
     "register": "Regisztráció",
@@ -40,6 +40,7 @@
     "nameLabel": "Név",
     "alreadyAccountLabel": "Már van fiókod?",
     "signInGoogle": "Bejelentkezés a Google-lel",
+    "notRegistered": "Nincs még fiókod?",
 
     "editButton": "Szerkeszt",
     "deleteButton": "Törlés",

@@ -10,6 +10,9 @@
         <li *ngFor="let navItem of navItems" class="nav-item">
           <a class="nav-link" (click)="navigateTo(navItem.link); toggleNavbar()">{{ navItem.text }}</a>
         </li>
+        <li *ngIf="getUser()" class="nav-item">
+          <a class="nav-link" (click)="navigateTo('/pantry')">{{ pantry }}</a>
+        </li>
         <li *ngIf="!getUser()" class="nav-item">
           <a class="nav-link" (click)="navigateTo('/register')">{{ register }}</a>
         </li>

@@ -25,7 +25,7 @@ class UserRegisterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name" => "required|max:10",
+            "name" => "required",
             "email" => "required|email|unique:users",
             "password" => [
                             "required",
@@ -40,7 +40,6 @@ class UserRegisterRequest extends FormRequest
 
         return [
             "name.required" => "Név nem lehet üres",
-            "name.max" => "Túl hosszú név",
             "email.required" => "Email nem lehet üres",
             "email.unique" => "Létező email",
             "password.required" => "Jelszó nem lehet üres",

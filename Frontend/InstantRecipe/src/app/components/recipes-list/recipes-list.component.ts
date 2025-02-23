@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { ConfigService } from '../../config.service';
 import { RecipeService } from '../../recipe.service';
 import { Recipe } from '../../models/recipe.model';
@@ -21,6 +21,7 @@ export class RecipesListComponent {
   selectedIngredients: Set<Ingredient> = new Set();
   ingredientQuantities: { [key: number]: string } = {};
   categorizedIngredients: { [key: string]: Set<Ingredient> } = {};
+
   newIngredient: Ingredient = {
     id: 0,
     name: '',
@@ -41,7 +42,8 @@ export class RecipesListComponent {
   modalContent = '';
 
   actLang = "Magyar";
-  recipeIngredientsMap: { [key: number]: Ingredient[] } = {};
+  // recipeIngredientsMap: { [key: number]: Ingredient[] } = {};
+
 
 
 
@@ -57,8 +59,9 @@ export class RecipesListComponent {
     `, 
     toolbar: 'undo redo | bold italic underline | formatselect |  bullist numlist  | removeformat',
   };
+  recipeIngredientsMap: any;
 
-  constructor(private config: ConfigService, private recipeService: RecipeService){}
+  constructor(private config: ConfigService, private recipeService: RecipeService, private cdr: ChangeDetectorRef){}
 
   // open() {
 
@@ -107,7 +110,6 @@ export class RecipesListComponent {
   editRecipe(recipe: Recipe) {
     this.selectedRecipeId = recipe.id;
     this.selectedIngredients.clear();
-    this.selectedIngredients = new Set(recipe.ingredients);
     this.recipeIngredient.recipe_id = recipe.id;
     // this.open();
   }
@@ -142,12 +144,12 @@ export class RecipesListComponent {
     this.isVisible = false;
   }
 
-  getRecipeWithIngredients(recipeId: number) {
-    this.recipeService.getRecipeWithIngredients(recipeId).subscribe((recipe) => {
-      this.recipeIngredientsMap[recipe.id] = recipe.ingredients;
-      console.log(this.recipeIngredientsMap);
-    })
-  }
+  // getRecipeWithIngredients(recipeId: number) {
+  //   this.recipeService.getRecipeWithIngredients(recipeId).subscribe((recipe) => {
+  //     this.recipeIngredientsMap[recipe.id] = recipe.ingredients;
+  //     console.log(this.recipeIngredientsMap);
+  //   })
+  // }
   
 
   removeIngredient(ingredient: Ingredient) {
@@ -155,17 +157,19 @@ export class RecipesListComponent {
     checkbox.checked = false;
     this.selectedIngredients.delete(ingredient);
     this.ingredientQuantities[ingredient.id] = '';
+    
   }
 
+
+  getIngredients(ingredient: Ingredient): string[] {
+    return Object.keys(this.ingredients);
+  }
+
+
+  
   updateIngredientQuantity(ingredientId: number, quantity: string) {
     this.ingredientQuantities[ingredientId] = quantity;
-  }
-
-  getIngredientQuantity(ingredient: Ingredient): string {
-    return this.ingredientQuantities[ingredient.id] || ingredient.pivot?.quantity || 'N/A';
-  }
-  
-
+  } 
   async postIngredient(ingredient: Ingredient) {
     try {
       const response = await this.recipeService.postIngredients(ingredient).toPromise();
@@ -188,7 +192,6 @@ export class RecipesListComponent {
     const checkbox = event.target as HTMLInputElement;
     if (checkbox.checked) {
       this.selectedIngredients.add(ingredient);
-      
 
       if (!this.ingredientQuantities[ingredient.id]) {
         this.ingredientQuantities[ingredient.id] = '';
@@ -219,14 +222,45 @@ export class RecipesListComponent {
       this.recipeService.modifyRecipe(recipe).subscribe(() => {
         this.modalContent = `Sikeresen mentetted a receptet: ${recipe.title}`;
       });
+      this.addIngredients();
 
   }
+
+  addIngredients() {
+      const ingredientDataArray = Array.from(this.selectedIngredients).map(ingredient => ({
+        recipe_id: this.selectedRecipeId,
+        ingredient_id: ingredient.id,
+        quantity: this.ingredientQuantities[ingredient.id] || ''
+      }));
+    
+      for (let i = 0; i < ingredientDataArray.length; i++) {
+        const ingredientData = ingredientDataArray[i];
+        this.recipeService.addIngredients(ingredientData).subscribe(
+          (response) => {
+            console.log(`Hozzávaló ${i + 1} sikeresn hozzáadva`, response);
+          },
+          (error) => {
+            console.error(`Hiba a hozzávaló ${i + 1} hozzáadásakor`, error);
+            if (error.error && error.error.errors) {
+              console.error('Validációs hiba:', error.error.errors);
+            }
+          }
+        );
+      }
+      alert('Sikeresen hozzáadtad a receptet!');
+      this.selectedIngredients.clear();
+    }
 
   deleteIngredientFromRecipe(ingredient: Ingredient) {
     this.recipeIngredient.ingredient_id = ingredient.id;
     this.recipeService.deleteIngredientFromRecipe(this.recipeIngredient).subscribe(() => {
-      this.modalContent = `Sikeresen törölted a hozzávalót: ${this.recipeIngredient}`;
+      console.log(`Sikeresen törölted a hozzávalót: ${ingredient.name}`);
     });
+    this.recipeService.getIngredients().subscribe((ingredients: Ingredient[]) => {
+      this.ingredients = [...ingredients]; 
+      this.cdr.detectChanges();
+    });
+
   }
 
   saveIngredient() {

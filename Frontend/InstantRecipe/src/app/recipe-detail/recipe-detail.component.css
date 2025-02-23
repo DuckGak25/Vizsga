@@ -2,6 +2,7 @@
     padding-top: 5.1rem;
     margin: 0 auto;
     backdrop-filter: blur(2px);
+    min-height: 50vw;
     
 }
 

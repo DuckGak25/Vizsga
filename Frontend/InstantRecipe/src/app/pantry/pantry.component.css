@@ -43,6 +43,17 @@ div {
   padding: 10px;
 }
 
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.defaultIngredients {
+  display: inline;
+}
+
+
 
 
 .pantry {

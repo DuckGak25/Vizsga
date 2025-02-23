@@ -3,28 +3,21 @@
       <div class="card-body">
         <h1>{{loginTitle}}</h1>
         
-  
-        <!-- Email mező -->
         <div class="form-floating mb-3">
           <input type="email" [(ngModel)]="email" placeholder="Email" class="form-control">
           <label for="email">{{emailLabel}}</label>
         </div>
   
-        <!-- Jelszó mező -->
         <div class="form-floating mb-3">
           <input type="password" [(ngModel)]="password" placeholder="Jelszó" class="form-control">
           <label for="pass">{{passwordText}}</label>
         </div>
   
+        <div class="">
+          <a (click)="navigateTo('/register')">{{alreadyAccountLabel}}</a>
+        </div>
 
-
-        <!-- Regisztráció gomb -->
-        <button class="btn btn-success mr-3" (click)="login()">{{loginTitle}}</button>
-        
-        <!-- Google bejelentkezés gomb -->
-        <button type="button" class="google-sign-in-button ml-3">
-          {{signInGoogle}}
-        </button>
+        <button class="btn btn-success " (click)="login()">{{loginTitle}}</button>
   
       </div>
     </div>
