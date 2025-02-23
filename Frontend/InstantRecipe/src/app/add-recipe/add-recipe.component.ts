@@ -30,6 +30,7 @@ export class AddRecipeComponent implements OnInit {
     title: '',
     description: '',
     categories: '',
+    imagelink: '',
     ingredients: [],
   };
 
@@ -137,7 +138,7 @@ export class AddRecipeComponent implements OnInit {
   }
 
   resetForm() {
-    this.newRecipe = { id: 0, title: '', description: '', categories: '', ingredients: [] };
+    this.newRecipe = { id: 0, title: '', description: '', categories: '', imagelink: '', ingredients: [] };
     this.selectedIngredients.clear();
   }
 
@@ -147,6 +148,7 @@ export class AddRecipeComponent implements OnInit {
       title: this.newRecipe.title,
       description: this.newRecipe.description,
       categories: this.newRecipe.categories,
+      imagelink: this.newRecipe.imagelink,
       ingredients: [],
     };
 
@@ -213,6 +215,15 @@ export class AddRecipeComponent implements OnInit {
     });
   }
 
+  disableButton() {
+    if (this.newRecipe.title === '' || this.newRecipe.description === '' || 
+      this.newRecipe.categories === '' || this.newRecipe.imagelink === '' || 
+      this.selectedIngredients.size === 0 || this.newIngredient.pivot?.quantity === '') 
+      {
+      return true;
+    }
+    return false;
+  }
 
   
 }

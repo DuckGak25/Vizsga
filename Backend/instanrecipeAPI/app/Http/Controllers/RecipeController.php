@@ -43,7 +43,8 @@ class RecipeController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'categories' => 'string'
+            'categories' => 'string',
+            'imagelink' => 'string' 
         ]);
     
         $recipe = Recipe::create($validatedData);
@@ -71,6 +72,7 @@ public function store(RecipeRequest $request)
         'title' => $validated['title'],
         'description' => $validated['description'],
         'categories' => $validated['categories'],
+        'imagelink' => $validated['imagelink']
     ]);
 
 

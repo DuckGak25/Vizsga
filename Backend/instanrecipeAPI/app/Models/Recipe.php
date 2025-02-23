@@ -14,6 +14,7 @@ class Recipe extends Model
         'title',
         'description',
         'categories',
+        'imagelink'
     ];
 
     public function ingredients()

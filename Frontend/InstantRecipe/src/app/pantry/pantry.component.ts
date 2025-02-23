@@ -29,12 +29,12 @@ export class PantryComponent implements OnInit {
     this.recipeService.getIngredients().subscribe((data: Ingredient[]) => {
       this.ingredients = data;
       this.categorizeIngredients();
-      this.restoreSelectedIngredients(); // Visszaállítjuk a kiválasztott összetevőket
+      this.restoreSelectedIngredients();
     });
 
     this.recipeService.getRecipes().subscribe((data: Recipe[]) => {
       this.allRecipes = data;
-      this.filteredRecipes = this.allRecipes; // Kezdetben az összes receptet megjelenítjük
+      this.filteredRecipes = this.allRecipes;
     });
   }
 
@@ -79,15 +79,14 @@ export class PantryComponent implements OnInit {
       this.selectedIngredients.delete(ingredient);
     }
 
-    this.filterRecipes(); // Frissíti a szűrt recepteket
-    this.saveSelectedIngredients(); // Mentjük a kiválasztott összetevőket a localStorage-ba
+    this.filterRecipes();
+    this.saveSelectedIngredients();
   }
 
   filterRecipes() {
     if (this.selectedIngredients.size === 0) {
-      this.filteredRecipes = this.allRecipes; // Ha nincs kiválasztva összetevő, akkor az összes recept
+      this.filteredRecipes = this.allRecipes;
     } else {
-      // Kiválasztott összetevők alapján szűrjük a recepteket
       this.filteredRecipes = this.allRecipes.filter(recipe =>
         Array.from(this.selectedIngredients).some(ingredient =>
           recipe.ingredients.some(i => i.name === ingredient)
@@ -105,23 +104,21 @@ export class PantryComponent implements OnInit {
   }
 
   clearSelectedIngredients() {
-    this.selectedIngredients.clear(); // Kiválasztott összetevők törlése
-    localStorage.removeItem('selectedIngredients'); // Töröljük a tárolt állapotot
-    this.filteredRecipes = this.allRecipes; // Az összes recept megjelenítése
+    this.selectedIngredients.clear();
+    localStorage.removeItem('selectedIngredients');
+    this.filteredRecipes = this.allRecipes;
   }
 
   restoreSelectedIngredients() {
-    // Az előzőleg kiválasztott összetevők visszaállítása
     const savedIngredients = localStorage.getItem('selectedIngredients');
     if (savedIngredients) {
       const ingredientsArray = JSON.parse(savedIngredients);
       ingredientsArray.forEach((ingredient: string) => this.selectedIngredients.add(ingredient));
-      this.filterRecipes(); // Szűrjük a recepteket a visszaállított összetevők alapján
+      this.filterRecipes();
     }
   }
 
   saveSelectedIngredients() {
-    // Kiválasztott összetevők mentése a localStorage-ba
     localStorage.setItem('selectedIngredients', JSON.stringify(Array.from(this.selectedIngredients)));
   }
 }

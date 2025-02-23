@@ -43,8 +43,19 @@
           <label for="categories">Kategória</label>
         </div>
 
-        <div class="row">
+        <div class="form-floating mt-3">
+          <input
+            type="text"
+            class="form-control"
+            id="imagelink"
+            name="imagelink"
+            placeholder="Kepek linkje"
+            [(ngModel)]="newRecipe.imagelink"
+          />
+          <label for="imagelink">Kép linkje</label>
+        </div>
 
+        <div class="row">
           <div class="ingredient-list mt-3 col">
             <h2>Összetevők</h2>
             <input type="text" [(ngModel)]="searchTerm" name="search" placeholder="Keresés összetevők között..." class="form-control mb-3 mt-3" />
@@ -100,7 +111,8 @@
             </table>
           </div>
         </div>
-        <button class="btn btn-danger" type="submit" (click)="createRecipe()">Hozzáad</button>
+        <button class="btn btn-danger" type="submit" (click)="createRecipe()" *ngIf="disableButton()" disabled>Hozzáad</button>
+        <button class="btn btn-danger" type="submit" (click)="createRecipe()" *ngIf="!disableButton()">Hozzáad</button>
     </div>
   </div>
   

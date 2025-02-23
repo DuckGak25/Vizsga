@@ -66,6 +66,7 @@ export class HomeComponent implements OnInit {
 
   navigateTo(link: string) {
     window.location.href = link;
+    console.log(link);
   }
 
   langChange(lang: any) {

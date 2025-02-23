@@ -24,7 +24,8 @@ class RecipeRequest extends FormRequest
         return [
             "title" => "required|string|max:255",
             "description" => "required|string",
-            "categories" => "string"
+            "categories" => "string",
+            "imagelink" => "string"
         ];
     }
 
@@ -33,6 +34,8 @@ class RecipeRequest extends FormRequest
         return [
             'title.required' => 'A title is required.',
             'description.required' => 'A description is required.',
+            'categories.required' => 'Categories are required.',
+            'imagelink.required' => 'An image link is required.'
         ];
     }
 }
