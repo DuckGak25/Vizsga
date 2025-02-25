@@ -86,6 +86,7 @@ public function modifyRecipe(RecipeRequest $request) {
     $recipe->title = $validated['title'];
     $recipe->description = $validated['description'];
     $recipe->categories = $validated['categories'];
+    $recipe->imagelink = $validated['imagelink'];
     $recipe->save();
 
     return response()->json($recipe);

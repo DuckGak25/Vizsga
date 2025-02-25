@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('recipes', function (Blueprint $table) {
             $table->id();
-            $table->string ("title");
-            $table->string ("description");
-            $table->string ("categories");
-            $table->string ("imagelink");
+            $table->string("title");
+            $table->longText("description");
+            $table->string("categories");
+            $table->string("imagelink");
             $table->boolean('featured')->default(false);
         });
     }

@@ -23,7 +23,7 @@ class RecipeRequest extends FormRequest
     {
         return [
             "title" => "required|string|max:255",
-            "description" => "required|string",
+            "description" => "required|string|max:65535",
             "categories" => "string",
             "imagelink" => "string"
         ];
