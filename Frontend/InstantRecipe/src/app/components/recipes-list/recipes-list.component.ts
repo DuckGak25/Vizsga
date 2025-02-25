@@ -287,6 +287,8 @@ export class RecipesListComponent {
   
     this.selectedIngredients.clear();
   }
+
+  
   
   
   

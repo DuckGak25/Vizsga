@@ -21,6 +21,7 @@ export class PantryComponent implements OnInit {
 
   pantryHeaderTitle = "";
   pantryHeaderText = "";
+  ingredientsHeaderTitle = "";
 
   constructor(private recipeService: RecipeService, private config: ConfigService) {}
 
@@ -43,6 +44,7 @@ export class PantryComponent implements OnInit {
 
       this.pantryHeaderTitle = content.pantryHeaderTitle || '';
       this.pantryHeaderText = content.pantryHeaderText || '';
+      this.ingredientsHeaderTitle = content.ingredientsHeaderTitle || '';
 
     });
   }

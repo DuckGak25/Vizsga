@@ -57,5 +57,9 @@
     "adminWelcome": "Szia",
 
     "pantryHeaderTitle": "Alapvető élelmiszerek",
-    "pantryHeaderText": "Pár hozzávalót alapvetőnek gondolunk minden háztartásban, ezért ezeket nem tudjátok kiválasztani: "
+    "pantryHeaderText": "Pár hozzávalót alapvetőnek gondolunk minden háztartásban, ezért ezeket nem tudjátok kiválasztani: ",
+
+    "recipesHeaderTitle": "Receptek",
+    "ingredientsHeaderTitle": "Hozzávalók",
+    "descriptionTitle": "Útmutató"
 }

@@ -19,3 +19,11 @@ router-outlet {
         font-family: 'VolteRounded-Bold';
         src: url('/assets/fonts/VolteRounded-Bold.otf') format('truetype'),
       }
+
+h1 {
+        font-weight: 700;
+}
+
+h2 {
+        font-weight: 700;
+}

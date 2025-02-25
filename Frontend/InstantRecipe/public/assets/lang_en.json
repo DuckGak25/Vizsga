@@ -57,5 +57,9 @@
     "adminWelcome": "Hey",
 
     "pantryHeaderTitle": "Basic Ingredients",
-    "pantryHeaderText": "We consider a few ingredients as essential in every household, so you cannot select these: "
+    "pantryHeaderText": "We consider a few ingredients as essential in every household, so you cannot select these: ",
+
+    "recipesHeaderTitle": "Recipes",
+    "ingredientsHeaderTitle": "Ingredients",
+    "descriptionTitle": "Directions"
 }

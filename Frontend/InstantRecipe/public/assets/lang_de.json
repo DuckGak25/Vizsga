@@ -57,5 +57,9 @@
     "adminWelcome": "Hallo",
 
     "pantryHeaderTitle": "Grundnahrungsmittel",
-    "pantryHeaderText": "Einige Zutaten halten wir für grundlegend in jedem Haushalt, daher kannst du diese nicht auswählen: "
+    "pantryHeaderText": "Einige Zutaten halten wir für grundlegend in jedem Haushalt, daher kannst du diese nicht auswählen: ",
+
+    "recipesHeaderTitle": "Rezepte",
+    "ingredientsHeaderTitle": "Zutaten",
+    "descriptionTitle": "Zubereitung"
 }

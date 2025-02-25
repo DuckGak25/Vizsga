@@ -1,21 +1,30 @@
 <div class="site" *ngIf="recipe">
-    <div class="content title bg-light">
-      <h1>{{ recipe.title }}</h1>
+    <div class="content title" [style.background-image]="'url(' + recipe.imagelink + ' )'">
+      <div class="titletext">
+        <h1 class="recipetitle">{{ recipe.title }}</h1>
+        <h3 class="categories">{{ recipe.categories }}</h3>
+      </div>
     </div>
   <div class="row">
     
-      <div class="ingredients content bg-light mr-2">
-        <strong>Hozzávalók:</strong>
+      <div class="ingredients content">
+        <h2>{{ingredientsHeaderTitle}}</h2>
+        
         <ul>
           <li *ngFor="let ingredient of recipe.ingredients">
-            {{ ingredient.name }} - {{ ingredient.pivot?.quantity }}
+            <div class="ingredient">
+              <strong><p>{{ ingredient.pivot?.quantity }}</p></strong> <p> {{ ingredient.name }}</p>
+            </div>
           </li>
         </ul>
       </div>
     
 
-
-      <div [innerHTML]="recipe.description" class="description content bg-light"></div>
+      
+      <div class="description content">
+        <h2>{{descriptionTitle}}</h2>
+        <div [innerHTML]="recipe.description" class="description"></div>
+      </div>
   </div>
 
 
