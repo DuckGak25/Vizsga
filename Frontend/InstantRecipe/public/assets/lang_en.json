@@ -23,7 +23,7 @@
         {"text": "Create your account", "link": "register", "pic": "https://attic.sh/c6gfetxd7dv3hkarz1s8uh46sxny"},
         {"text": "Recipes", "link": "recipes", "pic": "https://attic.sh/c11difv7b9aivntjpscdehbld4z2"}
     ],
-    "homecontent2title": "Daily Recipes",
+    "homecontent2title": "Featured Recipes",
     "homecontent2card": [
         {"text": "Paprika Potatoes", "link": "pantry", "pic": "https://attic.sh/zizosqhtkc9g4lsjyv358gus0nzs"},
         {"text": "Beef Soup", "link": "register", "pic": "https://attic.sh/c6gfetxd7dv3hkarz1s8uh46sxny"},

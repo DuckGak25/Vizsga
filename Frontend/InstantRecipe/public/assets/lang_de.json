@@ -23,7 +23,7 @@
         {"text": "Erstelle dein Konto", "link": "register", "pic": "https://attic.sh/c6gfetxd7dv3hkarz1s8uh46sxny"},
         {"text": "Rezepte", "link": "recipes", "pic": "https://attic.sh/c11difv7b9aivntjpscdehbld4z2"}
     ],
-    "homecontent2title": "Tägliche Rezepte",
+    "homecontent2title": "Hervorgehobene Rezepte",
     "homecontent2card": [
         {"text": "Paprikakartoffeln", "link": "pantry", "pic": "https://attic.sh/zizosqhtkc9g4lsjyv358gus0nzs"},
         {"text": "Rindfleischsuppe", "link": "register", "pic": "https://attic.sh/c6gfetxd7dv3hkarz1s8uh46sxny"},

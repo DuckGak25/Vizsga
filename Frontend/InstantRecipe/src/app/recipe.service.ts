@@ -70,6 +70,10 @@ export class RecipeService {
       .set('ingredient_id', recipeIngredient.ingredient_id.toString());
     return this.http.delete<RecipeIngredient>(`${this.apiUrl}/deleteingredients`, { params });
   }
+
+  getFeaturedRecipes(): Observable<Recipe[]> {
+    return this.http.get<Recipe[]>(`${this.apiUrl}/recipes/featured`);
+  }
   
   
   

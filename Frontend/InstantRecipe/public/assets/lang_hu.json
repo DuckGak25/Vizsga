@@ -23,7 +23,7 @@
         {"text": "Hozd létre a fiókod", "link": "register", "pic": "https://attic.sh/c6gfetxd7dv3hkarz1s8uh46sxny"},
         {"text": "Receptek", "link": "recipes", "pic": "https://attic.sh/c11difv7b9aivntjpscdehbld4z2"}
     ],
-    "homecontent2title": "Napi receptek",
+    "homecontent2title": "Kiemelt Receptek",
     "homecontent2card": [
         {"text": "Paprikás krumpli", "link": "pantry", "pic": "https://attic.sh/zizosqhtkc9g4lsjyv358gus0nzs"},
         {"text": "Húsleves", "link": "register", "pic": "https://attic.sh/c6gfetxd7dv3hkarz1s8uh46sxny"},

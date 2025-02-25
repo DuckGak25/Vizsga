@@ -3,9 +3,17 @@
     <div class="cont2" data-aos="fade-up">
       <div class="row">
 
-        <div class="col" *ngFor="let recipe of filteredRecipes">
-          <div class="card">
-            <div class="card-body">
+        <div class="col-4 my-3" *ngFor="let recipe of filteredRecipes">
+          <div class="recipe-card" [style.background-image]="'url(' + recipe.imagelink + ' )'" data-aos="fade-up" (click)="navigateTo('/recipes/' + recipe.id)"> 
+            <div class="recipe-header">
+                <div class="col-9">
+                  <h4>{{ recipe.title }}</h4>
+                  <p>{{ recipe.categories }}</p>
+                </div>
+              <div class="col-3"><img class="fork-knife"  src="./assets/images/icons/fork_knife.png" alt="🍴"></div>
+            </div>
+
+            <div class="recipe-body">
               <h2 class="card-title">{{ recipe.title }}</h2>
               <strong>Hozzávalók:</strong>
               <ul>
@@ -13,11 +21,6 @@
                   {{ ingredient.name }} - {{ ingredient.pivot?.quantity }}
                 </li>
               </ul>
-              <div class="gorecipe">
-                <a [routerLink]="['/recipes', recipe.id]">
-                  <button class="btn btn-danger">Ugrás a receptre</button>
-                </a>
-              </div>
             </div>
           </div>
         </div>

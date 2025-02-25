@@ -24,6 +24,11 @@
     align-items: center;
 }
 
+.fork-knife {
+    right: 0;
+    width: 60px;
+}
+
 .banner h1 {
     font-family: "VolteRounded-Bold", sans-serif;
     margin: 0;

@@ -31,6 +31,7 @@ export class AddRecipeComponent implements OnInit {
     description: '',
     categories: '',
     imagelink: '',
+    featured: false,
     ingredients: [],
   };
 
@@ -138,7 +139,7 @@ export class AddRecipeComponent implements OnInit {
   }
 
   resetForm() {
-    this.newRecipe = { id: 0, title: '', description: '', categories: '', imagelink: '', ingredients: [] };
+    this.newRecipe = { id: 0, title: '', description: '', categories: '', imagelink: '', featured: false, ingredients: [] };
     this.selectedIngredients.clear();
   }
 
@@ -149,6 +150,7 @@ export class AddRecipeComponent implements OnInit {
       description: this.newRecipe.description,
       categories: this.newRecipe.categories,
       imagelink: this.newRecipe.imagelink,
+      featured: this.newRecipe.featured,
       ingredients: [],
     };
 

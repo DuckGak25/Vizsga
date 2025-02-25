@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string ("description");
             $table->string ("categories");
             $table->string ("imagelink");
+            $table->boolean('featured')->default(false);
         });
     }
 

@@ -13,6 +13,7 @@ class CreateRecipeIngredientTable extends Migration
             $table->foreignId('ingredient_id');
             $table->foreignId('recipe_id');
             $table->string("quantity");
+            
         });
     }
 

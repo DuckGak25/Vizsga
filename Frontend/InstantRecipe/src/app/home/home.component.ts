@@ -39,13 +39,13 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadContent(); // Első betöltés
+    this.loadContent();
     AOS.init({
       once: true
     });
-    this.recipeService.getRecipes().subscribe((data: Recipe[]) => {
+    this.recipeService.getFeaturedRecipes().subscribe((data: Recipe[]) => {
       this.recipes = data;
-      console.log(this.recipes); // Ellenőrzés a konzolon
+      console.log(this.recipes);
     });
   }
 

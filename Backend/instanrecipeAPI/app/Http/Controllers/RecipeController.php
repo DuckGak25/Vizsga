@@ -91,6 +91,22 @@ public function modifyRecipe(RecipeRequest $request) {
     return response()->json($recipe);
 }
 
+public function getFeaturedRecipes()
+{
+    $featuredRecipes = Recipe::where('featured', true)->get();
+    return response()->json($featuredRecipes);
+}
+
+public function toggleFeatured(RecipeRequest $request)
+{
+    $recipe = Recipe::find($request->id);
+
+    $recipe->featured = !$recipe->featured;
+    $recipe->save();
+
+    return response()->json($recipe);
+}
+
     
     
     

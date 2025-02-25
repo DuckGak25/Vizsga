@@ -27,5 +27,9 @@ export class RecipesComponent implements OnInit {
      return Object.keys(this.ingredients);
    }
 
+   navigateTo(url: string) {
+    window.location.href = url;
+  }
+
 
 }

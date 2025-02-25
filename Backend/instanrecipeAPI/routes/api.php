@@ -10,6 +10,7 @@ use App\Http\Controllers\AuthController;
 
 
 Route::get('/recipes', [RecipeController::class, 'index']);
+Route::get('/recipes/featured', [RecipeController::class, 'getFeaturedRecipes']);
 Route::get('/recipes/{id}', [RecipeController::class, 'show']);
 Route::get('/recipes/{id}/ingredients', [RecipeController::class, 'showIngredients']);
 
@@ -45,4 +46,5 @@ Route::post( "/login", [ AuthController::class, "login" ]);
 Route::middleware(['auth:sanctum'])->group( function () {
     Route::post( "/logout", [ AuthController::class, "logout" ]);
     Route::put("/setadmin", [ UserController::class, "setAdmin" ]);
+    Route::put("/setuser", [ UserController::class, "setUser" ]);
 });
