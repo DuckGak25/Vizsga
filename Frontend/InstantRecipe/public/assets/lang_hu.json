@@ -61,5 +61,6 @@
 
     "recipesHeaderTitle": "Receptek",
     "ingredientsHeaderTitle": "Hozzávalók",
-    "descriptionTitle": "Útmutató"
+    "descriptionTitle": "Útmutató",
+    "imageSource": "A kép forrása: "
 }

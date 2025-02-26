@@ -41,10 +41,11 @@ class UserRegisterRequest extends FormRequest
         return [
             "name.required" => "Név nem lehet üres",
             "email.required" => "Email nem lehet üres",
+            "email.email" => "Nem megfelelő email formátum",
             "email.unique" => "Létező email",
             "password.required" => "Jelszó nem lehet üres",
             "password.min" => "Túl rövid jelszó",
-            "password.regex" => "A jelszzónak tartalmazia kell kisbetűt, nagybetűt és számot",
+            "password.regex" => "A jelszónak tartalmazia kell kisbetűt, nagybetűt és számot",
             "confirm_password.same" => "Nem egyező jelszó"
         ];
     }
@@ -55,7 +56,8 @@ class UserRegisterRequest extends FormRequest
 
             "success" => false,
             "message" => "Beviteli hiba",
-            "data" => $validator->errors()
-        ]));
+            "data" => $validator->errors(),
+
+        ], 422));
     }
 }

@@ -1,41 +1,48 @@
-<div class="content" >
+<div class="content">
   <div class="card">
     <div class="card-body">
       <h1>{{registerTitle}}</h1>
       
       <!-- Név mező -->
       <div class="form-floating mb-3">
-        <input type="text" [(ngModel)]="name" placeholder="Név" class="form-control">
+        <input type="text" [(ngModel)]="name" placeholder="Név" [class]="inputClassName">
         <label for="name">{{nameLabel}}</label>
       </div>
 
       <!-- Email mező -->
       <div class="form-floating mb-3">
-        <input type="email" [(ngModel)]="email" placeholder="Email" class="form-control">
+        <input type="email" [(ngModel)]="email" placeholder="Email" [class]="inputClassEmail">
         <label for="email">{{emailLabel}}</label>
+        <div class="text-danger" *ngIf="registerError.details?.email">
+          <div *ngFor="let err of registerError.details.email">{{ err }}</div>
+        </div>
       </div>
 
       <!-- Jelszó mező -->
       <div class="form-floating mb-3">
-        <input type="password" [(ngModel)]="password" placeholder="Jelszó" class="form-control">
+        <input type="password" [(ngModel)]="password" placeholder="Jelszó" [class]="inputClassPassword">
         <label for="pass">{{passwordText}}</label>
+        <div class="text-danger" *ngIf="registerError.details?.password">
+          <div *ngFor="let err of registerError.details.password">{{ err }}</div>
+        </div>
       </div>
 
       <!-- Jelszó megerősítés mező -->
-      <div class="form-floating">
-        <input type="password" [(ngModel)]="confirm_password" placeholder="Jelszó megerősítése" class="form-control">
+      <div class="form-floating mb-3">
+        <input type="password" [(ngModel)]="confirm_password" placeholder="Jelszó megerősítése" [class]="inputClassPassword">
         <label for="pass2">{{confirmPasswordText}}</label>
+        <div class="text-danger" *ngIf="registerError.details?.confirm_password">
+          <div *ngFor="let err of registerError.details.confirm_password">{{ err }}</div>
+        </div>
       </div>
 
-            <!-- Bejelentkezési link -->
-            <div class="mb-1">
-              <a (click)="navigateTo('/login')">{{alreadyAccountLabel}}</a>
-            </div>
       <!-- Regisztráció gomb -->
-      <button class="btn btn-success mr-3" (click)="register()">{{registerTitle}} </button>
+      <button class="btn btn-success mr-3" (click)="register()">{{registerTitle}}</button>
       
-
-
+      <!-- Bejelentkezési link -->
+      <div class="mb-1">
+        <a (click)="navigateTo('/login')">{{alreadyAccountLabel}}</a>
+      </div>
     </div>
   </div>
 </div>

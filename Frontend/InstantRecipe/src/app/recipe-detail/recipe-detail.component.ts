@@ -16,6 +16,7 @@ export class RecipeDetailComponent implements OnInit {
 
   ingredientsHeaderTitle: string = '';
   descriptionTitle: string = '';
+  imageSource: string = '';
   actLang = "Magyar";
 
   constructor(
@@ -50,6 +51,7 @@ export class RecipeDetailComponent implements OnInit {
     this.config.getContent().subscribe((content) => {
       this.ingredientsHeaderTitle = content.ingredientsHeaderTitle || '';
       this.descriptionTitle = content.descriptionTitle || '';
+      this.imageSource = content.imageSource || '';
     });
   }
 }

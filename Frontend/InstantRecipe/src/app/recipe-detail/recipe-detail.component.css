@@ -93,4 +93,15 @@ h2 {
     width: 30%;
 }
 
+.imagesource {
+    font-size: 14px;
+    font-style: italic;
+    padding: 10px;
+
+}
+
+.imagesource a {
+    color: rgb(0, 0, 0);
+}
+
 

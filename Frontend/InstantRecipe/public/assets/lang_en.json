@@ -61,5 +61,7 @@
 
     "recipesHeaderTitle": "Recipes",
     "ingredientsHeaderTitle": "Ingredients",
-    "descriptionTitle": "Directions"
+    "descriptionTitle": "Directions",
+    "imageSource": "Image Source: "
+
 }

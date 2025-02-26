@@ -61,5 +61,6 @@
 
     "recipesHeaderTitle": "Rezepte",
     "ingredientsHeaderTitle": "Zutaten",
-    "descriptionTitle": "Zubereitung"
+    "descriptionTitle": "Zubereitung",
+    "imageSource": "Bildquelle: "
 }
