@@ -33,7 +33,7 @@ export class RecipeDetailComponent implements OnInit {
           this.recipe = data;
         },
         (error) => {
-          console.error('Error fetching recipe:', error);
+          console.error('Hiba a recept betöltésénél:', error);
         }
       );
     }

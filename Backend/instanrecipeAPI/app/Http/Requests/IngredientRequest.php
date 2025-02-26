@@ -30,9 +30,9 @@ class IngredientRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'Name is required.',
-            'name.unique' => 'Ingredient already exists.',
-            'category.required' => 'Category is required.',
+            'name.required' => 'A név elvárt.',
+            'name.unique' => 'Már létező hozzávaló.',
+            'category.required' => 'A kategória elvárt.',
 
         ];
     }

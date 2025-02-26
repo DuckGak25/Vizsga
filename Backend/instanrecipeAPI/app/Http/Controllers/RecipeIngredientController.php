@@ -55,7 +55,7 @@ class RecipeIngredientController extends Controller
             ->first();
     
         if (!$recipe_ingredient) {
-            return response()->json(['message' => 'Recipe ingredient not found'], 404);
+            return response()->json(['message' => 'Recept hozzávaló nem található!'], 404);
         }
     
         DB::table('recipe_ingredient')
@@ -63,7 +63,7 @@ class RecipeIngredientController extends Controller
             ->where('ingredient_id', $ingredient_id)
             ->update(['quantity' => $quantity]);
     
-        return response()->json(['message' => 'Recipe ingredient updated successfully'], 200);
+        return response()->json(['message' => 'Recept hozzávaló módosítása sikeres!'], 200);
     }
 
     public function deleteIngredient(Request $request) {
@@ -71,7 +71,7 @@ class RecipeIngredientController extends Controller
         $ingredient_id = $request->query('ingredient_id');
     
         if (!$recipe_id || !$ingredient_id) {
-            return response()->json(['message' => 'Missing parameters'], 400);
+            return response()->json(['message' => 'Hiányzó paraméterek!'], 400);
         }
     
         $deleted = DB::table('recipe_ingredient')
@@ -80,9 +80,9 @@ class RecipeIngredientController extends Controller
             ->delete();
     
         if ($deleted) {
-            return response()->json(['message' => 'Ingredient deleted successfully'], 200);
+            return response()->json(['message' => 'Hozzávaló törlése sikeres!'], 200);
         } else {
-            return response()->json(['message' => 'Ingredient not found'], 404);
+            return response()->json(['message' => 'Nincs ilyen hozzávaló!'], 404);
         }
     }
     

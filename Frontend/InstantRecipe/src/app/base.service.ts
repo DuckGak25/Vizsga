@@ -22,7 +22,7 @@ export class BaseService {
     this.http.get(this.url).subscribe(
       (res: any) => this.recipeSubject.next(res),
       (error) => {
-        console.error('Error loading recipes:', error);
+        console.error('Hiba a recept betöltésnél:', error);
       }
     );
   }
@@ -34,7 +34,7 @@ export class BaseService {
         this.loadRecipes();
       },
       (error) => {
-        console.error('Error creating recipe:', error);
+        console.error('Hiba a recept kreálásnál:', error);
       }
     );
   }

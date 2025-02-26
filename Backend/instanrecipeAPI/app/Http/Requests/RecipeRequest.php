@@ -32,10 +32,10 @@ class RecipeRequest extends FormRequest
     public function messages()
     {
         return [
-            'title.required' => 'A title is required.',
-            'description.required' => 'A description is required.',
-            'categories.required' => 'Categories are required.',
-            'imagelink.required' => 'An image link is required.'
+            'title.required' => 'A cím elvárt.',
+            'description.required' => 'A leírás elvárt.',
+            'categories.required' => 'A kategória elvárt.',
+            'imagelink.required' => 'Egy kép link elvárt.'
         ];
     }
 }

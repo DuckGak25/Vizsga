@@ -30,9 +30,8 @@ class IngredientModRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'Name is required.',
-            'category.required' => 'Category is required.',
-
+            'name.required' => 'A név elvárt.',
+            'category.required' => 'A kategória elvárt.',
         ];
     }
 }

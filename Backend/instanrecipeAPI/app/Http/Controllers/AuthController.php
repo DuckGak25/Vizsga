@@ -68,14 +68,4 @@ public function logout(Request $request) {
         'message' => 'Nem volt bejelentkezett felhasználó'
     ], 401);
 }
-
-
-
-
-
-
-
-
-
-
 }

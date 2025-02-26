@@ -31,8 +31,8 @@ class RecipeIngredientRequest extends FormRequest
     public function messages()
     {
         return [
-            'recipe_id.required' => 'A recipe is required.',
-            'ingredient_id.required' => 'An ingredient is required.',
+            'recipe_id.required' => 'A recept id elvárt.',
+            'ingredient_id.required' => 'A hozzávaló id elvárt.',
         ];
     }
 }
