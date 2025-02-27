@@ -7,6 +7,9 @@
       <div class="form-floating mb-3">
         <input type="text" [(ngModel)]="name" placeholder="Név" [class]="inputClassName">
         <label for="name">{{nameLabel}}</label>
+        <div class="text-danger" *ngIf="registerError.details?.name">
+          <div *ngFor="let err of registerError.details.name">{{ err }}</div>
+        </div>
       </div>
 
       <!-- Email mező -->

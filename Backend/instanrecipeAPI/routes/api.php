@@ -6,6 +6,7 @@ use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\RecipeIngredientController;
 use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 
 
 
@@ -43,5 +44,6 @@ Route::middleware(['auth:sanctum'])->group( function () {
     Route::post( "/logout", [ AuthController::class, "logout" ]);
 
     Route::put("/setadmin", [ UserController::class, "setAdmin" ]);
-    Route::put("/setuser", [ UserController::class, "setUser" ]);
+    Route::put("/removeadmin", [ UserController::class, "removeAdmin" ]);
+    Route::get("/getusers", [ UserController::class, "getUsers" ]);
 });
