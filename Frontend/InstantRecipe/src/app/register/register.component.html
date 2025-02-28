@@ -39,6 +39,9 @@
         </div>
       </div>
 
+      <div class="alert alert-danger" *ngIf="registerError.show">
+        {{registerError.message}}
+      </div>
       <!-- Regisztráció gomb -->
       <button class="btn btn-success mr-3" (click)="register()">{{registerTitle}}</button>
       

@@ -42,7 +42,7 @@ class UserRegisterRequest extends FormRequest
             "name.required" => "Név nem lehet üres",
             "email.required" => "Email nem lehet üres",
             "email.email" => "Nem megfelelő email formátum",
-            "email.unique" => "Létező email",
+            "email.unique" => "Ez az email cím foglalt!",
             "password.required" => "Jelszó nem lehet üres",
             "password.min" => "Túl rövid jelszó",
             "password.regex" => "A jelszónak tartalmazia kell kisbetűt, nagybetűt és számot",

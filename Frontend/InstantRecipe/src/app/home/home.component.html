@@ -32,10 +32,10 @@
             <div class="col" *ngFor="let recipe of recipes">
               <div class="recipe-card" [style.background-image]="'url(' + recipe.imagelink + ' )'" data-aos="fade-up" (click)="navigateTo('/recipes/' + recipe.id)"> 
                 <div class="recipe-header">
-                  <div class="col-9">
+                  <div class="col-10">
                     <h4>{{ recipe.title }}</h4>
                   </div>
-                  <div class="col-3"><img class="fork-knife"  src="./assets/images/icons/fork_knife.png" alt="🍴"></div>
+                  <div class="col-2"><img class="fork-knife"  src="./assets/images/icons/fork_knife.png" alt="🍴"></div>
                 </div>
               </div>
             </div>

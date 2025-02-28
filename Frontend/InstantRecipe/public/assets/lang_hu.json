@@ -20,8 +20,7 @@
     "homecontent1title": "Megnézném a helyedben",
     "homecontent1card": [
         {"text": "Mi van a kamrában?", "link": "pantry", "pic": "https://attic.sh/zizosqhtkc9g4lsjyv358gus0nzs"},
-        {"text": "Hozd létre a fiókod", "link": "register", "pic": "https://attic.sh/c6gfetxd7dv3hkarz1s8uh46sxny"},
-        {"text": "Receptek", "link": "recipes", "pic": "https://attic.sh/c11difv7b9aivntjpscdehbld4z2"}
+        {"text": "Hozd létre a fiókod", "link": "register", "pic": "https://attic.sh/c6gfetxd7dv3hkarz1s8uh46sxny"}
     ],
     "homecontent2title": "Kiemelt Receptek",
     "homecontent2card": [

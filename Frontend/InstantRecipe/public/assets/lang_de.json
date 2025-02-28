@@ -20,8 +20,7 @@
     "homecontent1title": "Ich würde es an deiner Stelle anschauen",
     "homecontent1card": [
         {"text": "Was ist in der Speisekammer?", "link": "pantry", "pic": "https://attic.sh/zizosqhtkc9g4lsjyv358gus0nzs"},
-        {"text": "Erstelle dein Konto", "link": "register", "pic": "https://attic.sh/c6gfetxd7dv3hkarz1s8uh46sxny"},
-        {"text": "Rezepte", "link": "recipes", "pic": "https://attic.sh/c11difv7b9aivntjpscdehbld4z2"}
+        {"text": "Erstelle dein Konto", "link": "register", "pic": "https://attic.sh/c6gfetxd7dv3hkarz1s8uh46sxny"}
     ],
     "homecontent2title": "Hervorgehobene Rezepte",
     "homecontent2card": [

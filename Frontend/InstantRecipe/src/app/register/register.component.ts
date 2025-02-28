@@ -57,8 +57,6 @@ export class RegisterComponent {
       this.alreadyAccountLabel = content.alreadyAccountLabel || '';
       this.signInGoogle = content.signInGoogle || '';
     });
-    
-    
   }
 
   navigateTo(link: string) {
@@ -95,8 +93,6 @@ export class RegisterComponent {
       (error) => {
         console.error('Hiba:', error);
         if (error.status === 422) {
-
-          this.registerError.show = true;
           this.registerError.message = error.error.message || 'Hibás adatok!';
           this.registerError.details = error.error.data || {};
           if (this.registerError.details.email) {
@@ -108,13 +104,12 @@ export class RegisterComponent {
           if (this.registerError.details.name) {
             this.inputClassName = 'form-control is-invalid';
           }
+          if (this.registerError.details.confirm_password) {
+            this.inputClassPassword = 'form-control is-invalid';
+          }
         }
       }
     );
   }
-  
-  
-  
-  
-  
+
 }
