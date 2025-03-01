@@ -145,3 +145,62 @@ div {
   border: 2px solid rgba(169, 32, 32, 0.3); /* Alapértelmezett border szín */
   transition: border-color 0.3s, background-color 0.3s; /* Animáció a simább váltásért */
 }
+
+body{
+  background-color: #212121;
+}
+*,*:before,*:after{
+box-sizing:border-box;
+transition:.25s ease-in-out;
+}
+#toggles{
+width:60px;
+margin:5px auto;
+text-align:center;
+}
+.ios-toggle,.ios-toggle:active{
+display: none;
+}
+.checkbox-label{
+display:block;
+position:relative;
+padding:10px;
+margin-bottom:20px;
+font-size:12px;
+line-height:16px;
+width:100%;
+height:36px;
+border-radius:18px;
+background:#f8f8f8;
+cursor:pointer;
+}
+.checkbox-label:before{
+content:'';
+display:block;
+position:absolute;
+z-index:1;
+line-height:34px;
+text-indent:40px;
+height:36px;
+width:36px;
+border-radius:100%;
+top:0px;
+left:0px;
+right:auto;
+background:white;
+box-shadow:0 3px 3px rgba(0,0,0,.2),0 0 0 2px #dddddd;
+}
+.ios-toggle:checked + .checkbox-label:before{
+left:calc(100% - 36px);
+box-shadow:0 0 0 2px transparent,0 3px 3px rgba(0,0,0,.3);
+}
+#checkbox1 + .checkbox-label, #checkbox2 + .checkbox-label{
+  box-shadow:inset 0 0 0 0px rgba(19,191,17,1),0 0 0 2px #dddddd;
+}
+#checkbox1:checked + .checkbox-label, #checkbox2:checked + .checkbox-label{
+  box-shadow:inset 0 0 0 18px rgba(19,191,17,1),0 0 0 2px rgba(19,191,17,1);
+}
+
+h1, p, li, label {
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}

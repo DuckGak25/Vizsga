@@ -61,7 +61,10 @@ export class RecipesListComponent {
   };
   recipeIngredientsMap: any;
 
-  constructor(private config: ConfigService, private recipeService: RecipeService, private cdr: ChangeDetectorRef){}
+  constructor(private config: ConfigService, private recipeService: RecipeService, private cdr: ChangeDetectorRef){
+    this.getIngredientsList();
+    this.getRecipes();
+  }
 
   // open() {
 
@@ -75,19 +78,7 @@ export class RecipesListComponent {
   ngOnInit() {
     this.loadContent();
     
-    this.recipeService.getRecipes().subscribe((data: Recipe[]) => {
-      this.recipes = data;
-      console.log('Receptek betöltve:', this.recipes);
-  
-      this.recipeService.getIngredients().subscribe((ingredients: Ingredient[]) => {
-        this.ingredients = ingredients;
-        this.categorizeIngredients();
-      });
-  
-      this.recipeService.getRecipes().subscribe((recipes: Recipe[]) => {
-        this.recipes = recipes;
-      });
-    });
+
   
   }
   
@@ -105,6 +96,15 @@ export class RecipesListComponent {
   langChange(lang: any) {
     this.actLang = lang.text;
     this.config.changeLanguage(lang.sign);
+  }
+
+
+  getIngredientsList() {
+    this.recipeService.getIngredients().subscribe((ingredients: Ingredient[]) => {
+      this.ingredients = ingredients;
+      this.categorizeIngredients();
+    });
+
   }
 
   editRecipe(recipe: Recipe) {
@@ -157,6 +157,7 @@ export class RecipesListComponent {
     checkbox.checked = false;
     this.selectedIngredients.delete(ingredient);
     this.ingredientQuantities[ingredient.id] = '';
+    this.getRecipes();
     
   }
 
@@ -174,6 +175,7 @@ export class RecipesListComponent {
     try {
       const response = await this.recipeService.postIngredients(ingredient).toPromise();
       console.log('Ingredient added successfully', response);
+      this.getIngredientsList();
       
       await this.getRecipes();
     } catch (error) {
@@ -223,6 +225,7 @@ export class RecipesListComponent {
         this.modalContent = `Sikeresen mentetted a receptet: ${recipe.title}`;
       });
       this.addIngredients();
+      this.getRecipes();
 
   }
 
@@ -247,7 +250,9 @@ export class RecipesListComponent {
           }
         );
       }
+      
       alert('Sikeresen hozzáadtad a receptet!');
+      this.getRecipes();
       this.selectedIngredients.clear();
     }
 
@@ -255,11 +260,14 @@ export class RecipesListComponent {
     this.recipeIngredient.ingredient_id = ingredient.id;
     this.recipeService.deleteIngredientFromRecipe(this.recipeIngredient).subscribe(() => {
       console.log(`Sikeresen törölted a hozzávalót: ${ingredient.name}`);
+      this.getRecipes();
+      
     });
     this.recipeService.getIngredients().subscribe((ingredients: Ingredient[]) => {
       this.ingredients = [...ingredients]; 
       this.cdr.detectChanges();
     });
+
 
   }
 
@@ -288,9 +296,22 @@ export class RecipesListComponent {
     this.selectedIngredients.clear();
   }
 
-  
-  
-  
-  
-  
+  toggleFeatured(recipe: Recipe) {
+    recipe.featured = !recipe.featured;
+    this.recipeService.toggleFeaturedRecipe(recipe).subscribe(
+      (response) => { 
+        console.log(response);
+        this.getRecipes();},
+      (error) => {
+        console.error(error);
+      })
+      
+    };
 }
+
+  
+  
+  
+  
+  
+

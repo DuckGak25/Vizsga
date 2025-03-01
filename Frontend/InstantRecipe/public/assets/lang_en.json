@@ -62,6 +62,8 @@
     "recipesHeaderTitle": "Recipes",
     "ingredientsHeaderTitle": "Ingredients",
     "descriptionTitle": "Directions",
-    "imageSource": "Image Source: "
+    "imageSource": "Image Source: ",
+    "OR": "This or That",
+    "AND": "This has it for sure"
 
 }

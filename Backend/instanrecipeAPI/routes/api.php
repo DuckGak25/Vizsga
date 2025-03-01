@@ -39,6 +39,7 @@ Route::delete('/delete-recipe-ingredient/{id}', [RecipeIngredientController::cla
 Route::post( "/register", [ AuthController::class, "register" ]);
 Route::post( "/login", [ AuthController::class, "login" ]);
 
+Route::put("/toggle-featured", [ RecipeController::class, "toggleFeatured" ]);
 
 Route::middleware(['auth:sanctum'])->group( function () {
     Route::post( "/logout", [ AuthController::class, "logout" ]);
@@ -46,4 +47,6 @@ Route::middleware(['auth:sanctum'])->group( function () {
     Route::put("/setadmin", [ UserController::class, "setAdmin" ]);
     Route::put("/removeadmin", [ UserController::class, "removeAdmin" ]);
     Route::get("/getusers", [ UserController::class, "getUsers" ]);
+
+    
 });

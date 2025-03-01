@@ -61,5 +61,8 @@
     "recipesHeaderTitle": "Rezepte",
     "ingredientsHeaderTitle": "Zutaten",
     "descriptionTitle": "Zubereitung",
-    "imageSource": "Bildquelle: "
+    "imageSource": "Bildquelle: ",
+    "OR": "Das oder das",  
+    "AND": "Das ist sicher enthalten"
+
 }

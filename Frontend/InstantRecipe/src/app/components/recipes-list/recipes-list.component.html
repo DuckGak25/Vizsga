@@ -25,6 +25,10 @@
                         <h2>{{recipe.featured}}</h2>
                     </div>
                     <div class="col">
+                      <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" [checked]="recipe.featured" (click)="toggleFeatured(recipe)">
+                        <label class="form-check-label" for="flexSwitchCheckDefault" >Featured</label>
+                      </div>
                         <button class="btn btn-success" (click)="editRecipe(recipe)">{{editButton}}</button>
                         <button class="btn btn-danger" (click)="deleteRecipe(recipe)">{{deleteButton}}</button>
                     </div>

@@ -61,5 +61,7 @@
     "recipesHeaderTitle": "Receptek",
     "ingredientsHeaderTitle": "Hozzávalók",
     "descriptionTitle": "Útmutató",
-    "imageSource": "A kép forrása: "
+    "imageSource": "A kép forrása: ",
+    "OR": "Ez vagy az",
+    "AND": "Ez megtalálható benne biztosan"
 }
