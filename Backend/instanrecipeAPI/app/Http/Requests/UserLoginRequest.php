@@ -46,6 +46,6 @@ class UserLoginRequest extends FormRequest
             "success" => false,
             "message" => "Beviteli hiba",
             "data" => $validator->errors()
-        ]));
+        ], 401));
     }
 }

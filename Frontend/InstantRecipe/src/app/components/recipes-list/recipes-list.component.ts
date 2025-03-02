@@ -111,7 +111,7 @@ export class RecipesListComponent {
     this.selectedRecipeId = recipe.id;
     this.selectedIngredients.clear();
     this.recipeIngredient.recipe_id = recipe.id;
-    // this.open();
+    
   }
 
   categorizeIngredients(): void {
@@ -218,7 +218,14 @@ export class RecipesListComponent {
   clearSelectedIngredients() {
     this.selectedIngredients.clear();
     localStorage.removeItem('selectedIngredients');
+  
+    // Az összes checkbox alapállapotba állítása
+    const checkboxes = document.querySelectorAll<HTMLInputElement>('input[type="checkbox"]');
+    checkboxes.forEach(checkbox => checkbox.checked = false);
+  
+    this.cdr.detectChanges(); // ChangeDetectorRef frissítés
   }
+  
 
   saveRecipe(recipe: Recipe) {
       this.recipeService.modifyRecipe(recipe).subscribe(() => {

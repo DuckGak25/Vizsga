@@ -4,12 +4,70 @@ div .pantry {
     border-radius: 20px;
     padding: 10px;
 }
+.content {
+  backdrop-filter: blur(2px);
+  width: 100%;
+  margin: 0 auto;
+}
+
+.site {
+  width: 96%;
+  margin: 0 auto;
+  
+}
+
+h1, p, li, label {
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.btn {
+  margin: 5px;
+}
 
 .header li {
   list-style-type: disc;
   margin-left: 40px;
 }
 
+.header {
+  height: fit-content;
+  border-radius: 20px;
+  padding: 20px;
+  background-color: #eeeceb;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
+}
+
+.pantry {
+  height: fit-content;
+  border-radius: 20px;
+  width: 28%;
+  padding: 20px;
+  text-align: center;
+  background-color: #eeeceb;
+}
+
+.card {
+  min-height: 200px;
+  height: fit-content;
+  border-radius: 20px;
+}
+.form-check-input:checked {
+  background-color: rgba(23, 178, 142, 0.814);
+}
+@media (max-width: 768px) {
+  .recipes {
+    display: none;
+  }
+  .pantry {
+    width: 100%;
+  }
+
+  .header {
+    width: auto;
+  }
+
+  
+}
 
 
 .content {
@@ -22,18 +80,13 @@ div .pantry {
 }
 
 .recipes {
-    width: 69.6%;
-}
-
-.pantry {
-    width: 28%;
-    text-align: center;
+  width: 72%;
+  margin: 0 auto;
 }
 
 div {
     margin: 0;
 }
-
 
 .card {
   min-height: 200px;
@@ -54,11 +107,6 @@ div {
 }
 
 
-
-
-.pantry {
-    padding: 20px;
-  }
   
   h1 {
     font-size: 2em;
@@ -114,7 +162,7 @@ div {
 
 @media (min-width: 769px) {
   div .pantry {
-    margin: 10px;
+    margin-top: 10px;
   }
 }
 
@@ -125,42 +173,46 @@ div {
 }
 
 .checkboxing input {
-  display: none; /* Az input elrejtése */
+  display: none;
 }
 
-/* A label keretének megváltoztatása, ha a checkbox be van jelölve */
 .checkboxing input:checked + label {
-  border-color: rgba(23, 178, 142, 0.814); /* Border szín, ha a checkbox be van jelölve */
-  background-color: rgba(230, 255, 230, 0.9); /* Háttér szín, ha a checkbox be van jelölve */
+  border-color: rgba(23, 178, 142, 0.814);
+  background-color: rgba(230, 255, 230, 0.9);
 }
 
-/* Checkbox label */
 .checkboxing label {
   margin: 0;
   display: flex;
   align-items: center;
   cursor: pointer;
-  padding: 8px 12px; /* Padding a label kerületén */
-  border-radius: 15px; /* Kerekített sarkok */
-  border: 2px solid rgba(169, 32, 32, 0.3); /* Alapértelmezett border szín */
-  transition: border-color 0.3s, background-color 0.3s; /* Animáció a simább váltásért */
+  padding: 8px 12px;
+  border-radius: 15px;
+  border: 2px solid rgba(169, 32, 32, 0.3);
+  transition: border-color 0.3s, background-color 0.3s;
 }
 
-body{
-  background-color: #212121;
+button {
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
 }
+
+
 *,*:before,*:after{
 box-sizing:border-box;
-transition:.25s ease-in-out;
+transition:.15s ease-in-out;
 }
+
 #toggles{
 width:60px;
 margin:5px auto;
 text-align:center;
 }
+
 .ios-toggle,.ios-toggle:active{
 display: none;
 }
+
 .checkbox-label{
 display:block;
 position:relative;
@@ -174,6 +226,7 @@ border-radius:18px;
 background:#f8f8f8;
 cursor:pointer;
 }
+
 .checkbox-label:before{
 content:'';
 display:block;
@@ -190,17 +243,15 @@ right:auto;
 background:white;
 box-shadow:0 3px 3px rgba(0,0,0,.2),0 0 0 2px #dddddd;
 }
+
 .ios-toggle:checked + .checkbox-label:before{
 left:calc(100% - 36px);
 box-shadow:0 0 0 2px transparent,0 3px 3px rgba(0,0,0,.3);
 }
 #checkbox1 + .checkbox-label, #checkbox2 + .checkbox-label{
-  box-shadow:inset 0 0 0 0px rgba(19,191,17,1),0 0 0 2px #dddddd;
+  box-shadow:inset 0 0 0 0px rgba(255,90,0,1),0 0 0 2px #dddddd;
 }
 #checkbox1:checked + .checkbox-label, #checkbox2:checked + .checkbox-label{
-  box-shadow:inset 0 0 0 18px rgba(19,191,17,1),0 0 0 2px rgba(19,191,17,1);
+  box-shadow:inset 0 0 0 18px rgba(255,90,0,1),0 0 0 2px rgba(255,90,0,1);
 }
 
-h1, p, li, label {
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-}

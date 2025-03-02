@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { forkJoin, Observable } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { Recipe } from '../app/models/recipe.model';
 import { Ingredient } from '../app/models/ingredient.model';
 import { RecipeIngredient } from './models/recipe-ingredient.model';
@@ -13,75 +13,71 @@ export class RecipeService {
 
   constructor(private http: HttpClient) {}
 
+  private getHeaders(): HttpHeaders {
+    const token = localStorage.getItem('auth_token');
+    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+    if (token) {
+      headers = headers.set('Authorization', `Bearer ${token}`);
+    }
+    return headers;
+  }
 
   getRecipes(): Observable<Recipe[]> {
-    return this.http.get<Recipe[]>(`${this.apiUrl}/recipes`);
+    return this.http.get<Recipe[]>(`${this.apiUrl}/recipes`, { headers: this.getHeaders() });
   }
 
   getRecipeById(id: number): Observable<Recipe> {
-    return this.http.get<Recipe>(`${this.apiUrl}/recipes/${id}`);
+    return this.http.get<Recipe>(`${this.apiUrl}/recipes/${id}`, { headers: this.getHeaders() });
   }
   
   getRecipeWithIngredients(id: number): Observable<Recipe> {
-  return this.http.get<Recipe>(`${this.apiUrl}/recipes/${id}`);
+    return this.http.get<Recipe>(`${this.apiUrl}/recipes/${id}`, { headers: this.getHeaders() });
   }
 
   getIngredients(): Observable<Ingredient[]> {
-    return this.http.get<Ingredient[]>(`${this.apiUrl}/ingredients`);
+    return this.http.get<Ingredient[]>(`${this.apiUrl}/ingredients`, { headers: this.getHeaders() });
   }
 
   createRecipe(recipe: Recipe): Observable<Recipe> {
-    console.log(recipe)
-    return this.http.post<Recipe>(`${this.apiUrl}/postrecipe`, recipe);
+    return this.http.post<Recipe>(`${this.apiUrl}/postrecipe`, recipe, { headers: this.getHeaders() });
   }
 
-  addIngredients(ingredientData: { recipe_id: number; ingredient_id: number; quantity: string  }): Observable<any> {
-    console.log(ingredientData);
-    return this.http.post<any>(`${this.apiUrl}/recipe-ingredients`, ingredientData);
-  }
-  
-  
-  
-
-
-  deleteRecipe(id: number) {
-    return this.http.delete(`${this.apiUrl}/deleterecipe/${id}`);
+  addIngredients(ingredientData: { recipe_id: number; ingredient_id: number; quantity: string }): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/recipe-ingredients`, ingredientData, { headers: this.getHeaders() });
   }
 
-  postIngredients(ingredient: Ingredient) {
-    return this.http.post<Ingredient>(`${this.apiUrl}/addingredient`, ingredient);
+  deleteRecipe(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/deleterecipe/${id}`, { headers: this.getHeaders() });
   }
 
-  modifyIngredient(ingredient: Ingredient) {
-    return this.http.put<Ingredient>(`${this.apiUrl}/modifyingredient`, ingredient);
+  postIngredients(ingredient: Ingredient): Observable<Ingredient> {
+    return this.http.post<Ingredient>(`${this.apiUrl}/addingredient`, ingredient, { headers: this.getHeaders() });
   }
 
-  destroyIngredient(ingredient: Ingredient) {
-    return this.http.delete<Ingredient>(`${this.apiUrl}/destroyingredient/${ingredient.id}`);
+  modifyIngredient(ingredient: Ingredient): Observable<Ingredient> {
+    return this.http.put<Ingredient>(`${this.apiUrl}/modifyingredient`, ingredient, { headers: this.getHeaders() });
   }
 
-  modifyRecipe(recipe: Recipe) {
-    return this.http.put<Recipe>(`${this.apiUrl}/modifyrecipe`, recipe);
+  destroyIngredient(ingredient: Ingredient): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/destroyingredient/${ingredient.id}`, { headers: this.getHeaders() });
   }
 
-  deleteIngredientFromRecipe(recipeIngredient: RecipeIngredient) {
+  modifyRecipe(recipe: Recipe): Observable<Recipe> {
+    return this.http.put<Recipe>(`${this.apiUrl}/modifyrecipe`, recipe, { headers: this.getHeaders() });
+  }
+
+  deleteIngredientFromRecipe(recipeIngredient: RecipeIngredient): Observable<any> {
     const params = new HttpParams()
       .set('recipe_id', recipeIngredient.recipe_id.toString())
       .set('ingredient_id', recipeIngredient.ingredient_id.toString());
-    return this.http.delete<RecipeIngredient>(`${this.apiUrl}/deleteingredients`, { params });
+    return this.http.delete(`${this.apiUrl}/deleteingredients`, { headers: this.getHeaders(), params });
   }
 
   getFeaturedRecipes(): Observable<Recipe[]> {
-    return this.http.get<Recipe[]>(`${this.apiUrl}/recipes/featured`);
+    return this.http.get<Recipe[]>(`${this.apiUrl}/recipes/featured`, { headers: this.getHeaders() });
   }
 
   toggleFeaturedRecipe(recipe: Recipe): Observable<Recipe> {
-    return this.http.put<Recipe>(`${this.apiUrl}/toggle-featured`, recipe);
+    return this.http.put<Recipe>(`${this.apiUrl}/toggle-featured`, recipe, { headers: this.getHeaders() });
   }
-  
-  
-  
-  
-
-  
 }

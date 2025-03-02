@@ -1,61 +1,53 @@
 <div class="content">
-  <div class="row header">
-    <div class="col">
-      <div class="card">
-        <h1>{{ pantryHeaderTitle }}</h1>
-        <p><strong>{{ pantryHeaderText }}</strong></p>
-        <ul class="list">
-          <li *ngFor="let ingredient of defaultIngredients; let last = last" class="defaultIngredients" >
-            <strong>{{ ingredient.name }}</strong>
-          </li>
-        </ul>
-        
-        
-
-      </div>
+  <div class="site">
+    <div class="header">
+          <h1>{{ pantryHeaderTitle }}</h1>
+          <p><strong>{{ pantryHeaderText }}</strong></p>
+          <ul class="list">
+            <li *ngFor="let ingredient of defaultIngredients; let last = last" class="defaultIngredients" >
+              <strong>{{ ingredient.name }}</strong>
+            </li>
+          </ul>
     </div>
-  </div>
-  
-  <div class="row">
-      <div class="pantry col-3 card">
-        <h1>{{ingredientsHeaderTitle}}</h1>
-
-        <div id="toggles">
-          <input type="checkbox" id="checkbox1" id="checkbox1" class="ios-toggle"[checked]="orIncluded" (click)="toggleOrIncluded()"/>
-          <label for="checkbox1" class="checkbox-label"></label>
-          
-        </div>
-        <p>{{OR}}</p>
-
-        <div id="toggles">
-          <input type="checkbox" id="checkbox2" id="checkbox2" class="ios-toggle" [checked]="andIncluded" (click)="toggleAndIncluded()"/>
-          <label for="checkbox2" class="checkbox-label"></label>
-          
-        </div>
-        <p>{{AND}}</p>
-        
-
-        
-        <input type="text" [(ngModel)]="searchTerm" placeholder="Keresés összetevők között..." class="form-control mb-3" (input)="filterRecipes()">
-        <button (click)="clearSelectedIngredients()" class="btn btn-danger mb-3">Kiválasztott összetevők törlése</button>
-        <div *ngFor="let category of (categorizedIngredients | keyvalue)" >
-          <h2 *ngIf="filterIngredients(category.value).length > 0">{{ category.key }}</h2>
-          <div *ngFor="let ingredient of filterIngredients(category.value)" class="form-check">
-            <div class="checkboxing">
-              <input type="checkbox" [value]="ingredient" id="{{ingredient}}" class="ingredient" (change)="onIngredientChange($event, ingredient)" [checked]="selectedIngredients.has(ingredient)">
-              <label for="{{ingredient}}">{{ ingredient }}</label>
+    
+    <div class="row">
+        <div class="pantry  card">
+          <h1>{{ingredientsHeaderTitle}}</h1>
+          <div id="toggles">
+            <input type="checkbox" id="checkbox1" id="checkbox1" class="ios-toggle"[checked]="orIncluded" (click)="toggleOrIncluded()"/>
+            <label for="checkbox1" class="checkbox-label"></label>
+    
+          </div>
+          <p>{{OR}}</p>
+          <div id="toggles">
+            <input type="checkbox" id="checkbox2" id="checkbox2" class="ios-toggle" [checked]="andIncluded" (click)="toggleAndIncluded()"/>
+            <label for="checkbox2" class="checkbox-label"></label>
+    
+          </div>
+          <p>{{AND}}</p>
+    
+    
+          <input type="text" [(ngModel)]="searchTerm" placeholder="Keresés összetevők között..." class="form-control mb-3" (input)="filterRecipes()">
+          <button (click)="clearSelectedIngredients()" class="btn btn-danger mb-3">Kiválasztott összetevők törlése</button>
+          <div *ngFor="let category of (categorizedIngredients | keyvalue)" >
+            <h2 *ngIf="filterIngredients(category.value).length > 0">{{ category.key }}</h2>
+            <div *ngFor="let ingredient of filterIngredients(category.value)" class="form-check">
+              <div class="checkboxing">
+                <input type="checkbox" [value]="ingredient" id="{{ingredient}}" class="ingredient" (change)="onIngredientChange($event, ingredient)" [checked]="selectedIngredients.has(ingredient)">
+                <label for="{{ingredient}}">{{ ingredient }}</label>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-  
-      <div class="col-9 recipes">
-        <app-recipes [filteredRecipes]="filteredRecipes"></app-recipes>
-      </div>
+    
+        <div class=" recipes">
+          <app-recipes [filteredRecipes]="filteredRecipes"></app-recipes>
+        </div>
+    </div>
+    
+    
+    
+    
+    
+    </div>
   </div>
-  
-  
-  
-  
-  
-</div>

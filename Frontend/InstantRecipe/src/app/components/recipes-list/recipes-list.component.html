@@ -1,5 +1,5 @@
 <div class="content">
-  <div class="card">
+  <div class="card ">
 
         <!-- modal -->
         <div class="modal" *ngIf="isVisible" data-aos="zoom-in">
@@ -22,13 +22,9 @@
                         <h2>{{recipe.title}}</h2>
                     </div>
                     <div class="col">
-                        <h2>{{recipe.featured}}</h2>
+                      <input class="star" type="checkbox" title="bookmark page"[checked]="recipe.featured" (click)="toggleFeatured(recipe)"><br/><br/>
                     </div>
                     <div class="col">
-                      <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" [checked]="recipe.featured" (click)="toggleFeatured(recipe)">
-                        <label class="form-check-label" for="flexSwitchCheckDefault" >Featured</label>
-                      </div>
                         <button class="btn btn-success" (click)="editRecipe(recipe)">{{editButton}}</button>
                         <button class="btn btn-danger" (click)="deleteRecipe(recipe)">{{deleteButton}}</button>
                     </div>
@@ -67,38 +63,40 @@
                             </div>
                         </div>
                   
-                          <div class="form-floating mt-3">
-                            <input
-                              type="text"
-                              class="form-control"
-                              id="categories"
-                              name="categories"
-                              placeholder="Kategória"
-                              [(ngModel)]="recipe.categories"
-                            />
-
-                            <label for="categories">Kategória</label>
-                          </div>
+                          
 
                           <div class="row mt-3">
-                            <div class="col">
-                              <h2>Előnézet</h2>
-                              <div class="recipecard" [style.background-image]="'url(' + recipe.imagelink + ' )'">
-                                <div class="recipe-header">
-                                  <h4>{{ recipe.title }}</h4>
+                            <div class="row">
+                              <div class="col">
+                                <h2>Előnézet</h2>
+                                <div class="recipecard" [style.background-image]="'url(' + recipe.imagelink + ' )'">
+                                  <div class="recipe-header">
+                                    <h4>{{ recipe.title }}</h4>
+                                  </div>
                                 </div>
-                              </div>
-                              <div class="form-floating mt-3">
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  id="imagelink"  
-                                  name="imagelink"
-                                  placeholder="Kepek linkje"
-                                  [(ngModel)]="recipe.imagelink"
-                                />
-                                <label for="imagelink">Kép linkje</label>
-                              </div>
+                                <div class="form-floating mt-3 col">
+                                  <input
+                                    type="text"
+                                    class="form-control"
+                                    id="imagelink"
+                                    name="imagelink"
+                                    placeholder="Kepek linkje"
+                                    [(ngModel)]="recipe.imagelink"
+                                  />
+                                  <label for="imagelink">Kép linkje</label>
+                                </div>
+                                <div class="form-floating mt-3 col">
+                                  <input
+                                    type="text"
+                                    class="form-control"
+                                    id="categories"
+                                    name="categories"
+                                    placeholder="Kategória"
+                                    [(ngModel)]="recipe.categories"
+                                  />
+                                  <label for="categories">Kategória</label>
+                                </div>
+                            </div>
 
                           </div>
                           </div>
@@ -131,15 +129,13 @@
                                 Kiválasztott összetevők törlése
                               </button>
                               <div *ngFor="let category of categorizedIngredients | keyvalue">
-                                <ng-container *ngIf="filterIngredients(category.value).length > 0">
-                                  <h3>{{ category.key }}</h3>
+                                <h2 *ngIf="filterIngredients(category.value).length > 0">{{ category.key }}</h2>
                                   <div *ngFor="let ingredient of filterIngredients(category.value)" class="form-check">
                                     <div class="checkboxing">
-                                      <input type="checkbox" [value]="ingredient" [id]="'ingredient-' + ingredient.id" (change)="onIngredientChange($event, ingredient)" class="form-check-input"/>
+                                      <input type="checkbox" [value]="ingredient" [id]="'ingredient-' + ingredient.id" (change)="onIngredientChange($event, ingredient)" class="ingredient"/>
                                       <label [for]="'ingredient-' + ingredient.id">{{ ingredient.name }}</label>
                                     </div>
                                   </div>
-                                </ng-container>
                               </div>
                               <div class="post-ingredient mt-3">
                                 <h2>Összetevő hozzáadása</h2>
@@ -161,8 +157,8 @@
                               <table class="table">
                                 <tbody>
                                   <tr *ngFor="let ingredient of selectedIngredients">
-                                    <td>{{ ingredient.name }}</td>
-                                    <td>
+                                    <td >{{ ingredient.name }}</td>
+                                    <td >
                                       <input type="text" [(ngModel)]="ingredientQuantities[ingredient.id]" (ngModelChange)="updateIngredientQuantity(ingredient.id, $event)" placeholder="Mennyiség" class="form-control"/>
                                     </td>
                                     <td>
@@ -172,6 +168,7 @@
                                   </tr>
                               </table>
                             </div>
+                            
                   
                             
                           </div>

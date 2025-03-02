@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule, provideHttpClient } from '@angular/common/http';
 import { EditorModule } from '@tinymce/tinymce-angular';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -8,10 +10,6 @@ import { NgbCollapse, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { PantryComponent } from './pantry/pantry.component';
-
-
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule, provideHttpClient } from '@angular/common/http';
 import { RecipesComponent } from './recipes/recipes.component';
 import { AppLoadingComponent } from './app-loading/app-loading.component';
 import { LoginComponent } from './login/login.component';

@@ -204,7 +204,7 @@ export class AddRecipeComponent implements OnInit {
       const response = await this.recipeService.postIngredients(ingredient).toPromise();
       console.log('Ingredient added successfully', response);
       
-      await this.getRecipes();
+      this.getRecipes();
     } catch (error) {
       console.error('Error adding ingredient', error);
     }

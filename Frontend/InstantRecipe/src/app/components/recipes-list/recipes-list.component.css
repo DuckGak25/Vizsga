@@ -1,105 +1,185 @@
 .list-card {
-    padding: 10px;
-    margin: 10px;
-    border: 1px solid #ccc;
-    border-radius: 20px;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  padding: 10px;
+  margin-bottom: 5px;
+  transition: all 0.3s ease-in-out;
+  background-color: white;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.col {
+  vertical-align: middle;
+  text-align: center;
 }
 
 .card {
   border-radius: 20px;
+  background-color: #fff;
 }
 
 .content {
-    height: fit-content;
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
-    border-radius: 30px;
-    padding: 50px;
-    padding-top: 5.3rem;
+  height: fit-content;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 30px;
+  padding: 50px;
+  padding-top: 5.3rem;
+
 }
 
 .ingredientTable {
-  margin: 0 auto;
+  margin: 20px auto;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.ingredientTable th, .ingredientTable td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
 }
 
 .ingredientTable th {
-  padding-left: 50px;
-}
-
-td {
-  padding-left: 50px;
-  vertical-align: middle;
-  font-size: larger;
+  background-color: #f1f1f1;
+  font-weight: bold;
 }
 
 button {
-    margin-right: 10px;
+  margin-right: 10px;
+  border-radius: 5px;
+  padding: 5px 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+  opacity: 0.8;
 }
 
 .modal {
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    margin: 0 auto;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: transparent;
-    backdrop-filter: blur(2px);
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
-    z-index: 1000;
-  }
-  
-  .modal-content {
-    max-width: 500px;
-    text-align: center;
-    padding: 20px;
-  }
-  
-  .close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 24px;
-    cursor: pointer;
-  }
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(5px);
+  padding: 20px;
+  border-radius: 10px;
+  z-index: 1000;
+}
 
-  .recipecard {
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
-    border: 1px color(grey);
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
-    width: 350px;
-    height: 500px;
-    margin-right: 30px;
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-position: bottom;
-    background-size: cover;
-    margin: 0 auto;
+.modal-content {
+  max-width: 500px;
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #333;
+}
+
+.close:hover {
+  color: red;
+}
+
+.recipecard {
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 400;
+  width: 350px;
+  height: 500px;
+  margin: 20px auto;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: transform 0.3s ease-in-out;
+}
+
+.recipecard:hover {
+  transform: scale(1.05);
 }
 
 .recipe-header {
-    top: 0;
-    width: 100%;
-    height: 80px;
-    background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(10px);
-    border-radius: 20px 20px 0 0;
-    display: flex;
-    padding-left: 20px;
-    align-items: center;
-    color: #fff;
+  width: 100%;
+  height: 80px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  border-radius: 20px 20px 0 0;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  color: #fff;
+  font-weight: bold;
 }
 
+.star {
+  vertical-align: middle;
+  visibility: hidden;
+  cursor: pointer;
+}
 
-  
+.star:before {
+  content: url("/assets/images/icons/bookmark.circle.png");
+  position: absolute;
+  visibility: visible;
+}
+
+.star:checked:before {
+  content: url("/assets/images/icons/bookmark.circle.fill.png");
+  position: absolute;
+}
+
+.checkboxing {
+  display: flex;
+
+  gap: 10px;
+}
+
+.checkboxing input {
+  display: none;
+}
+
+.checkboxing label {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 15px;
+  border: 2px solid rgba(169, 32, 32, 0.3);
+  transition: border-color 0.3s, background-color 0.3s;
+}
+
+.checkboxing input:checked + label {
+  border-color: rgba(23, 178, 142, 0.814);
+  background-color: rgba(230, 255, 230, 0.9);
+}
+
+.form-check {
+  display: inline-flex;
+  align-items: center;
+}
+
+.selected-ingredients td{
+  width: 30%;
+}
+

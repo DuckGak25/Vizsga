@@ -8,38 +8,10 @@ use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 
-
-
-Route::get('/recipes', [RecipeController::class, 'index']);
 Route::get('/recipes/featured', [RecipeController::class, 'getFeaturedRecipes']);
-Route::get('/recipes/{id}', [RecipeController::class, 'show']);
-Route::get('/recipes/{id}/ingredients', [RecipeController::class, 'showIngredients']);
-
-
-Route::post('/postrecipe', [RecipeController::class, 'postRecipes']);
-Route::put('/modifyrecipe', [RecipeController::class, 'modifyRecipe']);
-Route::delete('/deleterecipe/{id}', [RecipeController::class, 'deleteRecipe']);
-Route::post('/storerecipes', [RecipeController::class, 'store']);
-
-
-Route::post('/addingredient', [IngredientController::class, 'addIngredient']);
-Route::put('/modifyingredient', [IngredientController::class, 'modifyIngredient']);
-Route::delete('/destroyingredient/{id}', [IngredientController::class, 'destroyIngredient']);
-Route::get('/getingredients', [IngredientController::class, 'getIngredients']);
-Route::get('/getingredient/{id}', [IngredientController::class, 'getIngredient']);
-Route::get('/ingredients', [IngredientController::class, 'getIngredients']);
-
-
-Route::put('/editingredients', [RecipeIngredientController::class, 'editRecipeIngredient']);
-Route::delete('/deleteingredients', [RecipeIngredientController::class, 'deleteIngredient']);
-Route::post('/recipe-ingredients', [RecipeIngredientController::class, 'storeIngredients']);
-Route::delete('/delete-recipe-ingredient/{id}', [RecipeIngredientController::class, 'destroyRecipeIngredient']);
-
-
 Route::post( "/register", [ AuthController::class, "register" ]);
 Route::post( "/login", [ AuthController::class, "login" ]);
 
-Route::put("/toggle-featured", [ RecipeController::class, "toggleFeatured" ]);
 
 Route::middleware(['auth:sanctum'])->group( function () {
     Route::post( "/logout", [ AuthController::class, "logout" ]);
@@ -48,5 +20,31 @@ Route::middleware(['auth:sanctum'])->group( function () {
     Route::put("/removeadmin", [ UserController::class, "removeAdmin" ]);
     Route::get("/getusers", [ UserController::class, "getUsers" ]);
 
-    
+    Route::get('/recipes', [RecipeController::class, 'index']);
+
+    Route::get('/recipes/{id}', [RecipeController::class, 'show']);
+    Route::get('/recipes/{id}/ingredients', [RecipeController::class, 'showIngredients']);
+
+
+    Route::post('/postrecipe', [RecipeController::class, 'postRecipes']);
+    Route::put('/modifyrecipe', [RecipeController::class, 'modifyRecipe']);
+    Route::delete('/deleterecipe/{id}', [RecipeController::class, 'deleteRecipe']);
+    Route::post('/storerecipes', [RecipeController::class, 'store']);
+
+
+    Route::post('/addingredient', [IngredientController::class, 'addIngredient']);
+    Route::put('/modifyingredient', [IngredientController::class, 'modifyIngredient']);
+    Route::delete('/destroyingredient/{id}', [IngredientController::class, 'destroyIngredient']);
+    Route::get('/getingredients', [IngredientController::class, 'getIngredients']);
+    Route::get('/getingredient/{id}', [IngredientController::class, 'getIngredient']);
+    Route::get('/ingredients', [IngredientController::class, 'getIngredients']);
+
+    Route::put('/editingredients', [RecipeIngredientController::class, 'editRecipeIngredient']);
+    Route::delete('/deleteingredients', [RecipeIngredientController::class, 'deleteIngredient']);
+    Route::post('/recipe-ingredients', [RecipeIngredientController::class, 'storeIngredients']);
+    Route::delete('/delete-recipe-ingredient/{id}', [RecipeIngredientController::class, 'destroyRecipeIngredient']);
+
+    Route::put("/toggle-featured", [ RecipeController::class, "toggleFeatured" ]);
+
+
 });

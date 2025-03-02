@@ -63,24 +63,27 @@ export class LoginComponent {
   }
   
   login() {
-    this.auth.login({ email: this.email, password: this.password }).subscribe(
+      this.auth.login({ email: this.email, password: this.password }).subscribe(
       (response) => {
         localStorage.setItem('auth_token', response.token);
         localStorage.setItem('user', JSON.stringify(response.user));
         alert('Sikeres bejelentkezés!');
         
         if (this.auth.isAdmin()) {
-          // this.router.navigate(['/admin']);
           window.location.href = '/admin';
         } else {
           window.location.href = '/';
         }
       },
       (error) => {
-        alert('Hibás email vagy jelszó!');
+        console.error('Hiba:', error);
+        if (error.status === 401) {
+          alert(error.error.message);
+        }
       }
     );
   }
+  
 
   removeToken() {
     localStorage.removeItem('user');
