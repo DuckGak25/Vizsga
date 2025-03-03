@@ -11,6 +11,7 @@ use App\Http\Controllers\UserController;
 Route::get('/recipes/featured', [RecipeController::class, 'getFeaturedRecipes']);
 Route::post( "/register", [ AuthController::class, "register" ]);
 Route::post( "/login", [ AuthController::class, "login" ]);
+Route::get('/recipes/{id}', [RecipeController::class, 'show']);
 
 
 Route::middleware(['auth:sanctum'])->group( function () {
@@ -22,7 +23,6 @@ Route::middleware(['auth:sanctum'])->group( function () {
 
     Route::get('/recipes', [RecipeController::class, 'index']);
 
-    Route::get('/recipes/{id}', [RecipeController::class, 'show']);
     Route::get('/recipes/{id}/ingredients', [RecipeController::class, 'showIngredients']);
 
 

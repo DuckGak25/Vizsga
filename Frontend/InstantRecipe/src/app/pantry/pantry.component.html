@@ -1,5 +1,5 @@
 <div class="content">
-  <div class="site">
+  <div class="site" *ngIf="!showRecipes" data-aos="fade-up">
     <div class="header">
           <h1>{{ pantryHeaderTitle }}</h1>
           <p><strong>{{ pantryHeaderText }}</strong></p>
@@ -40,9 +40,12 @@
           </div>
         </div>
     
+
         <div class="recipes mb-4">
           <app-recipes [filteredRecipes]="filteredRecipes" ></app-recipes>
         </div>
+
+       
     </div>
     
     
@@ -50,4 +53,11 @@
     
     
     </div>
+
+  </div>
+  <div class="showrecipes" *ngIf="showRecipes">
+    <app-recipes [filteredRecipes]="filteredRecipes" ></app-recipes>
+  </div>
+  <div class="nav">
+      <button (click)="toggleRecipes()">{{show}}</button>
   </div>

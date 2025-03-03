@@ -23,6 +23,10 @@ export class LoginComponent {
 
   email = '';
   password = '';
+  error = "";
+
+  inputClassEmail = 'email-input form-control';
+  inputClassPassword = 'password-input form-control';
 
   constructor(private config: ConfigService, private router: Router, private auth: AuthService) {
     this.router.events
@@ -65,7 +69,7 @@ export class LoginComponent {
       (response) => {
         localStorage.setItem('auth_token', response.token);
         localStorage.setItem('user', JSON.stringify(response.user));
-        alert('Sikeres bejelentkezés!');
+
         
         if (this.auth.isAdmin()) {
           window.location.href = '/admin';
@@ -76,7 +80,9 @@ export class LoginComponent {
       (error) => {
         console.error('Hiba:', error);
         if (error.status === 401) {
-          alert(error.error.message);
+          this.error = error.error.message;
+          this.inputClassEmail = 'form-control email-input  is-invalid';
+          this.inputClassPassword = 'form-control password-input  is-invalid';
         }
       }
     );

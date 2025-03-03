@@ -20,13 +20,21 @@ export class PantryComponent implements OnInit {
   pantryHeaderTitle = "";
   pantryHeaderText = "";
   ingredientsHeaderTitle = "";
+  showrecipe = "";
+  showingredients = "";
 
+  showRecipes = true;
+  show = this.showrecipe;
   andIncluded = false;
   orIncluded = true;
   AND = "";
   OR = "";
 
-  constructor(private recipeService: RecipeService, private config: ConfigService) {}
+  constructor(private recipeService: RecipeService, private config: ConfigService) {
+    this.toggleRecipes();
+    
+
+  }
 
   ngOnInit(): void {
     this.loadContent();
@@ -49,6 +57,9 @@ export class PantryComponent implements OnInit {
       this.ingredientsHeaderTitle = content.ingredientsHeaderTitle || '';
       this.AND = content.AND || '';
       this.OR = content.OR || '';
+      this.showrecipe = content.showrecipe || '';
+      this.showingredients = content.showingredients || '';
+      this.show = this.showrecipe;
 
     });
   }
@@ -173,5 +184,15 @@ export class PantryComponent implements OnInit {
 
   saveSelectedIngredients() {
     localStorage.setItem('selectedIngredients', JSON.stringify(Array.from(this.selectedIngredients)));
+  }
+
+  toggleRecipes() {
+    if (this.showRecipes) {
+      this.showRecipes = false;
+      this.show = this.showrecipe;
+    } else {
+      this.showRecipes = true;
+      this.show = this.showingredients;
+    }
   }
 }

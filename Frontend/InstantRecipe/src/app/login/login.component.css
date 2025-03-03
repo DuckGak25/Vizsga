@@ -41,6 +41,30 @@ h1 {
     margin-bottom: 10px;
 }
 
+.password-input:focus, .email-input:focus {
+    outline: none;
+    border-color: rgb(255 90 0);
+    box-shadow: 0px 0px 10px 0px rgba(255, 166, 0, 0.4);
+
+}
+
+.header {
+    margin: 0 auto;
+    height: 100px;
+    width: 100px;
+    border: 4px solid rgb(255, 90, 0);
+    border-radius: 24px;
+    
+    padding: 15px;
+}
+
+.header h1 {
+    font-family: "VolteRounded-Bold";
+    font-size: 50px;
+    color: rgb(255, 90, 30);
+}
+
+
 /* Kártya */
 .card {
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.4);
@@ -95,4 +119,14 @@ h1 {
     .google-sign-in-button {
         margin: 10px 0 0 0;
     }
+}
+
+label {
+    background: none;
+    padding: 0;
+}
+
+.alert {
+    border-radius: 12px;
+    box-shadow: 0;
 }

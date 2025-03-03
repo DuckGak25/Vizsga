@@ -12,11 +12,11 @@
               <div class="col-2 text-end"><img class="fork-knife" src="./assets/images/icons/fork_knife.png" alt="🍴"></div>
             </div>
             <div class="recipe-body p-3">
-              <h2 class="card-title">{{ recipe.title }}</h2>
+              <h4 class="card-title">{{ recipe.title }}</h4>
               <strong>Hozzávalók:</strong>
               <ul>
                 <li *ngFor="let ingredient of recipe.ingredients">
-                  {{ ingredient.name }} - {{ ingredient.pivot?.quantity }}
+                  {{ ingredient.name }}
                 </li>
               </ul>
             </div>

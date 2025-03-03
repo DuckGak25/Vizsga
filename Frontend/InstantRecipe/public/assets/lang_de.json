@@ -63,6 +63,9 @@
     "descriptionTitle": "Zubereitung",
     "imageSource": "Bildquelle: ",
     "OR": "Das oder das",  
-    "AND": "Das ist sicher enthalten"
+    "AND": "Das ist sicher enthalten",
+
+    "showrecipe": "Rezepte anzeigen",
+    "showingredients": "Zutaten anzeigen"
 
 }

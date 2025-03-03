@@ -4,7 +4,12 @@ div .pantry {
     border-radius: 20px;
     padding: 10px;
 }
+
+.nav {
+  display: none;
+}
 .content {
+  
   backdrop-filter: blur(2px);
   width: 100%;
   margin: 0 auto;
@@ -54,19 +59,61 @@ h1, p, li, label {
 .form-check-input:checked {
   background-color: rgba(23, 178, 142, 0.814);
 }
+
+
 @media (max-width: 768px) {
+  .header {
+    width: 95%;
+    margin: 0 auto;
+  }
+
+  .site {
+    margin-top: 3rem;
+    width: 95%;
+  }
+
   .recipes {
     display: none;
   }
+
   .pantry {
+    margin-top: 10px;
+    width: 95%;
+    margin: 10px auto;
+  }
+
+  .showrecipes {
+    margin: 10px auto;
+    padding-top: 3rem;
+    min-height: 100vh;
+    width: 95%;
+  }
+
+  .nav {
+    display: flex;
+    height: 70px;
     width: 100%;
+    z-index: 100;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(23, 23, 23, 0.8);
+    backdrop-filter: blur(2px);
+
   }
 
-  .header {
-    width: auto;
-  }
+  .nav button {
+    margin: 17px auto;
+    border-radius: 14px;
+    height: 50%;
+    background-color: rgb(255 90 0);;
+    width: 95%;
+    color: white;
+    border: none;
+    /* text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); */
+    transition: transform 0.4s ease, box-shadow 0.3s ease;
 
-  
+  }
 }
 
 
@@ -148,17 +195,6 @@ div {
   }
 
 
-/* Media query for mobile devices */
-@media (max-width: 768px) {
-    .recipes {
-        display: none;
-    }
-    .pantry {
-      padding-top: 5.3vw;
-      width: 90%;
-      margin: 0 auto;
-    }
-}
 
 @media (min-width: 769px) {
   div .pantry {

@@ -64,6 +64,9 @@
     "descriptionTitle": "Directions",
     "imageSource": "Image Source: ",
     "OR": "This or That",
-    "AND": "This has it for sure"
+    "AND": "This has it for sure",
+
+    "showrecipe": "Show Recipes",
+    "showingredients": "Show Ingredients"
 
 }

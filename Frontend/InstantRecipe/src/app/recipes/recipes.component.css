@@ -2,15 +2,19 @@
     height: fit-content;
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
     margin-top: 10px;
+    margin-left: 10px;
     border-radius: 20px;
     padding: 20px;
     width: 100%;
     background-color: #eeeceb;
+    align-items: center;
+    backdrop-filter: blur(2px);
 }
 
 .site {
     padding: 0;
     margin: 0;
+    backdrop-filter: blur(2px);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -20,11 +24,13 @@ h1, h2, h3, h4, h5, h6 {
 .recipe-card {
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
     border-radius: 20px;
+    margin: 5px;
     cursor: pointer;
     font-size: 20px;
     font-weight: 400;
-    width: 100%;
-    min-height: 500px;
+    max-width: 20rem;
+    min-width: 14rem;
+    min-height: 450px;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center bottom;
@@ -53,7 +59,7 @@ h1, h2, h3, h4, h5, h6 {
 .recipe-body {
     position: absolute;
     top: 0;
-    left: -100%;
+
     width: 100%;
     height: 100%;
     padding: 20px;
@@ -74,12 +80,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .recipe-card:hover .recipe-header {
-    transform: translateY(-100%);
+
     opacity: 0;
 }
 
 .recipe-card:hover .recipe-body {
-    transform: translateX(100%);
+
     opacity: 1;
 }
 
@@ -105,12 +111,35 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (max-width: 768px) {
     .content {
-        width: 90%;
+        align-items: center;
+        width: 95%;
         margin: 0 auto;
         margin-bottom: 10px;
     }
-
+    .row {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 10px;
+    }
+    
     .recipe-card {
         min-height: 400px;
+        max-width: 250px;
+    }
+
+    h4 {
+        font-size: 1.1rem;
+    }
+
+    strong {
+        font-size: 1rem;
+    }
+
+    p {
+        font-size: 0.9rem;
+    }
+
+    li {
+        font-size: 0.9rem;
     }
 }
