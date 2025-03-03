@@ -74,7 +74,7 @@ export class RecipeService {
   }
 
   getFeaturedRecipes(): Observable<Recipe[]> {
-    return this.http.get<Recipe[]>(`${this.apiUrl}/recipes/featured`, { headers: this.getHeaders() });
+    return this.http.get<Recipe[]>(`${this.apiUrl}/recipes/featured`);
   }
 
   toggleFeaturedRecipe(recipe: Recipe): Observable<Recipe> {
