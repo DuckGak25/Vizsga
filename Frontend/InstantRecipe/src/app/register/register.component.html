@@ -1,6 +1,8 @@
 <div class="content">
   <div class="card">
+
     <div class="card-body">
+
       <h1>{{registerTitle}}</h1>
       
       <!-- Név mező -->
@@ -46,9 +48,10 @@
       <button class="registerbutton mr-3" (click)="register()">{{registerTitle}}</button>
       
       <!-- Bejelentkezési link -->
-      <div class="mb-1">
-        <a (click)="navigateTo('/login')">{{alreadyAccountLabel}}</a>
-      </div>
+
+    </div>
+    <div class="card-bottom">
+      <a (click)="navigateTo('/login')">{{alreadyAccountLabel}}</a>
     </div>
   </div>
 </div>

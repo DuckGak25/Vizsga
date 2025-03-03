@@ -135,22 +135,24 @@ button:hover {
   vertical-align: middle;
   visibility: hidden;
   cursor: pointer;
+  height: 30px;
 }
 
 .star:before {
-  content: url("/assets/images/icons/bookmark.circle.png");
+  content: url("/assets/images/icons/bookmark.png");
   position: absolute;
+  height: 30px;
   visibility: visible;
 }
 
 .star:checked:before {
-  content: url("/assets/images/icons/bookmark.circle.fill.png");
+  content: url("/assets/images/icons/bookmark.fill.png");
+  height: 30px;
   position: absolute;
 }
 
 .checkboxing {
   display: flex;
-
   gap: 10px;
 }
 

@@ -16,7 +16,7 @@ export class LoginComponent {
   passwordText = '';
   confirmPasswordText = '';
   nameLabel = '';
-  alreadyAccountLabel = '';
+  notRegistered = '';
   signInGoogle = '';
   actLang = 'Magyar';
   loading: boolean = false;
@@ -44,17 +44,15 @@ export class LoginComponent {
       this.passwordText = content.passwordText || '';
       
       this.confirmPasswordText = content.confirmPasswordText || '';
-      this.alreadyAccountLabel = content.alreadyAccountLabel || '';
+      this.notRegistered = content.notRegistered || '';
       this.signInGoogle = content.signInGoogle || '';
     });
     
     
   }
 
-  navigateTo(link: string) {
-    this.router.navigate([link]).then(() => {
-      window.scrollTo(0, 0);
-    });
+  navigateTo(url: string) {
+    window.location.href = url;
   }
 
   langChange(lang: any) {

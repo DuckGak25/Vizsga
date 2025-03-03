@@ -4,39 +4,67 @@
     margin: 0 auto;
     cursor: pointer;
     padding-bottom: 20px;
+    height: 100vh;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 .content a {
     color: black;
     font-size: 15px;
     text-decoration: underline;
+    text-align: center;
+}
+
+.password-input, .email-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #86868b;
+    height: 3.2941176471rem;
+    font-size: 16px;
+}
+
+.password-input {
+    border-top: 0;
+    border-radius: 0px 0px 12px 12px;
+}
+
+.email-input {
+    border-radius: 12px 12px 0px 0px;
+}
+
+.inputs {
+    border-radius: 10px;
+    margin-bottom: 10px;
 }
 
 /* Kártya */
 .card {
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.4);
     padding: 50px;
     margin: 0 auto;
     border: 0;
-    max-width: 70%;
+    width: 610px;
+    max-width: 95%;
+    height: 640px;
     border-radius: 20px;
     cursor: pointer;
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
-    background-size: 75%;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-position: bottom;
+    background-color: white;
     transition: transform 0.4s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.32);
     backdrop-filter: blur(2px);
-    
 }
 
-
-.form-control {
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+.card-body {
+    vertical-align: middle;
 }
+
 .alert {
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
@@ -45,17 +73,18 @@
 .loginbutton {
     padding: 10px;
     border-radius: 14px;
-    background-color: green;
+    background-color: rgb(255 90 0);;
+    width: 100%;
     color: white;
     border: none;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    /* text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); */
     transition: transform 0.4s ease, box-shadow 0.3s ease;
 }
 
 .loginbutton:hover {
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    /* text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); */
 }
 
 h1 {

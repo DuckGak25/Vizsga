@@ -1,22 +1,28 @@
 <div class="content" >
-    <div class="card">
-      <div class="card-body">
-        <h1>{{loginTitle}}</h1>
-        
-        <div class="form-floating mb-3">
-          <input type="email" [(ngModel)]="email" placeholder="Email" class="form-control">
-          <label for="email">{{emailLabel}}</label>
+      <div class="card">
+        <div class="header">
+          <h1>IR</h1>
         </div>
-  
-        <div class="form-floating mb-3">
-          <input type="password" [(ngModel)]="password" placeholder="Jelszó" class="form-control">
-          <label for="pass">{{passwordText}}</label>
-        </div>
-  
+        <div class="card-body">
+          <h1>{{loginTitle}}</h1>
+      
 
-        <button class="loginbutton" (click)="login()">{{loginTitle}}</button>
-  
+            <div class="inputs">
+              <div class="form-floating">
+                <input type="email" [(ngModel)]="email" placeholder="Email" class="email-input form-control">
+                <label for="email" class="text-secondary">{{emailLabel}}</label>
+              </div>
+              <div class="form-floating">
+                <input type="password" [(ngModel)]="password" [placeholder]="passwordText" class="password-input form-control">
+                <label for="password" class="text-secondary">{{passwordText}}</label>
+              </div>
+            </div>
+          <button class="loginbutton" (click)="login()">{{loginTitle}}</button>
+        </div>
+
+        <div class="card-bottom">
+          <a (click)="navigateTo('/register')">{{notRegistered}}</a>
+        </div>
       </div>
-    </div>
   </div>
   
