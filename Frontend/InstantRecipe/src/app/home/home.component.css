@@ -24,6 +24,8 @@
     align-items: center;
 }
 
+
+
 .fork-knife {
     right: 0;
     width: 60px;
@@ -41,28 +43,39 @@
 
 .content h1, .content h2 {
     font-weight: 600;
-    padding: 30px;
+    padding: 5px;
     text-shadow: 4px 2px 4px rgba(0,0,0,0.3);
 }
 
 .content1, .content2 {
+
     display: flex;
     overflow-x: auto;
-    padding: 40px 20px 40px 20px;
-    right: 0;
+    padding: 20px 20px 40px 20px;
     overflow-y: hidden;
-    border-radius: 20px;
-    background-color: #eeeceb;
     /*background-color: rgb(45, 45, 45);*/
-    margin: 30px auto;
+    margin: 0px auto;
     max-width: 98%;
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
+    
 }
 
-.cont1, .cont2 {    
-    position: sticky;
-    top: 25%;
-    gap: 30px;
+.content {
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
+    width: 98%;
+    margin: 20px auto;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.32);
+    background: linear-gradient(180deg, rgb(255, 253, 253) 0%, rgb(230, 230, 230) 100%);
+
+
+}
+
+.cont1, .cont2 {   
+    margin: auto; 
+    padding: 20px;
+    max-width: 100%;
+    top: 20%;
+    gap: 50px;
     
 }
 
@@ -166,6 +179,7 @@ ngb-carousel {
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.6);
     padding: 50px;
     border: 1px color(grey);
+    background: linear-gradient(180deg, rgba(255, 253, 253, 0.6) 0%, rgba(230, 230, 230, 0.2) 100%);
     border-radius: 20px;
     cursor: pointer;
     font-size: 20px;
@@ -246,3 +260,4 @@ ngb-carousel {
 
 
     
+
