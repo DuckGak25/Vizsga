@@ -1,15 +1,7 @@
 <div class="content">
   <div class="card ">
 
-        <!-- modal -->
-        <div class="modal" *ngIf="isVisible" data-aos="zoom-in">
-            <div class="modal-content">
-                <span class="close" (click)="close()">×</span>
-                <h2>Törlés</h2>
-                <p>{{modalContent}}</p>
-                <button (click)="close()" class="btn btn-primary">Close</button>
-            </div>
-        </div>
+        
 
         <div class="card-body">
             <h1>Receptek</h1>
@@ -45,9 +37,6 @@
                           
                           <!-- Leírás -->
                           <div class="form-floating mb-3 row">
-                  
-                            
-                            
                             <div class="col">
                               <h2>Leírás</h2>  
                               <editor
@@ -152,6 +141,7 @@
                                 </div>
                               </div>
                             </div>
+                            
                             <div class="selected-ingredients mt-4 col">
                               <h2>Kiválasztott Összetevők</h2>
                               <table class="table">
@@ -164,13 +154,9 @@
                                     <td>
                                       <button class="btn btn-danger" (click)="removeIngredient(ingredient)">Eltávolítás</button>
                                     </td>
-                                    
                                   </tr>
                               </table>
                             </div>
-                            
-                  
-                            
                           </div>
                           <button (click)="saveRecipe(recipe)" class="btn btn-primary" type="submit" style="width: 100%;">Mentés</button>
                   </div>

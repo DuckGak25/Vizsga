@@ -90,18 +90,16 @@ export class IngredientsListComponent {
     if (!this.newIngredient.name && !this.newIngredient.category) {
       return this.ingredients;
     }
-  
-    const lowerCaseName = this.newIngredient.name.toLowerCase();
-    const lowerCaseCategory = this.newIngredient.category.toLowerCase();
+    const lowerCaseName = this.newIngredient.name ? this.newIngredient.name.toLowerCase() : '';
+    const lowerCaseCategory = this.newIngredient.category ? this.newIngredient.category.toLowerCase() : '';
   
     return this.ingredients.filter(ingredient => {
-      const matchesName = ingredient.name.toLowerCase().includes(lowerCaseName);
-      const matchesCategory = ingredient.category.toLowerCase().includes(lowerCaseCategory);
-      
-      return matchesName || matchesCategory;
+      const matchesName = lowerCaseName ? ingredient.name.toLowerCase().includes(lowerCaseName) : true;
+      const matchesCategory = lowerCaseCategory ? ingredient.category.toLowerCase().includes(lowerCaseCategory) : true;
+  
+      return matchesName && matchesCategory;
     });
   }
-  
 
 
 }
