@@ -219,11 +219,10 @@ export class RecipesListComponent {
     this.selectedIngredients.clear();
     localStorage.removeItem('selectedIngredients');
   
-    // Az összes checkbox alapállapotba állítása
     const checkboxes = document.querySelectorAll<HTMLInputElement>('input[type="checkbox"]');
     checkboxes.forEach(checkbox => checkbox.checked = false);
   
-    this.cdr.detectChanges(); // ChangeDetectorRef frissítés
+    this.cdr.detectChanges(); 
   }
   
 

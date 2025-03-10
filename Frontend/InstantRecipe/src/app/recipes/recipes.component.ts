@@ -13,6 +13,7 @@ export class RecipesComponent implements OnInit {
   @Input() filteredRecipes: Recipe[] = [];
   recipes: Recipe[] = [];
   ingredients: Ingredient[] = [];
+  
 
   constructor(private recipeService: RecipeService) {}
 

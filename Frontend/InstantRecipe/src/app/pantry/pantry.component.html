@@ -42,6 +42,18 @@
     
 
         <div class="recipes mb-4">
+          <div class="card">
+            <div class="selected-ingredients">
+              <h2>Kiválasztott Összetevők</h2>
+              <div *ngFor="let ingredient of selectedIngredients" class="form-check">
+                <div class="checkboxing">
+                  <input type="checkbox" [value]="ingredient" id="{{ingredient}}" class="ingredient" (change)="onIngredientChange($event, ingredient)" [checked]="selectedIngredients.has(ingredient)">
+                  <label for="{{ingredient}}" >{{ ingredient }}</label>
+                </div>
+              </div>
+            
+            </div>
+          </div>
           <app-recipes [filteredRecipes]="filteredRecipes" ></app-recipes>
         </div>
 

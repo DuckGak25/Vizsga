@@ -92,7 +92,7 @@ export class AuthService {
   }
   
   
-
+  
   logout() {
     const token = localStorage.getItem('auth_token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);

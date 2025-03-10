@@ -9,7 +9,7 @@ import { ConfigService } from '../config.service';
   templateUrl: './pantry.component.html',
   styleUrls: ['./pantry.component.css']
 })
-export class PantryComponent implements OnInit {
+export class PantryComponent {
   ingredients: Ingredient[] = [];
   categorizedIngredients: { [key: string]: Set<string> } = {};
   selectedIngredients: Set<string> = new Set();
@@ -42,14 +42,11 @@ export class PantryComponent implements OnInit {
       this.allRecipes = data;
       this.filteredRecipes = this.allRecipes;
     });
-    
-
-  }
-
-  ngOnInit(): void {
     this.loadContent();
 
   }
+
+
 
   loadContent() {
     this.config.getContent().subscribe((content) => {

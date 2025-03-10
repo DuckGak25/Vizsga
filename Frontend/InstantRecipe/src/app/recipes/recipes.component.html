@@ -2,6 +2,7 @@
   <div class="content">
     <div class="cont2" data-aos="fade-up">
       <div class="row">
+        
         <div class="col-lg-4 col-md-6 col-sm-12 my-3" *ngFor="let recipe of filteredRecipes">
           <div class="recipe-card" [style.background-image]="'url(' + recipe.imagelink + ' )'" data-aos="fade-up" (click)="navigateTo('/recipes/' + recipe.id)"> 
             <div class="recipe-header d-flex align-items-center p-3">
