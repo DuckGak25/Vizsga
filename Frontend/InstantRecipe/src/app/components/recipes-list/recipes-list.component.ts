@@ -218,11 +218,10 @@ export class RecipesListComponent {
   clearSelectedIngredients() {
     this.selectedIngredients.clear();
     localStorage.removeItem('selectedIngredients');
+
   
-    const checkboxes = document.querySelectorAll<HTMLInputElement>('input[type="checkbox"]');
+    const checkboxes = document.querySelectorAll<HTMLInputElement>('input[type="checkbox"] class="ingredient"');
     checkboxes.forEach(checkbox => checkbox.checked = false);
-  
-    this.cdr.detectChanges(); 
   }
   
 

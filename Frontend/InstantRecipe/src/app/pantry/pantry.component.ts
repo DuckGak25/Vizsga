@@ -3,6 +3,7 @@ import { RecipeService } from '../recipe.service';
 import { Ingredient } from '../models/ingredient.model';
 import { Recipe } from '../models/recipe.model';
 import { ConfigService } from '../config.service';
+import { ViewportScroller } from '@angular/common';
 
 @Component({
   selector: 'app-pantry',
@@ -30,7 +31,7 @@ export class PantryComponent {
   AND = "";
   OR = "";
 
-  constructor(private recipeService: RecipeService, private config: ConfigService) {
+  constructor(private recipeService: RecipeService, private config: ConfigService, private vps:ViewportScroller) {
     this.toggleRecipes();
     this.recipeService.getIngredients().subscribe((data: Ingredient[]) => {
       this.ingredients = data;
@@ -187,10 +188,14 @@ export class PantryComponent {
   toggleRecipes() {
     if (this.showRecipes) {
       this.showRecipes = false;
+      this.vps.scrollToPosition([0,0]);
       this.show = this.showrecipe;
     } else {
       this.showRecipes = true;
+      this.vps.scrollToPosition([0,0]);
       this.show = this.showingredients;
     }
+
+    
   }
 }

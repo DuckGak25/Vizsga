@@ -5,10 +5,9 @@
                 </div>
             <div class="row">
                     <div class="col" *ngFor="let adminPage of adminPages">
-                        <div class="card"
+                        <div class="card mb-2"
                             (click)="navigateTo(adminPage.link)"
                             [style.background-image]="'url(' + adminPage.image + ')'"
-                            style="background-image: url(/assets/images/icons/pencil.line@5x.png);"
                             *ngIf="this.user.admin >= adminPage.admin"
                             >
                           <h2>{{ adminPage.text }}</h2>

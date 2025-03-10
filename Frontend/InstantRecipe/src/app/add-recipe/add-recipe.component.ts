@@ -122,12 +122,12 @@ export class AddRecipeComponent implements OnInit {
 
   clearSelectedIngredients() {
     this.selectedIngredients.clear();
-    localStorage.removeItem('selectedIngredients');
+    localStorage.removeItem('selectedIngredientsAddRecipes');
     this.filteredRecipes = this.allRecipes;
   }
 
   saveSelectedIngredients() {
-    localStorage.setItem('selectedIngredients', JSON.stringify(Array.from(this.selectedIngredients)));
+    localStorage.setItem('selectedIngredientsAddRecipes', JSON.stringify(Array.from(this.selectedIngredients)));
   }
 
   updateDescription(event: any): void {
