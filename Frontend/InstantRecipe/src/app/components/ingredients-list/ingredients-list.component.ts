@@ -87,14 +87,21 @@ export class IngredientsListComponent {
   }
 
   filterIngredients(): Ingredient[] {
-    if (!this.newIngredient.name ) {
+    if (!this.newIngredient.name && !this.newIngredient.category) {
       return this.ingredients;
     }
-    const lowerCaseNewIngredient = this.newIngredient.name.toLowerCase();
-    return this.ingredients.filter(ingredient =>
-      ingredient.name.toLowerCase().includes(lowerCaseNewIngredient) 
-    );
+  
+    const lowerCaseName = this.newIngredient.name.toLowerCase();
+    const lowerCaseCategory = this.newIngredient.category.toLowerCase();
+  
+    return this.ingredients.filter(ingredient => {
+      const matchesName = ingredient.name.toLowerCase().includes(lowerCaseName);
+      const matchesCategory = ingredient.category.toLowerCase().includes(lowerCaseCategory);
+      
+      return matchesName || matchesCategory;
+    });
   }
+  
 
 
 }
