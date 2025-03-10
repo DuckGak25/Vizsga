@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string("categories");
             $table->string("imagelink");
             $table->boolean('featured')->default(false);
+            $table->string('status')->default('pending');
         });
     }
 

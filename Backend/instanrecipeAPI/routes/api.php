@@ -13,6 +13,9 @@ Route::post( "/register", [ AuthController::class, "register" ]);
 Route::post( "/login", [ AuthController::class, "login" ]);
 Route::get('/recipes/{id}', [RecipeController::class, 'show']);
 
+Route::delete("/deleteuser/{id}", [ UserController::class, "deleteUser" ]);
+//Route::post('/postrecipe', [RecipeController::class, 'postRecipes']);
+
 
 Route::middleware(['auth:sanctum'])->group( function () {
     Route::post( "/logout", [ AuthController::class, "logout" ]);
@@ -20,8 +23,8 @@ Route::middleware(['auth:sanctum'])->group( function () {
     Route::put("/setadmin", [ UserController::class, "setAdmin" ]);
     Route::put("/removeadmin", [ UserController::class, "removeAdmin" ]);
     Route::get("/getusers", [ UserController::class, "getUsers" ]);
-
-
+    Route::delete("/deleteuser/{id}", [ UserController::class, "deleteUser" ]);
+    
     Route::get('/recipes', [RecipeController::class, 'index']);
 
     Route::get('/recipes/{id}/ingredients', [RecipeController::class, 'showIngredients']);

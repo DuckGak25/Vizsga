@@ -53,5 +53,17 @@ class UserController extends ResponseController {
 
         return $this->sendResponse($user, "Sikeres lekérés");
      }
+     public function deleteUser(Request $request) {
+
+        if ( !Gate::allows("super") ) {
+            return $this->sendError("Autentikációs hiba", "Nincs jogosultsága", 401);
+        }
+
+        $user = User::find($request["id"]);
+
+        $user->delete();
+
+        return $this->sendResponse($user->name, "Sikeres törölség");
+     }
 
 }

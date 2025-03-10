@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\RecipeRequest;
 use App\Http\Resources\Recipe as RecipeResource;
+use App\Http\Reuqests\RecipeIngredientRequest;
+use App\Http\Mail\RecipeApprovalRequest;
 
 
 class RecipeController extends Controller
@@ -46,10 +48,16 @@ class RecipeController extends Controller
             'categories' => 'string',
             'imagelink' => 'string' 
         ]);
+        $validatedData['status'] = 'pending';
     
         $recipe = Recipe::create($validatedData);
-    
-        return response()->json($recipe, 201);  
+        // Super admin értesítése
+        $superAdminEmail = config('');
+        Mail::to($superAdminEmail)->send(new RecipeApprovalRequest($recipe));
+        return response()->json([
+            'message' => 'A recept beküldve és jóváhagyásra vár.',
+            'recipe' => $recipe
+        ],201);  
     }
 
     public function deleteRecipe($id)
