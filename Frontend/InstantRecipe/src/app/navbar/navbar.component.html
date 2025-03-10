@@ -19,6 +19,9 @@
         <li *ngIf="!getUser()" class="nav-item">
           <a class="nav-link" (click)="navigateTo('/login')">{{ login }}</a>
         </li>
+        <li *ngIf="getUser()" class="nav-item">
+          <a class="nav-link" (click)="navigateTo('/addrecipe')">{{ addRecipe }}</a>
+        </li>
         <li *ngIf="isAdmin()" class="nav-item">
           <a class="nav-link" (click)="navigateTo('/admin')">Admin</a>
         </li>

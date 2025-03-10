@@ -184,7 +184,7 @@ export class RecipesListComponent {
   }
 
   getRecipes() {
-    this.recipeService.getRecipes().subscribe((data: Recipe[]) => {
+    this.recipeService.getAllRecipes().subscribe((data: Recipe[]) => {
       this.recipes = data;
       console.log(this.recipes);
     });
@@ -312,6 +312,19 @@ export class RecipesListComponent {
       })
       
     };
+  
+  approveRecipe(recipe: Recipe) {
+    this.recipeService.approveRecipe(recipe).subscribe(
+      (response) => {
+        console.log(response);
+        this.getRecipes();
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
 }
 
   

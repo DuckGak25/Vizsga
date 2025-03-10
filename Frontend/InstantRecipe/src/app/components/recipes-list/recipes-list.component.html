@@ -1,8 +1,5 @@
 <div class="content">
   <div class="card ">
-
-        
-
         <div class="card-body">
             <h1>Receptek</h1>
           <div class="list-card" *ngFor="let recipe of recipes">
@@ -13,12 +10,16 @@
                     <div class="col">
                         <h2>{{recipe.title}}</h2>
                     </div>
-                    <div class="col">
+                    <div class="col" *ngIf="!recipe.approved">
+                      <h2>Jóváhagyásra vár</h2>
+                    </div>
+                    <div class="col" *ngIf="recipe.approved">
                       <input class="star" type="checkbox" title="bookmark page"[checked]="recipe.featured" (click)="toggleFeatured(recipe)"><br/><br/>
                     </div>
                     <div class="col">
                         <button class="btn btn-success" (click)="editRecipe(recipe)">{{editButton}}</button>
                         <button class="btn btn-danger" (click)="deleteRecipe(recipe)">{{deleteButton}}</button>
+                        <button *ngIf="!recipe.approved" (click)="approveRecipe(recipe)" class="btn btn-warning" type="submit">Jóváhagyás</button>
                     </div>
 
                     <!-- Szerkesztés -->
@@ -157,6 +158,9 @@
                                   </tr>
                               </table>
                             </div>
+                          </div>
+                          <div class="row">
+                            
                           </div>
                           <button (click)="saveRecipe(recipe)" class="btn btn-primary" type="submit" style="width: 100%;">Mentés</button>
                   </div>

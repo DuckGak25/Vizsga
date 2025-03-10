@@ -34,7 +34,7 @@ const routes: Routes = [
   { path: 'admin/ingredients-list', component: IngredientsListComponent, canActivate: [AdminGuard] },
   {path: 'admin/users', component: UsersComponent, canActivate: [SuperGuard] },
 
-  {path: "admin/addrecipe", component: AddRecipeComponent, canActivate: [AdminGuard]},
+  {path: "addrecipe", component: AddRecipeComponent},
   {path:"", redirectTo:'/home', pathMatch:'full'},
 ];
 

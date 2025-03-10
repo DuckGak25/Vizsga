@@ -80,4 +80,12 @@ export class RecipeService {
   toggleFeaturedRecipe(recipe: Recipe): Observable<Recipe> {
     return this.http.put<Recipe>(`${this.apiUrl}/toggle-featured`, recipe, { headers: this.getHeaders() });
   }
+
+  approveRecipe(recipe: Recipe): Observable<Recipe> {
+    return this.http.put<Recipe>(`${this.apiUrl}/approve-recipe`, recipe, { headers: this.getHeaders() });
+  }
+
+  getAllRecipes(): Observable<Recipe[]> {
+    return this.http.get<Recipe[]>(`${this.apiUrl}/allrecipes`, { headers: this.getHeaders() });
+  }
 }

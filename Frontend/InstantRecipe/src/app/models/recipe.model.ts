@@ -7,6 +7,8 @@ export interface Recipe {
   categories: string;
   imagelink: string;
   featured: boolean;
+  user_id: number;
+  approved: boolean;
   ingredients: Ingredient[];
 }
 
