@@ -22,6 +22,7 @@ class Recipe extends JsonResource
             'imagelink' => $this->imagelink,
             'approved' => $this->approved,
             'user' => [
+                'id' => $this->user->id,
                 'name' => $this->user->name,
                 'email' => $this->user->email
             ]

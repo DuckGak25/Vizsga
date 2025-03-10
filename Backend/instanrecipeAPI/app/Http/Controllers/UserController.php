@@ -45,7 +45,6 @@ class UserController extends ResponseController {
 
     public function getUsers()
      {
-
         if ( !Gate::allows("super") ) {
             return $this->sendError("Autentikációs hiba", "Nincs jogosultsága", 401);
         }
@@ -53,6 +52,7 @@ class UserController extends ResponseController {
 
         return $this->sendResponse($user, "Sikeres lekérés");
      }
+
      public function deleteUser(Request $request) {
 
         if ( !Gate::allows("super") ) {
@@ -65,5 +65,6 @@ class UserController extends ResponseController {
 
         return $this->sendResponse($user->name, "Sikeres törölség");
      }
+     
 
 }

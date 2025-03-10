@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ConfigService } from '../config.service';
 import { Router } from '@angular/router';
+import { RecipeService } from '../recipe.service';
 
 @Component({
   selector: 'app-admin',
@@ -14,9 +15,13 @@ export class AdminComponent {
   adminWelcome = '';
   adminPages: any[] = [];
   user: any = JSON.parse(localStorage.getItem('user') || '{}');
+  pending = 0
+  pendingText = ""
 
+  constructor(private config: ConfigService, private router: Router, private recipeService: RecipeService) {
 
-  constructor(private config: ConfigService, private router: Router) {}
+    this.getPendingRecipes();
+  }
 
   ngOnInit() {
     this.loadContent();
@@ -26,6 +31,7 @@ export class AdminComponent {
     this.config.getContent().subscribe((content) => {
       this.adminPages = content.adminPages || [];
       this.adminWelcome = content.adminWelcome || '';
+      this.pendingText = content.pending || '';
     });
   }
 
@@ -37,6 +43,21 @@ export class AdminComponent {
     this.actLang = lang.text;
     this.config.changeLanguage(lang.sign);
   }
+
+  getPendingRecipes() {
+    this.recipeService.getPendingRecipes().subscribe(
+      (recipes) => {
+        for (let recipe of recipes) {
+          this.pending++
+        }
+      },
+      (error) => {
+        console.error('Hiba a recept betöltésénél:', error);
+      }
+    );
+  }
+
+
 
 
 

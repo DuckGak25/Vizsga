@@ -66,5 +66,6 @@
     "OR": "Ez vagy az",
     "AND": "Ez megtalálható benne biztosan",
     "showrecipe": "Mutasd a recepteket",
-    "showingredients": "Mutasd a hozzávalókat"
+    "showingredients": "Mutasd a hozzávalókat",
+    "pending": "Jóváhagyásra váró receptek száma"
 }

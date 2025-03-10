@@ -67,6 +67,7 @@
     "AND": "Das ist sicher enthalten",
 
     "showrecipe": "Rezepte anzeigen",
-    "showingredients": "Zutaten anzeigen"
+    "showingredients": "Zutaten anzeigen",
+    "pending": "Anstehende Rezepte"
 
 }

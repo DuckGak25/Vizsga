@@ -19,12 +19,12 @@ Route::delete("/deleteuser/{id}", [ UserController::class, "deleteUser" ]);
 
 Route::middleware(['auth:sanctum'])->group( function () {
     Route::post( "/logout", [ AuthController::class, "logout" ]);
-
+    
     Route::put("/setadmin", [ UserController::class, "setAdmin" ]);
     Route::put("/removeadmin", [ UserController::class, "removeAdmin" ]);
     Route::get("/getusers", [ UserController::class, "getUsers" ]);
-
-
+    
+    
     Route::get('/recipes', [RecipeController::class, 'getApprovedRecipes']);
     Route::get('/allrecipes', [RecipeController::class, 'index']);
 
@@ -51,6 +51,6 @@ Route::middleware(['auth:sanctum'])->group( function () {
 
     Route::put("/toggle-featured", [ RecipeController::class, "toggleFeatured" ]);
     Route::put("/approve-recipe", [ RecipeController::class, "approveRecipe" ]);
-
+    Route::get("/pendingrecipes", [ RecipeController::class, "getNotApprovedRecipes" ]);
 
 });

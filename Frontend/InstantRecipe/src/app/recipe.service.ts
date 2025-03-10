@@ -88,4 +88,8 @@ export class RecipeService {
   getAllRecipes(): Observable<Recipe[]> {
     return this.http.get<Recipe[]>(`${this.apiUrl}/allrecipes`, { headers: this.getHeaders() });
   }
+
+  getPendingRecipes(): Observable<Recipe[]> {
+    return this.http.get<Recipe[]>(`${this.apiUrl}/pendingrecipes`, { headers: this.getHeaders() });
+  }
 }

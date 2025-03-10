@@ -52,17 +52,10 @@ class RecipeController extends Controller
             'imagelink' => 'string',
             'user_id' => 'required|integer'
         ]);
-        $validatedData['status'] = 'pending';
-    
+
         $recipe = Recipe::create($validatedData);
-        // Super admin értesítése
-        $superAdminEmail = config('');
-        Mail::to($superAdminEmail)->send(new RecipeApprovalRequest($recipe));
-        return response()->json([
-            'message' => 'A recept beküldve és jóváhagyásra vár.',
-            'recipe' => $recipe
-        ],201);  
-    }
+        return response()->json($recipe);
+}
 
     public function deleteRecipe($id)
     {
@@ -134,6 +127,13 @@ public function getApprovedRecipes()
 {
     $approvedRecipes = Recipe::where('approved', true)->with('ingredients', 'user')->get();
     return response()->json($approvedRecipes);
+}
+
+public function getNotApprovedRecipes() {
+
+
+        $notApprovedRecipes = Recipe::where('approved', false)->with('ingredients', 'user')->get();
+        return response()->json($notApprovedRecipes);
 }
 
 

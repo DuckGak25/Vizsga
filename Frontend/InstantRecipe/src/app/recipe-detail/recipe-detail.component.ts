@@ -11,7 +11,7 @@ import { ConfigService } from '../config.service';
   templateUrl: './recipe-detail.component.html',
   styleUrls: ['./recipe-detail.component.css']
 })
-export class RecipeDetailComponent implements OnInit {
+export class RecipeDetailComponent {
   recipe: Recipe | undefined;
 
   ingredientsHeaderTitle: string = '';
@@ -23,10 +23,7 @@ export class RecipeDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private recipeService: RecipeService,
     private config: ConfigService
-  ) {}
-
-
-  ngOnInit(): void {
+  ) {
     const id:any = this.route.snapshot.paramMap.get('id'); 
     if (id) {
       this.recipeService.getRecipeById(id).subscribe(
@@ -41,6 +38,9 @@ export class RecipeDetailComponent implements OnInit {
 
     this.loadContent();
   }
+
+
+
 
   langChange(lang: any) {
     this.actLang = lang.text;

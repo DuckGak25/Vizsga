@@ -21,6 +21,8 @@ export class RecipesListComponent {
   selectedIngredients: Set<Ingredient> = new Set();
   ingredientQuantities: { [key: number]: string } = {};
   categorizedIngredients: { [key: string]: Set<Ingredient> } = {};
+  pendingRecipes: any[] = [];
+  filterPending: boolean = false;
 
   newIngredient: Ingredient = {
     id: 0,
@@ -77,9 +79,6 @@ export class RecipesListComponent {
 
   ngOnInit() {
     this.loadContent();
-    
-
-  
   }
   
   
@@ -184,10 +183,14 @@ export class RecipesListComponent {
   }
 
   getRecipes() {
+    if (this.filterPending) {
+      this.filterRecipes();
+    } if (!this.filterPending) {
     this.recipeService.getAllRecipes().subscribe((data: Recipe[]) => {
       this.recipes = data;
       console.log(this.recipes);
     });
+  }
   }
 
   onIngredientChange(event: Event, ingredient: Ingredient) {
@@ -306,7 +309,8 @@ export class RecipesListComponent {
     this.recipeService.toggleFeaturedRecipe(recipe).subscribe(
       (response) => { 
         console.log(response);
-        this.getRecipes();},
+        this.getRecipes();
+      },
       (error) => {
         console.error(error);
       })
@@ -323,6 +327,30 @@ export class RecipesListComponent {
         console.error(error);
       }
     );
+  }
+
+  filterPendingRecipes() {
+    this.recipeService.getPendingRecipes().subscribe(
+      (recipes) => {
+        this.pendingRecipes = recipes;
+        console.log(this.pendingRecipes);
+      },
+      (error) => {
+        console.error('Hiba a recept betöltésénél:', error);
+      }
+    );
+  }
+
+  filterRecipes() {
+    this.filterPendingRecipes();
+    if (this.filterPending) {
+      this.recipes = this.pendingRecipes;
+    }
+  }
+
+  toggleFilter() {
+    this.filterPending = !this.filterPending;
+    this.getRecipes();
   }
 
 }
