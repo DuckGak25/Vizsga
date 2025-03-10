@@ -23,9 +23,10 @@ Route::middleware(['auth:sanctum'])->group( function () {
     Route::put("/setadmin", [ UserController::class, "setAdmin" ]);
     Route::put("/removeadmin", [ UserController::class, "removeAdmin" ]);
     Route::get("/getusers", [ UserController::class, "getUsers" ]);
-    Route::delete("/deleteuser/{id}", [ UserController::class, "deleteUser" ]);
-    
-    Route::get('/recipes', [RecipeController::class, 'index']);
+
+
+    Route::get('/recipes', [RecipeController::class, 'getApprovedRecipes']);
+    Route::get('/allrecipes', [RecipeController::class, 'index']);
 
     Route::get('/recipes/{id}/ingredients', [RecipeController::class, 'showIngredients']);
 
@@ -49,6 +50,7 @@ Route::middleware(['auth:sanctum'])->group( function () {
     Route::delete('/delete-recipe-ingredient/{id}', [RecipeIngredientController::class, 'destroyRecipeIngredient']);
 
     Route::put("/toggle-featured", [ RecipeController::class, "toggleFeatured" ]);
+    Route::put("/approve-recipe", [ RecipeController::class, "approveRecipe" ]);
 
 
 });

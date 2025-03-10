@@ -19,7 +19,12 @@ class Recipe extends JsonResource
             'title' => $this->title,
             'description' => $this->description,
             'categories' => $this->categories,
-            'imagelink' => $this->imagelink
+            'imagelink' => $this->imagelink,
+            'approved' => $this->approved,
+            'user' => [
+                'name' => $this->user->name,
+                'email' => $this->user->email
+            ]
         ];
     }
 }

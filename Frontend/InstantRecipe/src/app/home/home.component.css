@@ -2,7 +2,7 @@
 .et {
     padding-top: 5.3vw;
     height: fit-content;
-    backdrop-filter: blur(2px);
+
 }
 
 .et ::-webkit-scrollbar {

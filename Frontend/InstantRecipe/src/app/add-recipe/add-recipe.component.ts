@@ -4,6 +4,7 @@ import { Ingredient } from '../models/ingredient.model';
 import { Recipe } from '../models/recipe.model';
 import { RawEditorOptions } from 'tinymce';
 import { CheckboxControlValueAccessor } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-add-recipe',
@@ -19,6 +20,7 @@ export class AddRecipeComponent implements OnInit {
   filteredRecipes: Recipe[] = [];
   searchTerm: string = '';
   createdRecipeId: number = 0;
+  user: any = JSON.parse(localStorage.getItem('user') || '{}');
   newIngredient: Ingredient = {
     id: 0,
     name: '',
@@ -32,6 +34,8 @@ export class AddRecipeComponent implements OnInit {
     categories: '',
     imagelink: '',
     featured: false,
+    user_id: 0,
+    approved: false,
     ingredients: [],
   };
 
@@ -46,7 +50,9 @@ export class AddRecipeComponent implements OnInit {
     toolbar: 'undo redo | bold italic underline | formatselect |  bullist numlist  | removeformat',
   };
   
-  constructor(private recipeService: RecipeService) {}
+  constructor(private recipeService: RecipeService) {
+
+  }
 
   ngOnInit(): void {
     this.recipeService.getIngredients().subscribe((data: Ingredient[]) => {
@@ -122,12 +128,12 @@ export class AddRecipeComponent implements OnInit {
 
   clearSelectedIngredients() {
     this.selectedIngredients.clear();
-    localStorage.removeItem('selectedIngredients');
+    localStorage.removeItem('selectedIngredientsAddRecipes');
     this.filteredRecipes = this.allRecipes;
   }
 
   saveSelectedIngredients() {
-    localStorage.setItem('selectedIngredients', JSON.stringify(Array.from(this.selectedIngredients)));
+    localStorage.setItem('selectedIngredientsAddRecipes', JSON.stringify(Array.from(this.selectedIngredients)));
   }
 
   updateDescription(event: any): void {
@@ -139,7 +145,7 @@ export class AddRecipeComponent implements OnInit {
   }
 
   resetForm() {
-    this.newRecipe = { id: 0, title: '', description: '', categories: '', imagelink: '', featured: false, ingredients: [] };
+    this.newRecipe = { id: 0, title: '', description: '', categories: '', imagelink: '', featured: false, user_id: 0, approved: false, ingredients: [] };
     this.selectedIngredients.clear();
   }
 
@@ -151,6 +157,8 @@ export class AddRecipeComponent implements OnInit {
       categories: this.newRecipe.categories,
       imagelink: this.newRecipe.imagelink,
       featured: this.newRecipe.featured,
+      user_id: this.user.id,
+      approved: false,
       ingredients: [],
     };
 
@@ -164,8 +172,8 @@ export class AddRecipeComponent implements OnInit {
         console.error('Error creating recipe', error);
       }
     );
-
   }
+
   addIngredients() {
     if (!this.createdRecipeId) {
       console.error('A recept nem található!');

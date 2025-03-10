@@ -13,6 +13,7 @@
     "logout": "Logout",
     "login": "Login",
     "register": "Register",
+    "addRecipe": "Add Recipe",
 
     "homeText1": "Don't order,",
     "homeText2": "Cook at home!",

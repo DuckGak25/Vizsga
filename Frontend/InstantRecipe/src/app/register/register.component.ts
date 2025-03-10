@@ -73,6 +73,7 @@ export class RegisterComponent {
     this.inputClassEmail = 'form-control';
     this.inputClassPassword = 'form-control';
     this.inputClassName = 'form-control';
+
   
     if (!this.name || !this.email || !this.password || !this.confirm_password) {
       this.registerError.show = true;
@@ -89,6 +90,7 @@ export class RegisterComponent {
       (response) => {
         console.log('Sikeres regisztráció:', response);
         alert('Sikeres regisztráció!');
+        this.navigateTo('/login');
       },
       (error) => {
         console.error('Hiba:', error);

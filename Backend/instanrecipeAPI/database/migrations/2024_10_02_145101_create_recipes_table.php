@@ -18,7 +18,12 @@ return new class extends Migration
             $table->string("categories");
             $table->string("imagelink");
             $table->boolean('featured')->default(false);
+<<<<<<< HEAD
             $table->string('status')->default('pending');
+=======
+            $table->foreignId('user_id');
+            $table->boolean('approved')->default(false);
+>>>>>>> 76070d28f4b97c1e48c86340aeae2709fb85bb84
         });
     }
 

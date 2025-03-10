@@ -16,6 +16,8 @@ export class NavbarComponent {
   navItems: any[] = [];
   langSelection: any[] = [];
   logout = "";
+
+  addRecipe = "";
   search = "";
   flagLink = "";
   name = "";
@@ -38,6 +40,7 @@ export class NavbarComponent {
       this.login = content.login || '';
       this.register = content.register || '';
       this.pantry = content.pantry || '';
+      this.addRecipe = content.addRecipe || '';
 
     });
     

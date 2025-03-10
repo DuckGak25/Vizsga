@@ -10,8 +10,6 @@ div .pantry {
   display: none;
 }
 .content {
-  
-  backdrop-filter: blur(2px);
   width: 100%;
   margin: 0 auto;
 }
@@ -32,7 +30,19 @@ h1, p, li, label {
 
 .header li {
   list-style-type: disc;
-  margin-left: 40px;
+  margin-left: 5px;
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 5px;
+  border:2px solid rgb(255 90 0);
+  background-color: rgba(255, 167, 120, 0.422);
+  margin: 5px;
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 15px;
 }
 
 .header {
@@ -108,7 +118,7 @@ h1, p, li, label {
     margin: 17px auto;
     border-radius: 14px;
     height: 50%;
-    background-color: rgb(255 90 0);;
+    background-color: rgb(255 90 0);
     width: 95%;
     color: white;
     border: none;

@@ -184,7 +184,7 @@ export class RecipesListComponent {
   }
 
   getRecipes() {
-    this.recipeService.getRecipes().subscribe((data: Recipe[]) => {
+    this.recipeService.getAllRecipes().subscribe((data: Recipe[]) => {
       this.recipes = data;
       console.log(this.recipes);
     });
@@ -218,11 +218,10 @@ export class RecipesListComponent {
   clearSelectedIngredients() {
     this.selectedIngredients.clear();
     localStorage.removeItem('selectedIngredients');
+
   
-    const checkboxes = document.querySelectorAll<HTMLInputElement>('input[type="checkbox"]');
+    const checkboxes = document.querySelectorAll<HTMLInputElement>('input[type="checkbox"] class="ingredient"');
     checkboxes.forEach(checkbox => checkbox.checked = false);
-  
-    this.cdr.detectChanges(); 
   }
   
 
@@ -313,6 +312,19 @@ export class RecipesListComponent {
       })
       
     };
+  
+  approveRecipe(recipe: Recipe) {
+    this.recipeService.approveRecipe(recipe).subscribe(
+      (response) => {
+        console.log(response);
+        this.getRecipes();
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
 }
 
   

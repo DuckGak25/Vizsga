@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Recipe;
 use Illuminate\Http\Request;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\RecipeRequest;
 use App\Http\Resources\Recipe as RecipeResource;
@@ -16,7 +17,7 @@ class RecipeController extends Controller
 
     public function index()
     {
-        $recipes = Recipe::with('ingredients')->get();
+        $recipes = Recipe::with('ingredients', 'user')->get();
         return response()->json($recipes);
     }
 
@@ -42,11 +43,14 @@ class RecipeController extends Controller
 
     public function postRecipes(RecipeRequest $request)
     {
+
+        $user = auth()->user();
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'categories' => 'string',
-            'imagelink' => 'string' 
+            'imagelink' => 'string',
+            'user_id' => 'required|integer'
         ]);
         $validatedData['status'] = 'pending';
     
@@ -115,6 +119,23 @@ public function toggleFeatured(RecipeRequest $request)
 
     return response()->json($recipe);
 }
+
+public function approveRecipe(RecipeRequest $request)
+{
+    $recipe = Recipe::find($request->id);
+
+    $recipe->approved = !$recipe->approved;
+    $recipe->save();
+
+    return response()->json($recipe);
+}
+
+public function getApprovedRecipes()
+{
+    $approvedRecipes = Recipe::where('approved', true)->with('ingredients', 'user')->get();
+    return response()->json($approvedRecipes);
+}
+
 
     
     
