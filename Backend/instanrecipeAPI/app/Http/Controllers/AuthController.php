@@ -47,7 +47,7 @@ class AuthController extends ResponseController
 
     return response()->json([
         'success' => false,
-        'message' => 'Helytelen jelszó'
+        'message' => 'Helytelen felhasználó vagy jelszó'
     ], 401);
 }
 

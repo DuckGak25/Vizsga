@@ -32,12 +32,6 @@ export class PantryComponent implements OnInit {
 
   constructor(private recipeService: RecipeService, private config: ConfigService) {
     this.toggleRecipes();
-    
-
-  }
-
-  ngOnInit(): void {
-    this.loadContent();
     this.recipeService.getIngredients().subscribe((data: Ingredient[]) => {
       this.ingredients = data;
       this.categorizeIngredients();
@@ -48,6 +42,13 @@ export class PantryComponent implements OnInit {
       this.allRecipes = data;
       this.filteredRecipes = this.allRecipes;
     });
+    
+
+  }
+
+  ngOnInit(): void {
+    this.loadContent();
+
   }
 
   loadContent() {
