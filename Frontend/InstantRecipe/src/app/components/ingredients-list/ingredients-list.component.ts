@@ -90,7 +90,6 @@ export class IngredientsListComponent {
     if (!this.newIngredient.name && !this.newIngredient.category) {
       return this.ingredients;
     }
-  
     const lowerCaseName = this.newIngredient.name ? this.newIngredient.name.toLowerCase() : '';
     const lowerCaseCategory = this.newIngredient.category ? this.newIngredient.category.toLowerCase() : '';
   
@@ -101,9 +100,6 @@ export class IngredientsListComponent {
       return matchesName && matchesCategory;
     });
   }
-  
-  
-
 
 
 }

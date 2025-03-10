@@ -1,31 +1,41 @@
-<div class="content" >
-      <div class="card">
-        <div class="header">
-          <h1>IR</h1>
+<div class="content">
+  <div class="card">
+    <div class="header">
+      <h1>IR</h1>
+    </div>
+    <div class="card-body">
+      <h1>{{loginTitle}}</h1>
+  
+      <div class="inputs">
+        <div class="form-floating">
+          <input
+            type="email"
+            [(ngModel)]="email"
+            placeholder="Email"
+            [class]="inputClassEmail"
+            (keyup.enter)="login()" />
+          <label for="email">{{emailLabel}}</label>
         </div>
-        <div class="card-body">
-          <h1>{{loginTitle}}</h1>
-      
-
-            <div class="inputs">
-              <div class="form-floating">
-                <input type="email" [(ngModel)]="email" placeholder="Email" [class]="inputClassEmail">
-                <label for="email">{{emailLabel}}</label>
-              </div>
-              <div class="form-floating">
-                <input type="password" [(ngModel)]="password" [placeholder]="passwordText" [class]="inputClassPassword">
-                <label for="password" >{{passwordText}}</label>
-              </div>
-            </div>
-            <div class="alert alert-danger" *ngIf="error">
-              <div >{{ error }}</div>
-            </div>
-          <button class="loginbutton" (click)="login()">{{loginTitle}}</button>
-        </div>
-
-        <div class="card-bottom">
-          <a (click)="navigateTo('/register')">{{notRegistered}}</a>
+        <div class="form-floating">
+          <input
+            type="password"
+            [(ngModel)]="password"
+            [placeholder]="passwordText"
+            [class]="inputClassPassword"
+            (keyup.enter)="login()" /> 
+          <label for="password">{{passwordText}}</label>
         </div>
       </div>
+      
+      <div class="alert alert-danger" *ngIf="error">
+        <div>{{ error }}</div>
+      </div>
+      
+      <button class="loginbutton" (click)="login()">{{loginTitle}}</button>
+    </div>
+
+    <div class="card-bottom">
+      <a (click)="navigateTo('/register')">{{notRegistered}}</a>
+    </div>
   </div>
-  
+</div>
