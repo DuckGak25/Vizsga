@@ -21,6 +21,7 @@ Route::middleware(['auth:sanctum'])->group( function () {
     Route::put("/removeadmin", [ UserController::class, "removeAdmin" ]);
     Route::get("/getusers", [ UserController::class, "getUsers" ]);
 
+
     Route::get('/recipes', [RecipeController::class, 'index']);
 
     Route::get('/recipes/{id}/ingredients', [RecipeController::class, 'showIngredients']);
