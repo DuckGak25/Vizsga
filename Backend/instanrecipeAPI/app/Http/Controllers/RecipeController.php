@@ -124,9 +124,10 @@ public function approveRecipe(RecipeRequest $request)
 
 public function getApprovedRecipes()
 {
-    $approvedRecipes = Recipe::where('approved', true)->get();
+    $approvedRecipes = Recipe::where('approved', true)->with('ingredients', 'user')->get();
     return response()->json($approvedRecipes);
 }
+
 
     
     
