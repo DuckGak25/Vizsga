@@ -1,7 +1,7 @@
 
 
 .content {
-    padding-top: 5rem;
+    padding-top: 6rem;
     backdrop-filter: blur(2px);
     margin: 0 auto;
     cursor: pointer;
@@ -31,6 +31,8 @@ h1 {
     max-width: 95%;
     min-height: 640px;
     border-radius: 20px;
+    background-color: #eeecebd8;
+    border: 1px solid rgba(255, 255, 255, 0.32);
     cursor: pointer;
     font-size: 20px;
     font-style: normal;

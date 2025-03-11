@@ -11,7 +11,7 @@
     </div>
     
     <div class="row">
-        <div class="pantry  card">
+        <div class="pantry  card ">
           <h1>{{ingredientsHeaderTitle}}</h1>
           <div id="toggles">
             <input type="checkbox" id="checkbox1" id="checkbox1" class="ios-toggle"[checked]="orIncluded" (click)="toggleOrIncluded()"/>
@@ -42,7 +42,7 @@
     
 
         <div class="recipes mb-4">
-          <div class="card">
+          <div class="card recipeheader">
             <div class="selected-ingredients">
               <h2>{{selectedIngredientsTitle}}</h2>
               <div *ngFor="let ingredient of selectedIngredients" class="form-check">

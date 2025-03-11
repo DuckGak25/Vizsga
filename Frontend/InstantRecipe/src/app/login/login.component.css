@@ -1,5 +1,5 @@
 .content {
-    padding-top: 5rem;
+    padding-top: 6rem;
     backdrop-filter: blur(2px);
     margin: 0 auto;
     cursor: pointer;
@@ -98,7 +98,8 @@ h1 {
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
-    background-color: white;
+    background-color: #eeecebd8;
+    border: 1px solid rgba(255, 255, 255, 0.32);
     transition: transform 0.4s ease, box-shadow 0.3s ease;
     border: 1px solid rgba(255, 255, 255, 0.32);
     backdrop-filter: blur(2px);

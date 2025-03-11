@@ -5,7 +5,8 @@
     border-radius: 20px;
     padding: 20px;
     width: 100%;
-    background-color: #eeeceb;
+    background-color: #eeecebd8;
+    border: 1px solid rgba(255, 255, 255, 0.32);
     align-items: center;
     backdrop-filter: blur(2px);
 }

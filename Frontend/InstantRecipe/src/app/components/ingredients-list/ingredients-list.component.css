@@ -12,10 +12,11 @@
 .content {
     min-height: 100vh;
     height: fit-content;
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
+
     border-radius: 30px;
-    padding: 50px;
-    padding-top: 5.3rem;
+    width: 95%;
+    margin: 0 auto;
+    padding-top: 6rem;
 }
 
 button {

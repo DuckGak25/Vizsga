@@ -1,6 +1,6 @@
  /* Content */
  .et {
-    padding-top: 5.3vw;
+    padding-top:6rem;
     height: fit-content;
     backdrop-filter: blur(2px);
 }
@@ -22,10 +22,11 @@
     right: 0;
     overflow-y: hidden;
     border-radius: 20px;
-    background-color: #eeeceb;
+    background-color: #eeecebd8;
+    border: 1px solid rgba(255, 255, 255, 0.32);
     /*background-color: rgb(45, 45, 45);*/
     margin: 30px auto;
-    max-width: 98%;
+    max-width: 95%;
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
 }
 
@@ -95,7 +96,8 @@
 .card {
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
     padding: 50px;
-    border: 1px color(grey);
+    background-color: #ffffffa0;
+    border: 1px solid rgba(255, 255, 255, 0.32);
     border-radius: 20px;
     cursor: pointer;
     font-size: 20px;
