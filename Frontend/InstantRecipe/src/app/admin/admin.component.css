@@ -2,7 +2,7 @@
  .et {
     padding-top:6rem;
     height: fit-content;
-    backdrop-filter: blur(2px);
+    
 }
 
 .et ::-webkit-scrollbar {
@@ -22,10 +22,11 @@
     right: 0;
     overflow-y: hidden;
     border-radius: 20px;
-    background-color: #eeecebd8;
-    border: 1px solid rgba(255, 255, 255, 0.32);
+    background-color: rgba(255, 255, 255, 0.25);
+    border: 2px solid rgba(255, 255, 255, 0.32);
+    backdrop-filter: blur(6.1px);
     /*background-color: rgb(45, 45, 45);*/
-    margin: 30px auto;
+    margin: 10px auto;
     max-width: 95%;
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
 }
@@ -62,10 +63,6 @@
         padding: 20px;
     }
 
-    .et {
-        padding-top: 65px;
-    
-    }
 
     .card {
         height: 400px;
@@ -96,8 +93,8 @@
 .card {
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
     padding: 50px;
-    background-color: #ffffffa0;
-    border: 1px solid rgba(255, 255, 255, 0.32);
+    background-color: rgba(255, 255, 255, 0.25);
+    border: 2px solid rgba(255, 255, 255, 0.32);
     border-radius: 20px;
     cursor: pointer;
     font-size: 20px;

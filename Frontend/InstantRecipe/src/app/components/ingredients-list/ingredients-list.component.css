@@ -1,12 +1,30 @@
 .list-card {
     padding: 10px;
     margin: 10px;
-    border: 1px solid #ccc;
+    background-color: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.32);
     border-radius: 20px;
 }
 
 .card {
   border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  backdrop-filter: blur(6.1px);
+}
+
+.form-control {
+    background-color: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.32);
+    color: black;
+    font-weight: 500;
+}
+
+
+
+.form-control:focus {
+    background-color: rgba(255, 255, 255, 0.659);
+    border: 1px solid rgba(255, 255, 255, 0.32);
 }
 
 .content {

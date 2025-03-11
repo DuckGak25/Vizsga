@@ -141,7 +141,13 @@
                                     <input type="text" class="form-control" id="category" name="category" placeholder="Kategória" [(ngModel)]="newIngredient.category">
                                   </div>
                                   <div class="col">
-                                    <button class="btn btn-success" (click)="postIngredient(newIngredient)" style="width: 100%;">Hozzáadás</button>
+                                    <select name="language" id="" [(ngModel)]="newIngredient.language" class="form-control" placeholder="Nyelv">
+                                      <option value="hu" >Magyar</option>
+                                      <option value="en">English</option>
+                                    </select>
+                                  </div>
+                                  <div class="col">
+                                    <button class="btn btn-success" (click)="postIngredient(newIngredient);" style="width: 100%;">Hozzáadás</button>
                                   </div>
                                 </div>
                               </div>

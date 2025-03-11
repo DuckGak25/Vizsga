@@ -5,8 +5,9 @@
     border-radius: 20px;
     padding: 20px;
     width: 100%;
-    background-color: #eeecebd8;
+    background-color: rgba(255, 255, 255, 0.25);
     border: 1px solid rgba(255, 255, 255, 0.32);
+    color: rgb(0, 0, 0);
     align-items: center;
     backdrop-filter: blur(2px);
 }

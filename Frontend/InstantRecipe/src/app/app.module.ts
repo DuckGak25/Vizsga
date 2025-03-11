@@ -17,7 +17,6 @@ import { RegisterComponent } from './register/register.component';
 import { FooterComponent } from './footer/footer.component';
 import { AdminComponent } from './admin/admin.component';
 import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
-import { RecipeListComponent } from './recipe-list/recipe-list.component';
 import { AddRecipeComponent } from './add-recipe/add-recipe.component';
 import { RecipesListComponent } from './components/recipes-list/recipes-list.component';
 import { UsersComponent } from './components/users/users.component';
@@ -39,7 +38,6 @@ import { IngredientsListComponent } from './components/ingredients-list/ingredie
     FooterComponent,
     AdminComponent,
     RecipeDetailComponent,
-    RecipeListComponent,
     AddRecipeComponent,
     RecipesListComponent,
     UsersComponent,

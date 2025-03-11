@@ -73,6 +73,7 @@
     "selectedIngredientsTitle": "Kiválasztott összetevők",
     "searchForIngredients": "Keresés összetevők között...",
     "deleteSelected": "Kiválasztott összetevők törlése",
+    "ingredientName": "Összetevő neve",
     "imageLink": "A kép linkje",
     "remove": "Eltávolítás",
     "quantity": "Mennyiség"

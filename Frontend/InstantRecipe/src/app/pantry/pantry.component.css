@@ -50,7 +50,10 @@ h1, p, li, label {
   border-radius: 20px;
   padding: 20px;
   background-color: #eeecebd8;
+  background-color: rgba(255, 255, 255, 0.25);
   border: 1px solid rgba(255, 255, 255, 0.32);
+  backdrop-filter: blur(6.1px);
+  color: rgb(0, 0, 0);
   box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
 }
 
@@ -60,19 +63,34 @@ h1, p, li, label {
   width: 27%;
   padding: 20px;
   text-align: center;
-  background-color: #eeecebd8;
+  background-color: rgba(255, 255, 255, 0.25);
   border: 1px solid rgba(255, 255, 255, 0.32);
+  backdrop-filter: blur(6.1px);
+
 }
 
 .card {
   min-height: 200px;
   height: fit-content;
   border-radius: 20px;
-  background-color: #eeecebd8;
+  background-color: rgba(255, 255, 255, 0.25);
   border: 1px solid rgba(255, 255, 255, 0.32);
+  backdrop-filter: blur(6.1px);
 }
 .form-check-input:checked {
   background-color: rgba(23, 178, 142, 0.814);
+}
+
+.form-control {
+  background-color: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.32);
+    color: rgb(0, 0, 0);
+}
+
+.form-control:focus {
+  background-color: rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  color: rgb(0, 0, 0);
 }
 
 
@@ -111,7 +129,7 @@ h1, p, li, label {
     bottom: 0;
     left: 0;
     background-color: rgba(23, 23, 23, 0.8);
-    backdrop-filter: blur(2px);
+
 
   }
 
@@ -131,7 +149,7 @@ h1, p, li, label {
 
 
 .content {
-  backdrop-filter: blur(2px);
+
   padding-top: 6rem;
   width: 95%;
 }

@@ -1,6 +1,5 @@
 .content {
     padding-top: 6rem;
-    backdrop-filter: blur(2px);
     margin: 0 auto;
     cursor: pointer;
     padding-bottom: 20px;
@@ -60,7 +59,6 @@ h1 {
     justify-content: center;
     text-align: center;
     box-shadow: 0px 10px 30px rgba(255, 90, 0, 0.3), inset 0px 2px 5px rgba(255, 255, 255, 0.4);
-    backdrop-filter: blur(10px);
     transition: all 0.3s ease-in-out;
 }
 
@@ -98,11 +96,21 @@ h1 {
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
-    background-color: #eeecebd8;
+    background-color: rgba(255, 255, 255, 0.25);
     border: 1px solid rgba(255, 255, 255, 0.32);
+    backdrop-filter: blur(6.1px);
     transition: transform 0.4s ease, box-shadow 0.3s ease;
+}
+
+.form-control {
+    background-color: rgba(255, 255, 255, 0.25);
     border: 1px solid rgba(255, 255, 255, 0.32);
-    backdrop-filter: blur(2px);
+
+}
+
+.form-control:focus {
+    background-color: rgba(255, 255, 255, 0.659);
+    border: 1px solid rgba(255, 255, 255, 0.32);
 }
 
 .card-body {
@@ -117,7 +125,7 @@ h1 {
 .loginbutton {
     padding: 10px;
     border-radius: 14px;
-    background-color: rgb(255 90 0);;
+    background-color: rgb(255 90 0);
     width: 100%;
     color: white;
     border: none;
@@ -138,6 +146,11 @@ h1 {
 @media (max-width: 768px) {
     .google-sign-in-button {
         margin: 10px 0 0 0;
+    }
+
+    .card {
+        height: 500px;
+        padding: 50px 20px;
     }
 }
 

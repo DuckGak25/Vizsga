@@ -47,8 +47,7 @@
     
     <div class="description content row">
       <h2>{{descriptionTitle}}</h2>
-      <div [innerHTML]="recipe.description" class="description" id="steps"></div>
-      {{recipe.user_id}}
+      <div [innerHTML]="recipe.description" class="description" id="steps" style="background-color: none;"></div>
       <div>
         <a href="{{recipe.imagelink}}" class="imagesource">{{imageSource}}</a>
       </div>

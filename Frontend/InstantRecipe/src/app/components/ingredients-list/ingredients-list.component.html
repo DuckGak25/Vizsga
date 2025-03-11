@@ -2,15 +2,15 @@
     <div class="card">
 
         <div class="card-body">
-            <h1>Összetevők</h1>
+            <h1>{{ingredientsHeaderTitle}}</h1>
             <p>Az összetevők közt kereshetsz is az "Összetevő neve" mezőben és ha nincs találat hozzá is adhatod</p>
             <div class="post-ingredient mt-3">
                 <div class="form-floating mb-3 row">
                   <div class="col">
-                    <input type="text" class="form-control col" id="ingredient" name="ingredient" placeholder="Összetevő neve" [(ngModel)]="newIngredient.name"/>
+                    <input type="text" class="form-control col" id="ingredient" name="ingredient" [placeholder]="ingredientName" [(ngModel)]="newIngredient.name"/>
                   </div>
                   <div class="col">
-                    <input type="text" class="form-control" id="category" name="category" placeholder="Kategória" [(ngModel)]="newIngredient.category">
+                    <input type="text" class="form-control" id="category" name="category" [placeholder]="categoryTitle" [(ngModel)]="newIngredient.category">
                   </div>
                   <div class="col">
                     <select name="language" id="" [(ngModel)]="newIngredient.language" class="form-control" placeholder="Nyelv">
@@ -19,8 +19,8 @@
                     </select>
                   </div>
                   <div class="col">
-                    <button class="btn btn-success" (click)="postIngredient(newIngredient)" style="width: 100%;" *ngIf="newIngredient.name && newIngredient.category">Hozzáadás</button>
-                    <button class="btn btn-success" style="width: 100%;" *ngIf="!newIngredient.name || !newIngredient.category" disabled>Hozzáadás</button>
+                    <button class="btn btn-success" (click)="postIngredient(newIngredient)" style="width: 100%;" *ngIf="newIngredient.name && newIngredient.category">{{addButton}}</button>
+                    <button class="btn btn-success" style="width: 100%;" *ngIf="!newIngredient.name || !newIngredient.category" disabled>{{addButton}}</button>
                   </div>
                 </div>
               </div>
@@ -39,7 +39,7 @@
                             </div>
 
                             <div class="col">
-                              <select name="language" id="" [(ngModel)]="ingredient.language">
+                              <select name="language" id="" [(ngModel)]="ingredient.language" class="form-control">
                                 <option value="hu">Magyar</option>
                                 <option value="en">English</option>
                               </select>

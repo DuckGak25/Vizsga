@@ -21,8 +21,10 @@ export class IngredientsListComponent {
 
   }
 
-
-
+  addButton = "";
+  ingredientsHeaderTitle = "";
+  categoryTitle = "";
+  ingredientName = "";
   actLang = "Magyar";
   editButton = "";
   deleteButton: any;
@@ -38,7 +40,10 @@ export class IngredientsListComponent {
       this.editButton = content.editButton
       this.deleteButton = content.deleteButton
       this.saveButton = content.saveButton
-
+      this.addButton = content.addButton
+      this.ingredientsHeaderTitle = content.ingredientsHeaderTitle
+      this.categoryTitle = content.categoryTitle
+      this.ingredientName = content.ingredientName
     });
   }
 

@@ -7,24 +7,22 @@
       <h1>{{loginTitle}}</h1>
   
       <div class="inputs">
-        <div class="form-floating">
+        <div class="">
           <input
             type="email"
             [(ngModel)]="email"
             placeholder="Email"
             [class]="inputClassEmail"
             (keyup.enter)="login()" />
-          <label for="email">{{emailLabel}}</label>
         </div>
-        <div class="form-floating">
+
           <input
             type="password"
             [(ngModel)]="password"
             [placeholder]="passwordText"
             [class]="inputClassPassword"
             (keyup.enter)="login()" /> 
-          <label for="password">{{passwordText}}</label>
-        </div>
+
       </div>
       
       <div class="alert alert-danger" *ngIf="error">
