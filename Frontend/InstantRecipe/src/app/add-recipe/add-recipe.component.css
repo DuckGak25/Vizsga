@@ -25,3 +25,33 @@
     backdrop-filter: blur(2px);
     
 }
+
+.selected-ingredients td {
+    width: 33%;
+    border: none;
+    line-height: 50px;
+    margin-left: 5px;
+}
+
+.selectedIngredients {
+    border: 1px solid #86868b7f;
+    border-radius: 16px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.selectedIngredients button{
+    height: 50px;
+    border-radius: 16px;
+    width: 100%;
+}
+
+.form-control {
+    border-radius: 16px;
+    height: 50px;
+    border-color: #86868b7f;
+}
+
+h1 {
+    font-weight: 900;
+}

@@ -5,7 +5,7 @@
         <h3 class="categories">{{ recipe.categories }}</h3>
       </div>
     </div>
-  <div class="row">
+  <div class="desktop row">
     
       <div class="ingredients content">
         <h2>{{ingredientsHeaderTitle}}</h2>
@@ -29,6 +29,30 @@
           <span class="imagesource"> {{imageSource}} <a href="{{recipe.imagelink}}">{{recipe.imagelink}}</a></span>
         </div>
       </div>
+  </div>
+
+  <div class="mobile">
+    <div class="ingredients content row">
+      <h2>{{ingredientsHeaderTitle}}</h2>
+      <ul>
+        <li *ngFor="let ingredient of recipe.ingredients">
+          <div class="ingredient">
+            <strong><p>{{ ingredient.pivot?.quantity }}</p></strong> <p> {{ ingredient.name }}</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  
+
+    
+    <div class="description content row">
+      <h2>{{descriptionTitle}}</h2>
+      <div [innerHTML]="recipe.description" class="description" id="steps"></div>
+      {{recipe.user_id}}
+      <div>
+        <a href="{{recipe.imagelink}}" class="imagesource">{{imageSource}}</a>
+      </div>
+    </div>
   </div>
 
 

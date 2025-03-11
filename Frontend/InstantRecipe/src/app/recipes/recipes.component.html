@@ -14,7 +14,8 @@
             </div>
             <div class="recipe-body p-3">
               <h4 class="card-title">{{ recipe.title }}</h4>
-              <strong>Hozzávalók:</strong>
+              <strong *ngIf="langSign === 'hu'">Hozzávalók:</strong>
+              <strong *ngIf="langSign === 'en'">Ingredients:</strong>
               <ul>
                 <li *ngFor="let ingredient of recipe.ingredients">
                   {{ ingredient.name }}

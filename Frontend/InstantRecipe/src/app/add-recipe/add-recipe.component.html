@@ -1,26 +1,21 @@
 <div class="content">
-    <div class="card">
-      <h1>{{addRecipe}}</h1>
+  <div class="card">
+      <h1 *ngIf="newRecipe.title === ''">{{addRecipe}}</h1>
+      <h1 *ngIf="newRecipe.title !== ''">{{newRecipe.title}}</h1>
         <!-- Recept neve -->
-        <div class="form-floating mb-3">
+        <div class="mb-3">
           <input
             type="text"
             class="form-control"
             id="title"
             name="title"
-            placeholder="Recept neve"
+            [placeholder]="recipeName"
             [(ngModel)]="newRecipe.title"
           />
-          <label for="title">{{recipeName}}</label>
         </div>
-        <div class="row">
-          <div class="form-floating mb-3">
-            <input type="text" class="form-control" placeholder="Language" [(ngModel)]="newRecipe.language" disabled>
-            <label for="language">Nyelv</label>
-          </div>
-        </div>
+
         <!-- Leírás -->
-        <div class="form-floating mb-3 row">
+        <div class="mb-3 row">
           <div class="col">
             <h2>{{descriptionTitle}}</h2>  
             <editor
@@ -30,38 +25,48 @@
               [(ngModel)]="newRecipe.description" [ngModelOptions]="{standalone: true}">
             </editor>
           </div>
-          <div class="col">
-            <h2>{{requirementTitle}}</h2>
-            <img src="/assets/images/description_requirements.png" alt="description requirements" class="img-fluid">
-          </div>
       </div>
 
-        <div class="form-floating mt-3">
+        <div class="mt-3">
           <input
             type="text"
             class="form-control"
             id="categories"
             name="categories"
-            placeholder="Kategória"
+            [placeholder]="categoryTitle"
             [(ngModel)]="newRecipe.categories"
           />
-          <label for="categories">{{categoryTitle}}</label>
         </div>
 
-        <div class="form-floating mt-3">
+        <div class="mt-3">
           <input
             type="text"
             class="form-control"
             id="imagelink"
             name="imagelink"
-            placeholder="Kepek linkje"
+            [placeholder]="imageLink"
             [(ngModel)]="newRecipe.imagelink"
           />
-          <label for="imagelink">{{imageLink}}</label>
+
         </div>
 
-        <div class="row">
-          <div class="ingredient-list mt-3 col">
+        <div class="selected-ingredients mt-3 row">
+          <h2>{{selectedIngredientsTitle}}</h2>
+          <table class="table">
+            <tbody>
+              <tr *ngFor="let ingredient of selectedIngredients" class="selectedIngredients">
+                <td>{{ ingredient.name }}</td>
+                <td>
+                  <input type="text" [(ngModel)]="ingredientQuantities[ingredient.id]" (ngModelChange)="updateIngredientQuantity(ingredient.id, $event)" [placeholder]="quantity" class="form-control"/>
+                </td>
+                <td>
+                  <button class="btn btn-danger" (click)="removeIngredient(ingredient)">{{remove}}</button>
+                </td>
+              </tr>
+          </table>
+        </div>
+
+          <div class="ingredient-list mt-3 row">
             <h2>{{ingredientsTitle}}</h2>
             <input type="text" [(ngModel)]="searchTerm" name="search" [placeholder]="searchForIngredients" class="form-control mb-3 mt-3" />
           
@@ -85,25 +90,11 @@
             </div>
           </div>
 
-          <div class="selected-ingredients mt-3 col">
-            <h2>{{selectedIngredientsTitle}}</h2>
-            <table class="table">
-              <tbody>
-                <tr *ngFor="let ingredient of selectedIngredients">
-                  <td>{{ ingredient.name }}</td>
-                  <td>
-                    <input type="text" [(ngModel)]="ingredientQuantities[ingredient.id]" (ngModelChange)="updateIngredientQuantity(ingredient.id, $event)" [placeholder]="quantity" class="form-control"/>
-                  </td>
-                  <td>
-                    <button class="btn btn-danger" (click)="removeIngredient(ingredient)">{{remove}}</button>
-                  </td>
-                </tr>
-            </table>
-          </div>
-        </div>
+
+        
         <button class="btn btn-danger mt-3" type="submit" (click)="createRecipe()" *ngIf="disableButton()" disabled>{{createRecipeTitle}}</button>
         <button class="btn btn-danger mt-3" type="submit" (click)="createRecipe()" *ngIf="!disableButton()">{{createRecipeTitle}}</button>
 
-    </div>
   </div>
+</div>
   
