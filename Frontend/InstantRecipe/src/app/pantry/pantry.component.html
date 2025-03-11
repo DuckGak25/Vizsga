@@ -5,7 +5,7 @@
           <p><strong>{{ pantryHeaderText }}</strong></p>
           <ul class="list">
             <li *ngFor="let ingredient of defaultIngredients; let last = last" class="defaultIngredients" >
-              <strong>{{ ingredient.name }}</strong>
+              <strong >{{ ingredient.name }}</strong>
             </li>
           </ul>
     </div>
@@ -27,8 +27,8 @@
           <p>{{AND}}</p>
     
     
-          <input type="text" [(ngModel)]="searchTerm" placeholder="Keresés összetevők között..." class="form-control mb-3" (input)="filterRecipes()">
-          <button (click)="clearSelectedIngredients()" class="btn btn-danger mb-3">Kiválasztott összetevők törlése</button>
+          <input type="text" [(ngModel)]="searchTerm" [placeholder]="searchForIngredients" class="form-control mb-3" (input)="filterRecipes()">
+          <button (click)="clearSelectedIngredients()" class="btn btn-danger mb-3">{{deleteSelected}}</button>
           <div *ngFor="let category of (categorizedIngredients | keyvalue)" >
             <h2 *ngIf="filterIngredients(category.value).length > 0">{{ category.key }}</h2>
             <div *ngFor="let ingredient of filterIngredients(category.value)" class="form-check">
@@ -44,7 +44,7 @@
         <div class="recipes mb-4">
           <div class="card">
             <div class="selected-ingredients">
-              <h2>Kiválasztott Összetevők</h2>
+              <h2>{{selectedIngredientsTitle}}</h2>
               <div *ngFor="let ingredient of selectedIngredients" class="form-check">
                 <div class="checkboxing">
                   <input type="checkbox" [value]="ingredient" id="{{ingredient}}" class="ingredient" (change)="onIngredientChange($event, ingredient)" [checked]="selectedIngredients.has(ingredient)">

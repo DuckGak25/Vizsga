@@ -1,10 +1,8 @@
 {
     "name": "Instant Recept",
-    "flagLink": "https://www.harley-davidson.com/content/dam/h-d/images/assets/ui/flags/hungary.png",
     "langSelection":[
         {"text":"Magyar", "sign":"hu"},
-        {"text":"English", "sign":"en"},
-        {"text":"Deutsch", "sign":"de"}
+        {"text":"English", "sign":"en"}
        ],
     "navItem":[
         {"text":"Kezdőlap", "link":"home"}
@@ -14,6 +12,11 @@
     "login": "Bejelentkezés",
     "register": "Regisztráció",
     "addRecipe": "Recept Hozzáadása",
+    "recipeName": "Recept neve",
+    "requirementTitle": "Elvárás",
+    "categoryTitle": "Kategória",
+    "createRecipeTitle": "Recept létrehozása",
+
 
     "homeText1": "Ne rendelj,",
     "homeText2": "Főzz otthon!",
@@ -61,11 +64,17 @@
 
     "recipesHeaderTitle": "Receptek",
     "ingredientsHeaderTitle": "Hozzávalók",
-    "descriptionTitle": "Útmutató",
+    "descriptionTitle": "Leírás",
     "imageSource": "A kép forrása: ",
     "OR": "Ez vagy az",
     "AND": "Ez megtalálható benne biztosan",
     "showrecipe": "Mutasd a recepteket",
     "showingredients": "Mutasd a hozzávalókat",
-    "pending": "Jóváhagyásra váró receptek száma"
+    "pending": "Jóváhagyásra váró receptek száma",
+    "selectedIngredientsTitle": "Kiválasztott összetevők",
+    "searchForIngredients": "Keresés összetevők között...",
+    "deleteSelected": "Kiválasztott összetevők törlése",
+    "imageLink": "A kép linkje",
+    "remove": "Eltávolítás",
+    "quantity": "Mennyiség"
 }

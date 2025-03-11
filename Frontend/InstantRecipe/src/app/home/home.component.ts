@@ -44,7 +44,7 @@ export class HomeComponent implements OnInit {
       once: true
     });
     this.recipeService.getFeaturedRecipes().subscribe((data: Recipe[]) => {
-      this.recipes = data;
+      this.recipes = data.filter(recipe => recipe.language === this.config.langSign);
       console.log(this.recipes);
     });
   }

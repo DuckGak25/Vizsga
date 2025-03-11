@@ -23,6 +23,10 @@ export class PantryComponent {
   ingredientsHeaderTitle = "";
   showrecipe = "";
   showingredients = "";
+  selectedIngredientsTitle = ""
+  searchForIngredients = ""
+  deleteSelected = ""
+  langSign = ""
 
   showRecipes = true;
   show = this.showrecipe;
@@ -32,19 +36,20 @@ export class PantryComponent {
   OR = "";
 
   constructor(private recipeService: RecipeService, private config: ConfigService, private vps:ViewportScroller) {
+    this.langSign = config.langSign
     this.toggleRecipes();
     this.recipeService.getIngredients().subscribe((data: Ingredient[]) => {
-      this.ingredients = data;
+      this.ingredients = data.filter(ingredient => ingredient.language === this.langSign);
       this.categorizeIngredients();
       this.restoreSelectedIngredients();
     });
 
     this.recipeService.getRecipes().subscribe((data: Recipe[]) => {
-      this.allRecipes = data;
+      this.allRecipes = data.filter(recipe => recipe.language === this.langSign);
       this.filteredRecipes = this.allRecipes;
     });
+    
     this.loadContent();
-
   }
 
 
@@ -59,7 +64,9 @@ export class PantryComponent {
       this.showrecipe = content.showrecipe || '';
       this.showingredients = content.showingredients || '';
       this.show = this.showrecipe;
-
+      this.selectedIngredientsTitle = content.selectedIngredientsTitle || '';
+      this.searchForIngredients = content.searchForIngredients || '';
+      this.deleteSelected = content.deleteSelected || '';
     });
   }
 
@@ -67,7 +74,7 @@ export class PantryComponent {
     this.ingredients.forEach(ingredient => {
       const category = ingredient.category || 'Uncategorized';
   
-      if (category === 'alapvető') {
+      if (category === 'alapvető' || category === 'basic') {
         this.defaultIngredients.push(ingredient);
         return;
       }

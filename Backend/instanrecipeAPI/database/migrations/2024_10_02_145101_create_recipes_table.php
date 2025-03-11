@@ -17,6 +17,7 @@ return new class extends Migration
             $table->longText("description");
             $table->string("categories");
             $table->string("imagelink");
+            $table->string("language");
             $table->boolean('featured')->default(false);
             $table->foreignId('user_id');
             $table->boolean('approved')->default(false);

@@ -18,6 +18,7 @@ class IngredientController extends Controller
         $ingredient = new Ingredient();
         $ingredient->name = $request[ "name" ];
         $ingredient->category = $request[ "category" ];
+        $ingredient->language = $request[ "language" ];
         $ingredient->save();
 
         return response()->json($ingredient, 201);
@@ -29,6 +30,7 @@ class IngredientController extends Controller
         $ingredient = Ingredient::find($request[ "id" ]);
         $ingredient->name = $request[ "name" ];
         $ingredient->category = $request[ "category" ];
+        $ingredient->language = $request[ "language" ];
         $ingredient->update();
 
         return response()->json($ingredient, 201);

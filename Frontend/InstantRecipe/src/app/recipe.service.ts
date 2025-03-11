@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Recipe } from '../app/models/recipe.model';
 import { Ingredient } from '../app/models/ingredient.model';
 import { RecipeIngredient } from './models/recipe-ingredient.model';
+import { ConfigService } from './config.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ import { RecipeIngredient } from './models/recipe-ingredient.model';
 export class RecipeService {
   private apiUrl = 'http://localhost:8000/api';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private config: ConfigService) {}
 
   private getHeaders(): HttpHeaders {
     const token = localStorage.getItem('auth_token');
@@ -23,8 +24,11 @@ export class RecipeService {
   }
 
   getRecipes(): Observable<Recipe[]> {
-    return this.http.get<Recipe[]>(`${this.apiUrl}/recipes`, { headers: this.getHeaders() });
+    return this.http.get<Recipe[]>(`${this.apiUrl}/recipes`, { headers: this.getHeaders() }).pipe(
+      map((recipes: Recipe[]) => recipes.filter(recipe => recipe.language === this.config.langSign))
+    );
   }
+  
 
   getRecipeById(id: number): Observable<Recipe> {
     return this.http.get<Recipe>(`${this.apiUrl}/recipes/${id}`, { headers: this.getHeaders() });
@@ -39,6 +43,10 @@ export class RecipeService {
   }
 
   createRecipe(recipe: Recipe): Observable<Recipe> {
+    if (!recipe.language) {
+      recipe.language = this.config.langSign;
+    }
+    console.log("Recept: ", recipe)
     return this.http.post<Recipe>(`${this.apiUrl}/postrecipe`, recipe, { headers: this.getHeaders() });
   }
 

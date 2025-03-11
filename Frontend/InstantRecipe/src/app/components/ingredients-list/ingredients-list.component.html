@@ -13,6 +13,12 @@
                     <input type="text" class="form-control" id="category" name="category" placeholder="Kategória" [(ngModel)]="newIngredient.category">
                   </div>
                   <div class="col">
+                    <select name="language" id="" [(ngModel)]="newIngredient.language" class="form-control" placeholder="Nyelv">
+                      <option value="hu" >Magyar</option>
+                      <option value="en">English</option>
+                    </select>
+                  </div>
+                  <div class="col">
                     <button class="btn btn-success" (click)="postIngredient(newIngredient)" style="width: 100%;" *ngIf="newIngredient.name && newIngredient.category">Hozzáadás</button>
                     <button class="btn btn-success" style="width: 100%;" *ngIf="!newIngredient.name || !newIngredient.category" disabled>Hozzáadás</button>
                   </div>
@@ -30,6 +36,13 @@
                             <div class="col">
         
                                 <input type="text" [(ngModel)]="ingredient.category" class="form-control">
+                            </div>
+
+                            <div class="col">
+                              <select name="language" id="" [(ngModel)]="ingredient.language">
+                                <option value="hu">Magyar</option>
+                                <option value="en">English</option>
+                              </select>
                             </div>
         
                             <div class="col">

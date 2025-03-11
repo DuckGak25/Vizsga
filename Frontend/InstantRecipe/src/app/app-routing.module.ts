@@ -9,7 +9,6 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
 import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
-import { TesztComponent } from './teszt/teszt.component';
 import { RecipeListComponent } from './recipe-list/recipe-list.component';
 import { AddRecipeComponent } from './add-recipe/add-recipe.component';
 import { RecipesListComponent } from './components/recipes-list/recipes-list.component';
@@ -29,7 +28,6 @@ const routes: Routes = [
   {path: "login", component: LoginComponent},
   {path: "admin", component: AdminComponent, canActivate: [AdminGuard] },
   { path: 'recipes/:id', component: RecipeDetailComponent },
-  { path: 'teszt', component: TesztComponent },
   { path: 'admin/recipes-list', component: RecipesListComponent, canActivate: [AdminGuard] },
   { path: 'admin/ingredients-list', component: IngredientsListComponent, canActivate: [AdminGuard] },
   {path: 'admin/users', component: UsersComponent, canActivate: [SuperGuard] },

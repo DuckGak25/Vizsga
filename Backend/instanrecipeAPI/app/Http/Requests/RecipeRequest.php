@@ -25,7 +25,8 @@ class RecipeRequest extends FormRequest
             "title" => "required|string|max:255",
             "description" => "required|string|max:65535",
             "categories" => "string",
-            "imagelink" => "string"
+            "imagelink" => "string",
+            "language" => "required|string"
         ];
     }
 
@@ -35,7 +36,8 @@ class RecipeRequest extends FormRequest
             'title.required' => 'A cím elvárt.',
             'description.required' => 'A leírás elvárt.',
             'categories.required' => 'A kategória elvárt.',
-            'imagelink.required' => 'Egy kép link elvárt.'
+            'imagelink.required' => 'Egy kép link elvárt.',
+            'language.required' => 'A nyelv elvárt.'
         ];
     }
 }

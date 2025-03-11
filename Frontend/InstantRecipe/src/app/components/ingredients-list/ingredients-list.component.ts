@@ -16,8 +16,11 @@ export class IngredientsListComponent {
   newIngredient: Ingredient = {
     id: 0,
     name: '',
-    category: ''
+    category: '',
+    language: '',
+
   }
+
 
 
   actLang = "Magyar";
@@ -26,7 +29,6 @@ export class IngredientsListComponent {
   saveButton: any;
 
   constructor(private config: ConfigService, private recipeService: RecipeService) {
-    
     this.getRecipes();
     this.loadContent();
   }

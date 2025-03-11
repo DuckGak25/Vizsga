@@ -27,7 +27,8 @@ export class RecipesListComponent {
   newIngredient: Ingredient = {
     id: 0,
     name: '',
-    category: ''
+    category: '',
+    language: '',
   }
   recipeIngredient: RecipeIngredient = {
     id: 0,

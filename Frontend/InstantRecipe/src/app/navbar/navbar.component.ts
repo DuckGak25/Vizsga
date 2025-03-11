@@ -55,6 +55,11 @@ export class NavbarComponent {
     window.location.href = link;
   }
 
+  reloadPage() {
+    window.location.reload();
+
+  }
+
   ngOnInit() {
     const savedLanguage = localStorage.getItem('selectedLanguage');
     if (savedLanguage) {

@@ -5,13 +5,29 @@ import { Recipe } from '../models/recipe.model';
 import { RawEditorOptions } from 'tinymce';
 import { CheckboxControlValueAccessor } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
+import { ConfigService } from '../config.service';
 
 @Component({
   selector: 'app-add-recipe',
   templateUrl: './add-recipe.component.html',
   styleUrls: ['./add-recipe.component.css'],
 })
-export class AddRecipeComponent implements OnInit {
+export class AddRecipeComponent {
+  addRecipe = "";
+  recipeName = ""
+  descriptionTitle = ""
+  requirementTitle = ""
+  categoryTitle = ""
+  selectedIngredientsTitle = ""
+  deleteSelected = ""
+  searchForIngredients = ""
+  imageLink = ""
+  ingredientsTitle = ""
+  createRecipeTitle = ""
+  remove = ""
+  quantity = ""
+  actLang = "Magyar"
+  langSign = ""
   ingredients: Ingredient[] = [];
   categorizedIngredients: { [key: string]: Set<Ingredient> } = {};
   selectedIngredients: Set<Ingredient> = new Set();
@@ -24,7 +40,8 @@ export class AddRecipeComponent implements OnInit {
   newIngredient: Ingredient = {
     id: 0,
     name: '',
-    category: ''
+    category: '',
+    language: '',
   }
 
   newRecipe: Recipe = {
@@ -36,6 +53,7 @@ export class AddRecipeComponent implements OnInit {
     featured: false,
     user_id: 0,
     approved: false,
+    language: this.langSign,
     ingredients: [],
   };
 
@@ -50,17 +68,49 @@ export class AddRecipeComponent implements OnInit {
     toolbar: 'undo redo | bold italic underline | formatselect |  bullist numlist  | removeformat',
   };
   
-  constructor(private recipeService: RecipeService) {
+  constructor(private recipeService: RecipeService, private config: ConfigService) {
+    this.getIngredients()
+    this.loadContent()
+    this.newRecipe.language = config.langSign
+    this.newIngredient.language = config.langSign
+  }
 
+  getIngredients() {
+    
+    this.recipeService.getIngredients().subscribe((data: Ingredient[]) => {
+      this.ingredients = [];
+      this.ingredients = data.filter(ingredient => ingredient.language === this.langSign);
+      this.categorizeIngredients();
+    });
   }
 
   ngOnInit(): void {
-    this.recipeService.getIngredients().subscribe((data: Ingredient[]) => {
-      this.ingredients = data;
-      this.categorizeIngredients();
-    });
 
+    this.langSign = this.config.langSign
     this.getRecipes()
+  }
+
+  loadContent() {
+    this.config.getContent().subscribe((content) => {
+      this.addRecipe = content.addRecipe || '';
+      this.recipeName = content.recipeName || '';
+      this.descriptionTitle = content.descriptionTitle || '';
+      this.requirementTitle = content.requirementTitle || '';
+      this.categoryTitle = content.categoryTitle || '';
+      this.selectedIngredientsTitle = content.selectedIngredientsTitle || '';
+      this.deleteSelected = content.deleteSelected || '';
+      this.searchForIngredients = content.searchForIngredients || '';
+      this.imageLink = content.imageLink || '';
+      this.ingredientsTitle = content.ingredientsHeaderTitle || '';
+      this.createRecipeTitle = content.createRecipeTitle || '';
+      this.remove = content.remove || '';
+      this.quantity = content.quantity || '';
+    });
+  }
+
+  langChange(lang: any) {
+    this.actLang = lang.text;
+    this.config.changeLanguage(lang.sign);
   }
 
   categorizeIngredients(): void {
@@ -145,7 +195,7 @@ export class AddRecipeComponent implements OnInit {
   }
 
   resetForm() {
-    this.newRecipe = { id: 0, title: '', description: '', categories: '', imagelink: '', featured: false, user_id: 0, approved: false, ingredients: [] };
+    this.newRecipe = { id: 0, title: '', description: '', categories: '', imagelink: '', featured: false, user_id: 0, approved: false, language: this.langSign, ingredients: [] };
     this.selectedIngredients.clear();
   }
 
@@ -157,6 +207,7 @@ export class AddRecipeComponent implements OnInit {
       categories: this.newRecipe.categories,
       imagelink: this.newRecipe.imagelink,
       featured: this.newRecipe.featured,
+      language: this.newRecipe.language,
       user_id: this.user.id,
       approved: false,
       ingredients: [],
@@ -207,12 +258,10 @@ export class AddRecipeComponent implements OnInit {
   
   
 
-  async postIngredient(ingredient: Ingredient) {
+  postIngredient(ingredient: Ingredient) {
     try {
-      const response = await this.recipeService.postIngredients(ingredient).toPromise();
+      const response = this.recipeService.postIngredients(ingredient).toPromise();
       console.log('Ingredient added successfully', response);
-      
-      this.getRecipes();
     } catch (error) {
       console.error('Error adding ingredient', error);
     }

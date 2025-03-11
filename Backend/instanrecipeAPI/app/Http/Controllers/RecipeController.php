@@ -44,16 +44,14 @@ class RecipeController extends Controller
     public function postRecipes(RecipeRequest $request)
     {
 
-        $user = auth()->user();
-        $validatedData = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'categories' => 'string',
-            'imagelink' => 'string',
-            'user_id' => 'required|integer'
-        ]);
-
-        $recipe = Recipe::create($validatedData);
+        $recipe = new Recipe();
+        $recipe->title = $request[ "title" ];
+        $recipe->description = $request[ "description" ];
+        $recipe->categories = $request[ "categories" ];
+        $recipe->imagelink = $request[ "imagelink" ];
+        $recipe->user_id = $request[ "user_id" ];
+        $recipe->language = $request[ "language" ];
+        $recipe->save();
         return response()->json($recipe);
 }
 
@@ -77,7 +75,8 @@ public function store(RecipeRequest $request)
         'title' => $validated['title'],
         'description' => $validated['description'],
         'categories' => $validated['categories'],
-        'imagelink' => $validated['imagelink']
+        'imagelink' => $validated['imagelink'],
+        'language' => $validated['language'],
     ]);
 
 

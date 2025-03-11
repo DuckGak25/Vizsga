@@ -8,10 +8,11 @@ import { Subject } from 'rxjs';
 export class ConfigService {
 
   private content = new Subject()
-  private langSign="hu"
+  public langSign="hu"
 
   constructor(private http:HttpClient) { 
     this.loadContent()
+
   }
 
   
@@ -19,13 +20,13 @@ export class ConfigService {
   changeLanguage(langSign:any){
     this.langSign=langSign
     this.loadContent()
+
   }
 
   loadContent(){
     this.http.get("/assets/lang_"+this.langSign+".json").subscribe(
       (res)=>
         {
-
           this.content.next(res)
         }
       )

@@ -3,8 +3,7 @@
     "flagLink": "https://www.harley-davidson.com/content/dam/h-d/images/assets/ui/flags/hungary.png",
     "langSelection":[
         {"text":"Magyar", "sign":"hu"},
-        {"text":"English", "sign":"en"},
-        {"text":"Deutsch", "sign":"de"}
+        {"text":"English", "sign":"en"}
     ],
     "navItem":[
         {"text":"Home", "link":"home"}
@@ -14,6 +13,11 @@
     "login": "Login",
     "register": "Register",
     "addRecipe": "Add Recipe",
+    "recipeName": "Recipe Name",
+    "requirementTitle": "Requirement",
+    "categoryTitle": "Category",
+    "createRecipeTitle": "Create Recipe",
+
 
     "homeText1": "Don't order,",
     "homeText2": "Cook at home!",
@@ -62,13 +66,20 @@
 
     "recipesHeaderTitle": "Recipes",
     "ingredientsHeaderTitle": "Ingredients",
-    "descriptionTitle": "Directions",
+    "descriptionTitle": "Description",
     "imageSource": "Image Source: ",
     "OR": "This or That",
     "AND": "This has it for sure",
 
     "showrecipe": "Show Recipes",
     "showingredients": "Show Ingredients",
-    "pending": "Pending recipes"
+    "pending": "Pending recipes",
+    "selectedIngredientsTitle": "Selected Ingredients",
+    "searchForIngredients": "Search for Ingredients",
+    "deleteSelected": "Delete Selected Ingredients",
+    "imageLink": "Image Link",
+    "remove": "Remove",
+    "quantity": "Quantity"
+
 
 }

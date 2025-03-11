@@ -6,6 +6,7 @@ export interface Recipe {
   description: string;
   categories: string;
   imagelink: string;
+  language: string;
   featured: boolean;
   user_id: number;
   approved: boolean;

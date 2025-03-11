@@ -39,7 +39,7 @@
 
           <ul class="dropdown-menu" [ngClass]="{'show': !langSelectorCollapse}">
             <li *ngFor="let lang of langSelection">
-              <a (click)="langChange(lang); toggleNavbar()" class="dropdown-item">
+              <a (click)="langChange(lang); toggleNavbar();reloadPage()" class="dropdown-item">
                 {{ lang.text }}
               </a>
             </li>
