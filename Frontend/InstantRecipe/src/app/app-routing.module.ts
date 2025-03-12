@@ -4,7 +4,6 @@ import { HomeComponent } from './home/home.component';
 import { PantryComponent } from './pantry/pantry.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RecipesComponent } from './recipes/recipes.component';
-import { AppLoadingComponent } from './app-loading/app-loading.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
@@ -22,7 +21,6 @@ const routes: Routes = [
   {path:"home", component: HomeComponent},
   {path: "pantry", component: PantryComponent, canActivate: [UserGuard] },
   {path: "recipes", component: RecipesComponent},
-  {path: "app-loading", component: AppLoadingComponent},
   {path: "register", component: RegisterComponent},
   {path: "login", component: LoginComponent},
   {path: "admin", component: AdminComponent, canActivate: [AdminGuard] },

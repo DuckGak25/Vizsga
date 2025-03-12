@@ -11,7 +11,6 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { PantryComponent } from './pantry/pantry.component';
 import { RecipesComponent } from './recipes/recipes.component';
-import { AppLoadingComponent } from './app-loading/app-loading.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { FooterComponent } from './footer/footer.component';
@@ -32,7 +31,6 @@ import { IngredientsListComponent } from './components/ingredients-list/ingredie
     HomeComponent,
     PantryComponent,
     RecipesComponent,
-    AppLoadingComponent,
     LoginComponent,
     RegisterComponent,
     FooterComponent,

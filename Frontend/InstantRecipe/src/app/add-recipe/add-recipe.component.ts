@@ -76,7 +76,6 @@ export class AddRecipeComponent {
   }
 
   getIngredients() {
-    
     this.recipeService.getIngredients().subscribe((data: Ingredient[]) => {
       this.ingredients = [];
       this.ingredients = data.filter(ingredient => ingredient.language === this.langSign);
@@ -167,7 +166,7 @@ export class AddRecipeComponent {
 
   filterIngredients(ingredients: Set<Ingredient>): Ingredient[] {
     if (!this.searchTerm) {
-      return Array.from(ingredients);
+      
     }
     const lowerCaseSearchTerm = this.searchTerm.toLowerCase();
     return Array.from(ingredients).filter(ingredient =>

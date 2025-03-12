@@ -15,7 +15,7 @@
                         <h2>{{recipe.title}}</h2>
                     </div>
                     <div class="col" *ngIf="!recipe.approved">
-                      <h2>Jóváhagyásra vár</h2>
+                      <h2>{{waitingForApprove}}</h2>
                     </div>
                     <div class="col" *ngIf="recipe.approved">
                       <input class="star" type="checkbox" title="bookmark page"[checked]="recipe.featured" (click)="toggleFeatured(recipe)"><br/><br/>
@@ -23,7 +23,7 @@
                     <div class="col">
                         <button class="btn btn-success" (click)="editRecipe(recipe)">{{editButton}}</button>
                         <button class="btn btn-danger" (click)="deleteRecipe(recipe)">{{deleteButton}}</button>
-                        <button *ngIf="!recipe.approved" (click)="approveRecipe(recipe)" class="btn btn-warning" type="submit">Jóváhagyás</button>
+                        <button *ngIf="!recipe.approved" (click)="approveRecipe(recipe)" class="btn btn-warning" type="submit">{{approve}}</button>
                     </div>
 
                     <!-- Szerkesztés -->

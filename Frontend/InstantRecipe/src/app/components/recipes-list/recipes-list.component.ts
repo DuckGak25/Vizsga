@@ -17,6 +17,8 @@ export class RecipesListComponent {
   editButton = "";
   deleteButton = "";
   saveButton = "";
+  waitingForApprove = "";
+  approve = "";
   recipes: Recipe[] = [];
   selectedIngredients: Set<Ingredient> = new Set();
   ingredientQuantities: { [key: number]: string } = {};
@@ -89,6 +91,8 @@ export class RecipesListComponent {
       this.editButton = content.editButton
       this.deleteButton = content.deleteButton
       this.saveButton = content.saveButton
+      this.waitingForApprove = content.waitingForApprove
+      this.approve = content.approve
 
     });
   }

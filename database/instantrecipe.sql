@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: localhost
--- Létrehozás ideje: 2025. Már 11. 11:58
+-- Létrehozás ideje: 2025. Már 12. 18:32
 -- Kiszolgáló verziója: 10.4.28-MariaDB
 -- PHP verzió: 8.2.4
 
@@ -117,7 +117,6 @@ INSERT INTO `ingredients` (`id`, `name`, `category`, `language`) VALUES
 (103, 'lemon juice', 'fruit', 'en'),
 (104, 'honey', 'sweetener', 'en'),
 (105, 'black pepper', 'basic', 'en'),
-(106, 'salt', 'spice', 'en'),
 (107, 'chicken breast', 'protein', 'en'),
 (108, 'beef', 'protein', 'en'),
 (109, 'pork', 'protein', 'en'),
@@ -135,7 +134,7 @@ INSERT INTO `ingredients` (`id`, `name`, `category`, `language`) VALUES
 (121, 'cheddar cheese', 'dairy', 'en'),
 (122, 'parmesan', 'dairy', 'en'),
 (123, 'yogurt', 'dairy', 'en'),
-(124, 'flour', 'grain', 'en'),
+(124, 'flour', 'basic', 'en'),
 (125, 'oats', 'grain', 'en'),
 (126, 'quinoa', 'grain', 'en'),
 (127, 'chickpeas', 'legume', 'en'),
@@ -144,7 +143,26 @@ INSERT INTO `ingredients` (`id`, `name`, `category`, `language`) VALUES
 (130, 'almonds', 'nuts', 'en'),
 (131, 'peanuts', 'nuts', 'en'),
 (132, 'coconut milk', 'dairy alternative', 'en'),
-(133, 'soy milk', 'dairy alternative', 'en');
+(133, 'soy milk', 'dairy alternative', 'en'),
+(143, 'water', 'basic', 'en'),
+(144, 'ground beef', 'protein', 'en'),
+(145, 'ketchup', 'condiment', 'en'),
+(146, 'mustard', 'condiment', 'en'),
+(147, 'hamburger buns', 'bread', 'en'),
+(148, 'Worcestershire sauce', 'condiment', 'en'),
+(150, 'elbow macaroni', 'pasta', 'en'),
+(151, 'baking powder', 'baking', 'en'),
+(152, 'baking soda', 'baking', 'en'),
+(154, 'vanilla extract', 'flavoring', 'en'),
+(156, 'chocolate chips', 'sweets', 'en'),
+(157, 'hot sauce', 'condiment', 'en'),
+(158, 'vinegar', 'condiment', 'en'),
+(159, 'garlic powder', 'spice', 'en'),
+(160, 'ranch dressing', 'sauce', 'en'),
+(161, 'blue cheese dip', 'sauce', 'en'),
+(162, 'chicken wings', 'protein', 'en'),
+(163, 'alma', 'gyümölcs', 'hu'),
+(164, 'paradixom', 'zöldség', 'hu');
 
 -- --------------------------------------------------------
 
@@ -206,7 +224,7 @@ CREATE TABLE `personal_access_tokens` (
 --
 
 INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `name`, `token`, `abilities`, `last_used_at`, `expires_at`, `created_at`, `updated_at`) VALUES
-(4, 'App\\Models\\User', 1, 'gillich.norbert@icloud.comToken', '1ae9bf296763c9c72aca266671dd166c2cbf0c57b32ea60e620670cb720f11a1', '[\"*\"]', '2025-03-11 09:57:36', NULL, '2025-03-11 09:44:50', '2025-03-11 09:57:36');
+(10, 'App\\Models\\User', 1, 'gillich.norbert@icloud.comToken', '0e50c6d8845cac29c995adfb1947f9c32e5678550c69b5cda6edc4e6d388d091', '[\"*\"]', '2025-03-11 17:54:20', NULL, '2025-03-11 17:26:37', '2025-03-11 17:54:20');
 
 -- --------------------------------------------------------
 
@@ -248,7 +266,10 @@ INSERT INTO `recipes` (`id`, `title`, `description`, `categories`, `imagelink`, 
 (181, 'Csokis Tiramisu', '<ol>\n<li data-start=\"508\" data-end=\"729\"><strong data-start=\"508\" data-end=\"529\">A kr&eacute;m k&eacute;sz&iacute;t&eacute;se:</strong><br data-start=\"529\" data-end=\"532\">A <strong data-start=\"537\" data-end=\"559\">180 g főzőtejsz&iacute;nt</strong> egy l&aacute;basban k&ouml;zepes hőm&eacute;rs&eacute;kleten felmeleg&iacute;tj&uuml;k a <strong data-start=\"611\" data-end=\"635\">160 g &eacute;tcsokol&aacute;d&eacute;val</strong>. Amikor a csoki teljesen felolvadt, leh&uacute;zzuk a tűzről &eacute;s hagyjuk szobahőm&eacute;rs&eacute;kletűre hűlni.</li>\n<li data-start=\"731\" data-end=\"1069\">\n<p data-start=\"734\" data-end=\"1069\"><strong data-start=\"734\" data-end=\"761\">A habos kr&eacute;m k&eacute;sz&iacute;t&eacute;se:</strong><br data-start=\"761\" data-end=\"764\">A <strong data-start=\"769\" data-end=\"796\">600 g hideg habtejsz&iacute;nt</strong> egy t&aacute;lba &ouml;ntj&uuml;k, hozz&aacute;adjuk a <strong data-start=\"828\" data-end=\"852\">120 g krist&aacute;lycukrot</strong> &eacute;s a <strong data-start=\"858\" data-end=\"875\">1 r&uacute;d van&iacute;lia</strong> kikapart magjait, majd robotg&eacute;ppel kem&eacute;ny habb&aacute; verj&uuml;k.<br data-start=\"931\" data-end=\"934\">Ezt k&ouml;vetően beleforgatjuk a <strong data-start=\"966\" data-end=\"987\">350 g mascarpon&eacute;t</strong> &eacute;s az előzőleg elk&eacute;sz&iacute;tett csokis tejsz&iacute;nt, hogy egy sz&eacute;p homog&eacute;n kr&eacute;met kapjunk.</p>\n</li>\n<li data-start=\"1071\" data-end=\"1184\">\n<p data-start=\"1074\" data-end=\"1184\"><strong data-start=\"1074\" data-end=\"1106\">A k&aacute;v&eacute;s m&aacute;rtogat&oacute; k&eacute;sz&iacute;t&eacute;se:</strong><br data-start=\"1106\" data-end=\"1109\">A <strong data-start=\"1114\" data-end=\"1130\">200 ml k&aacute;v&eacute;t</strong> egy t&aacute;lban elkeverj&uuml;k a <strong data-start=\"1155\" data-end=\"1183\">3 ek holland kaka&oacute;porral</strong>.</p>\n</li>\n<li data-start=\"1186\" data-end=\"1595\">\n<p data-start=\"1189\" data-end=\"1595\"><strong data-start=\"1189\" data-end=\"1203\">R&eacute;tegez&eacute;s:</strong><br data-start=\"1203\" data-end=\"1206\">A t&aacute;l alj&aacute;ra egy r&eacute;teg csokis kr&eacute;met ken&uuml;nk, erre egy sor <strong data-start=\"1267\" data-end=\"1289\">40 db babapisk&oacute;t&aacute;t</strong> helyez&uuml;nk, amit előzőleg a <strong data-start=\"1317\" data-end=\"1347\">k&aacute;v&eacute;s kaka&oacute;poros kever&eacute;kbe</strong> m&aacute;rtunk.<br data-start=\"1356\" data-end=\"1359\">R&aacute;kenj&uuml;k egy &uacute;jabb r&eacute;teg csokis kr&eacute;met, megsz&oacute;rjuk <strong data-start=\"1413\" data-end=\"1441\">6 ek holland kaka&oacute;porral</strong>, majd ism&eacute;t j&ouml;het egy r&eacute;teg m&aacute;rtott babapisk&oacute;ta, csokis kr&eacute;m, kaka&oacute;por, &eacute;s &iacute;gy tov&aacute;bb, am&iacute;g elfogynak az alapanyagok. Az utols&oacute; r&eacute;teg mindig kr&eacute;m legyen.</p>\n</li>\n<li data-start=\"1597\" data-end=\"1775\">\n<p data-start=\"1600\" data-end=\"1775\"><strong data-start=\"1600\" data-end=\"1621\">Hűt&eacute;s &eacute;s t&aacute;lal&aacute;s:</strong><br data-start=\"1621\" data-end=\"1624\">A k&eacute;sz tiramisut hűtőbe tessz&uuml;k, minimum 2 &oacute;r&aacute;ra, de a legjobb, ha egy eg&eacute;sz &eacute;jszak&aacute;t tud &aacute;llni. T&aacute;lal&aacute;s előtt megsz&oacute;rjuk a tetej&eacute;t <strong data-start=\"1759\" data-end=\"1774\">kaka&oacute;porral</strong>.</p>\n</li>\n</ol>\n<h3 data-start=\"1782\" data-end=\"1807\"><strong data-start=\"1786\" data-end=\"1805\">Elk&eacute;sz&iacute;t&eacute;si idő</strong></h3>\n<ul data-start=\"1808\" data-end=\"1870\">\n<li data-start=\"1808\" data-end=\"1836\"><strong data-start=\"1810\" data-end=\"1826\">Elők&eacute;sz&iacute;t&eacute;s:</strong> 40 perc</li>\n<li data-start=\"1837\" data-end=\"1870\"><strong data-start=\"1839\" data-end=\"1854\">Hűt&eacute;si idő:</strong> minimum 2 &oacute;ra</li>\n</ul>', 'desszert', 'https://static.streetkitchen.hu/live/uploads/2024/11/csokis-tiramisu-4-scaled.jpg', 'hu', 1, 1, 1),
 (184, 'Tiszta Amerika', '<p>recipe</p>', 'English', 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Vertical_United_States_Flag.svg/1200px-Vertical_United_States_Flag.svg.png', 'en', 0, 1, 1),
 (188, 'Teriyaki Salmon Bowl', '<ol>\n<li>Preheat the oven to 400 degrees F (200 degrees C) and spray a baking dish with cooking spray.</li>\n<li id=\"mntl-sc-block_7-0\" class=\"comp mntl-sc-block mntl-sc-block-html\">Combine <strong>soy sauce, brown sugar, garlic, and ginger </strong>in a small bowl. Place the<strong> salmon</strong> in the prepared baking dish, skin side down. Pour <strong>teriyaki sauce</strong> over.</li>\n<li id=\"mntl-sc-block_11-0\" class=\"comp mntl-sc-block mntl-sc-block-html\">Bake in the preheated oven until fish flakes easily with a fork, 12 to 15 minutes.</li>\n<li id=\"mntl-sc-block_15-0\" class=\"comp mntl-sc-block mntl-sc-block-html\">Place <strong>rice</strong> in a bowl, top with <strong>salmon</strong>, and spoon over <strong>teriyaki sauce</strong> from the baking dish. Add in the <strong>shredded cabbage, grated carrots, and radishes. </strong>Sprinkle with <strong>sliced green onions and sesame seeds, </strong>to garnish.</li>\n</ol>', 'Main Dish', 'https://tastesbetterfromscratch.com/wp-content/uploads/2023/05/Salmon-Bowls-1.jpg', 'en', 1, 1, 1),
-(189, 'szia', '<p>almafa</p>', 'finom', 'English', 'en', 0, 2, 1);
+(192, 'Sloppy Joes', '<ol>\n<li>In a pan, cook <strong>ground beef</strong> over medium heat until browned. Drain excess fat.</li>\n<li>Add <strong>chopped onion</strong> and cook for 3 minutes.</li>\n<li>Stir in <strong>ketchup, Worcestershire sauce, mustard, salt, and pepper.</strong> Simmer for 10 minutes.</li>\n<li>Serve on toasted hamburger buns.</li>\n</ol>', 'American', 'https://www.onceuponachef.com/images/2020/03/sloppy-joes-1200x1552.jpg', 'en', 1, 1, 1),
+(193, 'Buffalo Wings', '<ol>\n<li>Preheat oven to 200&deg;C (400&deg;F).</li>\n<li>Place <strong>chicken wings</strong> on a baking sheet and bake for 40 minutes, flipping halfway.</li>\n<li>In a pan, melt <strong>butter,</strong> then add <strong>hot sauce, vinegar, garlic powder, and salt.</strong></li>\n<li>Toss baked wings in the <strong>hot sauce</strong> and serve with <strong>ranch dressing</strong> or <strong>blue cheese dip</strong>.</li>\n</ol>', 'American', 'https://carlsbadcravings.com/wp-content/uploads/2014/12/Buffalo-Honey-Hot-Wings10.jpg', 'en', 1, 1, 1),
+(194, 'aaaa', '<p>sdsad</p>', 'seas', 'dada', 'en', 0, 1, 0),
+(195, 'Testing', '<p>almafa</p>', 'testing', 'testing', 'en', 0, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -383,7 +404,27 @@ INSERT INTO `recipe_ingredient` (`id`, `ingredient_id`, `recipe_id`, `quantity`)
 (317, 99, 188, '(optional) 1 teaspoon'),
 (318, 100, 188, '(optional) 1 thinly sliced'),
 (319, 89, 189, '3 db'),
-(320, 88, 189, '4 db');
+(320, 88, 189, '4 db'),
+(321, 11, 190, '3 db'),
+(322, 10, 191, '3'),
+(323, 12, 191, '4'),
+(324, 144, 192, '500 g'),
+(325, 111, 192, '1 chopped'),
+(326, 145, 192, '1/2 cup'),
+(327, 146, 192, '1 tsp'),
+(328, 89, 192, '1/2 tsp'),
+(329, 105, 192, '1/4 tsp'),
+(330, 147, 192, '4'),
+(331, 157, 193, '1/2 cup'),
+(332, 102, 193, '2 tbsp'),
+(333, 158, 193, '1 tbsp'),
+(334, 159, 193, '1/2 tsp'),
+(335, 89, 193, '1/2 tsp'),
+(336, 162, 193, '500 g'),
+(337, 160, 193, 'optional'),
+(338, 161, 193, 'optional'),
+(340, 151, 194, '3piece'),
+(341, 92, 195, '3 pieces');
 
 -- --------------------------------------------------------
 
@@ -430,7 +471,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `admin`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Norbert', 'gillich.norbert@icloud.com', '$2y$12$173nhpko/r1rGsKCQFD2NeQzyIY/PZurBx6gE4N5MIhPwHqPFPgmu', 2, NULL, '2025-02-20 15:21:40', '2025-02-20 15:21:40'),
-(2, 'Norbi', 'norbinstechnik@gmail.com', '$2y$12$oPuWKh491APN825gsGlok.0HV71N34FfUi7.MOHQ1YtfS90Gok3le', 0, NULL, '2025-02-20 18:08:51', '2025-03-06 03:36:49'),
+(2, 'Norbi', 'norbinstechnik@gmail.com', '$2y$12$oPuWKh491APN825gsGlok.0HV71N34FfUi7.MOHQ1YtfS90Gok3le', 0, NULL, '2025-02-20 18:08:51', '2025-03-11 19:07:13'),
 (3, 'simaAdmin', 'trala@gmail.com', '$2y$12$dyIeIap0udIgG0LPttSlJuM8v4JcKUnTAiqSjoFD.yDW5hP5Qy8Dq', 1, NULL, '2025-02-20 18:27:00', '2025-03-02 13:13:15'),
 (4, 'Attila', 'jager@attila.hu', '$2y$12$57YKLeEqb7R/YAh6fkoICeKf3jirCnYH5tzu3ox8DDs5yWFe615yi', 0, NULL, '2025-02-21 11:55:06', '2025-03-10 10:32:01'),
 (5, 'Ács Bence', 'acs@bence.hu', '$2y$12$jmTdIeuBNmQtbhIJX5myhOBKH94MZGztbKU2dwf5wjKXfWhRsOkQq', 0, NULL, '2025-02-21 12:30:28', '2025-02-28 11:58:04'),
@@ -503,7 +544,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT a táblához `ingredients`
 --
 ALTER TABLE `ingredients`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=143;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=165;
 
 --
 -- AUTO_INCREMENT a táblához `migrations`
@@ -515,19 +556,19 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT a táblához `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT a táblához `recipes`
 --
 ALTER TABLE `recipes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=190;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=196;
 
 --
 -- AUTO_INCREMENT a táblához `recipe_ingredient`
 --
 ALTER TABLE `recipe_ingredient`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=321;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=342;
 
 --
 -- AUTO_INCREMENT a táblához `users`

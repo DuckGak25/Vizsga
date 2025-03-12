@@ -2,7 +2,7 @@
 
 .content {
     padding-top: 6rem;
-    backdrop-filter: blur(2px);
+
     margin: 0 auto;
     cursor: pointer;
     padding-bottom: 20px;
@@ -31,8 +31,9 @@ h1 {
     max-width: 95%;
     min-height: 640px;
     border-radius: 20px;
-    background-color: #eeecebd8;
+    background-color: rgba(255, 255, 255, 0.25);
     border: 1px solid rgba(255, 255, 255, 0.32);
+    backdrop-filter: blur(6.1px);
     cursor: pointer;
     font-size: 20px;
     font-style: normal;
@@ -42,13 +43,19 @@ h1 {
     background-position: center;
     background-position: bottom;
     transition: transform 0.4s ease, box-shadow 0.3s ease;
-    backdrop-filter: blur(2px);
     
 }
 
 input {
-    border-radius: 12px;
-    border: 1px solid #86868b;
+    font-weight: 600;
+    height: 50px;
+    margin-bottom: 10px;
+
+    color: black;
+}
+
+input::placeholder {
+    color: black;
 }
 
 .alert {
@@ -81,4 +88,14 @@ h1 {
     .google-sign-in-button {
         margin: 10px 0 0 0;
     }
+}
+
+.form-control {
+    background-color: rgba(255, 255, 255, 0.25);
+    border: 2px solid rgba(255, 255, 255, 0.32);
+}
+
+.form-control:focus {
+    background-color: rgba(255, 255, 255, 0.659);
+    border: 1px solid rgba(255, 255, 255, 0.32);
 }

@@ -3,37 +3,32 @@
     <div class="card-body">
       <h1>{{registerTitle}}</h1>
 
-      <div class="form-floating mb-3">
-        <input type="text" [(ngModel)]="name" placeholder="Név" [class]="inputClassName" (keyup.enter)="register()">
-        <label for="name">{{nameLabel}}</label>
+
+        <input type="text" [(ngModel)]="name" [placeholder]="nameLabel" [class]="inputClassName" (keyup.enter)="register()">
         <div class="text-danger" *ngIf="registerError.details?.name">
           <div *ngFor="let err of registerError.details.name">{{ err }}</div>
         </div>
-      </div>
 
-      <div class="form-floating mb-3">
+
         <input type="email" [(ngModel)]="email" placeholder="Email" [class]="inputClassEmail" (keyup.enter)="register()">
-        <label for="email">{{emailLabel}}</label>
         <div class="text-danger" *ngIf="registerError.details?.email">
           <div *ngFor="let err of registerError.details.email">{{ err }}</div>
         </div>
-      </div>
 
-      <div class="form-floating mb-3">
-        <input type="password" [(ngModel)]="password" placeholder="Jelszó" [class]="inputClassPassword" (keyup.enter)="register()">
-        <label for="pass">{{passwordText}}</label>
+
+
+        <input type="password" [(ngModel)]="password" [placeholder]="passwordText" [class]="inputClassPassword" (keyup.enter)="register()">
         <div class="text-danger" *ngIf="registerError.details?.password">
           <div *ngFor="let err of registerError.details.password">{{ err }}</div>
         </div>
-      </div>
 
-      <div class="form-floating mb-3">
-        <input type="password" [(ngModel)]="confirm_password" placeholder="Jelszó megerősítése" [class]="inputClassPassword" (keyup.enter)="register()">
-        <label for="pass2">{{confirmPasswordText}}</label>
+
+
+        <input type="password" [(ngModel)]="confirm_password" [placeholder]="confirmPasswordText" [class]="inputClassPassword" (keyup.enter)="register()">
         <div class="text-danger" *ngIf="registerError.details?.confirm_password">
           <div *ngFor="let err of registerError.details.confirm_password">{{ err }}</div>
         </div>
-      </div>
+
 
       <div class="alert alert-danger" *ngIf="registerError.show">
         <p>{{registerError.message}}</p>

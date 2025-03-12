@@ -76,5 +76,7 @@
     "ingredientName": "Összetevő neve",
     "imageLink": "A kép linkje",
     "remove": "Eltávolítás",
-    "quantity": "Mennyiség"
+    "quantity": "Mennyiség",
+    "waitingForApprove": "Jóváhagyásra vár",
+    "approve": "Jóváhagyás"
 }
