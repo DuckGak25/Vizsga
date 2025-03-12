@@ -165,9 +165,6 @@ export class AddRecipeComponent {
 
 
   filterIngredients(ingredients: Set<Ingredient>): Ingredient[] {
-    if (!this.searchTerm) {
-      
-    }
     const lowerCaseSearchTerm = this.searchTerm.toLowerCase();
     return Array.from(ingredients).filter(ingredient =>
       ingredient.name.toLowerCase().includes(lowerCaseSearchTerm)
@@ -257,14 +254,14 @@ export class AddRecipeComponent {
   
   
 
-  postIngredient(ingredient: Ingredient) {
-    try {
-      const response = this.recipeService.postIngredients(ingredient).toPromise();
-      console.log('Ingredient added successfully', response);
-    } catch (error) {
-      console.error('Error adding ingredient', error);
+    postIngredient(ingredient: Ingredient) {
+      this.recipeService.postIngredients(ingredient).subscribe({
+        next: (response) => console.log('Ingredient added successfully', response),
+        error: (error) => console.error('Error adding ingredient', error)
+      });
     }
-  }
+    
+    
 
   getRecipes() {
     this.recipeService.getRecipes().subscribe((data: Recipe[]) => {

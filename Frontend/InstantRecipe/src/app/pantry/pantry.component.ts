@@ -43,7 +43,6 @@ export class PantryComponent {
       this.categorizeIngredients();
       this.restoreSelectedIngredients();
     });
-
     this.recipeService.getRecipes().subscribe((data: Recipe[]) => {
       this.allRecipes = data.filter(recipe => recipe.language === this.langSign);
       this.filteredRecipes = this.allRecipes;
@@ -51,8 +50,6 @@ export class PantryComponent {
     
     this.loadContent();
   }
-
-
 
   loadContent() {
     this.config.getContent().subscribe((content) => {
@@ -70,44 +67,6 @@ export class PantryComponent {
     });
   }
 
-  categorizeIngredients(): void {
-    this.ingredients.forEach(ingredient => {
-      const category = ingredient.category || 'Uncategorized';
-  
-      if (category === 'alapvető' || category === 'basic') {
-        this.defaultIngredients.push(ingredient);
-        return;
-      }
-  
-      if (!this.categorizedIngredients[category]) {
-        this.categorizedIngredients[category] = new Set();
-      }
-      this.categorizedIngredients[category].add(ingredient.name);
-    });
-  }
-
-  getSelectedIngredients(): string[] {
-    const checkboxes = document.querySelectorAll<HTMLInputElement>('input[type="checkbox"]');
-    if (this.selectedIngredients.size !== 0) {
-      checkboxes.forEach(checkbox => {
-        checkbox.checked = false;
-      })
-    } 
-    return Array.from(this.selectedIngredients);
-  }
-
-
-  onIngredientChange(event: Event, ingredient: string) {
-    const checkbox = event.target as HTMLInputElement;
-    if (checkbox.checked) {
-      this.selectedIngredients.add(ingredient);
-    } else {
-      this.selectedIngredients.delete(ingredient);
-      checkbox.checked = false;
-    }
-    this.filterRecipes();
-    this.saveSelectedIngredients();
-  }
 
   filterRecipes() {
     if (this.selectedIngredients.size === 0) {
@@ -131,8 +90,89 @@ export class PantryComponent {
   }
   
 
-  toggleAndIncluded() {
+  onIngredientChange(event: Event, ingredient: string) {
+    const checkbox = event.target as HTMLInputElement;
+    if (checkbox.checked) {
+      this.selectedIngredients.add(ingredient);
+    } else {
+      this.selectedIngredients.delete(ingredient);
+      checkbox.checked = false;
+    }
+    this.filterRecipes();
+    this.saveSelectedIngredients();
+  }
 
+  categorizeIngredients(): void {
+    this.ingredients.forEach(ingredient => {
+      const category = ingredient.category || 'Uncategorized';
+  
+      if (category === 'alapvető' || category === 'basic') {
+        this.defaultIngredients.push(ingredient);
+        return;
+      }
+  
+      if (!this.categorizedIngredients[category]) {
+        this.categorizedIngredients[category] = new Set();
+      }
+      this.categorizedIngredients[category].add(ingredient.name);
+    });
+  }
+
+  filterIngredients(ingredients: Set<string>): string[] {
+    if (!this.searchTerm) {
+      this.filterRecipes();
+      return Array.from(ingredients);
+    }
+    const lowerCaseSearchTerm = this.searchTerm.toLowerCase();
+    return Array.from(ingredients).filter(ingredient => ingredient.toLowerCase().includes(lowerCaseSearchTerm));
+  }
+
+  clearSelectedIngredients() {
+    if (this.langSign==="hu") {
+      this.selectedIngredients.clear();
+      localStorage.removeItem('selectedIngredientsHu');
+    } if (this.langSign==="en") {
+      this.selectedIngredients.clear();
+      localStorage.removeItem('selectedIngredientsEn');
+    }
+
+    this.filteredRecipes = this.allRecipes;
+  
+    const checkboxes = document.querySelectorAll<HTMLInputElement>('input[type="checkbox"] class="ingredient"');
+    checkboxes.forEach(checkbox => checkbox.checked = false);
+  }
+  
+  restoreSelectedIngredients() {
+    if (this.langSign==="hu") {
+      const savedIngredients = localStorage.getItem('selectedIngredientsHu');
+      const checkboxes = document.querySelectorAll<HTMLInputElement>('input[type="checkbox"]');
+      if (savedIngredients) {
+        const ingredientsArray = JSON.parse(savedIngredients);
+        ingredientsArray.forEach((ingredient: string) => this.selectedIngredients.add(ingredient));
+        this.filterRecipes();
+      }
+    } if (this.langSign==="en") {
+      const savedIngredients = localStorage.getItem('selectedIngredientsEn');
+      const checkboxes = document.querySelectorAll<HTMLInputElement>('input[type="checkbox"]');
+      if (savedIngredients) {
+        const ingredientsArray = JSON.parse(savedIngredients);
+        ingredientsArray.forEach((ingredient: string) => this.selectedIngredients.add(ingredient));
+        this.filterRecipes();
+      }
+    }
+
+  }
+
+  saveSelectedIngredients() {
+    if (this.langSign==="hu") {
+      localStorage.setItem('selectedIngredientsHu', JSON.stringify(Array.from(this.selectedIngredients)));  
+    } if (this.langSign==="en") {
+      localStorage.setItem('selectedIngredientsEn', JSON.stringify(Array.from(this.selectedIngredients)));
+    }
+    
+  }
+
+  toggleAndIncluded() {
     if (this.andIncluded) {
       this.andIncluded = false;
       this.orIncluded = true;
@@ -142,7 +182,6 @@ export class PantryComponent {
       this.orIncluded = false;
       this.filterRecipes();
     }
-    
   }
   
   toggleOrIncluded() {
@@ -156,41 +195,6 @@ export class PantryComponent {
       this.filterRecipes();
     }
   }
-  
-
-  filterIngredients(ingredients: Set<string>): string[] {
-    if (!this.searchTerm) {
-      this.filterRecipes();
-      return Array.from(ingredients);
-    }
-    const lowerCaseSearchTerm = this.searchTerm.toLowerCase();
-    return Array.from(ingredients).filter(ingredient => ingredient.toLowerCase().includes(lowerCaseSearchTerm));
-
-  }
-
-  clearSelectedIngredients() {
-    this.selectedIngredients.clear();
-    localStorage.removeItem('selectedIngredients');
-    this.filteredRecipes = this.allRecipes;
-  
-    const checkboxes = document.querySelectorAll<HTMLInputElement>('input[type="checkbox"] class="ingredient"');
-    checkboxes.forEach(checkbox => checkbox.checked = false);
-  }
-  
-
-  restoreSelectedIngredients() {
-    const savedIngredients = localStorage.getItem('selectedIngredients');
-    const checkboxes = document.querySelectorAll<HTMLInputElement>('input[type="checkbox"]');
-    if (savedIngredients) {
-      const ingredientsArray = JSON.parse(savedIngredients);
-      ingredientsArray.forEach((ingredient: string) => this.selectedIngredients.add(ingredient));
-      this.filterRecipes();
-    }
-  }
-
-  saveSelectedIngredients() {
-    localStorage.setItem('selectedIngredients', JSON.stringify(Array.from(this.selectedIngredients)));
-  }
 
   toggleRecipes() {
     if (this.showRecipes) {
@@ -202,7 +206,5 @@ export class PantryComponent {
       this.vps.scrollToPosition([0,0]);
       this.show = this.showingredients;
     }
-
-    
   }
 }

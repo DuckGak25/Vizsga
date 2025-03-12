@@ -1,6 +1,6 @@
 * {
         background-image: url(/assets/images/bg.jpg);
-        background-size: auto;
+        background-size: 1000vh;
         background-repeat: repeat;
         background-attachment: fixed;
         margin: 0;
@@ -10,6 +10,12 @@
         font-family:"SF Pro Text",  "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
         
 }
+
+    html {
+        will-change: transform;
+        transform: translate3d(0, 0, 0);
+    }
+        
 
 router-outlet {
         backdrop-filter: blur(2px);
