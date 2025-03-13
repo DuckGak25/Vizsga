@@ -23,7 +23,8 @@ class IngredientModRequest extends FormRequest
     {
         return [
             "name" => "required|string|max:255",
-            "category" => "required|string"
+            "category" => "required|string",
+            "language" => "required|string"
         ];
     }
 
@@ -32,6 +33,7 @@ class IngredientModRequest extends FormRequest
         return [
             'name.required' => 'A név elvárt.',
             'category.required' => 'A kategória elvárt.',
+            'language.required' => 'A nyelv elvárt.'
         ];
     }
 }

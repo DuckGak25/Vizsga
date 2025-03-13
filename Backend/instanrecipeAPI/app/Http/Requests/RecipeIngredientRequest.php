@@ -22,9 +22,9 @@ class RecipeIngredientRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "recipe_id" => "required|integer|exists:recipes,id",
-            "ingredient_id" => "required|integer|exists:ingredients,id",
-            "quantity" => "string",
+            'recipe_id' => 'required|integer|exists:recipes,id',
+            'ingredient_id' => 'required|integer',
+            'quantity' => 'nullable|string',
         ];
     }
 

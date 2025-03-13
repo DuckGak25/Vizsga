@@ -83,7 +83,7 @@ export class LoginComponent {
         console.error('Hiba:', error);
         if (error.status === 401) {
           this.error = error.error.message;
-          if (this.error === 'Helytelen felhasználó vagy jelszó' && this.langSign == "en") {
+          if (this.error === 'Helytelen felhasználó vagy jelszó!' && this.langSign == "en") {
             this.error = 'Incorrect email or password';
           }
           this.inputClassEmail = 'form-control email-input  is-invalid';

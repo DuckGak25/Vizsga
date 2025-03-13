@@ -11,8 +11,6 @@ use App\Http\Controllers\ResponseController;
 use Illuminate\Support\Facades\Gate;
 
 class UserController extends ResponseController {
-
-    
     public function setAdmin(Request $request) {
 
         if ( !Gate::allows("super") ) {
@@ -20,7 +18,9 @@ class UserController extends ResponseController {
         }
 
         $user = User::find($request["id"]);
-
+        if (!$user) {
+            return $this->sendError("Adathiba", "Nem található felhasználó", 404);
+        }
         $user->admin = 1;
 
         $user->update();
@@ -35,6 +35,9 @@ class UserController extends ResponseController {
         }
 
         $user = User::find($request["id"]);
+        if (!$user) {
+            return $this->sendError("Adathiba", "Nem található felhasználó", 404);
+        }
 
         $user->admin = 0;
 
@@ -54,12 +57,14 @@ class UserController extends ResponseController {
      }
 
      public function deleteUser(Request $request) {
-
         if ( !Gate::allows("super") ) {
             return $this->sendError("Autentikációs hiba", "Nincs jogosultsága", 401);
         }
 
         $user = User::find($request["id"]);
+        if (!$user) {
+            return $this->sendError("Adathiba", "Nem található felhasználó", 404);
+        }
 
         $user->delete();
 

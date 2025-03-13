@@ -169,13 +169,18 @@ export class RecipesListComponent {
 
 
   deleteRecipe(recipe: Recipe) {
-    this.recipeService.deleteRecipe(recipe.id).subscribe(() => {
-      this.recipes = this.recipes.filter((r) => r.id !== recipe.id);
-      this.modalContent = `Sikeresen törölted a receptet: ${recipe.title}`;
-    }, (error) => {
-      console.error('Hiba a recept törlése közben', error);
+    this.recipeService.deleteRecipe(recipe.id).subscribe({
+      next: (response) => {
+        console.log('Recipe deleted successfully', response);
+        this.recipes = this.recipes.filter((r) => r.id !== recipe.id);
+        this.modalContent = `Sikeresen törölted a receptet: ${recipe.title}`;
+      },
+      error: (error) => {
+        console.error('Hiba a recept törlése közben', error);
+      }
     });
   }
+  
 
   // Modális ablak bezárása
   close() {
@@ -308,17 +313,30 @@ export class RecipesListComponent {
 
   deleteIngredientFromRecipe(ingredient: Ingredient) {
     this.recipeIngredient.ingredient_id = ingredient.id;
-    this.recipeService.deleteIngredientFromRecipe(this.recipeIngredient).subscribe(() => {
-      console.log(`Sikeresen törölted a hozzávalót: ${ingredient.name}`);
-      this.getRecipes();
-      
+  
+    this.recipeService.deleteIngredientFromRecipe(this.recipeIngredient).subscribe({
+      next: (response) => {
+        console.log('Ingredient deleted successfully', response, ingredient);
+        console.log(`Sikeresen törölted a hozzávalót: ${ingredient.name}`);
+        this.getRecipes();
+        this.updateIngredientsList();
+      },
+      error: (error) => {
+        console.error('Hiba a hozzávaló törlése közben', error);
+      }
     });
-    this.recipeService.getIngredients().subscribe((ingredients: Ingredient[]) => {
-      this.ingredients = [...ingredients]; 
-      this.cdr.detectChanges();
+  }
+  
+  updateIngredientsList() {
+    this.recipeService.getIngredients().subscribe({
+      next: (ingredients: Ingredient[]) => {
+        this.ingredients = [...ingredients]; 
+        this.cdr.detectChanges();
+      },
+      error: (error) => {
+        console.error('Hiba az összetevők frissítése közben', error);
+      }
     });
-
-
   }
 
   saveIngredient() {

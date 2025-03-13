@@ -31,41 +31,38 @@ class AuthController extends ResponseController
 
     
     public function login(UserLoginRequest $request)
-{
-    $request->validated();
+    {
+        $request->validated();
 
-    if (Auth::attempt([ 'email' => $request['email'], 'password' => $request['password'] ])) {
-        $authUser = Auth::user();
-        $token = $authUser->createToken($authUser->email . "Token")->plainTextToken;
-        
-        return response()->json([
-            'success' => true,
-            'user' => $authUser,
-            'token' => $token
-        ]);
+        if (Auth::attempt([ 'email' => $request['email'], 'password' => $request['password'] ])) {
+            $authUser = Auth::user();
+            $token = $authUser->createToken($authUser->email . "Token")->plainTextToken;
+            
+            return response()->json([
+                'success' => true,
+                'user' => $authUser,
+                'token' => $token
+            ]);
+        }
+
+
+        return $this->sendError("Helytelen felhasználó vagy jelszó!","Autentikációs hiba" , 401);
     }
-
-    return response()->json([
-        'success' => false,
-        'message' => 'Helytelen felhasználó vagy jelszó'
-    ], 401);
-}
 
     
 
 public function logout(Request $request) {
-    $user = $request->user();
+    $user = auth("sanctum")->user();
+    
+
 
     if ($user) {
-        $user->currentAccessToken()->delete();
+        auth("sanctum")->user()->currentAccessToken()->delete();
         return response()->json([
             'message' => 'Sikeres kijelentkezés',
             'user' => $user->name
         ], 200);
     }
-
-    return response()->json([
-        'message' => 'Nem volt bejelentkezett felhasználó'
-    ], 401);
+    return $this->sendError("Autentikációs hiba", "Nincs jogosultsága", 401);
 }
 }

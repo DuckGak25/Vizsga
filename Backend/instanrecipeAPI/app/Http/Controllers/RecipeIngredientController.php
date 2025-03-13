@@ -14,64 +14,52 @@ use App\Http\Resources\IngredientResource;
 use App\Models\Recipe;
 use App\Models\Ingredient;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\ResponseController;
 
-class RecipeIngredientController extends Controller
+class RecipeIngredientController extends ResponseController
 {
     public function storeIngredients(RecipeIngredientRequest $request)
     {
-        $validated = $request->validate([
-            'recipe_id' => 'required|integer|exists:recipes,id',
-            'ingredient_id' => 'required|integer',
-            'quantity' => 'nullable|string',
+        $user = auth()->user();
+
+        if (!$user) {
+            return $this->sendError("Autentikációs hiba", "Nincs jogosultsága", 401);
+        }
+        $request->validated();
+    
+        $recipeIngredient = RecipeIngredient::create([
+            'recipe_id' => $request['recipe_id'],
+            'ingredient_id' => $request['ingredient_id'],
+            'quantity' => $request['quantity'],
         ]);
     
-        RecipeIngredient::create([
-            'recipe_id' => $validated['recipe_id'],
-            'ingredient_id' => $validated['ingredient_id'],
-            'quantity' => $validated['quantity'],
-        ]);
-    
-        return response()->json(['message' => 'Sikeres hozzávaló hozzáadás'], 201);
+        return $this->sendResponse(new RecipeResource($recipeIngredient), 'Sikeres hozzávaló hozzáadás a recepthez');
     }
     
 
     public function destroyRecipeIngredient($id)
     {
-        $id = RecipeIngredient::find($id);
-        $id->delete();
-        return response()->json(['message' => 'Sikeres !'], 200);
+        if (Gate::allows("user")) {
+            return $this->sendError("Autentikációs hiba", "Nincs jogosultsága", 401);
+        }
+        $recipeIngredient = RecipeIngredient::find($id);
+        if (!$recipeIngredient) {
+            return $this->sendError("Adathiba", "Nem található recept hozzávaló", 404);
+        }
+        $recipeIngredient->delete();
+        return $this->sendResponse(new RecipeResource($recipeIngredient), 'Sikeres recept hozzávaló törlés');
     }
 
-    
-    public function editRecipeIngredient(RecipeIngredientRequest $request) {
-        $validated = $request->validated();
-        $recipe_id = $validated['recipe_id'];
-        $ingredient_id = $validated['ingredient_id'];
-        $quantity = $validated['quantity'];
-    
-        $recipe_ingredient = DB::table('recipe_ingredient')
-            ->where('recipe_id', $recipe_id)
-            ->where('ingredient_id', $ingredient_id)
-            ->first();
-    
-        if (!$recipe_ingredient) {
-            return response()->json(['message' => 'Recept hozzávaló nem található!'], 404);
-        }
-    
-        DB::table('recipe_ingredient')
-            ->where('recipe_id', $recipe_id)
-            ->where('ingredient_id', $ingredient_id)
-            ->update(['quantity' => $quantity]);
-    
-        return response()->json(['message' => 'Recept hozzávaló módosítása sikeres!'], 200);
-    }
 
     public function deleteIngredient(Request $request) {
+        if (Gate::allows("user")) {
+            return $this->sendError("Autentikációs hiba", "Nincs jogosultsága", 401);
+        }
         $recipe_id = $request->query('recipe_id');
         $ingredient_id = $request->query('ingredient_id');
     
         if (!$recipe_id || !$ingredient_id) {
-            return response()->json(['message' => 'Hiányzó paraméterek!'], 400);
+            return $this->sendResponse('Adathiba', 'Nem található recept hozzávaló', 404);
         }
     
         $deleted = DB::table('recipe_ingredient')
@@ -80,9 +68,9 @@ class RecipeIngredientController extends Controller
             ->delete();
     
         if ($deleted) {
-            return response()->json(['message' => 'Hozzávaló törlése sikeres!'], 200);
+            return $this->sendResponse('Sikeres recept hozzávaló törlés', 200);
         } else {
-            return response()->json(['message' => 'Nincs ilyen hozzávaló!'], 404);
+            return $this->sendResponse('Adathiba', 'Nem található recept hozzávaló', 404);
         }
     }
     
