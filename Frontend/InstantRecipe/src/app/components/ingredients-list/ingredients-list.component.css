@@ -39,6 +39,10 @@
 
 button {
     margin-right: 10px;
+    * {
+        user-select: none;
+      }
+      
 }
 
 

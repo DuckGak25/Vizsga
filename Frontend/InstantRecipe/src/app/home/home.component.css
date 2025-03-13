@@ -268,7 +268,10 @@ ngb-carousel {
     bottom: 0;
 }
 
-
+* {
+    user-select: none;
+  }
+  
 
 
     

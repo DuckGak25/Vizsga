@@ -243,16 +243,9 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-  }
-  #navPrimary, 
-  #navPrimary .nav-link, 
-  .navbar-brand, 
-  .nav-lang, 
-  .dropdown-item {
-  user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-}
+  * {
+      user-select: none;
+    }
+  }  
 
 }

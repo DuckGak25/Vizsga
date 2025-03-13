@@ -70,6 +70,8 @@ input {
 
 
 
+
+
 h1 {
     font-weight: 900;
 }
@@ -83,4 +85,7 @@ h2 {
         padding: 20px;
     }
 }
-
+* {
+    user-select: none;
+  }
+  

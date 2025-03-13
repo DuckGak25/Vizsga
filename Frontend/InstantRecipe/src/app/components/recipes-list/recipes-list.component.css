@@ -244,4 +244,7 @@ button:hover {
   #checkbox1:checked + .checkbox-label, #checkbox2:checked + .checkbox-label{
     box-shadow:inset 0 0 0 18px rgba(255,90,0,1),0 0 0 2px rgba(255,90,0,1);
   }
-
+  * {
+    user-select: none;
+  }
+  
