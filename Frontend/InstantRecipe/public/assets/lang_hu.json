@@ -81,5 +81,6 @@
     "approve": "Jóváhagyás",
     "addIngredient": "Összetevő hozzáadása",
     "operations":"Műveletek",
-    "preview":"Előnézet"
+    "preview":"Előnézet",
+    "ingredientsDescription": "Az összetevők közt kereshetsz is az \"Összetevő neve\" mezőben és ha nincs találat hozzá is adhatod"
 }

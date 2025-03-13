@@ -84,7 +84,8 @@
     "approve": "Approve",
     "addIngredient": "Add Ingredient",
     "operations":"Operations",
-    "preview": "Preview"
+    "preview": "Preview",
+    "ingredientsDescription": "If you don't find any match in the \"Ingredient Name\" field, you can add it"
 
 
 }

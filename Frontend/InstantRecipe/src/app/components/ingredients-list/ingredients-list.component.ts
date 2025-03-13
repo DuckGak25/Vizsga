@@ -20,6 +20,7 @@ export class IngredientsListComponent {
     language: '',
 
   }
+  langSign = "";
 
   addButton = "";
   ingredientsHeaderTitle = "";
@@ -27,12 +28,14 @@ export class IngredientsListComponent {
   ingredientName = "";
   actLang = "Magyar";
   editButton = "";
+  ingredientsDescription = "";
   deleteButton: any;
   saveButton: any;
 
   constructor(private config: ConfigService, private recipeService: RecipeService) {
     this.getRecipes();
     this.loadContent();
+    this.langSign = config.langSign
   }
 
   loadContent() {
@@ -44,6 +47,7 @@ export class IngredientsListComponent {
       this.ingredientsHeaderTitle = content.ingredientsHeaderTitle
       this.categoryTitle = content.categoryTitle
       this.ingredientName = content.ingredientName
+      this.ingredientsDescription = content.ingredientsDescription
     });
   }
 
@@ -63,9 +67,19 @@ export class IngredientsListComponent {
     try {
       const response = await this.recipeService.postIngredients(ingredient).toPromise();
       console.log('Ingredient added successfully', response);
+      if (this.langSign === "hu") {
+        alert("Sikeresen hozzáadtad a hozzávalót!")
+      } else {
+        alert("Successfully added the ingredient!")
+      }
       
       await this.getRecipes();
     } catch (error) {
+      if (this.langSign === "hu") {
+        alert("Hozzávaló hozzáadása sikertelen!")
+      } else {
+      alert("Error adding ingredient")
+      }
       console.error('Error adding ingredient', error);
     }
   }
@@ -74,9 +88,19 @@ export class IngredientsListComponent {
   editIngredient(ingredient: Ingredient) {
     this.recipeService.modifyIngredient(ingredient).subscribe(
       response => {
+        if (this.langSign === "hu") {
+          alert("Sikeresen módosítottad a hozzávalót!")
+        } else {
+          alert("Successfully modified the ingredient!")
+        }
         console.log('Ingredient modified successfully', response);
       },
       error => {
+        if (this.langSign === "hu") {
+          alert("Hozzávaló módosítása sikertelen!")
+        } else {
+          alert("Error modifying ingredient!")
+        }
         console.error('Error modifying ingredient', error);
       }
     );
