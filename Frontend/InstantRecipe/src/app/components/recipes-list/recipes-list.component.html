@@ -14,6 +14,9 @@
                     <div class="col">
                         <h2>{{recipe.title}}</h2>
                     </div>
+                    <div class="col">
+                        <h2>{{recipe.language}}</h2>
+                    </div>
                     <div class="col" *ngIf="!recipe.approved">
                       <h2>{{waitingForApprove}}</h2>
                     </div>
@@ -147,7 +150,7 @@
                                     </select>
                                   </div>
                                   <div class="col">
-                                    <button class="btn btn-success" (click)="postIngredient(newIngredient);" style="width: 100%;">{{addIngredient}}</button>
+                                    <button class="btn btn-success" (click)="postIngredient(newIngredient);" style="width: 100%;">{{addButton}}</button>
                                   </div>
                                 </div>
                               </div>

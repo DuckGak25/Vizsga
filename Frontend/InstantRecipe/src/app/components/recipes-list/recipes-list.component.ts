@@ -35,6 +35,7 @@ export class RecipesListComponent {
   addIngredient = "";
   operations = "";
   remove = "";
+  addButton = "";
   quantity = "";
   recipes: Recipe[] = [];
   selectedIngredients: Set<Ingredient> = new Set();
@@ -128,6 +129,7 @@ export class RecipesListComponent {
       this.addIngredient = content.addIngredient || '';
       this.operations = content.operations || '';
       this.preview = content.preview || '';
+      this.addButton = content.addButton || '';
 
     });
   }
