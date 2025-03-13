@@ -78,5 +78,8 @@
     "remove": "Eltávolítás",
     "quantity": "Mennyiség",
     "waitingForApprove": "Jóváhagyásra vár",
-    "approve": "Jóváhagyás"
+    "approve": "Jóváhagyás",
+    "addIngredient": "Összetevő hozzáadása",
+    "operations":"Műveletek",
+    "preview":"Előnézet"
 }

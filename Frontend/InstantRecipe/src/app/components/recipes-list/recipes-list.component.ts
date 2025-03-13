@@ -19,6 +19,23 @@ export class RecipesListComponent {
   saveButton = "";
   waitingForApprove = "";
   approve = "";
+  recipeName = "";
+  preview = "";
+  descriptionTitle = "";
+  requirementTitle = "";
+  categoryTitle = "";
+  selectedIngredientsTitle = "";
+  deleteSelected = "";
+  searchForIngredients = "";
+  imageLink = "";
+  ingredientsTitle = "";
+  createRecipeTitle = "";
+  recipesHeaderTitle = "";
+  ingredientName = "";
+  addIngredient = "";
+  operations = "";
+  remove = "";
+  quantity = "";
   recipes: Recipe[] = [];
   selectedIngredients: Set<Ingredient> = new Set();
   ingredientQuantities: { [key: number]: string } = {};
@@ -94,6 +111,23 @@ export class RecipesListComponent {
       this.saveButton = content.saveButton
       this.waitingForApprove = content.waitingForApprove
       this.approve = content.approve
+      this.recipeName = content.recipeName || '';
+      this.descriptionTitle = content.descriptionTitle || '';
+      this.requirementTitle = content.requirementTitle || '';
+      this.categoryTitle = content.categoryTitle || '';
+      this.selectedIngredientsTitle = content.selectedIngredientsTitle || '';
+      this.deleteSelected = content.deleteSelected || '';
+      this.searchForIngredients = content.searchForIngredients || '';
+      this.imageLink = content.imageLink || '';
+      this.ingredientsTitle = content.ingredientsHeaderTitle || '';
+      this.createRecipeTitle = content.createRecipeTitle || '';
+      this.remove = content.remove || '';
+      this.quantity = content.quantity || '';
+      this.recipesHeaderTitle = content.recipesHeaderTitle || '';
+      this.ingredientName = content.ingredientName || '';
+      this.addIngredient = content.addIngredient || '';
+      this.operations = content.operations || '';
+      this.preview = content.preview || '';
 
     });
   }

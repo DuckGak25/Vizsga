@@ -1,7 +1,7 @@
 <div class="content">
   <div class="card ">
         <div class="card-body">
-            <h1>Receptek</h1>
+            <h1>{{recipesHeaderTitle}}</h1>
             <div id="toggles">
               <input type="checkbox" id="checkbox1" id="checkbox1" class="ios-toggle" [checked]="filterPending" (click)="toggleFilter()"/>
               <label for="checkbox1" class="checkbox-label"></label>
@@ -37,13 +37,13 @@
                               placeholder="Recept neve"
                               [(ngModel)]="recipe.title"
                             />
-                            <label for="title">Recept neve</label>
+                            <label for="title">{{recipeName}}</label>
                           </div>
                           
                           <!-- Leírás -->
                           <div class="form-floating mb-3 row">
                             <div class="col">
-                              <h2>Leírás</h2>  
+                              <h2>{{descriptionTitle}}</h2>  
                               <editor
                                 name="description"
                                 [init]="editorConfig"
@@ -52,7 +52,7 @@
                               </editor>
                             </div>
                             <div class="col">
-                              <h2>Elvárás</h2>
+                              <h2>{{requirementTitle}}</h2>
                               <img src="/assets/images/description_requirements.png" alt="description requirements" class="img-fluid" style="height: 450px;">
                             </div>
                         </div>
@@ -62,7 +62,7 @@
                           <div class="row mt-3">
                             <div class="row">
                               <div class="col">
-                                <h2>Előnézet</h2>
+                                <h2>{{preview}}</h2>
                                 <div class="recipecard" [style.background-image]="'url(' + recipe.imagelink + ' )'">
                                   <div class="recipe-header">
                                     <h4>{{ recipe.title }}</h4>
@@ -77,7 +77,7 @@
                                     placeholder="Kepek linkje"
                                     [(ngModel)]="recipe.imagelink"
                                   />
-                                  <label for="imagelink">Kép linkje</label>
+                                  <label for="imagelink">{{imageLink}}</label>
                                 </div>
                                 <div class="form-floating mt-3 col">
                                   <input
@@ -88,20 +88,20 @@
                                     placeholder="Kategória"
                                     [(ngModel)]="recipe.categories"
                                   />
-                                  <label for="categories">Kategória</label>
+                                  <label for="categories">{{categoryTitle}}</label>
                                 </div>
                             </div>
 
                           </div>
                           </div>
                           <div class="selected-ingredients mt-3 ml-4 row">
-                            <h2>Összetevők</h2>
+                            <h2>{{ingredientsTitle}}</h2>
                             <table class="table table-hover ingredientTable">
                               <thead>
                                 <tr>
-                                  <th scope="col">Neve</th>
-                                  <th scope="col">Mennyiség</th>
-                                  <th scope="col">Művelet</th>
+                                  <th scope="col">{{ingredientName}}</th>
+                                  <th scope="col">{{quantity}}</th>
+                                  <th scope="col">{{operations}}</th>
                                 </tr>
                               </thead>
                               <tbody>
@@ -109,7 +109,7 @@
                                   <td>{{ ingredient.name }}</td>
                                   <td>{{ ingredient.pivot?.quantity }}</td>
                                   <td>
-                                    <button class="btn btn-danger" (click)="deleteIngredientFromRecipe(ingredient)">Eltávolítás</button>
+                                    <button class="btn btn-danger" (click)="deleteIngredientFromRecipe(ingredient)">{{deleteButton}}</button>
                                   </td>
                                 </tr>
                             </table>
@@ -118,9 +118,9 @@
                           <div class="row">
                             
                             <div class="ingredient-list mt-3 col" >
-                              <input type="text" [(ngModel)]="searchTerm" name="search" placeholder="Keresés összetevők között..." class="form-control mb-3 mt-3" />
+                              <input type="text" [(ngModel)]="searchTerm" name="search" [placeholder]="searchForIngredients" class="form-control mb-3 mt-3" />
                               <button type="button" (click)="clearSelectedIngredients()" class="btn btn-danger mb-3">
-                                Kiválasztott összetevők törlése
+                                {{deleteSelected}}
                               </button>
                               <div *ngFor="let category of categorizedIngredients | keyvalue">
                                 <h2 *ngIf="filterIngredients(category.value).length > 0">{{ category.key }}</h2>
@@ -132,13 +132,13 @@
                                   </div>
                               </div>
                               <div class="post-ingredient mt-3">
-                                <h2>Összetevő hozzáadása</h2>
+                                <h2>{{addIngredient}}</h2>
                                 <div class="form-floating mb-3 row">
                                   <div class="col">
-                                    <input type="text" class="form-control col" id="ingredient" name="ingredient" placeholder="Összetevő" [(ngModel)]="newIngredient.name"/>
+                                    <input type="text" class="form-control col" id="ingredient" name="ingredient" [placeholder]="ingredientName" [(ngModel)]="newIngredient.name"/>
                                   </div>
                                   <div class="col">
-                                    <input type="text" class="form-control" id="category" name="category" placeholder="Kategória" [(ngModel)]="newIngredient.category">
+                                    <input type="text" class="form-control" id="category" name="category" [placeholder]="categoryTitle" [(ngModel)]="newIngredient.category">
                                   </div>
                                   <div class="col">
                                     <select name="language" id="" [(ngModel)]="newIngredient.language" class="form-control" placeholder="Nyelv">
@@ -147,23 +147,23 @@
                                     </select>
                                   </div>
                                   <div class="col">
-                                    <button class="btn btn-success" (click)="postIngredient(newIngredient);" style="width: 100%;">Hozzáadás</button>
+                                    <button class="btn btn-success" (click)="postIngredient(newIngredient);" style="width: 100%;">{{addIngredient}}</button>
                                   </div>
                                 </div>
                               </div>
                             </div>
                             
                             <div class="selected-ingredients mt-4 col">
-                              <h2>Kiválasztott Összetevők</h2>
+                              <h2>{{selectedIngredientsTitle}}</h2>
                               <table class="table">
                                 <tbody>
                                   <tr *ngFor="let ingredient of selectedIngredients">
                                     <td >{{ ingredient.name }}</td>
                                     <td >
-                                      <input type="text" [(ngModel)]="ingredientQuantities[ingredient.id]" (ngModelChange)="updateIngredientQuantity(ingredient.id, $event)" placeholder="Mennyiség" class="form-control"/>
+                                      <input type="text" [(ngModel)]="ingredientQuantities[ingredient.id]" (ngModelChange)="updateIngredientQuantity(ingredient.id, $event)" [placeholder]="quantity" class="form-control"/>
                                     </td>
                                     <td>
-                                      <button class="btn btn-danger" (click)="removeIngredient(ingredient)">Eltávolítás</button>
+                                      <button class="btn btn-danger" (click)="removeIngredient(ingredient)">{{[remove]}}</button>
                                     </td>
                                   </tr>
                               </table>
@@ -172,7 +172,7 @@
                           <div class="row">
                             
                           </div>
-                          <button (click)="saveRecipe(recipe)" class="btn btn-primary" type="submit" style="width: 100%;">Mentés</button>
+                          <button (click)="saveRecipe(recipe)" class="btn btn-primary" type="submit" style="width: 100%;">{{saveButton}}</button>
                   </div>
               </div>
           </div>
