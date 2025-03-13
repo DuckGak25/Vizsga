@@ -2,11 +2,11 @@
 
 .content {
     padding-top: 6rem;
-
     margin: 0 auto;
     cursor: pointer;
     padding-bottom: 20px;
-    height: 100vh;
+    min-height: 100vh;
+    max-height: 150vh;
 }
 
 .content a {
@@ -29,7 +29,7 @@ h1 {
     border: 0;
     width: 610px;
     max-width: 95%;
-    min-height: 640px;
+    min-height: fit-content;
     border-radius: 20px;
     background-color: rgba(255, 255, 255, 0.25);
     border: 1px solid rgba(255, 255, 255, 0.32);

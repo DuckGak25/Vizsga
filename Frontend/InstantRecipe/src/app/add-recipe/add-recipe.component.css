@@ -78,3 +78,9 @@ h2 {
     font-weight: 800;
 }
 
+@media (max-width: 768px) {
+    .card {
+        padding: 20px;
+    }
+}
+

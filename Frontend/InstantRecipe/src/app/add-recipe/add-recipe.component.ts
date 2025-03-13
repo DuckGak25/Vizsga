@@ -127,7 +127,6 @@ export class AddRecipeComponent {
     const checkbox = event.target as HTMLInputElement;
     if (checkbox.checked) {
       this.selectedIngredients.add(ingredient);
-      
 
       if (!this.ingredientQuantities[ingredient.id]) {
         this.ingredientQuantities[ingredient.id] = '';

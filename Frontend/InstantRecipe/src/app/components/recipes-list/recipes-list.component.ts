@@ -69,6 +69,7 @@ export class RecipesListComponent {
   constructor(private config: ConfigService, private recipeService: RecipeService, private cdr: ChangeDetectorRef){
     this.getIngredientsList();
     this.getRecipes();
+    this.filterPendingRecipes();
   }
 
   // open() {
@@ -347,7 +348,7 @@ export class RecipesListComponent {
   }
 
   filterRecipes() {
-    this.filterPendingRecipes();
+    
     if (this.filterPending) {
       this.recipes = this.pendingRecipes;
     }
