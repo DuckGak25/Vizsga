@@ -19,6 +19,7 @@ export class RegisterComponent {
   alreadyAccountLabel = '';
   signInGoogle = '';
   actLang = 'Magyar';
+  langSign = "";
   loading: boolean = false;
   registerError: any = {
     show: false
@@ -33,6 +34,7 @@ export class RegisterComponent {
   email = '';
   password = '';
   confirm_password = '';
+  error='';
 
   constructor(private config: ConfigService, private router: Router, private auth: AuthService) {
     this.router.events
@@ -40,6 +42,7 @@ export class RegisterComponent {
       .subscribe(() => {
         this.loadContent();
       });
+      this.langSign = config.langSign
   }
 
   ngOnInit() {
@@ -95,23 +98,79 @@ export class RegisterComponent {
       (error) => {
         console.error('Hiba:', error);
         if (error.status === 422) {
-          this.registerError.message = error.error.message || 'Hibás adatok!';
+          this.error = error.error.message;
           this.registerError.details = error.error.data || {};
           if (this.registerError.details.email) {
-            this.inputClassEmail = 'form-control is-invalid';
+            if (Array.isArray(this.registerError.details.email)&& this.langSign=="en") {
+              this.registerError.details.email = this.registerError.details.email.map((err: string) =>
+                err === "Nem megfelelő email formátum" ? "Invalid email format" :
+                err === "Email nem lehet üres" ? "Email can't be empty" :
+                err === "Ez az email cím foglalt!" ? "This email is already in use!" :
+                err
+              );
+            } else if (typeof this.registerError.details.email === "string") {
+              this.registerError.details.email = this.registerError.details.email.replace(
+                "Nem megfelelő email formátum",
+                "Invalid email format"
+              ).replace(
+                "Email nem lehet üres",
+                "Email can't be empty"
+              ).replace(
+                "Ez az email cím foglalt!",
+                "This email is already in use!"
+              );
+            }
+            
+            this.inputClassEmail = "form-control is-invalid";
           }
+          
           if (this.registerError.details.password) {
+            if (
+              this.registerError.details.password &&
+              Array.isArray(this.registerError.details.password)&& this.langSign=="en"
+            ) {
+              this.registerError.details.password = this.registerError.details.password.map((err: string) =>
+                err === "Jelszó nem lehet üres" ? "Password can't be empty" :
+                err === "Túl rövid jelszó" ? "Too short password" :
+                err === "A jelszónak tartalmazia kell kisbetűt, nagybetűt és számot"
+                  ? "Password must contain at least one lowercase letter, one uppercase letter, and one number"
+                  : err
+              );
+            } else if (typeof this.registerError.details.password === "string") {
+              this.registerError.details.password = this.registerError.details.password.replace(
+                "Jelszó nem lehet üres",
+                "Password can't be empty"
+              ).replace(
+                "Túl rövid jelszó",
+                "Too short password"
+              ).replace(
+                "A jelszónak tartalmazia kell kisbetűt, nagybetűt és számot",
+                "Password must contain at least one lowercase letter, one uppercase letter, and one number"
+              );
+            }
+            
             this.inputClassPassword = 'form-control is-invalid';
           }
           if (this.registerError.details.name) {
             this.inputClassName = 'form-control is-invalid';
           }
           if (this.registerError.details.confirm_password) {
+            if (Array.isArray(this.registerError.details.confirm_password)&& this.langSign=="en") {
+              this.registerError.details.confirm_password = this.registerError.details.confirm_password.map((err: string) =>
+                err === "Nem egyező jelszó" ? "Passwords do not match" : err
+              );
+            } else if (typeof this.registerError.details.confirm_password === "string") {
+              this.registerError.details.confirm_password = this.registerError.details.confirm_password.replace(
+                "Nem egyező jelszó",
+                "Passwords do not match"
+              );
+            }
             this.inputClassPassword = 'form-control is-invalid';
           }
         }
       }
     );
   }
+
 
 }
