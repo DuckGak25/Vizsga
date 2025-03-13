@@ -246,7 +246,13 @@ export class AddRecipeComponent {
           }
         );
       }
-      alert('Sikeresen hozzáadtad a receptet!');
+      if(this.langSign === 'hu'){
+        alert('Sikeresen hozzáadtad a receptet!');
+      }
+      else{
+        alert('Successfully added the recipe!');
+      }
+      this.getRecipes();
       this.selectedIngredients.clear();
     }
     
