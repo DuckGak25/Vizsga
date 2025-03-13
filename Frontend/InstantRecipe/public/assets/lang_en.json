@@ -81,7 +81,10 @@
     "remove": "Remove",
     "quantity": "Quantity",
     "waitingForApprove": "Waiting for approval",
-    "approve": "Approve"
+    "approve": "Approve",
+    "addIngredient": "Add Ingredient",
+    "operations":"Operations",
+    "preview": "Preview"
 
 
 }
