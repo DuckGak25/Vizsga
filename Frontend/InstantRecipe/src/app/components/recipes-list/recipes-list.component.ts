@@ -126,7 +126,7 @@ export class RecipesListComponent {
       }
       this.categorizedIngredients[category].add(ingredient);
     });
-  }
+  } 
 
   
 

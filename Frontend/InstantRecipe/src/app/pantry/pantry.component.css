@@ -344,4 +344,12 @@ box-shadow:0 0 0 2px transparent,0 3px 3px rgba(0,0,0,.3);
 #checkbox1:checked + .checkbox-label, #checkbox2:checked + .checkbox-label{
   box-shadow:inset 0 0 0 18px rgba(255,90,0,1),0 0 0 2px rgba(255,90,0,1);
 }
+.checkboxing label, 
+.header li {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
 
