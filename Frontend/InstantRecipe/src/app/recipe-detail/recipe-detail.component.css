@@ -49,6 +49,10 @@ h2 {
     margin-left: 10px;
     flex: 2;
     line-height: 2.6;
+    border-radius: 16px;
+    padding: 10px;
+    color: black;
+    font-weight: 500px;
     font-size: large;
     background-color: rgba(255, 255, 255, 0.25);
     border: 1px solid rgba(255, 255, 255, 0.32);
@@ -98,13 +102,10 @@ h2 {
     font-size: 14px;
     font-style: italic;
     padding: 10px;
-
+    color: black;
 }
 
 
-.imagesource a {
-    color: rgb(0, 0, 0);
-}
 
 @media (min-width: 901px) {
     .mobile {

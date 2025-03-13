@@ -19,6 +19,7 @@ export class LoginComponent {
   notRegistered = '';
   signInGoogle = '';
   actLang = 'Magyar';
+  langSign = "";
   loading: boolean = false;
 
   email = '';
@@ -34,6 +35,7 @@ export class LoginComponent {
       .subscribe(() => {
         this.loadContent();
       });
+      this.langSign = config.langSign
   }
 
   ngOnInit() {
@@ -81,6 +83,9 @@ export class LoginComponent {
         console.error('Hiba:', error);
         if (error.status === 401) {
           this.error = error.error.message;
+          if (this.error === 'Helytelen felhasználó vagy jelszó' && this.langSign == "en") {
+            this.error = 'Incorrect email or password';
+          }
           this.inputClassEmail = 'form-control email-input  is-invalid';
           this.inputClassPassword = 'form-control password-input  is-invalid';
         }

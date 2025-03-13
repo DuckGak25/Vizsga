@@ -24,9 +24,8 @@
       <div class="description content">
         <h2>{{descriptionTitle}}</h2>
         <div [innerHTML]="recipe.description" class="description"></div>
-        {{recipe.user_id}}
         <div>
-          <span class="imagesource"> {{imageSource}} <a href="{{recipe.imagelink}}">{{recipe.imagelink}}</a></span>
+          <a class="imagesource" href="{{recipe.imagelink}}">{{imageSource}}</a>
         </div>
       </div>
   </div>
