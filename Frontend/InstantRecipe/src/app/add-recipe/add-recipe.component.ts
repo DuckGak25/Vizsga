@@ -211,7 +211,7 @@ export class AddRecipeComponent {
     this.recipeService.createRecipe(recipeData).subscribe(
       (response: any) => {
         console.log('Recipe created successfully', response);
-        this.createdRecipeId = response.id;
+        this.createdRecipeId = response.data.id;
         this.addIngredients();
       },
       (error) => {
