@@ -8,7 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\RecipeRequest;
 use App\Http\Resources\Recipe as RecipeResource;
-use App\Http\Reuqests\RecipeIngredientRequest;
+use App\Http\Requests\RecipeIngredientRequest;
 use App\Http\Mail\RecipeApprovalRequest;
 use App\Http\Controllers\ResponseController;
 use Illuminate\Support\Facades\Gate;
@@ -158,5 +158,6 @@ class RecipeController extends ResponseController
         $notApprovedRecipes = Recipe::where('approved', false)->with('ingredients', 'user')->get();
         return response()->json($notApprovedRecipes);
     }
+
 }
 

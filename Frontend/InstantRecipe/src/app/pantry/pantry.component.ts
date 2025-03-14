@@ -73,7 +73,6 @@ export class PantryComponent {
       this.filteredRecipes = this.allRecipes;
       return;
     }
-  
     if (this.andIncluded) {
       this.filteredRecipes = this.allRecipes.filter(recipe =>
         Array.from(this.selectedIngredients).every(ingredient =>

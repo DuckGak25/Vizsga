@@ -13,7 +13,6 @@ Route::post( "/register", [ AuthController::class, "register" ]);
 Route::post( "/login", [ AuthController::class, "login" ]);
 Route::get('/recipes/{id}', [RecipeController::class, 'show']);
 
-Route::delete("/deleteuser/{id}", [ UserController::class, "deleteUser" ]);
 //Route::post('/postrecipe', [RecipeController::class, 'postRecipes']);
 
 
@@ -30,7 +29,7 @@ Route::middleware(['auth:sanctum'])->group( function () {
 
     Route::get('/recipes/{id}/ingredients', [RecipeController::class, 'showIngredients']);
 
-
+    
     Route::post('/postrecipe', [RecipeController::class, 'postRecipes']);
     Route::put('/modifyrecipe', [RecipeController::class, 'modifyRecipe']);
     Route::delete('/deleterecipe/{id}', [RecipeController::class, 'deleteRecipe']);
@@ -52,5 +51,4 @@ Route::middleware(['auth:sanctum'])->group( function () {
     Route::put("/toggle-featured", [ RecipeController::class, "toggleFeatured" ]);
     Route::put("/approve-recipe", [ RecipeController::class, "approveRecipe" ]);
     Route::get("/pendingrecipes", [ RecipeController::class, "getNotApprovedRecipes" ]);
-
 });

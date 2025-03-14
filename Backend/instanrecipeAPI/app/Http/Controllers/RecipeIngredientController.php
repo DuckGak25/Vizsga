@@ -73,6 +73,9 @@ class RecipeIngredientController extends ResponseController
             return $this->sendResponse('Adathiba', 'Nem található recept hozzávaló', 404);
         }
     }
+
+
+    
     
     
 
