@@ -38,12 +38,14 @@ export class RecipesListComponent {
   addButton = "";
   quantity = "";
   language = "";
+  everyRecipe = "";
   recipes: Recipe[] = [];
   selectedIngredients: Set<Ingredient> = new Set();
   ingredientQuantities: { [key: number]: string } = {};
   categorizedIngredients: { [key: string]: Set<Ingredient> } = {};
   pendingRecipes: any[] = [];
   filterPending: boolean = false;
+  filterLanguage: string = '';
 
   newIngredient: Ingredient = {
     id: 0,
@@ -57,7 +59,6 @@ export class RecipesListComponent {
     ingredient_id: 0,
     quantity: ''
   };
-  
 
   selectedRecipeId: number = 0;
   searchTerm: string = '';
@@ -82,7 +83,6 @@ export class RecipesListComponent {
       advlist autolink link image lists charmap preview anchor 
       searchreplace visualblocks code fullscreen insertdatetime wordcount
     `, 
-
     toolbar: 'undo redo | bold italic underline | formatselect |  bullist numlist  | removeformat',
   };
   recipeIngredientsMap: any;
@@ -91,6 +91,7 @@ export class RecipesListComponent {
     this.getIngredientsList();
     this.getRecipes();
     this.filterPendingRecipes();
+    
   }
 
   // open() {
@@ -104,6 +105,7 @@ export class RecipesListComponent {
 
   ngOnInit() {
     this.loadContent();
+
   }
   
   
@@ -133,7 +135,8 @@ export class RecipesListComponent {
       this.operations = content.operations || '';
       this.preview = content.preview || '';
       this.addButton = content.addButton || '';
-      this.language = content.language || '';
+      this.everyRecipe = content.everyRecipe || '';
+      
 
     });
   }
@@ -234,7 +237,6 @@ export class RecipesListComponent {
   updateIngredientQuantity(ingredientId: number, quantity: string) {
     this.ingredientQuantities[ingredientId] = quantity;
   } 
-
   async postIngredient(ingredient: Ingredient) {
     try {
       const response = await this.recipeService.postIngredients(ingredient).toPromise();
@@ -251,8 +253,18 @@ export class RecipesListComponent {
   getRecipes() {
     if (this.filterPending) {
       this.filterRecipes();
-    } 
-    if (!this.filterPending) {
+    } else if (this.filterLanguage === 'hu') {
+      this.recipeService.getHungarianRecipes().subscribe((data: Recipe[]) => {
+        this.recipes = data;
+        console.log(this.recipes);
+      })
+    } else if (this.filterLanguage === 'en') {
+      this.recipeService.getEnglishRecipes().subscribe((data: Recipe[]) => {
+        this.recipes = data;
+        console.log(this.recipes);
+      })
+    }
+    else {
     this.recipeService.getAllRecipes().subscribe((data: Recipe[]) => {
       this.recipes = data;
       console.log(this.recipes);
@@ -464,7 +476,7 @@ export class RecipesListComponent {
     
     if (this.filterPending) {
       this.recipes = this.pendingRecipes;
-    }
+    } 
   }
 
   toggleFilter() {

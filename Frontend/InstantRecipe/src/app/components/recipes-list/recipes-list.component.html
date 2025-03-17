@@ -2,12 +2,17 @@
   <div class="card ">
         <div class="card-body">
             <h1>{{recipesHeaderTitle}}</h1>
-            <div id="toggles">
-              <!-- <input type="checkbox" id="checkbox1" id="checkbox1" class="ios-toggle" [checked]="filterPending" (click)="toggleFilter()"/> -->
-              <input type="checkbox" id="checkbox1" class="ios-toggle" [checked]="filterPending" (click)="toggleFilter()"/>
-              <label for="checkbox1" class="checkbox-label"></label>
+              <div id="toggles">
+                <input type="checkbox" id="checkbox1" id="checkbox1" class="ios-toggle" [checked]="filterPending" (click)="toggleFilter()"/>
+                <label for="checkbox1" class="checkbox-label"></label>
+              </div>
+              <select name="language" [(ngModel)]="filterLanguage" class="form-control" (change)="getRecipes()">
+                <option value="">{{everyRecipe}}</option>
+                <option value="hu">Magyar</option>
+                <option value="en">English</option>
+              </select>
               
-            </div>
+
 
             <div class="list-card" *ngFor="let recipe of recipes">
               <div class="row">
@@ -35,24 +40,27 @@
 
                     <!-- Szerkesztés -->
                     <div class="edit-recipe" *ngIf="recipe.id === selectedRecipeId">
-                        <div class="form-floating mb-3">
-                            <input
-                              type="text"
-                              class="form-control"
-                              id="title"
-                              name="title"
-                              placeholder="Recept neve"
-                              [(ngModel)]="recipe.title"
-                            />
-                            <label for="title">{{recipeName}}</label>
-                          </div>
-                          <div class="form-floating mb-3 row">
-                            <select name="language" id="" [(ngModel)]="recipe.language" class="form-control">
-                              <option value="hu">Magyar</option>
-                              <option value="en">English</option>
-                            </select>
-                            <label for="language">{{language}}</label>
-                          </div>
+
+                            <div class="row">
+                              <div class="col">
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="title"
+                                  name="title"
+                                  [placeholder]="recipeName"
+                                  [(ngModel)]="recipe.title"
+                                />
+                              </div>
+                              <div class="col">
+                                <select name="language" id="" [(ngModel)]="recipe.language" class="form-control">
+                                  <option value="hu">Magyar</option>
+                                  <option value="en">English</option>
+                                </select>
+                                <label for="language">{{language}}</label>
+                              </div>
+                            </div>
+
                           
                           <!-- Leírás -->
                           <div class="form-floating mb-3 row">
@@ -65,10 +73,7 @@
                                 [(ngModel)]="recipe.description" [ngModelOptions]="{standalone: true}">
                               </editor>
                             </div>
-                            <div class="col">
-                              <h2>{{requirementTitle}}</h2>
-                              <img src="/assets/images/description_requirements.png" alt="description requirements" class="img-fluid" style="height: 450px;">
-                            </div>
+
                         </div>
                   
                           
@@ -82,28 +87,22 @@
                                     <h4>{{ recipe.title }}</h4>
                                   </div>
                                 </div>
-                                <div class="form-floating mt-3 col">
                                   <input
                                     type="text"
                                     class="form-control"
                                     id="imagelink"
                                     name="imagelink"
-                                    placeholder="Kepek linkje"
+                                    [placeholder]="imageLink"
                                     [(ngModel)]="recipe.imagelink"
                                   />
-                                  <label for="imagelink">{{imageLink}}</label>
-                                </div>
-                                <div class="form-floating mt-3 col">
                                   <input
                                     type="text"
                                     class="form-control"
                                     id="categories"
                                     name="categories"
-                                    placeholder="Kategória"
+                                    [placeholder]="categoryTitle"
                                     [(ngModel)]="recipe.categories"
                                   />
-                                  <label for="categories">{{categoryTitle}}</label>
-                                </div>
                             </div>
 
                           </div>

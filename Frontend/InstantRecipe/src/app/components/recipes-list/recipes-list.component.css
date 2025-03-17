@@ -178,6 +178,16 @@ button:hover {
   background-color: rgba(230, 255, 230, 0.9);
 }
 
+
+
+.form-control{
+
+  margin: 0 auto;
+  height: 55px;
+  border-radius: 16px;
+  margin-bottom: 5px;
+}
+
 .form-check {
   display: inline-flex;
   align-items: center;
