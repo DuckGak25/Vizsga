@@ -26,10 +26,10 @@ export class NavbarComponent {
   pantry = "";
   actLang = "Magyar";
   hamburgerActive = false;
-  someValue: boolean | undefined;
 
 
-  constructor(private config: ConfigService, private router: Router, private auth: AuthService, private cdr: ChangeDetectorRef) {
+
+  constructor(private config: ConfigService, private router: Router, private auth: AuthService) {
     config.getContent().subscribe((content) => {
       this.langSelection = content.langSelection || [];
       this.navItems = content.navItem || [];
@@ -43,6 +43,7 @@ export class NavbarComponent {
       this.addRecipe = content.addRecipe || '';
 
     });
+    
     
   }
 
@@ -66,10 +67,7 @@ export class NavbarComponent {
       this.actLang = savedLanguage === 'en' ? 'English' : savedLanguage === 'de' ? 'Deutsch' : 'Magyar';
       this.config.changeLanguage(savedLanguage);
     }
-    setTimeout(() => {
-      this.someValue = false;
-      this.cdr.detectChanges();  // Trigger a change detection manually
-    });
+
   }
 
   toggleLangSelector() {
