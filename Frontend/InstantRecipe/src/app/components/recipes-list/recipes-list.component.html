@@ -1,197 +1,132 @@
 <div class="content">
-  <div class="card ">
-        <div class="card-body">
-            <h1>{{recipesHeaderTitle}}</h1>
-              <div id="toggles">
-                <input type="checkbox" id="checkbox1" id="checkbox1" class="ios-toggle" [checked]="filterPending" (click)="toggleFilter()"/>
-                <label for="checkbox1" class="checkbox-label"></label>
-              </div>
-              <select name="language" [(ngModel)]="filterLanguage" class="form-control" (change)="getRecipes()">
-                <option value="">{{everyRecipe}}</option>
+  <div class="card">
+    <div class="card-body">
+      <h1>{{recipesHeaderTitle}}</h1>
+      
+      <div id="toggles">
+        <input type="checkbox" id="checkbox1" class="ios-toggle" [checked]="filterPending" (click)="toggleFilter()" />
+        <label for="checkbox1" class="checkbox-label"></label>
+      </div>
+      
+      <select name="language" [(ngModel)]="filterLanguage" class="form-control" (change)="getRecipes()">
+        <option value="">{{everyRecipe}}</option>
+        <option value="hu">Magyar</option>
+        <option value="en">English</option>
+      </select>
+      
+      <div class="list-card" *ngFor="let recipe of recipes">
+        <div class="row">
+          <div class="col"><h2>#{{recipe.id}}</h2></div>
+          <div class="col"><h2>{{recipe.title}}</h2></div>
+          <div class="col"><h2>{{recipe.language}}</h2></div>
+          <div class="col" *ngIf="!recipe.approved"><h2>{{waitingForApprove}}</h2></div>
+          <div class="col" *ngIf="recipe.approved">
+            <input class="star" type="checkbox" title="bookmark page" [checked]="recipe.featured" (click)="toggleFeatured(recipe)" />
+          </div>
+          <div class="col">
+            <button class="btn btn-success" (click)="editRecipe(recipe)">{{editButton}}</button>
+            <button class="btn btn-danger" (click)="deleteRecipe(recipe)">{{deleteButton}}</button>
+            <button *ngIf="!recipe.approved" (click)="approveRecipe(recipe)" class="btn btn-warning" type="submit">{{approve}}</button>
+          </div>
+        </div>
+        
+        <div class="edit-recipe" *ngIf="recipe.id === selectedRecipeId">
+          <div class="row">
+            <div class="col">
+              <input type="text" class="form-control" id="title" name="title" [placeholder]="recipeName" [(ngModel)]="recipe.title" />
+            </div>
+            <div class="col">
+              <select name="language" [(ngModel)]="recipe.language" class="form-control">
                 <option value="hu">Magyar</option>
                 <option value="en">English</option>
               </select>
-              
-
-
-            <div class="list-card" *ngFor="let recipe of recipes">
-              <div class="row">
-                    <div class="col">
-                        <h2>#{{recipe.id}}</h2>
-                    </div>
-                    <div class="col">
-                        <h2>{{recipe.title}}</h2>
-                    </div>
-                    <div class="col">
-                        <h2>{{recipe.language}}</h2>
-                    </div>
-                    <div class="col" *ngIf="!recipe.approved">
-                      <h2>{{waitingForApprove}}</h2>
-                    </div>
-                    <div class="col" *ngIf="recipe.approved">
-                      <input class="star" type="checkbox" title="bookmark page"[checked]="recipe.featured" (click)="toggleFeatured(recipe)"><br/><br/>
-                    </div>
-                    <div class="col">
-                        <button class="btn btn-success" (click)="editRecipe(recipe)">{{editButton}}</button>
-                        <button class="btn btn-danger" (click)="deleteRecipe(recipe)">{{deleteButton}}</button>
-                        <button *ngIf="!recipe.approved" (click)="approveRecipe(recipe)" class="btn btn-warning" type="submit">{{approve}}</button>
-                    </div>
-
-                    <!-- Szerkesztés -->
-                    <div class="edit-recipe" *ngIf="recipe.id === selectedRecipeId">
-
-                            <div class="row">
-                              <div class="col">
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  id="title"
-                                  name="title"
-                                  [placeholder]="recipeName"
-                                  [(ngModel)]="recipe.title"
-                                />
-                              </div>
-                              <div class="col">
-                                <select name="language" id="" [(ngModel)]="recipe.language" class="form-control">
-                                  <option value="hu">Magyar</option>
-                                  <option value="en">English</option>
-                                </select>
-                                <label for="language">{{language}}</label>
-                              </div>
-                            </div>
-
-                          
-                          <!-- Leírás -->
-                          <div class="form-floating mb-3 row">
-                            <div class="col">
-                              <h2>{{descriptionTitle}}</h2>  
-                              <editor
-                                name="description"
-                                [init]="editorConfig"
-                                apiKey="9uesm71yy1ns25hhwg2553qmtvshhaud699moglz5xba0kkq"
-                                [(ngModel)]="recipe.description" [ngModelOptions]="{standalone: true}">
-                              </editor>
-                            </div>
-
-                        </div>
-                  
-                          
-
-                          <div class="row mt-3">
-                            <div class="row">
-                              <div class="col">
-                                <h2>{{preview}}</h2>
-                                <div class="recipecard" [style.background-image]="'url(' + recipe.imagelink + ' )'">
-                                  <div class="recipe-header">
-                                    <h4>{{ recipe.title }}</h4>
-                                  </div>
-                                </div>
-                                  <input
-                                    type="text"
-                                    class="form-control"
-                                    id="imagelink"
-                                    name="imagelink"
-                                    [placeholder]="imageLink"
-                                    [(ngModel)]="recipe.imagelink"
-                                  />
-                                  <input
-                                    type="text"
-                                    class="form-control"
-                                    id="categories"
-                                    name="categories"
-                                    [placeholder]="categoryTitle"
-                                    [(ngModel)]="recipe.categories"
-                                  />
-                            </div>
-
-                          </div>
-                          </div>
-                          <div class="selected-ingredients mt-3 ml-4 row">
-                            <h2>{{ingredientsTitle}}</h2>
-                            <table class="table table-hover ingredientTable">
-                              <thead>
-                                <tr>
-                                  <th scope="col">{{ingredientName}}</th>
-                                  <th scope="col">{{quantity}}</th>
-                                  <th scope="col">{{operations}}</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr *ngFor="let ingredient of recipe.ingredients">
-                                  <td>{{ ingredient.name }}</td>
-                                  <td>{{ ingredient.pivot?.quantity }}</td>
-                                  <td>
-                                    <button class="btn btn-danger" (click)="deleteIngredientFromRecipe(ingredient)">{{deleteButton}}</button>
-                                  </td>
-                                </tr>
-                            </table>
-
-                          </div>
-                          <div class="row">
-                            
-                            <div class="ingredient-list mt-3 col" >
-                              <input type="text" [(ngModel)]="searchTerm" name="search" [placeholder]="searchForIngredients" class="form-control mb-3 mt-3" />
-                              <button type="button" (click)="clearSelectedIngredients()" class="btn btn-danger mb-3">
-                                {{deleteSelected}}
-                              </button>
-                              <div *ngIf="searchTerm !== ''">
-                                <div *ngFor="let category of categorizedIngredients | keyvalue">
-                                  <h2 *ngIf="filterIngredients(category.value).length > 0">{{ category.key }}</h2>
-                                    <div *ngFor="let ingredient of filterIngredients(category.value)" class="form-check">
-                                      <div class="checkboxing">
-                                        <input type="checkbox" [value]="ingredient" [id]="'ingredient-' + ingredient.id" (change)="onIngredientChange($event, ingredient)" class="ingredient"/>
-                                        <label [for]="'ingredient-' + ingredient.id">{{ ingredient.name }}</label>
-                                      </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                              <div class="post-ingredient mt-3">
-                                <h2>{{addIngredient}}</h2>
-                                <div class="form-floating mb-3 row">
-                                  <div class="col">
-                                    <input type="text" class="form-control col" id="ingredient" name="ingredient" [placeholder]="ingredientName" [(ngModel)]="newIngredient.name"/>
-                                  </div>
-                                  <div class="col">
-                                    <input type="text" class="form-control" id="category" name="category" [placeholder]="categoryTitle" [(ngModel)]="newIngredient.category">
-                                  </div>
-                                  <div class="col">
-                                    <select name="language" id="" [(ngModel)]="newIngredient.language" class="form-control" placeholder="Nyelv">
-                                      <option value="hu" >Magyar</option>
-                                      <option value="en">English</option>
-                                    </select>
-                                  </div>
-                                  <div class="col">
-                                    <button class="btn btn-success" (click)="postIngredient(newIngredient);" style="width: 100%;">{{addButton}}</button>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            
-                            <div class="selected-ingredients mt-4 col">
-                              <h2>{{selectedIngredientsTitle}}</h2>
-                              <table class="table">
-                                <tbody>
-                                  <tr *ngFor="let ingredient of selectedIngredients">
-                                    <td >{{ ingredient.name }}</td>
-                                    <td >
-                                      <input type="text" [(ngModel)]="ingredientQuantities[ingredient.id]" (ngModelChange)="updateIngredientQuantity(ingredient.id, $event)" [placeholder]="quantity" class="form-control"/>
-                                    </td>
-                                    <td>
-                                      <button class="btn btn-danger" (click)="removeIngredient(ingredient)">{{[remove]}}</button>
-                                    </td>
-                                  </tr>
-                              </table>
-                            </div>
-                          </div>
-                          <div class="row">
-                            
-                          </div>
-                          <button (click)="saveRecipe(recipe)" class="btn btn-primary" type="submit" style="width: 100%;">{{saveButton}}</button>
-                  </div>
-              </div>
+              <label for="language">{{language}}</label>
+            </div>
           </div>
+          
+          <div class="form-floating mb-3 row">
+            <div class="col">
+              <h2>{{descriptionTitle}}</h2>
+              <editor name="description" [init]="editorConfig" apiKey="9uesm71yy1ns25hhwg2553qmtvshhaud699moglz5xba0kkq" [(ngModel)]="recipe.description" [ngModelOptions]="{standalone: true}"></editor>
+            </div>
+          </div>
+          
+          <div class="row mt-3">
+            <div class="col">
+              <h2>{{preview}}</h2>
+              <div class="recipecard" [style.background-image]="'url(' + recipe.imagelink + ' )'">
+                <div class="recipe-header">
+                  <h4>{{ recipe.title }}</h4>
+                </div>
+              </div>
+              <input type="text" class="form-control" id="imagelink" name="imagelink" [placeholder]="imageLink" [(ngModel)]="recipe.imagelink" />
+              <input type="text" class="form-control" id="categories" name="categories" [placeholder]="categoryTitle" [(ngModel)]="recipe.categories" />
+            </div>
+          </div>
+          
+          <div class="selected-ingredients mt-3 ml-4 row">
+            <h2>{{ingredientsTitle}}</h2>
+            <div class="ingredient-list mt-3 col">
+              <input type="text" [(ngModel)]="searchTerm" name="search" [placeholder]="searchForIngredients" class="form-control mb-3 mt-3" />
+              <button type="button" (click)="clearSelectedIngredients()" class="btn btn-danger mb-3">{{deleteSelected}}</button>
+              <div *ngIf="searchTerm !== ''">
+                <div *ngFor="let category of categorizedIngredients | keyvalue">
+                  <h2 *ngIf="filterIngredients(category.value).length > 0">{{ category.key }}</h2>
+                  <div *ngFor="let ingredient of filterIngredients(category.value)" class="form-check">
+                    <div class="checkboxing">
+                      <input type="checkbox" [value]="ingredient" [id]="'ingredient-' + ingredient.id" (change)="onIngredientChange($event, ingredient)" class="ingredient" />
+                      <label [for]="'ingredient-' + ingredient.id">{{ ingredient.name }}</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="post-ingredient mt-3">
+                <h2>{{addIngredient}}</h2>
+                <div class="form-floating mb-3 row">
+                  <div class="col">
+                    <input type="text" class="form-control" id="ingredient" name="ingredient" [placeholder]="ingredientName" [(ngModel)]="newIngredient.name" />
+                  </div>
+                  <div class="col">
+                    <input type="text" class="form-control" id="category" name="category" [placeholder]="categoryTitle" [(ngModel)]="newIngredient.category" />
+                  </div>
+                  <div class="col">
+                    <select name="language" [(ngModel)]="newIngredient.language" class="form-control">
+                      <option value="hu">Magyar</option>
+                      <option value="en">English</option>
+                    </select>
+                  </div>
+                  <div class="col">
+                    <button class="btn btn-success" (click)="postIngredient(newIngredient)" style="width: 100%;">{{addButton}}</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col">
+              <table class="table table-hover ingredientTable">
+                <thead>
+                  <tr>
+                    <th>{{ingredientName}}</th>
+                    <th>{{quantity}}</th>
+                    <th>{{operations}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let ingredient of recipe.ingredients">
+                    <td>{{ ingredient.name }}</td>
+                    <td>{{ ingredient.pivot?.quantity }}</td>
+                    <td>
+                      <button class="btn btn-danger" (click)="deleteIngredientFromRecipe(ingredient)">{{deleteButton}}</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <button (click)="saveRecipe(recipe)" class="btn btn-primary" type="submit" style="width: 100%;">{{saveButton}}</button>
+        </div>
+      </div>
     </div>
-
   </div>
 </div>

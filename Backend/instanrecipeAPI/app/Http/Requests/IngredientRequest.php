@@ -22,11 +22,12 @@ class IngredientRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name" => "required|string|max:255|unique:ingredients,name",
+            "name" => "required|string|max:255|unique:ingredients,name," . $this->route('ingredient') . ",id,language," . request('language'),
             "category" => "required|string",
             "language" => "required|string"
         ];
     }
+    
 
     public function messages()
     {
