@@ -6,6 +6,8 @@ import AOS from 'aos';
 import { Ingredient } from '../../models/ingredient.model';
 import { RawEditorOptions } from 'tinymce';
 import { RecipeIngredient } from '../../models/recipe-ingredient.model';
+import { Pipe, PipeTransform } from '@angular/core';
+
 
 @Component({
   selector: 'app-recipes-list',
@@ -13,6 +15,7 @@ import { RecipeIngredient } from '../../models/recipe-ingredient.model';
   styleUrl: './recipes-list.component.css'
 })
 export class RecipesListComponent {
+  searchTerm: string = ''; 
   ingredients: Ingredient[] = [];
   editButton = "";
   deleteButton = "";
@@ -62,7 +65,6 @@ export class RecipesListComponent {
   };
 
   selectedRecipeId: number = 0;
-  searchTerm: string = '';
 
   isVisible: boolean = false;
   modalTitle = '';
@@ -245,17 +247,19 @@ export class RecipesListComponent {
       } else {
         alert("Successfully added the ingredient!")
       }
-      
-      await this.getIngredientsList();
+  
+      this.updateIngredientsList();
+  
     } catch (error) {
       if (this.langSign === "hu") {
-        alert("Hozzávaló hozzáadása sikertelen!")
+        alert("Sikertelen hozzáadás!")
       } else {
-      alert("Error adding ingredient")
+        alert("Unable to add the ingredient!")
       }
       console.error('Error adding ingredient', error);
     }
   }
+  
 
   getRecipes() {
     if (this.filterPending) {
@@ -371,7 +375,7 @@ export class RecipesListComponent {
       );
     });
   
-    alert('Sikeresen hozzáadtad a receptet!');
+    alert('Sikeresen hozzáadtad a hozzávalókat!');
     this.selectedIngredients.clear();
   }
   
@@ -476,29 +480,34 @@ export class RecipesListComponent {
     );
   }
 
-  filterRecipes() {
-    let filteredRecipes = this.recipes;
-    
-    if (this.searchTerm) {
-      const lowerCaseSearchTerm = this.searchTerm.toLowerCase();
-      filteredRecipes = filteredRecipes.filter(recipe =>
-        recipe.title.toLowerCase().includes(lowerCaseSearchTerm)
-      );
-    }
-  
-    if (this.filterPending) {
-      filteredRecipes = filteredRecipes.filter(recipe => !recipe.approved);
-    }
-    this.recipes = filteredRecipes;
-    
-  }
-
   toggleFilter() {
     this.filterPending = !this.filterPending;
     this.getRecipes();
   }
+filterRecipes() {
+  let filteredRecipes = this.recipes;
+  
+  if (this.searchTerm) {
+    const lowerCaseSearchTerm = this.searchTerm.toLowerCase();
+    filteredRecipes = filteredRecipes.filter(recipe =>
+      recipe.title.toLowerCase().includes(lowerCaseSearchTerm)
+    );
+  }
+
+  if (this.filterPending) {
+    filteredRecipes = filteredRecipes.filter(recipe => !recipe.approved);
+  }
+  this.recipes = filteredRecipes;
+  
+}
 
 }
+
+
+
+
+
+
 
   
   
