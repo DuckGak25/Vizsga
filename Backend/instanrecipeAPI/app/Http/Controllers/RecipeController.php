@@ -160,5 +160,15 @@ class RecipeController extends ResponseController
         return response()->json($notApprovedRecipes);
     }
 
+    public function getEnglishRecipes() {
+        $englishRecipes = Recipe::where('language', 'en')->with('ingredients', 'user')->get();
+        return response()->json($englishRecipes);
+    }
+
+    public function getHungarianRecipes() {
+        $hungarianRecipes = Recipe::where('language', 'hu')->with('ingredients', 'user')->get();
+        return response()->json($hungarianRecipes);
+    }
+
 }
 
