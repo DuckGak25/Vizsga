@@ -42,6 +42,7 @@ export class RecipesListComponent {
   quantity = "";
   language = "";
   everyRecipe = "";
+  langSign = ""
   recipes: Recipe[] = [];
   selectedIngredients: Set<Ingredient> = new Set();
   ingredientQuantities: { [key: number]: string } = {};
@@ -89,11 +90,11 @@ export class RecipesListComponent {
   };
   recipeIngredientsMap: any;
 
-  constructor(private config: ConfigService, private recipeService: RecipeService, private cdr: ChangeDetectorRef){
+  constructor(private config: ConfigService, private recipeService: RecipeService){
     this.getIngredientsList();
     this.getRecipes();
     this.filterPendingRecipes();
-    
+    this.langSign = config.langSign
   }
 
   // open() {
@@ -149,13 +150,23 @@ export class RecipesListComponent {
   }
 
 
+  // getIngredientsList() {
+  //   this.recipeService.getIngredients().subscribe((ingredients: Ingredient[]) => {
+  //     this.ingredients = ingredients;
+  //     this.categorizeIngredients();
+  //   });
+
+  // }
+  private ingredientsLoaded = false;
+
   getIngredientsList() {
-    this.recipeService.getIngredients().subscribe((ingredients: Ingredient[]) => {
-      this.ingredients = ingredients;
+    this.recipeService.getIngredients().subscribe(ingredients => {
+      this.ingredients = ingredients
       this.categorizeIngredients();
-    });
+    })
 
   }
+
 
   editRecipe(recipe: Recipe) {
     this.selectedRecipeId = recipe.id;
@@ -226,14 +237,24 @@ export class RecipesListComponent {
   updateIngredientQuantity(ingredientId: number, quantity: string) {
     this.ingredientQuantities[ingredientId] = quantity;
   } 
+
   async postIngredient(ingredient: Ingredient) {
     try {
       const response = await this.recipeService.postIngredients(ingredient).toPromise();
       console.log('Ingredient added successfully', response);
-      this.getIngredientsList();
+      if (this.langSign === "hu") {
+        alert("Sikeresen hozzáadtad a hozzávalót!")
+      } else {
+        alert("Successfully added the ingredient!")
+      }
       
-      await this.getRecipes();
+      await this.getIngredientsList();
     } catch (error) {
+      if (this.langSign === "hu") {
+        alert("Hozzávaló hozzáadása sikertelen!")
+      } else {
+      alert("Error adding ingredient")
+      }
       console.error('Error adding ingredient', error);
     }
   }
@@ -304,33 +325,58 @@ export class RecipesListComponent {
 
   }
 
-  addIngredients() {
-      const ingredientDataArray = Array.from(this.selectedIngredients).map(ingredient => ({
-        recipe_id: this.selectedRecipeId,
-        ingredient_id: ingredient.id,
-        quantity: this.ingredientQuantities[ingredient.id] || ''
-      }));
+  // addIngredients() {
+  //     const ingredientDataArray = Array.from(this.selectedIngredients).map(ingredient => ({
+  //       recipe_id: this.selectedRecipeId,
+  //       ingredient_id: ingredient.id,
+  //       quantity: this.ingredientQuantities[ingredient.id] || ''
+  //     }));
     
-      for (let i = 0; i < ingredientDataArray.length; i++) {
-        const ingredientData = ingredientDataArray[i];
-        this.recipeService.addIngredients(ingredientData).subscribe(
-          (response) => {
-            console.log(`Hozzávaló ${i + 1} sikeresn hozzáadva`, response);
-          },
-          (error) => {
-            console.error(`Hiba a hozzávaló ${i + 1} hozzáadásakor`, error);
-            if (error.error && error.error.errors) {
-              console.error('Validációs hiba:', error.error.errors);
-            }
-          }
-        );
-      }
+  //     for (let i = 0; i < ingredientDataArray.length; i++) {
+  //       const ingredientData = ingredientDataArray[i];
+  //       this.recipeService.addIngredients(ingredientData).subscribe(
+  //         (response) => {
+  //           console.log(`Hozzávaló ${i + 1} sikeresn hozzáadva`, response);
+  //         },
+  //         (error) => {
+  //           console.error(`Hiba a hozzávaló ${i + 1} hozzáadásakor`, error);
+  //           if (error.error && error.error.errors) {
+  //             console.error('Validációs hiba:', error.error.errors);
+  //           }
+  //         }
+  //       );
+  //     }
       
-      alert('Sikeresen hozzáadtad a receptet!');
-      this.getRecipes();
-      this.selectedIngredients.clear();
-    }
+  //     alert('Sikeresen hozzáadtad a receptet!');
+  //     this.getRecipes();
+  //     this.selectedIngredients.clear();
+  //   }
 
+  addIngredients() {
+    const ingredientDataArray = Array.from(this.selectedIngredients).map(ingredient => ({
+      recipe_id: this.selectedRecipeId,
+      ingredient_id: ingredient.id,
+      quantity: this.ingredientQuantities[ingredient.id] || ''
+    }));
+  
+    ingredientDataArray.forEach((ingredientData, index) => {
+      this.recipeService.addIngredients(ingredientData).subscribe(
+        (response) => {
+          console.log(`Hozzávaló ${index + 1} sikeresen hozzáadva`, response);
+          if (index === ingredientDataArray.length - 1) {
+            this.getIngredientsList(); // Csak az utolsó elem hozzáadása után frissít
+          }
+        },
+        (error) => {
+          console.error(`Hiba a hozzávaló ${index + 1} hozzáadásakor`, error);
+        }
+      );
+    });
+  
+    alert('Sikeresen hozzáadtad a receptet!');
+    this.selectedIngredients.clear();
+  }
+  
   deleteIngredientFromRecipe(ingredient: Ingredient) {
     this.recipeIngredient.ingredient_id = ingredient.id;
   
@@ -347,17 +393,28 @@ export class RecipesListComponent {
     });
   }
   
+  // updateIngredientsList() {
+  //   this.recipeService.getIngredients().subscribe({
+  //     next: (ingredients: Ingredient[]) => {
+  //       this.ingredients = [...ingredients]; 
+  //       this.cdr.detectChanges();
+  //     },
+  //     error: (error) => {
+  //       console.error('Hiba az összetevők frissítése közben', error);
+  //     }
+  //   });
+  // }
   updateIngredientsList() {
     this.recipeService.getIngredients().subscribe({
       next: (ingredients: Ingredient[]) => {
         this.ingredients = [...ingredients]; 
-        this.cdr.detectChanges();
       },
       error: (error) => {
         console.error('Hiba az összetevők frissítése közben', error);
       }
     });
   }
+  
 
   saveIngredient() {
     const ingredientDataArray = Array.from(this.selectedIngredients).map(ingredient => ({

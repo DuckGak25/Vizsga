@@ -33,7 +33,7 @@ export class IngredientsListComponent {
   saveButton: any;
 
   constructor(private config: ConfigService, private recipeService: RecipeService) {
-    this.getRecipes();
+    this.getIngredients();
     this.loadContent();
     this.langSign = config.langSign
   }
@@ -57,7 +57,7 @@ export class IngredientsListComponent {
     this.config.changeLanguage(lang.sign);
   }
 
-  getRecipes() {
+  getIngredients() {
     this.recipeService.getIngredients().subscribe(ingredients => {
       this.ingredients = ingredients
     })
@@ -73,7 +73,7 @@ export class IngredientsListComponent {
         alert("Successfully added the ingredient!")
       }
       
-      await this.getRecipes();
+      await this.getIngredients();
     } catch (error) {
       if (this.langSign === "hu") {
         alert("Hozzávaló hozzáadása sikertelen!")
@@ -111,7 +111,7 @@ export class IngredientsListComponent {
       const response = await lastValueFrom(this.recipeService.destroyIngredient(ingredient));
       console.log('Ingredient deleted successfully', response);
   
-      await this.getRecipes();
+      await this.getIngredients();
     } catch (error) {
       console.error('Error deleting ingredient', error);
     }

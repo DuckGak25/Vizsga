@@ -13,6 +13,9 @@ Route::post( "/register", [ AuthController::class, "register" ]);
 Route::post( "/login", [ AuthController::class, "login" ]);
 Route::get('/recipes/{id}', [RecipeController::class, 'show']);
 
+Route::get('/englishrecipes', [RecipeController::class, 'getEnglishRecipes']);
+Route::get('/hungarianrecipes', [RecipeController::class, 'getHungarianRecipes']);
+
 //Route::post('/postrecipe', [RecipeController::class, 'postRecipes']);
 
 
