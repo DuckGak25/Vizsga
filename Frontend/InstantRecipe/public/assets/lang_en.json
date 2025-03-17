@@ -85,7 +85,8 @@
     "addIngredient": "Add Ingredient",
     "operations":"Operations",
     "preview": "Preview",
-    "ingredientsDescription": "If you don't find any match in the \"Ingredient Name\" field, you can add it"
+    "ingredientsDescription": "If you don't find any match in the \"Ingredient Name\" field, you can add it",
+    "language": "Language"
 
 
 }

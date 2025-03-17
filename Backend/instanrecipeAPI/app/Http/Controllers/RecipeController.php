@@ -103,6 +103,7 @@ class RecipeController extends ResponseController
         $recipe->description = $validated['description'];
         $recipe->categories = $validated['categories'];
         $recipe->imagelink = $validated['imagelink'];
+        $recipe->language = $validated['language'];
         $recipe->save();
 
         return $this->sendResponse(new RecipeResource($recipe), "Sikeres recept módosítás");

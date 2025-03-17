@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\RecipeRequest;
 use App\Http\Resources\Recipe as RecipeResource;
+use App\Http\Resources\RecipeIngredientResource;
 use App\Http\Requests\IngredientRequest;
 use App\Http\Requests\RecipeIngredientRequest;
 use App\Http\Requests\IngredientModRequest;
@@ -18,6 +19,7 @@ use App\Http\Controllers\ResponseController;
 
 class RecipeIngredientController extends ResponseController
 {
+
     public function storeIngredients(RecipeIngredientRequest $request)
     {
         $user = auth()->user();

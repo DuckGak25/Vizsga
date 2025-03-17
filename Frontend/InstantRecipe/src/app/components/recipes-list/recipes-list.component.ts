@@ -37,6 +37,7 @@ export class RecipesListComponent {
   remove = "";
   addButton = "";
   quantity = "";
+  language = "";
   recipes: Recipe[] = [];
   selectedIngredients: Set<Ingredient> = new Set();
   ingredientQuantities: { [key: number]: string } = {};
@@ -56,6 +57,7 @@ export class RecipesListComponent {
     ingredient_id: 0,
     quantity: ''
   };
+  
 
   selectedRecipeId: number = 0;
   searchTerm: string = '';
@@ -80,6 +82,7 @@ export class RecipesListComponent {
       advlist autolink link image lists charmap preview anchor 
       searchreplace visualblocks code fullscreen insertdatetime wordcount
     `, 
+
     toolbar: 'undo redo | bold italic underline | formatselect |  bullist numlist  | removeformat',
   };
   recipeIngredientsMap: any;
@@ -130,6 +133,7 @@ export class RecipesListComponent {
       this.operations = content.operations || '';
       this.preview = content.preview || '';
       this.addButton = content.addButton || '';
+      this.language = content.language || '';
 
     });
   }
@@ -217,6 +221,7 @@ export class RecipesListComponent {
   updateIngredientQuantity(ingredientId: number, quantity: string) {
     this.ingredientQuantities[ingredientId] = quantity;
   } 
+
   async postIngredient(ingredient: Ingredient) {
     try {
       const response = await this.recipeService.postIngredients(ingredient).toPromise();
@@ -232,7 +237,8 @@ export class RecipesListComponent {
   getRecipes() {
     if (this.filterPending) {
       this.filterRecipes();
-    } if (!this.filterPending) {
+    } 
+    if (!this.filterPending) {
     this.recipeService.getAllRecipes().subscribe((data: Recipe[]) => {
       this.recipes = data;
       console.log(this.recipes);
