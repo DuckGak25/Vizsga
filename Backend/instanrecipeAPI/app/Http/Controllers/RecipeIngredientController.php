@@ -16,6 +16,7 @@ use App\Models\Recipe;
 use App\Models\Ingredient;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\ResponseController;
+use Illuminate\Support\Facades\Gate;
 
 class RecipeIngredientController extends ResponseController
 {
