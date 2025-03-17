@@ -235,17 +235,19 @@ export class RecipesListComponent {
       } else {
         alert("Successfully added the ingredient!")
       }
-      
-      await this.getIngredientsList();
+  
+      this.updateIngredientsList();
+  
     } catch (error) {
       if (this.langSign === "hu") {
         alert("Hozzávaló hozzáadása sikertelen!")
       } else {
-      alert("Error adding ingredient")
+        alert("Error adding ingredient")
       }
       console.error('Error adding ingredient', error);
     }
   }
+  
 
   getRecipes() {
     if (this.filterPending) {
