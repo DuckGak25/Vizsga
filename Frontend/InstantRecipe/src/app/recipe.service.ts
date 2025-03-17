@@ -10,6 +10,9 @@ import { ConfigService } from './config.service';
   providedIn: 'root'
 })
 export class RecipeService {
+  searchRecipe(searchRecipeTerm: any) {
+    throw new Error('Method not implemented.');
+  }
   private apiUrl = 'http://localhost:8000/api';
 
   constructor(private http: HttpClient, private config: ConfigService) {}

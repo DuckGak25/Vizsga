@@ -6,6 +6,8 @@ import AOS from 'aos';
 import { Ingredient } from '../../models/ingredient.model';
 import { RawEditorOptions } from 'tinymce';
 import { RecipeIngredient } from '../../models/recipe-ingredient.model';
+import { Pipe, PipeTransform } from '@angular/core';
+
 
 @Component({
   selector: 'app-recipes-list',
@@ -13,6 +15,7 @@ import { RecipeIngredient } from '../../models/recipe-ingredient.model';
   styleUrl: './recipes-list.component.css'
 })
 export class RecipesListComponent {
+  searchTerm: string = ''; 
   ingredients: Ingredient[] = [];
   editButton = "";
   deleteButton = "";
@@ -37,7 +40,6 @@ export class RecipesListComponent {
   remove = "";
   addButton = "";
   quantity = "";
-  language = "";
   recipes: Recipe[] = [];
   selectedIngredients: Set<Ingredient> = new Set();
   ingredientQuantities: { [key: number]: string } = {};
@@ -57,10 +59,8 @@ export class RecipesListComponent {
     ingredient_id: 0,
     quantity: ''
   };
-  
 
   selectedRecipeId: number = 0;
-  searchTerm: string = '';
 
   isVisible: boolean = false;
   modalTitle = '';
@@ -82,10 +82,10 @@ export class RecipesListComponent {
       advlist autolink link image lists charmap preview anchor 
       searchreplace visualblocks code fullscreen insertdatetime wordcount
     `, 
-
     toolbar: 'undo redo | bold italic underline | formatselect |  bullist numlist  | removeformat',
   };
   recipeIngredientsMap: any;
+language: any;
 
   constructor(private config: ConfigService, private recipeService: RecipeService, private cdr: ChangeDetectorRef){
     this.getIngredientsList();
@@ -133,7 +133,6 @@ export class RecipesListComponent {
       this.operations = content.operations || '';
       this.preview = content.preview || '';
       this.addButton = content.addButton || '';
-      this.language = content.language || '';
 
     });
   }
@@ -221,7 +220,6 @@ export class RecipesListComponent {
   updateIngredientQuantity(ingredientId: number, quantity: string) {
     this.ingredientQuantities[ingredientId] = quantity;
   } 
-
   async postIngredient(ingredient: Ingredient) {
     try {
       const response = await this.recipeService.postIngredients(ingredient).toPromise();
@@ -237,8 +235,7 @@ export class RecipesListComponent {
   getRecipes() {
     if (this.filterPending) {
       this.filterRecipes();
-    } 
-    if (!this.filterPending) {
+    } if (!this.filterPending) {
     this.recipeService.getAllRecipes().subscribe((data: Recipe[]) => {
       this.recipes = data;
       console.log(this.recipes);
@@ -407,19 +404,38 @@ export class RecipesListComponent {
     );
   }
 
-  filterRecipes() {
-    
-    if (this.filterPending) {
-      this.recipes = this.pendingRecipes;
-    }
-  }
 
   toggleFilter() {
     this.filterPending = !this.filterPending;
     this.getRecipes();
   }
+  @Pipe({
+    name: 'recipeFilter'
+  })
+filterRecipes() {
+  let filteredRecipes = this.recipes;
+  
+  if (this.searchTerm) {
+    const lowerCaseSearchTerm = this.searchTerm.toLowerCase();
+    filteredRecipes = filteredRecipes.filter(recipe =>
+      recipe.title.toLowerCase().includes(lowerCaseSearchTerm)
+    );
+  }
+
+  if (this.filterPending) {
+    filteredRecipes = filteredRecipes.filter(recipe => !recipe.approved);
+  }
+  this.recipes = filteredRecipes;
+  
+}
 
 }
+
+
+
+
+
+
 
   
   
