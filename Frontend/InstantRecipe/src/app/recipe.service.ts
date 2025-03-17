@@ -103,4 +103,12 @@ export class RecipeService {
   getPendingRecipes(): Observable<Recipe[]> {
     return this.http.get<Recipe[]>(`${this.apiUrl}/pendingrecipes`, { headers: this.getHeaders() });
   }
+
+  getEnglishRecipes(): Observable<Recipe[]> {
+    return this.http.get<Recipe[]>(`${this.apiUrl}/englishrecipes`, { headers: this.getHeaders() });
+  }
+
+  getHungarianRecipes(): Observable<Recipe[]> {
+    return this.http.get<Recipe[]>(`${this.apiUrl}/hungarianrecipes`, { headers: this.getHeaders() });
+  }
 }

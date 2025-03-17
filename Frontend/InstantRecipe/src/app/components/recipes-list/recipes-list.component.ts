@@ -40,12 +40,15 @@ export class RecipesListComponent {
   remove = "";
   addButton = "";
   quantity = "";
+  language = "";
+  everyRecipe = "";
   recipes: Recipe[] = [];
   selectedIngredients: Set<Ingredient> = new Set();
   ingredientQuantities: { [key: number]: string } = {};
   categorizedIngredients: { [key: string]: Set<Ingredient> } = {};
   pendingRecipes: any[] = [];
   filterPending: boolean = false;
+  filterLanguage: string = '';
 
   newIngredient: Ingredient = {
     id: 0,
@@ -85,12 +88,12 @@ export class RecipesListComponent {
     toolbar: 'undo redo | bold italic underline | formatselect |  bullist numlist  | removeformat',
   };
   recipeIngredientsMap: any;
-language: any;
 
   constructor(private config: ConfigService, private recipeService: RecipeService, private cdr: ChangeDetectorRef){
     this.getIngredientsList();
     this.getRecipes();
     this.filterPendingRecipes();
+    
   }
 
   // open() {
@@ -104,6 +107,7 @@ language: any;
 
   ngOnInit() {
     this.loadContent();
+
   }
   
   
@@ -133,6 +137,8 @@ language: any;
       this.operations = content.operations || '';
       this.preview = content.preview || '';
       this.addButton = content.addButton || '';
+      this.everyRecipe = content.everyRecipe || '';
+      
 
     });
   }
@@ -235,7 +241,18 @@ language: any;
   getRecipes() {
     if (this.filterPending) {
       this.filterRecipes();
-    } if (!this.filterPending) {
+    } else if (this.filterLanguage === 'hu') {
+      this.recipeService.getHungarianRecipes().subscribe((data: Recipe[]) => {
+        this.recipes = data;
+        console.log(this.recipes);
+      })
+    } else if (this.filterLanguage === 'en') {
+      this.recipeService.getEnglishRecipes().subscribe((data: Recipe[]) => {
+        this.recipes = data;
+        console.log(this.recipes);
+      })
+    }
+    else {
     this.recipeService.getAllRecipes().subscribe((data: Recipe[]) => {
       this.recipes = data;
       console.log(this.recipes);
@@ -404,14 +421,10 @@ language: any;
     );
   }
 
-
   toggleFilter() {
     this.filterPending = !this.filterPending;
     this.getRecipes();
   }
-  @Pipe({
-    name: 'recipeFilter'
-  })
 filterRecipes() {
   let filteredRecipes = this.recipes;
   

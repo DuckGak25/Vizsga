@@ -37,6 +37,8 @@ h2 {
     margin: 10px;
 }
 
+
+
 .ingredients ul {
     padding: 0;
 }
@@ -62,6 +64,15 @@ h2 {
 .description #steps {
     background-color: none;
 }
+
+.description ol li::marker {
+    background-color: yellow; 
+    color: black; 
+    font-weight: bold; 
+    padding: 4px; 
+    border-radius: 4px; 
+}
+
 
 .description ol li {
     list-style-type: disc;
