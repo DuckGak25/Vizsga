@@ -5,8 +5,10 @@
             <div id="toggles">
               <input type="checkbox" id="checkbox1" id="checkbox1" class="ios-toggle" [checked]="filterPending" (click)="toggleFilter()"/>
               <label for="checkbox1" class="checkbox-label"></label>
+              
             </div>
-          <div class="list-card" *ngFor="let recipe of recipes">
+
+            <div class="list-card" *ngFor="let recipe of recipes">
               <div class="row">
                     <div class="col">
                         <h2>#{{recipe.id}}</h2>
@@ -41,6 +43,13 @@
                               [(ngModel)]="recipe.title"
                             />
                             <label for="title">{{recipeName}}</label>
+                          </div>
+                          <div class="form-floating mb-3 row">
+                            <select name="language" id="" [(ngModel)]="recipe.language" class="form-control">
+                              <option value="hu">Magyar</option>
+                              <option value="en">English</option>
+                            </select>
+                            <label for="language">{{language}}</label>
                           </div>
                           
                           <!-- Leírás -->
@@ -125,15 +134,18 @@
                               <button type="button" (click)="clearSelectedIngredients()" class="btn btn-danger mb-3">
                                 {{deleteSelected}}
                               </button>
-                              <div *ngFor="let category of categorizedIngredients | keyvalue">
-                                <h2 *ngIf="filterIngredients(category.value).length > 0">{{ category.key }}</h2>
-                                  <div *ngFor="let ingredient of filterIngredients(category.value)" class="form-check">
-                                    <div class="checkboxing">
-                                      <input type="checkbox" [value]="ingredient" [id]="'ingredient-' + ingredient.id" (change)="onIngredientChange($event, ingredient)" class="ingredient"/>
-                                      <label [for]="'ingredient-' + ingredient.id">{{ ingredient.name }}</label>
+                              <div *ngIf="searchTerm !== ''">
+                                <div *ngFor="let category of categorizedIngredients | keyvalue">
+                                  <h2 *ngIf="filterIngredients(category.value).length > 0">{{ category.key }}</h2>
+                                    <div *ngFor="let ingredient of filterIngredients(category.value)" class="form-check">
+                                      <div class="checkboxing">
+                                        <input type="checkbox" [value]="ingredient" [id]="'ingredient-' + ingredient.id" (change)="onIngredientChange($event, ingredient)" class="ingredient"/>
+                                        <label [for]="'ingredient-' + ingredient.id">{{ ingredient.name }}</label>
+                                      </div>
                                     </div>
-                                  </div>
-                              </div>
+
+                                </div>
+                            </div>
                               <div class="post-ingredient mt-3">
                                 <h2>{{addIngredient}}</h2>
                                 <div class="form-floating mb-3 row">

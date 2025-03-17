@@ -82,5 +82,6 @@
     "addIngredient": "Összetevő hozzáadása",
     "operations":"Műveletek",
     "preview":"Előnézet",
-    "ingredientsDescription": "Az összetevők közt kereshetsz is az \"Összetevő neve\" mezőben és ha nincs találat hozzá is adhatod"
+    "ingredientsDescription": "Az összetevők közt kereshetsz is az \"Összetevő neve\" mezőben és ha nincs találat hozzá is adhatod",
+    "language": "Nyelv"
 }

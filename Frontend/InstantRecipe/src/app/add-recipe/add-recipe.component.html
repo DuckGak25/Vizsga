@@ -92,7 +92,7 @@
 
 
         
-        <button class="btn btn-danger mt-3" type="submit" (click)="createRecipe()" *ngIf="disableButton()" disabled>{{createRecipeTitle}}</button>
+        <button class="btn btn-danger mt-3" type="submit" *ngIf="disableButton()" disabled>{{createRecipeTitle}}</button>
         <button class="btn btn-danger mt-3" type="submit" (click)="createRecipe()" *ngIf="!disableButton()">{{createRecipeTitle}}</button>
 
   </div>

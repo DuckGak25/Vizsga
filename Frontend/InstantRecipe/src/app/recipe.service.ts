@@ -50,7 +50,7 @@ export class RecipeService {
     return this.http.post<Recipe>(`${this.apiUrl}/postrecipe`, recipe, { headers: this.getHeaders() });
   }
 
-  addIngredients(ingredientData: { recipe_id: number; ingredient_id: number; quantity: string }): Observable<any> {
+  addIngredients(ingredientData: RecipeIngredient): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/recipe-ingredients`, ingredientData, { headers: this.getHeaders() });
   }
 
