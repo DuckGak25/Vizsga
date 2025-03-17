@@ -2,6 +2,15 @@
   <div class="card ">
         <div class="card-body">
             <h1>{{recipesHeaderTitle}}</h1>
+            <div class="search-bar">
+              <input 
+                type="text" 
+                [(ngModel)]="searchTerm" 
+                name="search" 
+                placeholder="Keresés a receptek között..." 
+                class="form-control mb-3" 
+                (ngModelChange)="filterRecipes()" 
+              />
               <div id="toggles">
                 <input type="checkbox" id="checkbox1" id="checkbox1" class="ios-toggle" [checked]="filterPending" (click)="toggleFilter()"/>
                 <label for="checkbox1" class="checkbox-label"></label>

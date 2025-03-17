@@ -420,10 +420,20 @@ export class RecipesListComponent {
   }
 
   filterRecipes() {
+    let filteredRecipes = this.recipes;
     
+    if (this.searchTerm) {
+      const lowerCaseSearchTerm = this.searchTerm.toLowerCase();
+      filteredRecipes = filteredRecipes.filter(recipe =>
+        recipe.title.toLowerCase().includes(lowerCaseSearchTerm)
+      );
+    }
+  
     if (this.filterPending) {
-      this.recipes = this.pendingRecipes;
-    } 
+      filteredRecipes = filteredRecipes.filter(recipe => !recipe.approved);
+    }
+    this.recipes = filteredRecipes;
+    
   }
 
   toggleFilter() {
