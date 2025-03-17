@@ -252,9 +252,9 @@ export class RecipesListComponent {
   
     } catch (error) {
       if (this.langSign === "hu") {
-        alert("Hozzávaló hozzáadása sikertelen!")
+        alert("Sikertelen hozzáadás!")
       } else {
-        alert("Error adding ingredient")
+        alert("Unable to add the ingredient!")
       }
       console.error('Error adding ingredient', error);
     }
@@ -375,7 +375,7 @@ export class RecipesListComponent {
       );
     });
   
-    alert('Sikeresen hozzáadtad a receptet!');
+    alert('Sikeresen hozzáadtad a hozzávalókat!');
     this.selectedIngredients.clear();
   }
   
