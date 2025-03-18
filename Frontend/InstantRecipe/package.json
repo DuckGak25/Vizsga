@@ -25,6 +25,7 @@
     "ng-bootstrap-icons": "^13.1.2-canary.1",
     "rxjs": "~7.8.0",
     "tinymce": "^7.6.1",
+    "trix": "^2.1.13",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.10"
   },
