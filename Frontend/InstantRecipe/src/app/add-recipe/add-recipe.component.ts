@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { RecipeService } from '../recipe.service';
 import { Ingredient } from '../models/ingredient.model';
 import { Recipe } from '../models/recipe.model';
@@ -6,6 +6,7 @@ import { RawEditorOptions } from 'tinymce';
 import { CheckboxControlValueAccessor } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { ConfigService } from '../config.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-add-recipe',
@@ -13,6 +14,7 @@ import { ConfigService } from '../config.service';
   styleUrls: ['./add-recipe.component.css'],
 })
 export class AddRecipeComponent {
+  @ViewChild('content') content: any;
   addRecipe = "";
   recipeName = ""
   descriptionTitle = ""
@@ -67,12 +69,18 @@ export class AddRecipeComponent {
     `, 
     toolbar: 'undo redo | bold italic underline | formatselect |  bullist numlist  | removeformat',
   };
+
+  modalTitle = '';
+  modalContent = '';
   
-  constructor(private recipeService: RecipeService, private config: ConfigService) {
+  constructor(private recipeService: RecipeService, private config: ConfigService, private modalService: NgbModal) {
     this.getIngredients()
     this.loadContent()
     this.newRecipe.language = config.langSign
     this.newIngredient.language = config.langSign
+  }
+  openModal() {
+    this.modalService.open(this.content, { centered: true });
   }
 
   getIngredients() {
@@ -84,9 +92,8 @@ export class AddRecipeComponent {
   }
 
   ngOnInit(): void {
-
     this.langSign = this.config.langSign
-    this.getRecipes()
+
   }
 
   loadContent() {
@@ -106,6 +113,8 @@ export class AddRecipeComponent {
       this.quantity = content.quantity || '';
     });
   }
+
+
 
   langChange(lang: any) {
     this.actLang = lang.text;
@@ -207,14 +216,24 @@ export class AddRecipeComponent {
       approved: false,
       ingredients: [],
     };
-
     this.recipeService.createRecipe(recipeData).subscribe(
       (response: any) => {
+        this.openModal();
+        if(this.langSign === 'hu'){
+          this.modalContent = 'Sikeresen hozzáadtad a receptet!';
+        }
+        else if (this.langSign === 'en') {
+          this.modalContent = 'Successfully added the recipe!';
+        }
         console.log('Recipe created successfully', response);
         this.createdRecipeId = response.data.id;
         this.addIngredients();
+
       },
       (error) => {
+        this.openModal();
+        if (this.langSign === 'hu') { this.modalContent = 'Hiba a recept mentésekor';}
+        else if (this.langSign === 'en') { this.modalContent = 'Error creating recipe';}
         console.error('Error creating recipe', error);
       }
     );
@@ -246,13 +265,7 @@ export class AddRecipeComponent {
           }
         );
       }
-      if(this.langSign === 'hu'){
-        alert('Sikeresen hozzáadtad a receptet!');
-      }
-      else{
-        alert('Successfully added the recipe!');
-      }
-      this.getRecipes();
+
       this.selectedIngredients.clear();
     }
     
@@ -265,15 +278,6 @@ export class AddRecipeComponent {
         error: (error) => console.error('Error adding ingredient', error)
       });
     }
-    
-    
-
-  getRecipes() {
-    this.recipeService.getRecipes().subscribe((data: Recipe[]) => {
-      this.allRecipes = data;
-      this.filteredRecipes = this.allRecipes;
-    });
-  }
 
   disableButton() {
     if (this.newRecipe.title === '' || this.newRecipe.description === '' || 

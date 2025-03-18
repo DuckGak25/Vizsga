@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { ConfigService } from '../../config.service';
 import { RecipeService } from '../../recipe.service';
 import { Recipe } from '../../models/recipe.model';
@@ -8,6 +8,7 @@ import { RawEditorOptions } from 'tinymce';
 import { RecipeIngredient } from '../../models/recipe-ingredient.model';
 import { Pipe, PipeTransform } from '@angular/core';
 import { ViewportScroller } from '@angular/common';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -16,6 +17,7 @@ import { ViewportScroller } from '@angular/common';
   styleUrl: './recipes-list.component.css'
 })
 export class RecipesListComponent {
+  @ViewChild('content') content: any;
   searchTermRecipes: string = ''; 
   searchTerm: string = ''; 
   ingredients: Ingredient[] = [];
@@ -52,7 +54,7 @@ export class RecipesListComponent {
   pendingRecipes: any[] = [];
   filterPending: boolean = false;
   filterLanguage: string = '';
-  showModal = false
+  showModal: boolean = false;
   modalTitle = '';
   modalContent = '';
 
@@ -94,12 +96,16 @@ export class RecipesListComponent {
   };
   recipeIngredientsMap: any;
 
-  constructor(private config: ConfigService, private recipeService: RecipeService, private vps:ViewportScroller) {
+  constructor(private config: ConfigService, private recipeService: RecipeService, private vps:ViewportScroller, private modalService: NgbModal) {
     this.getIngredientsList();
     this.getRecipes();
     this.filterPendingRecipes();
     this.filterRecipes()
     this.langSign = config.langSign
+  }
+
+  openModal() {
+    this.modalService.open(this.content, { centered: true });
   }
 
   // open() {
@@ -207,12 +213,13 @@ export class RecipesListComponent {
         console.log('Recipe deleted successfully', response);
         this.recipes = this.recipes.filter((r) => r.id !== recipe.id);
         this.modalContent = `Sikeresen törölted a receptet: ${recipe.title}`;
-        this.showModal = true;
+        this.openModal();
       },
       error: (error) => {
         this.modalContent = 'Hiba a recept törlésekor';
-        this.showModal = true;
+
         console.error('Hiba a recept törlése közben', error);
+        this.openModal();
       }
     });
   }
