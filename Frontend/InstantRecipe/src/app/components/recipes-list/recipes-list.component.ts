@@ -524,26 +524,27 @@ export class RecipesListComponent {
     this.filterPending = !this.filterPending;
     this.getRecipes();
   }
-filterRecipes() {
-  let filteredRecipes = this.recipes;
+  filterRecipes() {
+    this.recipeService.getAllRecipes().subscribe((data: Recipe[]) => {
+      let filteredRecipes = data;
+      if (this.filterPending) {
+        filteredRecipes = filteredRecipes.filter(recipe => !recipe.approved);
+      }
+      if (this.searchTermRecipes) {
+        const lowerCaseSearchTerm = this.searchTermRecipes.toLowerCase();
+        filteredRecipes = filteredRecipes.filter(recipe =>
+          recipe.title.toLowerCase().includes(lowerCaseSearchTerm)
+        );
+      }
+      if (this.filterLanguage === 'hu') {
+        filteredRecipes = filteredRecipes.filter(recipe => recipe.language === 'hu');
+      } else if (this.filterLanguage === 'en') {
+        filteredRecipes = filteredRecipes.filter(recipe => recipe.language === 'en');
+      }
   
-  // if (this.searchTermRecipes) {
-  //   const lowerCaseSearchTerm = this.searchTermRecipes.toLowerCase();
-  //   filteredRecipes = filteredRecipes.filter(recipe =>
-  //     recipe.title.toLowerCase().includes(lowerCaseSearchTerm)
-  //   );
-  //   this.recipes = filteredRecipes;
-  // }
-
-  if (this.filterPending) {
-    filteredRecipes = filteredRecipes.filter(recipe => !recipe.approved);
-    this.recipes = filteredRecipes;
-  } else {
-    this.getRecipes()
+      this.recipes = filteredRecipes;
+    });
   }
-
-  
-}
 
 }
 
