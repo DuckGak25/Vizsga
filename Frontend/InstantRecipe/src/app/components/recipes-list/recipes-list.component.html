@@ -1,55 +1,43 @@
 <div class="content">
   <div class="card ">
-        <div class="card-body">
-            <h1>{{recipesHeaderTitle}}</h1>
-            <div class="search-recipes">
-              <input
-                type="text"
-                class="form-control"
-                [(ngModel)]="searchTermRecipes"
-                (input)="filterRecipes()"
-                [placeholder]="searchForRecipes"
-              />
-            </div>
-
-            
-              <div id="toggles">
-                <input type="checkbox" id="checkbox1" id="checkbox1" class="ios-toggle" [checked]="filterPending" (click)="toggleFilter()"/>
-                <label for="checkbox1" class="checkbox-label"></label>
-              </div>
-              <select name="language" [(ngModel)]="filterLanguage" class="form-control" (change)="getRecipes()">
-                <option value="">{{everyRecipe}}</option>
-                <option value="hu">Magyar</option>
-                <option value="en">English</option>
-              </select>
-              
-
-
-            <div class="list-card" *ngFor="let recipe of recipes">
-              <div class="row">
-                    <div class="col">
-                        <h2>#{{recipe.id}}</h2>
-                    </div>
-                    <div class="col">
-                        <h2>{{recipe.title}}</h2>
-                    </div>
-                    <div class="col">
-                        <h2>{{recipe.language}}</h2>
-                    </div>
-                    <div class="col" *ngIf="!recipe.approved">
-                      <h2>{{waitingForApprove}}</h2>
-                    </div>
-                    <div class="col" *ngIf="recipe.approved">
-                      <input class="star" type="checkbox" title="bookmark page"[checked]="recipe.featured" (click)="toggleFeatured(recipe)"><br/><br/>
-                    </div>
-                    <div class="col">
-                        <button class="btn btn-success" (click)="editRecipe(recipe)">{{editButton}}</button>
-                        <button class="btn btn-danger" (click)="deleteRecipe(recipe)">{{deleteButton}}</button>
-                        <button *ngIf="!recipe.approved" (click)="approveRecipe(recipe)" class="btn btn-warning" type="submit">{{approve}}</button>
-                    </div>
-
-                    <!-- Szerkesztés -->
-                    <div class="edit-recipe" *ngIf="recipe.id === selectedRecipeId">
+    <div class="card-body">
+      <h1>{{recipesHeaderTitle}}</h1>
+      <div class="search-recipes">
+        <input type="text" class="form-control" [(ngModel)]="searchTermRecipes" (input)="filterRecipes()" [placeholder]="searchForRecipes"/>
+      </div>     
+      <div id="toggles">
+        <input type="checkbox" id="checkbox1" id="checkbox1" class="ios-toggle" [checked]="filterPending" (click)="toggleFilter()"/>
+        <label for="checkbox1" class="checkbox-label"></label>
+      </div>
+      <select name="language" [(ngModel)]="filterLanguage" class="form-control" (change)="getRecipes()">
+        <option value="">{{everyRecipe}}</option>
+        <option value="hu">Magyar</option>
+        <option value="en">English</option>
+      </select>
+      <div class="list-card" *ngFor="let recipe of recipes">
+        <div class="row">
+          <div class="col">
+            <h2>#{{recipe.id}}</h2>
+          </div>
+          <div class="col">
+            <h2>{{recipe.title}}</h2>
+          </div>
+          <div class="col">
+            <h2>{{recipe.language}}</h2>
+          </div>
+          <div class="col" *ngIf="!recipe.approved">
+            <h2>{{waitingForApprove}}</h2>
+          </div>
+          <div class="col" *ngIf="recipe.approved">
+            <input class="star" type="checkbox" title="bookmark page"[checked]="recipe.featured" (click)="toggleFeatured(recipe)"><br/><br/>
+          </div>
+          <div class="col">
+            <button class="btn btn-success" (click)="editRecipe(recipe)">{{editButton}}</button>
+            <button class="btn btn-danger" (click)="deleteRecipe(recipe)">{{deleteButton}}</button>
+            <button *ngIf="!recipe.approved" (click)="approveRecipe(recipe)" class="btn btn-warning" type="submit">{{approve}}</button>
+          </div>
+          <!-- Szerkesztés -->
+          <div class="edit-recipe" *ngIf="recipe.id === selectedRecipeId">
                             <div class="row">
                               <div class="col">
                                 <input type="text" class="form-control" id="title" name="title" [placeholder]="recipeName" [(ngModel)]="recipe.title"/>
@@ -183,8 +171,7 @@
                           </div>
                         </div>
           </div>
-    </div>
-
+  </div>
   </div>
 </div>
 <ng-template #content let-modal>

@@ -181,7 +181,6 @@ export class RecipesListComponent {
       this.ingredients = ingredients
       this.categorizeIngredients();
     })
-
   }
 
 
@@ -354,7 +353,7 @@ export class RecipesListComponent {
   saveRecipe(recipe: Recipe) {
       this.recipeService.modifyRecipe(recipe).subscribe(() => {
         this.modalContent = `Sikeresen mentetted a receptet: ${recipe.title}`;
-        this.showModal = true;
+        this.openModal();
         this.closeRecipe();
         this.vps.scrollToPosition([0,0]);
       });
