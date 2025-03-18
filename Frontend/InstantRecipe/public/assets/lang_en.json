@@ -17,6 +17,7 @@
     "requirementTitle": "Requirement",
     "categoryTitle": "Category",
     "createRecipeTitle": "Create Recipe",
+    "closeButton": "Close",
 
 
     "homeText1": "Don't order,",
@@ -75,6 +76,7 @@
     "pending": "Pending recipes",
     "selectedIngredientsTitle": "Selected Ingredients",
     "searchForIngredients": "Start typing to search for ingredients...",
+    "searchForRecipes": "Start typing to search for recipes...",
     "deleteSelected": "Delete Selected Ingredients",
     "imageLink": "Image Link",
     "ingredientName": "Ingredient Name",

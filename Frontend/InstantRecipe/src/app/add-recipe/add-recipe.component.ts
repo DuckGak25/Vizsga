@@ -28,6 +28,7 @@ export class AddRecipeComponent {
   createRecipeTitle = ""
   remove = ""
   quantity = ""
+  closeButton = ""
   actLang = "Magyar"
   langSign = ""
   ingredients: Ingredient[] = [];
@@ -111,6 +112,7 @@ export class AddRecipeComponent {
       this.createRecipeTitle = content.createRecipeTitle || '';
       this.remove = content.remove || '';
       this.quantity = content.quantity || '';
+      this.closeButton = content.closeButton || '';
     });
   }
 
@@ -232,8 +234,13 @@ export class AddRecipeComponent {
       },
       (error) => {
         this.openModal();
-        if (this.langSign === 'hu') { this.modalContent = 'Hiba a recept mentésekor';}
-        else if (this.langSign === 'en') { this.modalContent = 'Error creating recipe';}
+        if (this.langSign === 'hu') { 
+          this.modalContent = 'Hiba a recept mentésekor';
+        }
+        else if (this.langSign === 'en') { 
+          this.modalContent = 'Error creating recipe';
+
+        }
         console.error('Error creating recipe', error);
       }
     );

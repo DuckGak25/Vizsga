@@ -8,7 +8,7 @@
                 class="form-control"
                 [(ngModel)]="searchTermRecipes"
                 (input)="filterRecipes()"
-                placeholder="🔍Keresés a receptek között..."
+                [placeholder]="searchForRecipes"
               />
             </div>
 
@@ -192,6 +192,6 @@
     <p>{{modalContent}}</p>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Close</button>
+    <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">{{closeButton}}</button>
   </div>
 </ng-template>

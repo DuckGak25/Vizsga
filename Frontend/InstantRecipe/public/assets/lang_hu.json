@@ -16,6 +16,7 @@
     "requirementTitle": "Elvárás",
     "categoryTitle": "Kategória",
     "createRecipeTitle": "Recept létrehozása",
+    "closeButton": "Bezárás",
 
 
     "homeText1": "Ne rendelj,",
@@ -72,6 +73,7 @@
     "pending": "Jóváhagyásra váró receptek száma",
     "selectedIngredientsTitle": "Kiválasztott összetevők",
     "searchForIngredients": "Kezdjen el írni az összetevők kereséséhez...",
+    "searchForRecipes": "Kezdjen el írni a receptek kereséséhez...",
     "deleteSelected": "Kiválasztott összetevők törlése",
     "ingredientName": "Összetevő neve",
     "imageLink": "A kép linkje",

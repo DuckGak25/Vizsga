@@ -28,12 +28,14 @@ export class RecipesListComponent {
   approve = "";
   recipeName = "";
   preview = "";
+  closeButton = ""
   descriptionTitle = "";
   requirementTitle = "";
   categoryTitle = "";
   selectedIngredientsTitle = "";
   deleteSelected = "";
   searchForIngredients = "";
+  searchForRecipes = "";
   imageLink = "";
   ingredientsTitle = "";
   createRecipeTitle = "";
@@ -153,7 +155,8 @@ export class RecipesListComponent {
       this.preview = content.preview || '';
       this.addButton = content.addButton || '';
       this.everyRecipe = content.everyRecipe || '';
-      
+      this.searchForRecipes = content.searchForRecipes || '';
+      this.closeButton = content.closeButton || '';
 
     });
   }
@@ -266,22 +269,22 @@ export class RecipesListComponent {
       const response = await this.recipeService.postIngredients(ingredient).toPromise();
       console.log('Ingredient added successfully', response);
       if (this.langSign === "hu") {
-        this.showModal = true;
         this.modalContent = "Sikeresen hozzáadtad a hozzávalót!"
+        this.openModal();
       } else {
-        this.showModal = true;
         this.modalContent = "Successfully added the ingredient!"
+        this.openModal()
       }
   
       this.updateIngredientsList();
   
     } catch (error) {
       if (this.langSign === "hu") {
-        this.showModal = true;
         this.modalContent = "Hozzávaló hozzáadása sikertelen!"
+        this.openModal();
       } else {
-        this.showModal = true;
         this.modalContent = "Unable to add the ingredient!"
+        this.openModal();
       }
       console.error('Error adding ingredient', error);
     }
@@ -294,12 +297,10 @@ export class RecipesListComponent {
     } else if (this.filterLanguage === 'hu') {
       this.recipeService.getHungarianRecipes().subscribe((data: Recipe[]) => {
         this.recipes = data;
-        console.log(this.recipes);
       })
     } else if (this.filterLanguage === 'en') {
       this.recipeService.getEnglishRecipes().subscribe((data: Recipe[]) => {
         this.recipes = data;
-        console.log(this.recipes);
       })}
     // else if (!this.searchTermRecipes) {
     //   this.recipeService.getRecipes().subscribe((data: Recipe[]) => {
@@ -310,7 +311,7 @@ export class RecipesListComponent {
     else {
     this.recipeService.getAllRecipes().subscribe((data: Recipe[]) => {
       this.recipes = data;
-      console.log(this.recipes);
+
     });
   }
   }
@@ -420,14 +421,21 @@ export class RecipesListComponent {
   
     this.recipeService.deleteIngredientFromRecipe(this.recipeIngredient).subscribe({
       next: (response) => {
+        if (this.langSign === "hu") { 
+          console.log(`Sikeresen törölted a hozzávalót: ${ingredient.name}`);
+        } else {
         console.log('Ingredient deleted successfully', response, ingredient);
-        console.log(`Sikeresen törölted a hozzávalót: ${ingredient.name}`);
+        }
         this.getRecipes();
         this.updateIngredientsList();
       },
       error: (error) => {
-        this.showModal = true;
-        this.modalContent = `Hiba a hozzávaló törlésekor: ${ingredient.name}`;
+        if (this.langSign === "hu") {
+          this.modalContent = `Hiba a hozzávaló törlésekor: ${ingredient.name}`;
+        } else {
+          this.modalContent = `Problem while deleting the ingredient: ${ingredient.name}`;
+        }
+        this.openModal()
         console.error('Hiba a hozzávaló törlése közben', error);
       }
     });
