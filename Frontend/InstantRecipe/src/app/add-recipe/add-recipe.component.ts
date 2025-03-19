@@ -137,7 +137,7 @@ export class AddRecipeComponent {
     const checkbox = event.target as HTMLInputElement;
     if (checkbox.checked) {
       this.selectedIngredients.add(ingredient);
-
+      this.searchTerm = '';
       if (!this.ingredientQuantities[ingredient.id]) {
         this.ingredientQuantities[ingredient.id] = '';
       }
@@ -150,12 +150,17 @@ export class AddRecipeComponent {
   }
 
   removeIngredient(ingredient: Ingredient) {
-    const checkbox = document.getElementById(`ingredient-${ingredient.id}`) as HTMLInputElement;
-    checkbox.checked = false;
+    const checkbox = document.getElementById(`ingredient-${ingredient.id}`) as HTMLInputElement | null;
+
+    if (checkbox) {
+        checkbox.checked = false;
+    }
+
     this.selectedIngredients.delete(ingredient);
     this.saveSelectedIngredients();
     this.ingredientQuantities[ingredient.id] = '';
-  }
+}
+
   
   filterIngredients(ingredients: Set<Ingredient>): Ingredient[] {
     const lowerCaseSearchTerm = this.searchTerm.toLowerCase();

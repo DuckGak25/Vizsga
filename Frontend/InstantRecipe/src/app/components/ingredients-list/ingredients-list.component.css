@@ -20,8 +20,6 @@
     font-weight: 500;
 }
 
-
-
 .form-control:focus {
     background-color: rgba(255, 255, 255, 0.659);
     border: 1px solid rgba(255, 255, 255, 0.32);
@@ -30,7 +28,6 @@
 .content {
     min-height: 100vh;
     height: fit-content;
-
     border-radius: 30px;
     width: 95%;
     margin: 0 auto;
@@ -38,12 +35,27 @@
 }
 
 button {
-    margin-right: 10px;
+    margin-right: 5px;
     * {
         user-select: none;
-      }
-      
+    }
 }
 
+@media screen and (max-width: 768px) {
 
-  
+
+    .row {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .col {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    .col:last-child {
+        display: flex;
+        justify-content: space-between;
+    }
+}

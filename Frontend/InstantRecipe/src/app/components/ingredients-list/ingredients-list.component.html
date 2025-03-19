@@ -13,7 +13,8 @@
                     <input type="text" class="form-control" id="category" name="category" [placeholder]="categoryTitle" [(ngModel)]="newIngredient.category">
                   </div>
                   <div class="col">
-                    <select name="language" id="" [(ngModel)]="newIngredient.language" class="form-control" placeholder="Nyelv">
+                    <select name="language" id="" [(ngModel)]="newIngredient.language" class="form-control" >
+                      <option value="">{{language}}</option>
                       <option value="hu" >Magyar</option>
                       <option value="en">English</option>
                     </select>
@@ -31,11 +32,11 @@
                                 
                             </div>
                             <div class="col">
-                                <input type="text" [(ngModel)]="ingredient.name" class="form-control">
+                                <input type="text" [(ngModel)]="ingredient.name" class="form-control" [placeholder]="ingredientName">
                             </div>
                             <div class="col">
         
-                                <input type="text" [(ngModel)]="ingredient.category" class="form-control">
+                                <input type="text" [(ngModel)]="ingredient.category" class="form-control" [placeholder]="categoryTitle">
                             </div>
 
                             <div class="col">
@@ -46,7 +47,7 @@
                             </div>
         
                             <div class="col">
-                                <button class="btn btn-success" (click)="editIngredient(ingredient)" style="width: 46%;">{{editButton}}</button>
+                                <button class="btn btn-warning" (click)="editIngredient(ingredient)" style="width: 46%;">{{editButton}}</button>
                                 <button class="btn btn-danger" (click)="deleteIngredient(ingredient)" style="width: 46%;">{{deleteButton}}</button>
         
                             </div>
@@ -59,3 +60,14 @@
 
     </div>
 </div>
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title">{{newIngredient.name}}</h5>
+  </div>
+  <div class="modal-body">
+    <p>{{modalContent}}</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">{{closeButton}}</button>
+  </div>
+</ng-template>

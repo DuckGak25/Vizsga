@@ -52,33 +52,18 @@
 
         </div>
 
-        <div class="selected-ingredients mt-3 row">
-          <h2>{{selectedIngredientsTitle}}</h2>
-          <table class="table">
-            <tbody>
-              <tr *ngFor="let ingredient of selectedIngredients" class="selectedIngredients">
-                <td>{{ ingredient.name }}</td>
-                <td>
-                  <input type="text" [(ngModel)]="ingredientQuantities[ingredient.id]" (ngModelChange)="updateIngredientQuantity(ingredient.id, $event)" [placeholder]="quantity" class="form-control"/>
-                </td>
-                <td>
-                  <button class="btn btn-danger" (click)="removeIngredient(ingredient)">{{remove}}</button>
-                </td>
-              </tr>
-          </table>
-        </div>
-
-          <div class="ingredient-list mt-3 row">
+        <div class="row ingredient-container">
+          <!-- Összetevők kereső -->
+          <div class="ingredient-list mt-3 col">
             <h2>{{ingredientsTitle}}</h2>
             <input type="text" [(ngModel)]="searchTerm" name="search" [placeholder]="searchForIngredients" class="form-control mb-3 mt-3" />
-          
+        
             <!-- Összetevők törlése gomb -->
-            <button type="button" (click)="clearSelectedIngredients()" class="btn btn-danger mb-3" >{{deleteSelected}}</button>
-          
+            <button type="button" (click)="clearSelectedIngredients()" class="btn btn-danger mb-3">{{deleteSelected}}</button>
+        
             <!-- Kategorizált összetevők -->
             <div *ngIf="searchTerm !== ''">
               <div *ngFor="let category of categorizedIngredients | keyvalue">
-                <!-- Az adott kategórián belüli szűrt összetevők -->
                 <ng-container *ngIf="filterIngredients(category.value).length > 0">
                   <h3>{{ category.key }}</h3>
                   <div *ngFor="let ingredient of filterIngredients(category.value)" class="form-check">
@@ -91,11 +76,34 @@
               </div>
             </div>
           </div>
+          <!-- Kiválasztott összetevők -->
+          <div class="selected-ingredients mt-3 col">
+            <h2>{{selectedIngredientsTitle}}</h2>
+            <table class="table">
+              <tbody>
+                <tr *ngFor="let ingredient of selectedIngredients" class="selectedIngredients">
+                  <td class="col">
+                    <input type="text"  [(ngModel)]="ingredient.name" class="form-control" readonly>
+                  </td>
+                  <td class="col">
+                    <input type="text" [(ngModel)]="ingredientQuantities[ingredient.id]" (ngModelChange)="updateIngredientQuantity(ingredient.id, $event)" [placeholder]="quantity" class="form-control"/>
+                  </td>
+                  <td class="col">
+                    <button class="btn btn-danger" (click)="removeIngredient(ingredient)">{{remove}}</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        
+          
+        </div>
+        
 
 
         
-        <button class="btn btn-danger mt-3" type="submit" *ngIf="disableButton()" disabled>{{createRecipeTitle}}</button>
-        <button class="btn btn-danger mt-3" type="submit" (click)="createRecipe()" *ngIf="!disableButton()">{{createRecipeTitle}}</button>
+        <button class="btn btn-success mt-3" type="submit" *ngIf="disableButton()" disabled>{{createRecipeTitle}}</button>
+        <button class="btn btn-success mt-3" type="submit" (click)="createRecipe()" *ngIf="!disableButton()">{{createRecipeTitle}}</button>
 
       </div>
     </div>

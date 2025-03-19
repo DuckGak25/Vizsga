@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ConfigService } from '../../config.service';
 import { RecipeService } from '../../recipe.service';
 import { Ingredient } from '../../models/ingredient.model';
 import { lastValueFrom } from 'rxjs';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-ingredients-list',
@@ -10,6 +11,7 @@ import { lastValueFrom } from 'rxjs';
   styleUrl: './ingredients-list.component.css'
 })
 export class IngredientsListComponent {
+  @ViewChild('content') content: any;
   ingredients: Ingredient[] = [];
   searchTerm: string = '';
   defaultIngredients: Ingredient[] = []
@@ -26,13 +28,17 @@ export class IngredientsListComponent {
   ingredientsHeaderTitle = "";
   categoryTitle = "";
   ingredientName = "";
+  language = ""
   actLang = "Magyar";
   editButton = "";
   ingredientsDescription = "";
   deleteButton: any;
   saveButton: any;
+  modalTitle = '';
+  modalContent = '';
+  closeButton = ""
 
-  constructor(private config: ConfigService, private recipeService: RecipeService) {
+  constructor(private config: ConfigService, private recipeService: RecipeService, private modalService: NgbModal) {
     this.getIngredients();
     this.loadContent();
     this.langSign = config.langSign
@@ -48,6 +54,8 @@ export class IngredientsListComponent {
       this.categoryTitle = content.categoryTitle
       this.ingredientName = content.ingredientName
       this.ingredientsDescription = content.ingredientsDescription
+      this.language = content.language
+      this.closeButton = content.closeButton
     });
   }
 
@@ -55,6 +63,10 @@ export class IngredientsListComponent {
   langChange(lang: any) {
     this.actLang = lang.text;
     this.config.changeLanguage(lang.sign);
+  }
+
+  openModal() {
+    this.modalService.open(this.content, { centered: true });
   }
 
   getIngredients() {
@@ -68,20 +80,21 @@ export class IngredientsListComponent {
       const response = await this.recipeService.postIngredients(ingredient).toPromise();
       console.log('Ingredient added successfully', response);
       if (this.langSign === "hu") {
-        alert("Sikeresen hozzáadtad a hozzávalót!")
+        this.modalContent = "Sikeresen hozzáadtad a hozzávalót!"
       } else {
-        alert("Successfully added the ingredient!")
+        this.modalContent = "Successfully added the ingredient!"
       }
       
       await this.getIngredients();
     } catch (error) {
       if (this.langSign === "hu") {
-        alert("Hozzávaló hozzáadása sikertelen!")
+        this.modalContent = "Hozzávaló hozzáadása sikertelen!"
       } else {
-      alert("Error adding ingredient")
+      this.modalContent = "Error adding ingredient"
       }
       console.error('Error adding ingredient', error);
     }
+    this.openModal()
   }
   
 
@@ -89,21 +102,22 @@ export class IngredientsListComponent {
     this.recipeService.modifyIngredient(ingredient).subscribe(
       response => {
         if (this.langSign === "hu") {
-          alert("Sikeresen módosítottad a hozzávalót!")
+          this.modalContent = "Sikeresen módosítottad a hozzávalót!"
         } else {
-          alert("Successfully modified the ingredient!")
+          this.modalContent = "Successfully modified the ingredient!"
         }
         console.log('Ingredient modified successfully', response);
       },
       error => {
         if (this.langSign === "hu") {
-          alert("Hozzávaló módosítása sikertelen!")
+          this.modalContent = "Hozzávaló módosítása sikertelen!"
         } else {
-          alert("Error modifying ingredient!")
+          this.modalContent = "Error modifying ingredient"
         }
         console.error('Error modifying ingredient', error);
       }
     );
+    this.openModal()
   }
 
   async deleteIngredient(ingredient: Ingredient) {

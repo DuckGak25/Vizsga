@@ -1,91 +1,109 @@
 .content {
     padding-top: 6rem;
     margin: 0 auto;
-    cursor: pointer;
     padding-bottom: 20px;
-}
+  }
 
-* {
+  * {
     font-weight: 500;
-}
+    user-select: none;
+  }
 
-input {
-    font-weight: 500;
-}
-
-.card {
+  .card {
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
-    padding: 50px;
+    padding: 40px;
     margin: 0 auto;
     border: 0;
     max-width: 95%;
     border-radius: 20px;
-    cursor: pointer;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
+    font-size: 18px;
     background-size: 75%;
     background-repeat: no-repeat;
-    background-position: center;
-    background-position: bottom;
+    background-position: center bottom;
     transition: transform 0.4s ease, box-shadow 0.3s ease;
-
     background-color: rgba(255, 255, 255, 0.25);
     border: 1px solid rgba(255, 255, 255, 0.32);
     backdrop-filter: blur(6.1px);
-    
-}
+  }
 
-.selected-ingredients td {
-    width: 33%;
-    border: none;
-    line-height: 50px;
-    margin-left: 5px;
-}
-
-.selectedIngredients {
+  .selectedIngredients {
     border: 1px solid #86868b7f;
     border-radius: 16px;
     display: block;
     margin-bottom: 10px;
-}
+  }
 
-.selectedIngredients button{
+  .selectedIngredients button {
     height: 50px;
     border-radius: 16px;
     width: 100%;
-}
+  }
 
-.form-control {
+  .form-control {
     border-radius: 16px;
-    height: 50px;
+    height: 45px;
     background-color: rgba(255, 255, 255, 0.25);
     border: 2px solid rgba(255, 255, 255, 0.32);
-}
+  }
 
-.form-control:focus {
+  .form-control:focus {
     background-color: rgba(255, 255, 255, 0.25);
     border: 2px solid rgba(255, 255, 255, 0.36);
-}
+  }
 
-
-
-
-
-h1 {
+  h1 {
     font-weight: 900;
-}
+    font-size: 22px;
+  }
 
-h2 {
+  h2 {
     font-weight: 800;
+    font-size: 20px;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  td {
+    border: 0;
+  }
+
+  .ingredient-container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
 }
 
+/* Mobil nézet: Fordított sorrend */
 @media (max-width: 768px) {
-    .card {
-        padding: 20px;
+    .ingredient-container {
+        flex-direction: column-reverse;
     }
 }
-* {
-    user-select: none;
+
+
+  @media (max-width: 768px) {
+    .card {
+      padding: 20px;
+    }
+    .selectedIngredients td,
+    .ingredient-list td {
+      display: block;
+      width: 100%;
+    }
+    .btn {
+      width: 100%;
+      margin-top: 5px;
+    }
+    h1 {
+      font-size: 20px;
+    }
+    h2 {
+      font-size: 18px;
+    }
+    .form-control {
+      height: 40px;
+      font-size: 16px;
+    }
   }
-  

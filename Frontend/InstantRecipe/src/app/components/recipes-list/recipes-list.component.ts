@@ -149,6 +149,7 @@ export class RecipesListComponent {
       this.closeButton = content.closeButton || '';
       this.pendingRecipesTitle = content.pendingRecipes || '';
 
+
     });
   }
 
