@@ -12,6 +12,9 @@ use App\Http\Requests\RecipeIngredientRequest;
 use App\Http\Mail\RecipeApprovalRequest;
 use App\Http\Controllers\ResponseController;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\RecipeApprovedMail;
+use App\Http\Controllers\MailController;
 
 
 class RecipeController extends ResponseController
@@ -67,6 +70,11 @@ class RecipeController extends ResponseController
         $recipe->user_id = $user->id;
         $recipe->language = $request[ "language" ];
         $recipe->save();
+
+        $mailController = new MailController();
+        $mailController->sendRecipeAddMail($recipe->id);
+
+        $mailController->sendRecipeWaitingForApproveMail($recipe->id);
         return $this->sendResponse(new RecipeResource($recipe), "Sikeres recept hozzáadás");
     }
 
@@ -141,7 +149,7 @@ class RecipeController extends ResponseController
         }
         $recipe->approved = !$recipe->approved;
         $recipe->save();
-
+        Mail::to($recipe->user->email, $recipe->user->name)->send(new RecipeApprovedMail($recipe));
         return $this->sendResponse(new RecipeResource($recipe), "Elfogadtad a receptet!");
     }
 

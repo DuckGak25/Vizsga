@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { Observable } from 'tinymce';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class ConfigService {
 
   private content = new Subject()
   public langSign="hu"
-
+  errorMessages: any = {};
   constructor(private http:HttpClient) { 
     this.loadContent()
 
@@ -34,5 +35,13 @@ export class ConfigService {
 
   getContent():Subject<any>{
     return this.content
+  }
+
+  loadErrorMessages() {
+    return this.http.get('/assets/error-messages.json');
+  }
+
+  getErrorMessage(key: string, lang: string): string {
+    return this.errorMessages[lang]?.[key] || key;
   }
 }

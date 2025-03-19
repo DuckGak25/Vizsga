@@ -1,15 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ConfigService } from '../config.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
-
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
+  @ViewChild('content') content: any;
   registerCard: any[] = [];
   registerTitle = '';
   emailLabel = '';
@@ -27,8 +28,10 @@ export class RegisterComponent {
   inputClassName = 'form-control';
   inputClassEmail = 'form-control';
   inputClassPassword = 'form-control';
-
-
+  showModal: boolean = false;
+  modalTitle = '';
+  modalContent = '';
+  closeButton = '';
 
   name = '';
   email = '';
@@ -36,7 +39,7 @@ export class RegisterComponent {
   confirm_password = '';
   error='';
 
-  constructor(private config: ConfigService, private router: Router, private auth: AuthService) {
+  constructor(private config: ConfigService, private router: Router, private auth: AuthService, private modalService: NgbModal) {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe(() => {
@@ -47,6 +50,10 @@ export class RegisterComponent {
 
   ngOnInit() {
     this.loadContent();
+    
+  }
+  openModal() {
+    this.modalService.open(this.content, { centered: true });
   }
 
   loadContent() {
@@ -58,7 +65,7 @@ export class RegisterComponent {
       
       this.confirmPasswordText = content.confirmPasswordText || '';
       this.alreadyAccountLabel = content.alreadyAccountLabel || '';
-      this.signInGoogle = content.signInGoogle || '';
+      this.closeButton = content.closeButton || '';
     });
   }
 
@@ -92,8 +99,18 @@ export class RegisterComponent {
     }).subscribe(
       (response) => {
         console.log('Sikeres regisztráció:', response);
-        alert('Sikeres regisztráció!');
-        this.navigateTo('/login');
+        if (this.langSign === 'hu') {
+          this.modalContent = 'Sikeres regisztráció!';
+        } else if (this.langSign === 'en') {
+          this.modalContent = 'Successful registration!';
+        }
+        this.openModal();
+
+        this.name = '';
+        this.email = '';
+        this.password = '';
+        this.confirm_password = '';
+        // this.navigateTo('/login');
       },
       (error) => {
         console.error('Hiba:', error);

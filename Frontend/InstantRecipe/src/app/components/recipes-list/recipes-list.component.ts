@@ -49,6 +49,7 @@ export class RecipesListComponent {
   language = "";
   everyRecipe = "";
   langSign = ""
+  ingredientFound = false
   recipes: Recipe[] = [];
   selectedIngredients: Set<Ingredient> = new Set();
   ingredientQuantities: { [key: number]: string } = {};
@@ -214,8 +215,13 @@ export class RecipesListComponent {
       next: (response) => {
         console.log('Recipe deleted successfully', response);
         this.recipes = this.recipes.filter((r) => r.id !== recipe.id);
-        this.modalContent = `Sikeresen törölted a receptet: ${recipe.title}`;
-        this.openModal();
+        if (this.langSign === "hu") {
+          this.modalContent = `Sikeresen törölted a receptet: ${recipe.title}`;
+          this.openModal();
+        } else if (this.langSign === "en") {
+          this.modalContent = `Successfully deleted the recipe: ${recipe.title}`;
+          this.openModal();
+        }
       },
       error: (error) => {
         this.modalContent = 'Hiba a recept törlésekor';
@@ -263,31 +269,6 @@ export class RecipesListComponent {
     this.ingredientQuantities[ingredientId] = quantity;
   } 
 
-  async postIngredient(ingredient: Ingredient) {
-    try {
-      const response = await this.recipeService.postIngredients(ingredient).toPromise();
-      console.log('Ingredient added successfully', response);
-      if (this.langSign === "hu") {
-        this.modalContent = "Sikeresen hozzáadtad a hozzávalót!"
-        this.openModal();
-      } else {
-        this.modalContent = "Successfully added the ingredient!"
-        this.openModal()
-      }
-  
-      this.updateIngredientsList();
-  
-    } catch (error) {
-      if (this.langSign === "hu") {
-        this.modalContent = "Hozzávaló hozzáadása sikertelen!"
-        this.openModal();
-      } else {
-        this.modalContent = "Unable to add the ingredient!"
-        this.openModal();
-      }
-      console.error('Error adding ingredient', error);
-    }
-  }
   
 
   getRecipes() {
@@ -352,7 +333,11 @@ export class RecipesListComponent {
 
   saveRecipe(recipe: Recipe) {
       this.recipeService.modifyRecipe(recipe).subscribe(() => {
-        this.modalContent = `Sikeresen mentetted a receptet: ${recipe.title}`;
+        if (this.langSign === 'hu') {
+          this.modalContent = `Sikeresen mentetted a receptet: ${recipe.title}`;
+        } else if (this.langSign === 'en') {
+          this.modalContent = `Successfully saved the recipe: ${recipe.title}`;
+        }
         this.openModal();
         this.closeRecipe();
         this.vps.scrollToPosition([0,0]);
@@ -426,7 +411,7 @@ export class RecipesListComponent {
         console.log('Ingredient deleted successfully', response, ingredient);
         }
         this.getRecipes();
-        this.updateIngredientsList();
+
       },
       error: (error) => {
         if (this.langSign === "hu") {
@@ -451,18 +436,7 @@ export class RecipesListComponent {
   //     }
   //   });
   //}
-  updateIngredientsList() {
-    this.recipeService.getIngredients().subscribe({
-      next: (ingredients: Ingredient[]) => {
-        this.ingredients = [...ingredients]; 
-      },
-      error: (error) => {
-        this.showModal = true;
-        this.modalContent = 'Hiba az összetevők frissítésekor';
-        console.error('Hiba az összetevők frissítése közben', error);
-      }
-    });
-  }
+
   
 
   saveIngredient() {
@@ -507,6 +481,12 @@ export class RecipesListComponent {
     this.recipeService.approveRecipe(recipe).subscribe(
       (response) => {
         console.log(response);
+        if (this.langSign === 'hu') {
+          this.modalContent = 'Sikeresen elfogadtad a receptet! ('+ recipe.title + ')';
+        } else if (this.langSign === 'en') {
+          this.modalContent = 'Successfully approved the recipe!';
+        }
+        this.openModal();
         this.getRecipes();
       },
       (error) => {
@@ -552,18 +532,4 @@ export class RecipesListComponent {
       this.recipes = filteredRecipes;
     });
   }
-
 }
-
-
-
-
-
-
-
-  
-  
-  
-  
-  
-

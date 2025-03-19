@@ -9,7 +9,7 @@
     <div>
         <?php
             if(DB::connection()->getPdo()){
-                echo "Ügyes vagy bazdmeg". DB::connection()->getDatabaseName();
+                echo "Ügyes vagy". DB::connection()->getDatabaseName();
             }
         ?>
     </div>

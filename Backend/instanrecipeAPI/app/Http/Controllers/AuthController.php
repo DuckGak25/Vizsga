@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\MailController;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRegisterRequest;
 use App\Http\Requests\UserLoginRequest;
@@ -10,6 +11,10 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use App\Mail\RegisterMail;
+use Illuminate\Support\Facades\Mail;
+
+
 
 class AuthController extends ResponseController
 {
@@ -22,9 +27,9 @@ class AuthController extends ResponseController
             "name" => $request["name"],
             "email" => $request["email"],
             "password" => bcrypt( $request["password"]),
-            "admin" => 2
+            "admin" => 0
         ]);
-
+        Mail::to($user->email)->send(new RegisterMail($user));
         return $this->sendResponse( $user->name, "Sikeres regisztráció");
     }
 

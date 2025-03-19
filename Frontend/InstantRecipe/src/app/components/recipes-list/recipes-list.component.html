@@ -112,29 +112,12 @@
                                       <label [for]="'ingredient-' + ingredient.id">{{ ingredient.name }}</label>
                                     </div>
                                   </div>
-                                  
+                                </div>
+                                <div *ngIf="!categorizedIngredients">
+                                  nincs ilyen hozzávaló
                                 </div>
                               </div>
-                              <div class="post-ingredient mt-3">
-                                <h2>{{addIngredient}}</h2>
-                                <div class="form-floating mb-3 row">
-                                  <div class="col">
-                                    <input type="text" class="form-control col" id="ingredient" name="ingredient" [placeholder]="ingredientName" [(ngModel)]="newIngredient.name"/>
-                                  </div>
-                                  <div class="col">
-                                    <input type="text" class="form-control" id="category" name="category" [placeholder]="categoryTitle" [(ngModel)]="newIngredient.category">
-                                  </div>
-                                  <div class="col">
-                                    <select name="language" id="" [(ngModel)]="newIngredient.language" class="form-control" placeholder="Nyelv">
-                                      <option value="hu" >Magyar</option>
-                                      <option value="en">English</option>
-                                    </select>
-                                  </div>
-                                  <div class="col">
-                                    <button class="btn btn-success" (click)="postIngredient(newIngredient);" style="width: 100%;">{{addButton}}</button>
-                                  </div>
-                                </div>
-                              </div>
+                              
                               </div>
 
                               <div class="col">

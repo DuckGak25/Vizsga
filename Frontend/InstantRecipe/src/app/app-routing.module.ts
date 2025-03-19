@@ -20,7 +20,7 @@ import { UserGuard } from './guards/user.guard';
 const routes: Routes = [
   {path:"home", component: HomeComponent},
   {path: "pantry", component: PantryComponent, canActivate: [UserGuard] },
-  {path: "recipes", component: RecipesComponent},
+  {path: "recipes", component: RecipesComponent, canActivate: [UserGuard] },
   {path: "register", component: RegisterComponent},
   {path: "login", component: LoginComponent},
   {path: "admin", component: AdminComponent, canActivate: [AdminGuard] },
