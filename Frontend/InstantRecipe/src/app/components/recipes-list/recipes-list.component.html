@@ -2,18 +2,34 @@
   <div class="card ">
     <div class="card-body">
       <h1>{{recipesHeaderTitle}}</h1>
-      <div class="search-recipes">
-        <input type="text" class="form-control" [(ngModel)]="searchTermRecipes" (input)="filterRecipes()" [placeholder]="searchForRecipes"/>
-      </div>     
-      <div id="toggles">
-        <input type="checkbox" id="checkbox1" id="checkbox1" class="ios-toggle" [checked]="filterPending" (click)="toggleFilter()"/>
-        <label for="checkbox1" class="checkbox-label"></label>
-      </div>
-      <select name="language" [(ngModel)]="filterLanguage" class="form-control" (change)="getRecipes()">
-        <option value="">{{everyRecipe}}</option>
-        <option value="hu">Magyar</option>
-        <option value="en">English</option>
-      </select>
+      <div class="row">
+        <div class="col" style="margin-left: 20px;">
+
+          <table style="vertical-align: middle;">
+            <tr>
+              <td>
+                <h3 style="margin: 0;">{{pendingRecipesTitle}}</h3>
+              </td>
+              <td>
+                <div id="toggles">
+                  <input type="checkbox" id="checkbox1" id="checkbox1" class="ios-toggle" [checked]="filterPending" (click)="toggleFilter()"/>
+                  <label for="checkbox1" class="checkbox-label"></label>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="col">
+          <select name="language" [(ngModel)]="filterLanguage" class="form-control" (change)="getRecipes()">
+            <option value="">{{everyRecipe}}</option>
+            <option value="hu">Magyar</option>
+            <option value="en">English</option>
+          </select>
+        </div>
+        <div class="search-recipes col">
+          <input type="text" class="form-control" [(ngModel)]="searchTermRecipes" (input)="filterRecipes()" [placeholder]="searchForRecipes"/>
+        </div>
+      </div> 
       <div class="list-card" *ngFor="let recipe of recipes">
         <div class="row">
           <div class="col">

@@ -86,5 +86,6 @@
     "preview":"Előnézet",
     "ingredientsDescription": "Az összetevők közt kereshetsz is az \"Összetevő neve\" mezőben és ha nincs találat hozzá is adhatod",
     "language": "Nyelv",
-    "everyRecipe": "Minden nyelv"
+    "everyRecipe": "Minden nyelv",
+    "pendingRecipes": "Jóváhagyásra váró receptek"
 }

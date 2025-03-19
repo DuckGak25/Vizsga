@@ -94,7 +94,6 @@ export class AddRecipeComponent {
 
   ngOnInit(): void {
     this.langSign = this.config.langSign
-
   }
 
   loadContent() {
@@ -146,7 +145,7 @@ export class AddRecipeComponent {
       this.selectedIngredients.delete(ingredient);
       delete this.ingredientQuantities[ingredient.id];
     }
-    this.filterRecipes();
+
     this.saveSelectedIngredients();
   }
 
@@ -154,26 +153,10 @@ export class AddRecipeComponent {
     const checkbox = document.getElementById(`ingredient-${ingredient.id}`) as HTMLInputElement;
     checkbox.checked = false;
     this.selectedIngredients.delete(ingredient);
-    this.filterRecipes();
     this.saveSelectedIngredients();
     this.ingredientQuantities[ingredient.id] = '';
   }
   
-
-
-  filterRecipes() {
-    if (this.selectedIngredients.size === 0) {
-      this.filteredRecipes = this.allRecipes;
-    } else {
-      this.filteredRecipes = this.allRecipes.filter(recipe =>
-        Array.from(this.selectedIngredients).some(ingredient =>
-          recipe.ingredients.some(i => i.id === ingredient.id)
-        )
-      );
-    }
-  }
-
-
   filterIngredients(ingredients: Set<Ingredient>): Ingredient[] {
     const lowerCaseSearchTerm = this.searchTerm.toLowerCase();
     return Array.from(ingredients).filter(ingredient =>
