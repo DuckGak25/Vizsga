@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\RecipeAddMail;
+use App\Mail\RecipeModifiedMail;
 use App\Mail\RecipeWaitingForApproveMail;
 use App\Models\Recipe;
 use App\Models\User;
@@ -15,6 +16,13 @@ class MailController extends Controller
         $email = $recipe->user->email;
         $name = $recipe->user->name;
         $content = new RecipeAddMail($recipe);
+        Mail::to($email, $name)->send($content);
+    }
+    public function sendRecipeModifiedMail($recipeId) {
+        $recipe = Recipe::find($recipeId);
+        $email = $recipe->user->email;
+        $name = $recipe->user->name;
+        $content = new RecipeModifiedMail($recipe);
         Mail::to($email, $name)->send($content);
     }
 

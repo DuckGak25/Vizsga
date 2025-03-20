@@ -8,6 +8,7 @@
         {"text":"Kezdőlap", "link":"home"}
     ],
     "pantry": "Mi van a kamrában?",
+    "userRecipes": "Saját receptek",
     "logout": "Kijelentkezés",
     "login": "Bejelentkezés",
     "register": "Regisztráció",

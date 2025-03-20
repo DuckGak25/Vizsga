@@ -19,7 +19,6 @@ use App\Http\Controllers\MailController;
 
 class RecipeController extends ResponseController
 {
-
     public function index()
     {
         $user = auth()->user();
@@ -31,6 +30,31 @@ class RecipeController extends ResponseController
         return response()->json($recipes);
     }
 
+    public function getNotApprovedRecipes() {
+
+        if (Gate::allows("user")) {
+            return $this->sendError("Autentikációs hiba", "Nincs jogosultsága", 401);
+        }
+        $notApprovedRecipes = Recipe::where('approved', false)->with('ingredients', 'user')->get();
+        return response()->json($notApprovedRecipes);
+    }
+
+    public function getEnglishRecipes() {
+        $englishRecipes = Recipe::where('language', 'en')->with('ingredients', 'user')->get();
+        return response()->json($englishRecipes);
+    }
+
+    public function getHungarianRecipes() {
+        $hungarianRecipes = Recipe::where('language', 'hu')->with('ingredients', 'user')->get();
+        return response()->json($hungarianRecipes);
+    }
+
+    public function getFeaturedRecipes()
+    {
+        $featuredRecipes = Recipe::where('featured', true)->get();
+        return response()->json($featuredRecipes);
+    }
+
     public function show($id)
     {
         $recipe = Recipe::with('ingredients')->find($id);
@@ -39,6 +63,16 @@ class RecipeController extends ResponseController
         }
 
         return response()->json($recipe);
+    }
+
+    public function getUserRecipes() {
+        $user = auth()->user();
+
+        if (!$user) {
+            return $this->sendError("Autentikációs hiba", "Nincs jogosultsága", 401);
+        }
+        $recipes = Recipe::where('user_id', $user->id)->with('ingredients', 'user')->get();
+        return response()->json($recipes);
     }
 
     
@@ -94,7 +128,27 @@ class RecipeController extends ResponseController
         return $this->sendResponse($recipe, "Sikeres recept törlés");
     }
 
+    public function deleteUserRecipe($id)
+    {
+        $user = auth()->user();
 
+        if (!$user) {
+            return $this->sendError("Autentikációs hiba", "Nincs jogosultsága", 401);
+        }
+
+        $recipe = Recipe::find($id);
+    
+        if (!$recipe) {
+            return $this->sendError("Adathiba", "Nem található recept", 404);
+        }
+        if ($recipe->user_id != $user->id) {
+            return $this->sendError("Autentikációs hiba", "Nincs jogosultsága", 401);
+        }
+    
+        $recipe->delete();
+    
+        return $this->sendResponse($recipe, "Sikeres recept törlés");
+    }
 
     public function modifyRecipe(RecipeRequest $request) {
 
@@ -116,11 +170,34 @@ class RecipeController extends ResponseController
 
         return $this->sendResponse(new RecipeResource($recipe), "Sikeres recept módosítás");
     }
+    public function modifyUserRecipe(RecipeRequest $request) {
+        $user = auth()->user();
 
-    public function getFeaturedRecipes()
-    {
-        $featuredRecipes = Recipe::where('featured', true)->get();
-        return response()->json($featuredRecipes);
+        if (!$user) {
+            return $this->sendError("Autentikációs hiba", "Nincs jogosultsága", 401);
+        }
+        $validated = $request->validated();
+
+        $recipe = Recipe::find($request->id);
+        if (!$recipe) {
+            return $this->sendError("Adathiba", "Nem található recept", 404);
+        }
+        if ($recipe->user_id != $user->id) {
+            return $this->sendError("Adathiba", "Nem található recept", 404);
+        }
+        $recipe->title = $validated['title'];
+        $recipe->description = $validated['description'];
+        $recipe->categories = $validated['categories'];
+        $recipe->imagelink = $validated['imagelink'];
+        $recipe->featured = false;
+        $recipe->approved = false;
+        $recipe->save();
+        $mailController = new MailController();
+        $mailController->sendRecipeModifiedMail($recipe->id);
+
+        $mailController->sendRecipeWaitingForApproveMail($recipe->id);
+
+        return $this->sendResponse(new RecipeResource($recipe), "Sikeres recept módosítás");
     }
 
     public function toggleFeatured(RecipeRequest $request)
@@ -158,25 +235,5 @@ class RecipeController extends ResponseController
         $approvedRecipes = Recipe::where('approved', true)->with('ingredients', 'user')->get();
         return response()->json($approvedRecipes);
     }
-
-    public function getNotApprovedRecipes() {
-
-        if (Gate::allows("user")) {
-            return $this->sendError("Autentikációs hiba", "Nincs jogosultsága", 401);
-        }
-        $notApprovedRecipes = Recipe::where('approved', false)->with('ingredients', 'user')->get();
-        return response()->json($notApprovedRecipes);
-    }
-
-    public function getEnglishRecipes() {
-        $englishRecipes = Recipe::where('language', 'en')->with('ingredients', 'user')->get();
-        return response()->json($englishRecipes);
-    }
-
-    public function getHungarianRecipes() {
-        $hungarianRecipes = Recipe::where('language', 'hu')->with('ingredients', 'user')->get();
-        return response()->json($hungarianRecipes);
-    }
-
 }
 

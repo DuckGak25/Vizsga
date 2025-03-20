@@ -15,6 +15,7 @@ import { IngredientsListComponent } from './components/ingredients-list/ingredie
 import { AdminGuard } from './guards/admin.guard';
 import { SuperGuard } from './guards/super.guard';
 import { UserGuard } from './guards/user.guard';
+import { UserRecipesComponent } from './user-recipes/user-recipes.component';
 
 
 const routes: Routes = [
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: 'admin/recipes-list', component: RecipesListComponent, canActivate: [AdminGuard] },
   { path: 'admin/ingredients-list', component: IngredientsListComponent, canActivate: [AdminGuard] },
   {path: 'admin/users', component: UsersComponent, canActivate: [SuperGuard] },
+  { path: 'userrecipes', component: UserRecipesComponent, canActivate: [UserGuard] },
 
   {path: "addrecipe", component: AddRecipeComponent},
   {path:"", redirectTo:'/home', pathMatch:'full'},

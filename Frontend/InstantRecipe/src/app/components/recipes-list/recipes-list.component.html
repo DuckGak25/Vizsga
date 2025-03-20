@@ -20,14 +20,14 @@
           </table>
         </div>
         <div class="col">
-          <select name="language" [(ngModel)]="filterLanguage" class="form-control" (change)="getRecipes()">
+          <select name="language" [(ngModel)]="filterLanguage" class="form-control" (change)="getRecipes()" >
             <option value="">{{everyRecipe}}</option>
             <option value="hu">Magyar</option>
             <option value="en">English</option>
           </select>
         </div>
         <div class="search-recipes col">
-          <input type="text" class="form-control" [(ngModel)]="searchTermRecipes" (input)="filterRecipes()" [placeholder]="searchForRecipes"/>
+          <input type="text" name="searchRecipe" class="form-control" [(ngModel)]="searchTermRecipes" (input)="filterRecipes()" [placeholder]="searchForRecipes"/>
         </div>
       </div> 
       <div class="list-card" *ngFor="let recipe of recipes">
@@ -45,25 +45,25 @@
             <h2>{{waitingForApprove}}</h2>
           </div>
           <div class="col" *ngIf="recipe.approved">
-            <input class="star" type="checkbox" title="bookmark page"[checked]="recipe.featured" (click)="toggleFeatured(recipe)"><br/><br/>
+            <input class="star" name="bookmark" type="checkbox" title="bookmark page"[checked]="recipe.featured" (click)="toggleFeatured(recipe)"><br/><br/>
           </div>
           <div class="col">
             <button class="btn btn-success" (click)="editRecipe(recipe)">{{editButton}}</button>
             <button class="btn btn-danger" (click)="deleteRecipe(recipe)">{{deleteButton}}</button>
-            <button *ngIf="!recipe.approved" (click)="approveRecipe(recipe)" class="btn btn-warning" type="submit">{{approve}}</button>
+            <button *ngIf="!recipe.approved" (click)="approveRecipe(recipe)" class="btn btn-secondary" type="submit">{{approve}}</button>
           </div>
           <!-- Szerkesztés -->
           <div class="edit-recipe" *ngIf="recipe.id === selectedRecipeId">
                             <div class="row">
                               <div class="col">
-                                <input type="text" class="form-control" id="title" name="title" [placeholder]="recipeName" [(ngModel)]="recipe.title"/>
+                                <input name="title" type="text" class="form-control" id="title" name="title" [placeholder]="recipeName" [(ngModel)]="recipe.title"/>
                               </div>
                               <div class="col">
                                 <select name="language" id="" [(ngModel)]="recipe.language" class="form-control">
                                   <option value="hu">Magyar</option>
                                   <option value="en">English</option>
                                 </select>
-                                <label for="language">{{language}}</label>
+
                               </div>
                             </div>
                             <div class="row" style="margin: 0 auto;">

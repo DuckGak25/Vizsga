@@ -11,6 +11,7 @@
     "pantry":"What's in the Pantry?",
     "logout": "Logout",
     "login": "Login",
+    "userRecipes": "My recipes",
     "register": "Register",
     "addRecipe": "Add Recipe",
     "recipeName": "Recipe Name",

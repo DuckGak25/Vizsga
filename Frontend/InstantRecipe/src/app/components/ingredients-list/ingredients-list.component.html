@@ -28,15 +28,15 @@
                     <div class="list-card" *ngFor="let ingredient of filterIngredients()">
                         <div class="row">
                             <div class="col">
-                                <input type="text" [(ngModel)]="ingredient.id" class="form-control" disabled>
+                                <input type="text" name="ingredientId" [(ngModel)]="ingredient.id" class="form-control" disabled>
                                 
                             </div>
                             <div class="col">
-                                <input type="text" [(ngModel)]="ingredient.name" class="form-control" [placeholder]="ingredientName">
+                                <input type="text" name="ingredientName" [(ngModel)]="ingredient.name" class="form-control" [placeholder]="ingredientName">
                             </div>
                             <div class="col">
         
-                                <input type="text" [(ngModel)]="ingredient.category" class="form-control" [placeholder]="categoryTitle">
+                                <input type="text" name="IngredientCategory" [(ngModel)]="ingredient.category" class="form-control" [placeholder]="categoryTitle">
                             </div>
 
                             <div class="col">
@@ -47,7 +47,7 @@
                             </div>
         
                             <div class="col">
-                                <button class="btn btn-warning" (click)="editIngredient(ingredient)" style="width: 46%;">{{editButton}}</button>
+                                <button class="btn btn-secondary" (click)="editIngredient(ingredient)" style="width: 46%;">{{editButton}}</button>
                                 <button class="btn btn-danger" (click)="deleteIngredient(ingredient)" style="width: 46%;">{{deleteButton}}</button>
         
                             </div>

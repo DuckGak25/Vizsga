@@ -83,10 +83,10 @@
               <tbody>
                 <tr *ngFor="let ingredient of selectedIngredients" class="selectedIngredients">
                   <td class="col">
-                    <input type="text"  [(ngModel)]="ingredient.name" class="form-control" readonly>
+                    <input type="text" name="ingredientName" [(ngModel)]="ingredient.name" class="form-control" readonly>
                   </td>
                   <td class="col">
-                    <input type="text" [(ngModel)]="ingredientQuantities[ingredient.id]" (ngModelChange)="updateIngredientQuantity(ingredient.id, $event)" [placeholder]="quantity" class="form-control"/>
+                    <input type="text" name="quantity" [(ngModel)]="ingredientQuantities[ingredient.id]" (ngModelChange)="updateIngredientQuantity(ingredient.id, $event)" [placeholder]="quantity" class="form-control"/>
                   </td>
                   <td class="col">
                     <button class="btn btn-danger" (click)="removeIngredient(ingredient)">{{remove}}</button>

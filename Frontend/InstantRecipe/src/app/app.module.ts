@@ -19,6 +19,7 @@ import { AddRecipeComponent } from './add-recipe/add-recipe.component';
 import { RecipesListComponent } from './components/recipes-list/recipes-list.component';
 import { UsersComponent } from './components/users/users.component';
 import { IngredientsListComponent } from './components/ingredients-list/ingredients-list.component';
+import { UserRecipesComponent } from './user-recipes/user-recipes.component';
 
 
 
@@ -39,6 +40,7 @@ import { IngredientsListComponent } from './components/ingredients-list/ingredie
     RecipesListComponent,
     UsersComponent,
     IngredientsListComponent,
+    UserRecipesComponent,
 
   ],
   imports: [

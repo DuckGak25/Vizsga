@@ -13,29 +13,29 @@ Route::post( "/register", [ AuthController::class, "register" ]);
 Route::post( "/login", [ AuthController::class, "login" ]);
 Route::get('/recipes/{id}', [RecipeController::class, 'show']);
 
-Route::get('/englishrecipes', [RecipeController::class, 'getEnglishRecipes']);
-Route::get('/hungarianrecipes', [RecipeController::class, 'getHungarianRecipes']);
-
 //Route::post('/postrecipe', [RecipeController::class, 'postRecipes']);
-
-
 Route::middleware(['auth:sanctum'])->group( function () {
     Route::post( "/logout", [ AuthController::class, "logout" ]);
     
     Route::put("/setadmin", [ UserController::class, "setAdmin" ]);
     Route::put("/removeadmin", [ UserController::class, "removeAdmin" ]);
     Route::get("/getusers", [ UserController::class, "getUsers" ]);
-    
+    Route::get('/userrecipes', [RecipeController::class, 'getUserRecipes']);
     
     Route::get('/recipes', [RecipeController::class, 'getApprovedRecipes']);
     Route::get('/allrecipes', [RecipeController::class, 'index']);
+
+    Route::get('/englishrecipes', [RecipeController::class, 'getEnglishRecipes']);
+    Route::get('/hungarianrecipes', [RecipeController::class, 'getHungarianRecipes']);
 
     Route::get('/recipes/{id}/ingredients', [RecipeController::class, 'showIngredients']);
 
     
     Route::post('/postrecipe', [RecipeController::class, 'postRecipes']);
     Route::put('/modifyrecipe', [RecipeController::class, 'modifyRecipe']);
+    Route::put('/modifyuserrecipe', [RecipeController::class, 'modifyUserRecipe']);
     Route::delete('/deleterecipe/{id}', [RecipeController::class, 'deleteRecipe']);
+    Route::delete('/deleteuserrecipe/{id}', [RecipeController::class, 'deleteUserRecipe']);
     Route::post('/storerecipes', [RecipeController::class, 'store']);
 
 

@@ -415,7 +415,6 @@ export class RecipesListComponent {
     this.recipeService.getPendingRecipes().subscribe(
       (recipes) => {
         this.pendingRecipes = recipes;
-        console.log(this.pendingRecipes);
       },
       (error) => {
         console.error('Hiba a recept betöltésénél:', error);

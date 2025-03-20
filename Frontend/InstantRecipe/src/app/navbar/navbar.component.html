@@ -19,12 +19,16 @@
         <li *ngIf="!isLoggedIn" class="nav-item">
           <a class="nav-link" (click)="navigateTo('/login')">{{ login }}</a>
         </li>
+        <li *ngIf="isLoggedIn && !isAdmin()" class="nav-item">
+          <a class="nav-link" (click)="navigateTo('/userrecipes')">{{ userRecipes }}</a>
+        </li>
         <li *ngIf="isLoggedIn" class="nav-item">
           <a class="nav-link" (click)="navigateTo('/addrecipe')">{{ addRecipe }}</a>
         </li>
         <li *ngIf="isAdmin()" class="nav-item">
           <a class="nav-link" (click)="navigateTo('/admin')">Admin</a>
         </li>
+
         <li *ngIf="isLoggedIn" class="nav-item">
           <a class="nav-link" (click)="logOut()">{{ logout }}</a>
         </li>

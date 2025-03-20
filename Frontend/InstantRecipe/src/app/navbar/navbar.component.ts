@@ -24,6 +24,7 @@ export class NavbarComponent {
   login = "";
   register = "";
   pantry = "";
+  userRecipes = "";
   actLang = "Magyar";
   hamburgerActive = false;
 
@@ -41,6 +42,7 @@ export class NavbarComponent {
       this.register = content.register || '';
       this.pantry = content.pantry || '';
       this.addRecipe = content.addRecipe || '';
+      this.userRecipes = content.userRecipes || '';
 
     });
     

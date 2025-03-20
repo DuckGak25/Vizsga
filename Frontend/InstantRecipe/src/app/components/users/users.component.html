@@ -19,7 +19,7 @@
                             </td> -->
                             <td>
                                 <div *ngIf="user.admin !== 2" (click)="toggleAdmin(user)">
-                                    <input class="star" type="checkbox" title="bookmark page"[checked]="user.admin" (click)="toggleAdmin(user)"><br/><br/>
+                                    <input class="star" name="adminButton" type="checkbox" title="bookmark page"[checked]="user.admin" (click)="toggleAdmin(user)"><br/><br/>
                                   </div>
                             </td>
                         </tr>

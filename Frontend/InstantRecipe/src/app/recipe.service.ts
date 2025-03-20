@@ -31,6 +31,10 @@ export class RecipeService {
       map((recipes: Recipe[]) => recipes.filter(recipe => recipe.language === this.config.langSign))
     );
   }
+
+  getUserRecipes(): Observable<Recipe[]> {
+    return this.http.get<Recipe[]>(`${this.apiUrl}/userrecipes`, { headers: this.getHeaders() })
+  }
   
 
   getRecipeById(id: number): Observable<Recipe> {
@@ -61,6 +65,10 @@ export class RecipeService {
     return this.http.delete(`${this.apiUrl}/deleterecipe/${id}`, { headers: this.getHeaders() });
   }
 
+  deleteUserRecipe(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/deleteuserrecipe/${id}`, { headers: this.getHeaders() });
+  }
+
   postIngredients(ingredient: Ingredient): Observable<Ingredient> {
     return this.http.post<Ingredient>(`${this.apiUrl}/addingredient`, ingredient, { headers: this.getHeaders() });
   }
@@ -75,6 +83,9 @@ export class RecipeService {
 
   modifyRecipe(recipe: Recipe): Observable<Recipe> {
     return this.http.put<Recipe>(`${this.apiUrl}/modifyrecipe`, recipe, { headers: this.getHeaders() });
+  }
+  modifyUserRecipe(recipe: Recipe): Observable<Recipe> {
+    return this.http.put<Recipe>(`${this.apiUrl}/modifyuserrecipe`, recipe, { headers: this.getHeaders() });
   }
 
   deleteIngredientFromRecipe(recipeIngredient: RecipeIngredient): Observable<any> {

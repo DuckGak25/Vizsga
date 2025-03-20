@@ -69,7 +69,7 @@ class IngredientController extends ResponseController
         return response()->json($ingredient, 200);
     }
     public function getIngredient(IngredientRequest $request)
-    {    
+    {
         $request->validated();
         $ingredient = Ingredient::find($request["id"]);
         return response()->json($ingredient, 200);
