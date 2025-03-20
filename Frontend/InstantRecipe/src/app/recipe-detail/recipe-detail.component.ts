@@ -17,13 +17,11 @@ export class RecipeDetailComponent {
   ingredientsHeaderTitle: string = '';
   descriptionTitle: string = '';
   imageSource: string = '';
+  langSign = "";
+  selectedIngredients: Set<string> = new Set();
   actLang = "Magyar";
 
-  constructor(
-    private route: ActivatedRoute,
-    private recipeService: RecipeService,
-    private config: ConfigService
-  ) {
+  constructor(private route: ActivatedRoute, private recipeService: RecipeService, private config: ConfigService) {
     const id:any = this.route.snapshot.paramMap.get('id'); 
     if (id) {
       this.recipeService.getRecipeById(id).subscribe(
@@ -36,7 +34,10 @@ export class RecipeDetailComponent {
       );
     }
 
+    this.langSign = this.config.langSign;
     this.loadContent();
+    this.restoreSelectedIngredients();
+
   }
 
 
@@ -54,4 +55,20 @@ export class RecipeDetailComponent {
       this.imageSource = content.imageSource || '';
     });
   }
+
+  restoreSelectedIngredients() {
+    let savedIngredients: string | null = null;
+  
+    if (this.langSign === "hu") {
+      savedIngredients = localStorage.getItem("selectedIngredientsHu");
+    } else if (this.langSign === "en") {
+      savedIngredients = localStorage.getItem("selectedIngredientsEn");
+    }
+  
+    if (savedIngredients) {
+      const ingredientsArray = JSON.parse(savedIngredients);
+      this.selectedIngredients = new Set(ingredientsArray);
+    }
+  }
+  
 }

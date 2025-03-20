@@ -1,59 +1,62 @@
 <div class="site" *ngIf="recipe">
-    <div class="content title row" [style.background-image]="'url(' + recipe.imagelink + ' )'">
-      <div class="titletext">
-        <h1 class="recipetitle">{{ recipe.title }}</h1>
-        <h3 class="categories">{{ recipe.categories }}</h3>
-      </div>
+  <div class="content title row" [style.background-image]="'url(' + recipe.imagelink + ' )'">
+    <div class="titletext">
+      <h1 class="recipetitle">{{ recipe.title }}</h1>
+      <h3 class="categories">{{ recipe.categories }}</h3>
     </div>
-  <div class="desktop row">
-    
-      <div class="ingredients content">
-        <h2>{{ingredientsHeaderTitle}}</h2>
-        
-        <ul>
-          <li *ngFor="let ingredient of recipe.ingredients">
-            <div class="ingredient">
-              <strong><p>{{ ingredient.pivot?.quantity }}</p></strong> <p> {{ ingredient.name }}</p>
-            </div>
-          </li>
-        </ul>
-      </div>
-    
-
-      
-      <div class="description content">
-        <h2>{{descriptionTitle}}</h2>
-        <div [innerHTML]="recipe.description" class="description"></div>
-        <div>
-          <a class="imagesource" href="{{recipe.imagelink}}">{{imageSource}}</a>
-        </div>
-      </div>
   </div>
-
-  <div class="mobile">
-    <div class="ingredients content row">
-      <h2>{{ingredientsHeaderTitle}}</h2>
+  
+  <div class="desktop row">
+    <div class="ingredients content">
+      <h2>{{ ingredientsHeaderTitle }}</h2>
       <ul>
         <li *ngFor="let ingredient of recipe.ingredients">
-          <div class="ingredient">
-            <strong><p>{{ ingredient.pivot?.quantity }}</p></strong> <p> {{ ingredient.name }}</p>
+          <div 
+            class="ingredient" 
+            [ngClass]="{
+              'selected': selectedIngredients.has(ingredient.name),
+              'not-selected': !selectedIngredients.has(ingredient.name)
+            }">
+            <strong><p>{{ ingredient.pivot?.quantity }} </p></strong> 
+            <p>{{ ingredient.name }}</p>
           </div>
         </li>
       </ul>
     </div>
-  
-
     
-    <div class="description content row">
-      <h2>{{descriptionTitle}}</h2>
-      <div [innerHTML]="recipe.description" class="description" id="steps" style="background-color: none;"></div>
+    <div class="description content">
+      <h2>{{ descriptionTitle }}</h2>
+      <div [innerHTML]="recipe.description" class="description"></div>
       <div>
-        <a href="{{recipe.imagelink}}" class="imagesource">{{imageSource}}</a>
+        <a class="imagesource" href="{{ recipe.imagelink }}">{{ imageSource }}</a>
       </div>
     </div>
   </div>
 
-
+  <div class="mobile">
+    <div class="ingredients content row">
+      <h2>{{ ingredientsHeaderTitle }}</h2>
+      <ul>
+        <li *ngFor="let ingredient of recipe.ingredients">
+          <div 
+            class="ingredient" 
+            [ngClass]="{
+              'selected': selectedIngredients.has(ingredient.name),
+              'not-selected': !selectedIngredients.has(ingredient.name)
+            }">
+            <strong><p>{{ ingredient.pivot?.quantity }} </p></strong> 
+            <p>{{ ingredient.name }}</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+    
+    <div class="description content row">
+      <h2>{{ descriptionTitle }}</h2>
+      <div [innerHTML]="recipe.description" class="description" id="steps"></div>
+      <div>
+        <a href="{{ recipe.imagelink }}" class="imagesource">{{ imageSource }}</a>
+      </div>
+    </div>
+  </div>
 </div>
-
-

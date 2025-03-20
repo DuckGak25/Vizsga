@@ -126,7 +126,7 @@
                                       <tr *ngFor="let ingredient of selectedIngredients">
                                         <td >{{ ingredient.name }}</td>
                                         <td >
-                                          <input type="text" [(ngModel)]="ingredientQuantities[ingredient.id]" (ngModelChange)="updateIngredientQuantity(ingredient.id, $event)" [placeholder]="quantity" class="form-control"/>
+                                          <input type="text" name="quantity" [(ngModel)]="ingredientQuantities[ingredient.id]" (ngModelChange)="updateIngredientQuantity(ingredient.id, $event)" [placeholder]="quantity" class="form-control"/>
                                         </td>
                                         <td>
                                           <button class="btn btn-danger" (click)="removeIngredient(ingredient)">{{[remove]}}</button>

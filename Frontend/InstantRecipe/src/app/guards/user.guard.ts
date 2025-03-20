@@ -8,12 +8,14 @@ import { map } from 'rxjs/operators';
 export class UserGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
-  canActivate(): any {
-    if (this.authService.loggedUser) {
+  canActivate(): boolean {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+
+    if (user && user.admin === 0 || user.admin === 1 || user.admin === 2) {
       return true;
     } else {
-      window.location.href = '/login';
+      this.router.navigate(['/login']);
       return false;
     }
-    }
+  }
   }
