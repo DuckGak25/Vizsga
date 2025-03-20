@@ -16,7 +16,7 @@ export class NavbarComponent {
   navItems: any[] = [];
   langSelection: any[] = [];
   logout = "";
-
+  isLoggedIn = false;
   addRecipe = "";
   search = "";
   flagLink = "";
@@ -67,6 +67,10 @@ export class NavbarComponent {
       this.actLang = savedLanguage === 'en' ? 'English' : savedLanguage === 'de' ? 'Deutsch' : 'Magyar';
       this.config.changeLanguage(savedLanguage);
     }
+      this.auth.getUser().subscribe((status) => {
+        this.isLoggedIn = status;
+      });
+    
 
   }
 

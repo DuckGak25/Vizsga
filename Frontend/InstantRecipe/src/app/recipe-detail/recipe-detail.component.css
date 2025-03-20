@@ -1,7 +1,8 @@
 .site {
     padding-top: 6rem;
     margin: 0 auto;
-    min-height: 50vw;
+    min-height: 100vh;
+    padding-bottom: 30px;
 }
 
 h1 {

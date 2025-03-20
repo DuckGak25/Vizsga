@@ -23,6 +23,7 @@
     margin: 0 auto;
     cursor: pointer;
     padding-bottom: 20px;
+    min-height: 100vh;
 }
 
 .form-switch {

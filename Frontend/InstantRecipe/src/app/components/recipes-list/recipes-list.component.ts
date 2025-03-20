@@ -176,6 +176,8 @@ export class RecipesListComponent {
     }
     else if (this.selectedRecipeId === recipe.id) {
       this.selectedRecipeId = 0;
+    } else {
+      this.selectedRecipeId = 0
     }
 
   }
