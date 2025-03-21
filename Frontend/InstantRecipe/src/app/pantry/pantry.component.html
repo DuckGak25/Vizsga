@@ -46,7 +46,7 @@
               <h2>{{selectedIngredientsTitle}}</h2>
               <div *ngFor="let ingredient of selectedIngredients" class="form-check">
                 <div class="checkboxing">
-                  <input type="checkbox" [value]="ingredient" id="{{ingredient}}" class="ingredient" (change)="onIngredientChange($event, ingredient)" [checked]="selectedIngredients.has(ingredient)">
+                  <input type="checkbox" [value]="ingredient" name="ingredient" id="{{ingredient}}" class="ingredient" (change)="onIngredientChange($event, ingredient)" [checked]="selectedIngredients.has(ingredient)">
                   <label for="{{ingredient}}" >{{ ingredient }}</label>
                 </div>
               </div>

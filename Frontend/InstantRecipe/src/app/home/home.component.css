@@ -2,6 +2,7 @@
 .et {
     padding-top: 5.3vw;
     height: fit-content;
+    padding-bottom: 30px;
 }
 
 .et ::-webkit-scrollbar {

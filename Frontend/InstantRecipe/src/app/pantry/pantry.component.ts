@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { RecipeService } from '../recipe.service';
 import { Ingredient } from '../models/ingredient.model';
 import { Recipe } from '../models/recipe.model';
@@ -35,7 +35,7 @@ export class PantryComponent {
   AND = "";
   OR = "";
 
-  constructor(private recipeService: RecipeService, private config: ConfigService, private vps:ViewportScroller) {
+  constructor(private recipeService: RecipeService, private config: ConfigService, private vps:ViewportScroller, private cdRef: ChangeDetectorRef) {
     this.langSign = config.langSign
     this.toggleRecipes();
     this.recipeService.getIngredients().subscribe((data: Ingredient[]) => {
@@ -43,13 +43,19 @@ export class PantryComponent {
       this.categorizeIngredients();
       this.restoreSelectedIngredients();
     });
-    this.recipeService.getRecipes().subscribe((data: Recipe[]) => {
-      this.allRecipes = data.filter(recipe => recipe.language === this.langSign);
-      this.filteredRecipes = this.allRecipes;
-    });
+
     
     this.loadContent();
   }
+
+  ngOnInit() {
+    this.recipeService.getRecipes().subscribe((data: Recipe[]) => {
+      this.allRecipes = data.filter(recipe => recipe.language === this.langSign);
+      this.filteredRecipes = this.allRecipes;
+      this.cdRef.detectChanges(); 
+    });
+  }
+  
 
   loadContent() {
     this.config.getContent().subscribe((content) => {
@@ -137,8 +143,7 @@ export class PantryComponent {
 
     this.filteredRecipes = this.allRecipes;
   
-    const checkboxes = document.querySelectorAll<HTMLInputElement>('input[type="checkbox"] class="ingredient"');
-    checkboxes.forEach(checkbox => checkbox.checked = false);
+
   }
   
   restoreSelectedIngredients() {
