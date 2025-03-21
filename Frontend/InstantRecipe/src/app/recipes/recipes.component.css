@@ -120,6 +120,7 @@ h1, h2, h3, h4, h5, h6 {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: 5px;
+        width: 95%;
     }
     
     .recipe-card {
@@ -129,6 +130,11 @@ h1, h2, h3, h4, h5, h6 {
 
     h4 {
         font-size: 1.1rem;
+    }
+
+    .cont2 {
+        min-width: 100%;
+        min-height: 50vh;
     }
 
     strong {

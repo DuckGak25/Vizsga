@@ -8,7 +8,7 @@
                 </div>
             <div class="row">
                     <div class="col" *ngFor="let adminPage of adminPages">
-                        <div class="card mb-2"
+                        <div class="card"
                             (click)="navigateTo(adminPage.link)"
                             [style.background-image]="'url(' + adminPage.image + ')'"
                             *ngIf="this.user.admin >= adminPage.admin"

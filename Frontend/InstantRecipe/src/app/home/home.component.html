@@ -46,7 +46,7 @@
           
           <h1>{{homecontent1title}}</h1>
           <div class="content1">
-            <div class="col" *ngFor="let homecontent1card of homecontent1cards">
+            <div class="col-6" *ngFor="let homecontent1card of homecontent1cards">
               <div class="card" data-aos="fade-up"
                   [style.background-image]="'url(' + homecontent1card.pic + ')'"
                   (click)="navigateTo(homecontent1card.link)">
