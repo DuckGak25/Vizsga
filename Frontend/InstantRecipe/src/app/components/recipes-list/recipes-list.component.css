@@ -264,7 +264,9 @@ button:hover {
   }
 
   
-  
+  .table-hover th {
+    border-radius: 16px 16px 0 0;
+  }
 
   @media (max-width: 768px) {
     .content {

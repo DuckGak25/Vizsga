@@ -91,7 +91,8 @@
     "ingredientsDescription": "If you don't find any match in the \"Ingredient Name\" field, you can add it",
     "language": "Language",
     "everyRecipe": "Every language",
-    "pendingRecipes": "Pending recipes"
+    "pendingRecipes": "Pending recipes",
+    "userRecipesHeaderTitle": "My recipes"
 
 
 }

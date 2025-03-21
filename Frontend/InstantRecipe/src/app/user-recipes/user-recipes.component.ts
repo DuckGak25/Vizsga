@@ -39,7 +39,7 @@ export class UserRecipesComponent {
   imageLink = "";
   ingredientsTitle = "";
   createRecipeTitle = "";
-  recipesHeaderTitle = "";
+  userRecipesHeaderTitle = "";
   ingredientName = "";
   addIngredient = "";
   operations = "";
@@ -108,7 +108,7 @@ export class UserRecipesComponent {
       this.createRecipeTitle = content.createRecipeTitle || '';
       this.remove = content.remove || '';
       this.quantity = content.quantity || '';
-      this.recipesHeaderTitle = content.recipesHeaderTitle || '';
+      this.userRecipesHeaderTitle = content.userRecipesHeaderTitle || '';
       this.ingredientName = content.ingredientName || '';
       this.addIngredient = content.addIngredient || '';
       this.operations = content.operations || '';

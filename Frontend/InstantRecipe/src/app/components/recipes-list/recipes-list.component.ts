@@ -339,7 +339,9 @@ export class RecipesListComponent {
       this.recipeService.addIngredients(ingredientData).subscribe(
         (response) => {
           console.log(`Hozzávaló ${index + 1} sikeresen hozzáadva`, response);
-
+          // if (index === ingredientDataArray.length - 1) {
+          //   this.getIngredientsList();
+          // }
         },
         (error) => {
           console.error(`Hiba a hozzávaló ${index + 1} hozzáadásakor`, error);
