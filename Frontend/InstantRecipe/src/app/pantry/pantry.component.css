@@ -3,7 +3,7 @@ div .pantry {
     /* box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3); */
     border-radius: 20px;
     padding: 10px;
-    margin-bottom: 80px;
+    
 }
 
 .nav {
@@ -12,6 +12,7 @@ div .pantry {
 .content {
   width: 100%;
   margin: 0 auto;
+  padding-bottom: 30px;
 }
 
 .site {
@@ -149,7 +150,13 @@ h1, p, li, label {
 
   }
   .recipes {
+    min-width: 100%;
+    margin: 0 auto;
+  }
+
+  .container {
     width: 100%;
+    margin: 0 auto;
   }
 }
 

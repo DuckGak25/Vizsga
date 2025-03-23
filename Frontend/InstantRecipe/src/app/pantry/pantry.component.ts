@@ -56,6 +56,9 @@ export class PantryComponent {
     });
   }
   
+  navigateTo(url: string) {
+    window.location.href = url;
+  }
 
   loadContent() {
     this.config.getContent().subscribe((content) => {

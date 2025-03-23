@@ -1,27 +1,28 @@
 <div class="container site">
   <div class="content">
     <div class="cont2" data-aos="fade-up">
-      <div class="row">
-        
-        <div class="col-lg-4 col-md-6 col-sm-12 my-3" *ngFor="let recipe of filteredRecipes">
-          <div  class="recipe-card" [style.background-image]="'url(' + recipe.imagelink + ' )'" data-aos="fade-up" (click)="navigateTo('/recipes/' + recipe.id)"> 
-            <div class="recipe-header d-flex align-items-center p-3">
-              <div class="col-10">
-                <h4>{{ recipe.title }}</h4>
-                <p>{{ recipe.categories }}</p>
-              </div>
-              <div class="col-2 text-end"><img class="fork-knife" src="./assets/images/icons/fork_knife.png" alt="🍴"></div>
+      <div class="row recipes">
+        <div class="recipe-card" *ngFor="let recipe of filteredRecipes" 
+             [style.background-image]="'url(' + recipe.imagelink + ')'"
+             data-aos="fade-up" (click)="navigateTo('/recipes/' + recipe.id)"> 
+          <div class="recipe-header d-flex align-items-center p-3">
+            <div class="col-10">
+              <h4>{{ recipe.title }}</h4>
+              <p>{{ recipe.categories }}</p>
             </div>
-            <div class="recipe-body p-3">
-              <h4 class="card-title">{{ recipe.title }}</h4>
-              <strong *ngIf="langSign === 'hu'">Hozzávalók:</strong>
-              <strong *ngIf="langSign === 'en'">Ingredients:</strong>
-              <ul>
-                <li *ngFor="let ingredient of recipe.ingredients">
-                  {{ ingredient.name }}
-                </li>
-              </ul>
+            <div class="col-2 text-end">
+              <img class="fork-knife" src="./assets/images/icons/fork_knife.png" alt="🍴">
             </div>
+          </div>
+          <div class="recipe-body">
+            <h4 class="card-title">{{ recipe.title }}</h4>
+            <strong *ngIf="langSign === 'hu'">Hozzávalók:</strong>
+            <strong *ngIf="langSign === 'en'">Ingredients:</strong>
+            <ul>
+              <li *ngFor="let ingredient of recipe.ingredients">
+                {{ ingredient.name }}
+              </li>
+            </ul>
           </div>
         </div>
       </div>
