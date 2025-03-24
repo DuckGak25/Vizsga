@@ -26,8 +26,8 @@
 
     "homecontent1title": "I would check out your place",
     "homecontent1card": [
-        {"text": "What's in the pantry?", "link": "pantry", "pic": "https://attic.sh/zizosqhtkc9g4lsjyv358gus0nzs"},
-        {"text": "Create your account", "link": "register", "pic": "https://attic.sh/c6gfetxd7dv3hkarz1s8uh46sxny"}
+        {"text": "What's in the pantry?", "link": "pantry", "pic": "https://attic.sh/zizosqhtkc9g4lsjyv358gus0nzs", "user": true},
+        {"text": "Create your account", "link": "register", "pic": "https://attic.sh/c6gfetxd7dv3hkarz1s8uh46sxny", "user": false}
         
     ],
     "homecontent2title": "Featured Recipes",

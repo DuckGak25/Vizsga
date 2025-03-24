@@ -64,15 +64,16 @@
             <!-- Kategorizált összetevők -->
             <div *ngIf="searchTerm !== ''">
               <div *ngFor="let category of categorizedIngredients | keyvalue">
-                <ng-container *ngIf="filterIngredients(category.value).length > 0">
-                  <h3>{{ category.key }}</h3>
-                  <div *ngFor="let ingredient of filterIngredients(category.value)" class="form-check">
-                    <div class="checkboxing">
-                      <input type="checkbox" [value]="ingredient" [id]="'ingredient-' + ingredient.id" (change)="onIngredientChange($event, ingredient)" class="form-check-input"/>
-                      <label [for]="'ingredient-' + ingredient.id">{{ ingredient.name }}</label>
-                    </div>
+                <h2 *ngIf="filterIngredients(category.value).length > 0">{{ category.key }}</h2>
+                <div *ngFor="let ingredient of filterIngredients(category.value)" class="form-check">
+                  <div class="checkboxing">
+                    <input type="checkbox" [value]="ingredient" [id]="'ingredient-' + ingredient.id" (change)="onIngredientChange($event, ingredient)" class="ingredient"/>
+                    <label [for]="'ingredient-' + ingredient.id">{{ ingredient.name }}</label>
                   </div>
-                </ng-container>
+                </div>
+              </div>
+              <div *ngIf="!categorizedIngredients">
+                nincs ilyen hozzávaló
               </div>
             </div>
           </div>

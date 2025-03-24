@@ -218,6 +218,7 @@ export class AddRecipeComponent {
         console.log('Recipe created successfully', response);
         this.createdRecipeId = response.data.id;
         this.addIngredients();
+        this.resetForm();
 
       },
       (error) => {

@@ -45,15 +45,24 @@
         <div class="cont1" data-aos="fade-up">
           
           <h1>{{homecontent1title}}</h1>
-          <div class="content1">
-            <div class="col-6" *ngFor="let homecontent1card of homecontent1cards">
+          <div class="content1" *ngIf="isLoggedIn">
+            <div  *ngFor="let homecontent1card of homecontent1cards" >
               <div class="card" data-aos="fade-up"
                   [style.background-image]="'url(' + homecontent1card.pic + ')'"
-                  (click)="navigateTo(homecontent1card.link)">
+                  (click)="navigateTo(homecontent1card.link)" *ngIf="homecontent1card.user == true">
                 <h2>{{ homecontent1card.text }}</h2>
               </div>
             </div>
         </div>
+        <div class="content1" *ngIf="!isLoggedIn">
+          <div  *ngFor="let homecontent1card of homecontent1cards" >
+            <div class="card" data-aos="fade-up"
+                [style.background-image]="'url(' + homecontent1card.pic + ')'"
+                (click)="navigateTo(homecontent1card.link)">
+              <h2>{{ homecontent1card.text }}</h2>
+            </div>
+          </div>
+      </div>
       </div>
     </div>
 </div>

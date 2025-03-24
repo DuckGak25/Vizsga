@@ -20,15 +20,15 @@
                     </select>
                   </div>
                   <div class="col">
-                    <button class="btn btn-success" (click)="postIngredient(newIngredient)" style="width: 100%;" *ngIf="newIngredient.name && newIngredient.category">{{addButton}}</button>
-                    <button class="btn btn-success" style="width: 100%;" *ngIf="!newIngredient.name || !newIngredient.category" disabled>{{addButton}}</button>
+                    <button class="btn btn-success" (click)="postIngredient(newIngredient)" style="width: 100%;" *ngIf="newIngredient.name && newIngredient.category && newIngredient.language">{{addButton}}</button>
+                    <button class="btn btn-success" style="width: 100%;" *ngIf="!newIngredient.name || !newIngredient.category || !newIngredient.language"  disabled>{{addButton}}</button>
                   </div>
                 </div>
               </div>
                     <div class="list-card" *ngFor="let ingredient of filterIngredients()">
                         <div class="row">
                             <div class="col">
-                                <input type="text" name="ingredientId" [(ngModel)]="ingredient.id" class="form-control" disabled>
+                                <input type="text" name="ingredientId" [(ngModel)]="ingredient.id" class="form-control" readonly>
                                 
                             </div>
                             <div class="col">

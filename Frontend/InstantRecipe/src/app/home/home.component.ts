@@ -5,6 +5,7 @@ import { filter } from 'rxjs/operators';
 import AOS from 'aos';
 import { RecipeService } from '../recipe.service';
 import { Recipe } from '../models/recipe.model';
+import { AuthService } from '../services/auth.service';
 
 
 @Component({
@@ -22,14 +23,17 @@ export class HomeComponent implements OnInit {
   pic = "";
   homecontent1title = "";
   homecontent2title = "";
+  isLoggedIn = false;
   actLang = "Magyar";
   loading= false;
 
 
   recipes: Recipe[] = [];
 
-  constructor(private config: ConfigService, private router: Router, private recipeService: RecipeService) {
-
+  constructor(private config: ConfigService, private router: Router, private recipeService: RecipeService, private auth: AuthService) {
+    this.auth.getUser().subscribe((status) => {
+      this.isLoggedIn = status;
+    });
 
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))

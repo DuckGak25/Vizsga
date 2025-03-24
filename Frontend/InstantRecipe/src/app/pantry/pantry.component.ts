@@ -54,6 +54,8 @@ export class PantryComponent {
       this.filteredRecipes = this.allRecipes;
       this.cdRef.detectChanges(); 
     });
+
+    
   }
   
   navigateTo(url: string) {
