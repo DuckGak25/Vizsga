@@ -58,17 +58,11 @@
 
        
     </div>
-    
-    
-    
-    
-    
     </div>
-
-  </div>
   <div class="showrecipes" *ngIf="showRecipes">
     <app-recipes [filteredRecipes]="filteredRecipes" ></app-recipes>
   </div>
   <div class="nav">
-      <button (click)="toggleRecipes()">{{show}}</button>
+    <button (click)="toggleRecipes()">{{show}}</button>
   </div>
+</div>

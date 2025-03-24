@@ -2,24 +2,26 @@
   <footer>
       <div class="footer-container">
         <div class="footer-section contact-info">
-          <h3>Magdi Mama Menüsora</h3>
-          <p>Telefon: +36 30 123 4567</p>
-          <p>Cím: 1234 Budapest, Fő utca 1.</p>
+          <h3>{{name}}</h3>
+          <p>Email: <a href="mailto:duckgak25@gmail.com">duckgak25&#64;gmail.com</a></p>
+          <p>{{phone}}+36 1 123-4567</p>
         </div>
   
         <div class="footer-section links">
-          <h4>Gyorslinkek</h4>
+          <h4>{{links}}</h4>
           <ul>
-            <li><a routerLink="/about">Rólunk</a></li>
-            <li><a routerLink="/contact">Kapcsolat</a></li>
-            <li><a routerLink="/privacy">Adatvédelem</a></li>
-            <li><a routerLink="/terms">Felhasználási feltételek</a></li>
+            <li><a (click)="navigateTo('/home')">{{home}}</a></li>
+            <li><a (click)="navigateTo('/pantry')" *ngIf="isLoggedIn">{{pantry}}</a></li>
+            <li><a (click)="navigateTo('/userrecipes')" *ngIf="isLoggedIn">{{userRecipes}}</a></li>
+            <li><a (click)="navigateTo('/addrecipe')" *ngIf="isLoggedIn">{{addRecipe}}</a></li>
+            <li><a (click)="navigateTo('/register')" *ngIf="!isLoggedIn">{{register}}</a></li>
+            <li><a (click)="navigateTo('/login')" *ngIf="!isLoggedIn">{{login}}</a></li>
           </ul>
         </div>
       </div>
   
       <div class="footer-bottom">
-        <p>&copy; 2024 Magdi Mama Menüsora. Minden jog fenntartva.</p>
+        <p>{{copyright}}</p>
       </div>
     </footer>
   

@@ -13,6 +13,7 @@ div .pantry {
   width: 100%;
   margin: 0 auto;
   padding-bottom: 30px;
+  min-height: 100vh;
 }
 
 .site {
@@ -106,6 +107,11 @@ h1, p, li, label {
 
   .site {
     width: 100%;
+  }
+
+  .content {
+    width: 100%;
+    padding-bottom: 70px;
   }
 
   .recipes {

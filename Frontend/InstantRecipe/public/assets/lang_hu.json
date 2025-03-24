@@ -7,8 +7,9 @@
     "navItem":[
         {"text":"Kezdőlap", "link":"home"}
     ],
-    "pantry": "Mi van a kamrában?",
-    "userRecipes": "Saját receptek",
+    "pantry": "Kamra",
+    "home": "Kezdőlap",
+    "userRecipes": "Receptjeim",
     "logout": "Kijelentkezés",
     "login": "Bejelentkezés",
     "register": "Regisztráció",
@@ -18,6 +19,9 @@
     "categoryTitle": "Kategória",
     "createRecipeTitle": "Recept létrehozása",
     "closeButton": "Bezárás",
+    "phone": "Telefonszám: ",
+    "copyright": "© 2025 Instant Recept. Minden jog fenntartva.",
+    "links": "Oldaltérkép",
 
 
     "homeText1": "Ne rendelj,",

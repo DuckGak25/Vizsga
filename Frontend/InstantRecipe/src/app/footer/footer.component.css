@@ -1,5 +1,7 @@
 footer {
-    background-color: #eeeceb;
+  background-color: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.32);
+    backdrop-filter: blur(6.1px);
     color: #fff;
     padding: 20px;
     text-align: center;
@@ -9,9 +11,6 @@ footer {
     
   }
 
-  .content {
-    backdrop-filter: blur(2px);
-  }
   
   .footer-container {
     display: flex;
@@ -25,8 +24,8 @@ footer {
   }
   
   .footer-section h3, .footer-section h4 {
-    color: #f4a460;
-    font-size: 12px;
+    font-size: 14px;
+    font-weight: 700;
   }
   
   .footer-section ul {
@@ -37,6 +36,12 @@ footer {
   .footer-section a {
     color: black;
     text-decoration: none;
+
+  }
+  
+  .footer-section a:hover {
+    text-decoration: underline;
+    cursor: pointer;
   }
 
 footer p, a {

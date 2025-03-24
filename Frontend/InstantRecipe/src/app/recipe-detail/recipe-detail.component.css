@@ -9,6 +9,10 @@ h1 {
     font-weight: 700;
 }
 
+.header {
+    border: none;
+}
+
 .content {
     height: fit-content;
 

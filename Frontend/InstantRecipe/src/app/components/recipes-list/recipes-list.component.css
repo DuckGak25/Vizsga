@@ -17,7 +17,9 @@
 
 .card {
   border-radius: 20px;
-  background-color: #ffffffb8;
+  background-color: rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  backdrop-filter: blur(6.1px);
   
 }
 
@@ -201,7 +203,17 @@ button:hover {
 .selected-ingredients td{
   width: 30%;
 }
+.form-control {
+  background-color: rgba(255, 255, 255, 0.389);
+    border: 1px solid rgba(255, 255, 255, 0.32);
+    color: rgb(0, 0, 0);
+}
 
+.form-control:focus {
+  background-color: rgba(255, 255, 255, 0.389);
+  border: 1px solid rgba(255, 255, 255, 0.612);
+  color: rgb(0, 0, 0);
+}
 
 *,*:before,*:after{
   box-sizing:border-box;
