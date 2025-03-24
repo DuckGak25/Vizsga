@@ -19,7 +19,6 @@ export class AdminComponent {
   pendingText = ""
 
   constructor(private config: ConfigService, private router: Router, private recipeService: RecipeService) {
-
     this.getPendingRecipes();
   }
 
@@ -56,10 +55,4 @@ export class AdminComponent {
       }
     );
   }
-
-
-
-
-
-
 }

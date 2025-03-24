@@ -13,8 +13,6 @@ export class UsersComponent {
     this.loadUsers()
   }
 
-  
-
   loadUsers() {
     this.auth.getUsers().subscribe(
       (users) => {

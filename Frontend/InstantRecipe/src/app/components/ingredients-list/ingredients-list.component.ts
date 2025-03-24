@@ -145,6 +145,4 @@ export class IngredientsListComponent {
       return matchesName && matchesCategory;
     });
   }
-
-
 }

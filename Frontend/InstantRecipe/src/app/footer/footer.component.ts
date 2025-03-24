@@ -28,7 +28,6 @@ export class FooterComponent {
     this.auth.getUser().subscribe((status) => {
       this.isLoggedIn = status;
     });
-
   }
 
   loadContent() {

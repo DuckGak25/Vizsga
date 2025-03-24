@@ -26,8 +26,6 @@ export class HomeComponent implements OnInit {
   isLoggedIn = false;
   actLang = "Magyar";
   loading= false;
-
-
   recipes: Recipe[] = [];
 
   constructor(private config: ConfigService, private router: Router, private recipeService: RecipeService, private auth: AuthService) {
@@ -77,6 +75,4 @@ export class HomeComponent implements OnInit {
     this.actLang = lang.text;
     this.config.changeLanguage(lang.sign);
   }
-
-  
 }

@@ -155,16 +155,13 @@ export class UserRecipesComponent {
       this.actLang = lang.text;
       this.config.changeLanguage(lang.sign);
     }
-  
-  
-  
+
     getIngredientsList() {
       this.recipeService.getIngredients().subscribe(ingredients => {
         this.ingredients = ingredients
         this.categorizeIngredients();
       })
     }
-  
   
     editRecipe(recipe: Recipe) {
       if (!this.selectedRecipeId) {
@@ -177,7 +174,6 @@ export class UserRecipesComponent {
       } else {
         this.selectedRecipeId = 0
       }
-  
     }
   
     categorizeIngredients(): void {
@@ -189,10 +185,7 @@ export class UserRecipesComponent {
         this.categorizedIngredients[category].add(ingredient);
       });
     } 
-  
-    
-  
-  
+
     deleteRecipe(recipe: Recipe) {
       this.recipeService.deleteUserRecipe(recipe.id).subscribe({
         next: (response) => {
@@ -215,38 +208,21 @@ export class UserRecipesComponent {
       });
     }
     
-  
-    // Modális ablak bezárása
-  
-  
-    // getRecipeWithIngredients(recipeId: number) {
-    //   this.recipeService.getRecipeWithIngredients(recipeId).subscribe((recipe) => {
-    //     this.recipeIngredientsMap[recipe.id] = recipe.ingredients;
-    //     console.log(this.recipeIngredientsMap);
-    //   })
-    // }
-    
-  
     removeIngredient(ingredient: Ingredient) {
       const checkbox = document.getElementById(`ingredient-${ingredient.id}`) as HTMLInputElement;
       checkbox.checked = false;
       this.selectedIngredients.delete(ingredient);
       this.ingredientQuantities[ingredient.id] = '';
       this.getRecipes();
-      
     }
-  
   
     getIngredients(ingredient: Ingredient): string[] {
       return Object.keys(this.ingredients);
     }
   
-  
-    
     updateIngredientQuantity(ingredientId: number, quantity: string) {
       this.ingredientQuantities[ingredientId] = quantity;
     } 
-  
   
     onIngredientChange(event: Event, ingredient: Ingredient) {
       const checkbox = event.target as HTMLInputElement;
@@ -260,7 +236,6 @@ export class UserRecipesComponent {
         this.selectedIngredients.delete(ingredient);
         delete this.ingredientQuantities[ingredient.id];
       }
-  
     }
   
     filterIngredients(ingredients: Set<Ingredient>): Ingredient[] {
@@ -276,8 +251,6 @@ export class UserRecipesComponent {
     clearSelectedIngredients() {
       this.selectedIngredients.clear();
       localStorage.removeItem('selectedIngredients');
-  
-    
       const checkboxes = document.querySelectorAll<HTMLInputElement>('input[type="checkbox"] class="ingredient"');
       checkboxes.forEach(checkbox => checkbox.checked = false);
     }
@@ -296,7 +269,6 @@ export class UserRecipesComponent {
         });
         this.addIngredients();
         this.getRecipes();
-  
     }
   
     addIngredients() {
@@ -305,7 +277,6 @@ export class UserRecipesComponent {
         ingredient_id: ingredient.id,
         quantity: this.ingredientQuantities[ingredient.id] || ''
       }));
-    
       ingredientDataArray.forEach((ingredientData, index) => {
         this.recipeService.addIngredients(ingredientData).subscribe(
           (response) => {
@@ -319,7 +290,6 @@ export class UserRecipesComponent {
           }
         );
       });
-    
       this.showModal = true;
       this.modalContent = 'Sikeresen hozzáadtad a hozzávalókat!';
       this.selectedIngredients.clear();
@@ -336,7 +306,6 @@ export class UserRecipesComponent {
           console.log('Ingredient deleted successfully', response, ingredient);
           }
           this.getRecipes();
-  
         },
         error: (error) => {
           if (this.langSign === "hu") {
@@ -349,6 +318,4 @@ export class UserRecipesComponent {
         }
       });
     }  
-  
-
 }

@@ -24,7 +24,7 @@ export class RecipeDetailComponent {
   constructor(private route: ActivatedRoute, private recipeService: RecipeService, private config: ConfigService) {
     const id:any = this.route.snapshot.paramMap.get('id'); 
     if (id) {
-      this.recipeService.getRecipeById(id).subscribe(
+      this.recipeService.getRecipeWithIngredients(id).subscribe(
         (data: Recipe) => {
           this.recipe = data;
         },
@@ -33,15 +33,10 @@ export class RecipeDetailComponent {
         }
       );
     }
-
     this.langSign = this.config.langSign;
     this.loadContent();
     this.restoreSelectedIngredients();
-
   }
-
-
-
 
   langChange(lang: any) {
     this.actLang = lang.text;
@@ -70,5 +65,4 @@ export class RecipeDetailComponent {
       this.selectedIngredients = new Set(ingredientsArray);
     }
   }
-  
 }

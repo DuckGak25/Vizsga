@@ -45,6 +45,4 @@ export class RecipesComponent {
    navigateTo(url: string) {
     window.location.href = url;
   }
-
-
 }

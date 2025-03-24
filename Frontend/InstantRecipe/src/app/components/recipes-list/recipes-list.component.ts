@@ -104,16 +104,6 @@ export class RecipesListComponent {
     this.modalService.open(this.content, { centered: true });
   }
 
-  // open() {
-
-  //   this.isVisible = true;
-  //   AOS.init({
-  //     once: true
-  //   });
-  // }
-
-
-  
   closeRecipe() {
     this.selectedRecipeId = 0
   }
@@ -192,9 +182,6 @@ export class RecipesListComponent {
     });
   } 
 
-  
-
-
   deleteRecipe(recipe: Recipe) {
     this.recipeService.deleteRecipe(recipe.id).subscribe({
       next: (response) => {
@@ -217,18 +204,6 @@ export class RecipesListComponent {
     });
   }
   
-
-  // Modális ablak bezárása
-
-
-  // getRecipeWithIngredients(recipeId: number) {
-  //   this.recipeService.getRecipeWithIngredients(recipeId).subscribe((recipe) => {
-  //     this.recipeIngredientsMap[recipe.id] = recipe.ingredients;
-  //     console.log(this.recipeIngredientsMap);
-  //   })
-  // }
-  
-
   removeIngredient(ingredient: Ingredient) {
     const checkbox = document.getElementById(`ingredient-${ingredient.id}`) as HTMLInputElement;
     checkbox.checked = false;
@@ -238,18 +213,13 @@ export class RecipesListComponent {
     
   }
 
-
   getIngredients(ingredient: Ingredient): string[] {
     return Object.keys(this.ingredients);
   }
 
-
-  
   updateIngredientQuantity(ingredientId: number, quantity: string) {
     this.ingredientQuantities[ingredientId] = quantity;
   } 
-
-  
 
   getRecipes() {
     if (this.filterPending || this.searchTermRecipes != '') {
@@ -262,12 +232,6 @@ export class RecipesListComponent {
       this.recipeService.getEnglishRecipes().subscribe((data: Recipe[]) => {
         this.recipes = data;
       })}
-    // else if (!this.searchTermRecipes) {
-    //   this.recipeService.getRecipes().subscribe((data: Recipe[]) => {
-    //     this.recipes = data;
-    //     console.log(this.recipes);
-    //   });
-    // }
     else {
     this.recipeService.getAllRecipes().subscribe((data: Recipe[]) => {
       this.recipes = data;

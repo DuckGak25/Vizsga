@@ -145,10 +145,7 @@ export class PantryComponent {
       this.selectedIngredients.clear();
       localStorage.removeItem('selectedIngredientsEn');
     }
-
     this.filteredRecipes = this.allRecipes;
-  
-
   }
   
   restoreSelectedIngredients() {
@@ -169,7 +166,6 @@ export class PantryComponent {
         this.filterRecipes();
       }
     }
-
   }
 
   saveSelectedIngredients() {
@@ -178,7 +174,6 @@ export class PantryComponent {
     } if (this.langSign==="en") {
       localStorage.setItem('selectedIngredientsEn', JSON.stringify(Array.from(this.selectedIngredients)));
     }
-    
   }
 
   toggleAndIncluded() {

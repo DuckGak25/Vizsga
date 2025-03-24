@@ -32,17 +32,32 @@ export class RecipeService {
     );
   }
 
+  getAllRecipes(): Observable<Recipe[]> {
+    return this.http.get<Recipe[]>(`${this.apiUrl}/allrecipes`, { headers: this.getHeaders() });
+  }
+
+  getPendingRecipes(): Observable<Recipe[]> {
+    return this.http.get<Recipe[]>(`${this.apiUrl}/pendingrecipes`, { headers: this.getHeaders() });
+  }
+
+  getEnglishRecipes(): Observable<Recipe[]> {
+    return this.http.get<Recipe[]>(`${this.apiUrl}/englishrecipes`, { headers: this.getHeaders() });
+  }
+
+  getHungarianRecipes(): Observable<Recipe[]> {
+    return this.http.get<Recipe[]>(`${this.apiUrl}/hungarianrecipes`, { headers: this.getHeaders() });
+  }
+
   getUserRecipes(): Observable<Recipe[]> {
     return this.http.get<Recipe[]>(`${this.apiUrl}/userrecipes`, { headers: this.getHeaders() })
   }
   
-
-  getRecipeById(id: number): Observable<Recipe> {
-    return this.http.get<Recipe>(`${this.apiUrl}/recipes/${id}`, { headers: this.getHeaders() });
-  }
-  
   getRecipeWithIngredients(id: number): Observable<Recipe> {
     return this.http.get<Recipe>(`${this.apiUrl}/recipes/${id}`, { headers: this.getHeaders() });
+  }
+
+  getFeaturedRecipes(): Observable<Recipe[]> {
+    return this.http.get<Recipe[]>(`${this.apiUrl}/recipes/featured`);
   }
 
   getIngredients(): Observable<Ingredient[]> {
@@ -95,31 +110,11 @@ export class RecipeService {
     return this.http.delete(`${this.apiUrl}/deleteingredients`, { headers: this.getHeaders(), params });
   }
 
-  getFeaturedRecipes(): Observable<Recipe[]> {
-    return this.http.get<Recipe[]>(`${this.apiUrl}/recipes/featured`);
-  }
-
   toggleFeaturedRecipe(recipe: Recipe): Observable<Recipe> {
     return this.http.put<Recipe>(`${this.apiUrl}/toggle-featured`, recipe, { headers: this.getHeaders() });
   }
 
   approveRecipe(recipe: Recipe): Observable<Recipe> {
     return this.http.put<Recipe>(`${this.apiUrl}/approve-recipe`, recipe, { headers: this.getHeaders() });
-  }
-
-  getAllRecipes(): Observable<Recipe[]> {
-    return this.http.get<Recipe[]>(`${this.apiUrl}/allrecipes`, { headers: this.getHeaders() });
-  }
-
-  getPendingRecipes(): Observable<Recipe[]> {
-    return this.http.get<Recipe[]>(`${this.apiUrl}/pendingrecipes`, { headers: this.getHeaders() });
-  }
-
-  getEnglishRecipes(): Observable<Recipe[]> {
-    return this.http.get<Recipe[]>(`${this.apiUrl}/englishrecipes`, { headers: this.getHeaders() });
-  }
-
-  getHungarianRecipes(): Observable<Recipe[]> {
-    return this.http.get<Recipe[]>(`${this.apiUrl}/hungarianrecipes`, { headers: this.getHeaders() });
   }
 }

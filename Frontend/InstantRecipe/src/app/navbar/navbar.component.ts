@@ -43,10 +43,7 @@ export class NavbarComponent {
       this.pantry = content.pantry || '';
       this.addRecipe = content.addRecipe || '';
       this.userRecipes = content.userRecipes || '';
-
     });
-    
-    
   }
 
   toggleNavbar() {
@@ -60,7 +57,6 @@ export class NavbarComponent {
 
   reloadPage() {
     window.location.reload();
-
   }
 
   ngOnInit() {
@@ -72,8 +68,6 @@ export class NavbarComponent {
       this.auth.getUser().subscribe((status) => {
         this.isLoggedIn = status;
       });
-    
-
   }
 
   toggleLangSelector() {

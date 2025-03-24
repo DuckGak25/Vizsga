@@ -53,8 +53,6 @@ export class LoginComponent {
       this.notRegistered = content.notRegistered || '';
       this.signInGoogle = content.signInGoogle || '';
     });
-    
-    
   }
 
   navigateTo(url: string) {
@@ -71,8 +69,6 @@ export class LoginComponent {
       (response) => {
         localStorage.setItem('auth_token', response.token);
         localStorage.setItem('user', JSON.stringify(response.user));
-
-        
         if (this.auth.isAdmin()) {
           window.location.href = '/admin';
         } else {
@@ -93,14 +89,8 @@ export class LoginComponent {
     );
   }
   
-
   removeToken() {
     localStorage.removeItem('user');
     console.log('Token removed');
   }
-
-  
-  
-  
-  
 }

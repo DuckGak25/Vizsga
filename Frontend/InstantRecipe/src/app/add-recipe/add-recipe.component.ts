@@ -46,7 +46,6 @@ export class AddRecipeComponent {
     category: '',
     language: '',
   }
-
   newRecipe: Recipe = {
     id: 0,
     title: '',
@@ -59,7 +58,6 @@ export class AddRecipeComponent {
     language: this.langSign,
     ingredients: [],
   };
-
   editorConfig: any = {
     height: 450,
     menubar: false,
@@ -80,6 +78,11 @@ export class AddRecipeComponent {
     this.newRecipe.language = config.langSign
     this.newIngredient.language = config.langSign
   }
+
+  ngOnInit(): void {
+    this.langSign = this.config.langSign
+  }
+
   openModal() {
     this.modalService.open(this.content, { centered: true });
   }
@@ -90,10 +93,6 @@ export class AddRecipeComponent {
       this.ingredients = data.filter(ingredient => ingredient.language === this.langSign);
       this.categorizeIngredients();
     });
-  }
-
-  ngOnInit(): void {
-    this.langSign = this.config.langSign
   }
 
   loadContent() {
@@ -115,8 +114,6 @@ export class AddRecipeComponent {
     });
   }
 
-
-
   langChange(lang: any) {
     this.actLang = lang.text;
     this.config.changeLanguage(lang.sign);
@@ -132,7 +129,6 @@ export class AddRecipeComponent {
     });
   }
 
-
   onIngredientChange(event: Event, ingredient: Ingredient) {
     const checkbox = event.target as HTMLInputElement;
     if (checkbox.checked) {
@@ -145,30 +141,25 @@ export class AddRecipeComponent {
       this.selectedIngredients.delete(ingredient);
       delete this.ingredientQuantities[ingredient.id];
     }
-
     this.saveSelectedIngredients();
   }
 
   removeIngredient(ingredient: Ingredient) {
     const checkbox = document.getElementById(`ingredient-${ingredient.id}`) as HTMLInputElement | null;
-
     if (checkbox) {
         checkbox.checked = false;
     }
-
     this.selectedIngredients.delete(ingredient);
     this.saveSelectedIngredients();
     this.ingredientQuantities[ingredient.id] = '';
-}
+  }
 
-  
   filterIngredients(ingredients: Set<Ingredient>): Ingredient[] {
     const lowerCaseSearchTerm = this.searchTerm.toLowerCase();
     return Array.from(ingredients).filter(ingredient =>
       ingredient.name.toLowerCase().includes(lowerCaseSearchTerm)
     );
   }
-
 
   clearSelectedIngredients() {
     this.selectedIngredients.clear();
@@ -219,7 +210,6 @@ export class AddRecipeComponent {
         this.createdRecipeId = response.data.id;
         this.addIngredients();
         this.resetForm();
-
       },
       (error) => {
         this.openModal();
@@ -228,7 +218,6 @@ export class AddRecipeComponent {
         }
         else if (this.langSign === 'en') { 
           this.modalContent = 'Error creating recipe';
-
         }
         console.error('Error creating recipe', error);
       }
@@ -240,13 +229,11 @@ export class AddRecipeComponent {
       console.error('A recept nem található!');
       return;
     }
-  
       const ingredientDataArray = Array.from(this.selectedIngredients).map(ingredient => ({
         recipe_id: this.createdRecipeId,
         ingredient_id: ingredient.id,
         quantity: this.ingredientQuantities[ingredient.id] || ''
       }));
-    
       for (let i = 0; i < ingredientDataArray.length; i++) {
         const ingredientData = ingredientDataArray[i];
         this.recipeService.addIngredients(ingredientData).subscribe(
@@ -261,19 +248,15 @@ export class AddRecipeComponent {
           }
         );
       }
-
       this.selectedIngredients.clear();
     }
-    
-  
-  
 
-    postIngredient(ingredient: Ingredient) {
-      this.recipeService.postIngredients(ingredient).subscribe({
-        next: (response) => console.log('Ingredient added successfully', response),
-        error: (error) => console.error('Error adding ingredient', error)
-      });
-    }
+  postIngredient(ingredient: Ingredient) {
+    this.recipeService.postIngredients(ingredient).subscribe({
+      next: (response) => console.log('Ingredient added successfully', response),
+      error: (error) => console.error('Error adding ingredient', error)
+    });
+  }
 
   disableButton() {
     if (this.newRecipe.title === '' || this.newRecipe.description === '' || 
@@ -284,6 +267,4 @@ export class AddRecipeComponent {
     }
     return false;
   }
-
-  
 }

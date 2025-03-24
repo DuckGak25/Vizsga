@@ -13,15 +13,11 @@ export class ConfigService {
   errorMessages: any = {};
   constructor(private http:HttpClient) { 
     this.loadContent()
-
   }
-
-  
 
   changeLanguage(langSign:any){
     this.langSign=langSign
     this.loadContent()
-
   }
 
   loadContent(){
@@ -35,13 +31,5 @@ export class ConfigService {
 
   getContent():Subject<any>{
     return this.content
-  }
-
-  loadErrorMessages() {
-    return this.http.get('/assets/error-messages.json');
-  }
-
-  getErrorMessage(key: string, lang: string): string {
-    return this.errorMessages[lang]?.[key] || key;
   }
 }

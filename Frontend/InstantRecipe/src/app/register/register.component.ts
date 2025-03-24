@@ -50,8 +50,8 @@ export class RegisterComponent {
 
   ngOnInit() {
     this.loadContent();
-    
   }
+
   openModal() {
     this.modalService.open(this.content, { centered: true });
   }
@@ -61,8 +61,7 @@ export class RegisterComponent {
       this.registerTitle = content.registerTitle || '';
       this.nameLabel = content.nameLabel || '';
       this.emailLabel = content.emailLabel || '';
-      this.passwordText = content.passwordText || '';
-      
+      this.passwordText = content.passwordText || '';    
       this.confirmPasswordText = content.confirmPasswordText || '';
       this.alreadyAccountLabel = content.alreadyAccountLabel || '';
       this.closeButton = content.closeButton || '';
@@ -137,7 +136,6 @@ export class RegisterComponent {
                 "This email is already in use!"
               );
             }
-            
             this.inputClassEmail = "form-control is-invalid";
           }
           
@@ -165,7 +163,6 @@ export class RegisterComponent {
                 "Password must contain at least one lowercase letter, one uppercase letter, and one number"
               );
             }
-            
             this.inputClassPassword = 'form-control is-invalid';
           }
           if (this.registerError.details.name) {
@@ -188,6 +185,4 @@ export class RegisterComponent {
       }
     );
   }
-
-
 }
