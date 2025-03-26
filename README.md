@@ -56,4 +56,3 @@ npm install
 
 ## Használatra kész  
 Ha mindennel kész vagyunk, a weboldal használható!
-```
