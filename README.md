@@ -1,6 +1,3 @@
-Bocsánat a hiányosságért! Itt van a teljes verzió, amiben benne van az **adatbázis beállítása** rész is:
-
-```markdown
 # Telepítés
 
 ## Backend  
