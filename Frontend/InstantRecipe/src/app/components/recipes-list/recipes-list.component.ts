@@ -296,16 +296,15 @@ export class RecipesListComponent {
     const ingredientDataArray = Array.from(this.selectedIngredients).map(ingredient => ({
       recipe_id: this.selectedRecipeId,
       ingredient_id: ingredient.id,
-      quantity: this.ingredientQuantities[ingredient.id] || ''
+      quantity: this.ingredientQuantities[ingredient.id]
     }));
   
     ingredientDataArray.forEach((ingredientData, index) => {
       this.recipeService.addIngredients(ingredientData).subscribe(
         (response) => {
           console.log(`Hozzávaló ${index + 1} sikeresen hozzáadva`, response);
-          // if (index === ingredientDataArray.length - 1) {
-          //   this.getIngredientsList();
-          // }
+          this.ingredientQuantities[ingredientData.ingredient_id] = '';
+          this.searchTerm = '';
         },
         (error) => {
           console.error(`Hiba a hozzávaló ${index + 1} hozzáadásakor`, error);
