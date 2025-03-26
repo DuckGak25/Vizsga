@@ -24,6 +24,7 @@
     "links": "Oldaltérkép",
 
 
+
     "homeText1": "Ne rendelj,",
     "homeText2": "Főzz otthon!",
 
@@ -79,6 +80,7 @@
     "selectedIngredientsTitle": "Kiválasztott összetevők",
     "searchForIngredients": "Kezdjen el írni az összetevők kereséséhez...",
     "searchForRecipes": "Kezdjen el írni a receptek kereséséhez...",
+    "searchTitle": "Keresés",
     "deleteSelected": "Kiválasztott összetevők törlése",
     "ingredientName": "Összetevő neve",
     "imageLink": "A kép linkje",

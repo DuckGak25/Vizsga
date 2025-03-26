@@ -89,6 +89,9 @@ h1, p, li, label {
 .form-control {
   background-color: rgba(255, 255, 255, 0.25);
     border: 1px solid rgba(255, 255, 255, 0.32);
+    border-radius: 16px;
+    height: 45px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     color: rgb(0, 0, 0);
 }
 
@@ -300,7 +303,11 @@ div {
 button {
   box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
   text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+  border-radius: 16px;
+  height: 45px;
 }
+
+
 
 
 *,*:before,*:after{

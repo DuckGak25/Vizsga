@@ -36,6 +36,7 @@ export class RecipesListComponent {
   deleteSelected = "";
   searchForIngredients = "";
   searchForRecipes = "";
+  searchTitle = ""
   imageLink = "";
   ingredientsTitle = "";
   createRecipeTitle = "";
@@ -50,6 +51,7 @@ export class RecipesListComponent {
   everyRecipe = "";
   langSign = ""
   pendingRecipesTitle=""
+  recipesLoaded = false;
 
   recipes: Recipe[] = [];
   selectedIngredients: Set<Ingredient> = new Set();
@@ -90,13 +92,13 @@ export class RecipesListComponent {
 
   constructor(private config: ConfigService, private recipeService: RecipeService, private vps:ViewportScroller, private modalService: NgbModal) {
     this.getIngredientsList();
-    this.getRecipes();
-    this.filterPendingRecipes();
-    this.filterRecipes()
     this.langSign = config.langSign
   }
   
   ngOnInit() {
+    if (!this.recipes.length && !this.recipesLoaded) {
+      this.getRecipes();
+    }
     this.loadContent();
 
   }
@@ -138,7 +140,7 @@ export class RecipesListComponent {
       this.searchForRecipes = content.searchForRecipes || '';
       this.closeButton = content.closeButton || '';
       this.pendingRecipesTitle = content.pendingRecipes || '';
-
+      this.searchTitle = content.searchTitle || '';
 
     });
   }
@@ -166,8 +168,10 @@ export class RecipesListComponent {
     }
     else if (this.selectedRecipeId === recipe.id) {
       this.selectedRecipeId = 0;
+    } else if (this.selectedRecipeId !== recipe.id) {
+      this.selectedRecipeId = recipe.id;
     } else {
-      this.selectedRecipeId = 0
+      this.selectedRecipeId = 0;
     }
 
   }
@@ -222,24 +226,48 @@ export class RecipesListComponent {
   } 
 
   getRecipes() {
-    if (this.filterPending || this.searchTermRecipes != '') {
+    if (this.filterPending || this.searchTermRecipes !== '') {
       this.filterRecipes();
     } else if (this.filterLanguage === 'hu') {
       this.recipeService.getHungarianRecipes().subscribe((data: Recipe[]) => {
         this.recipes = data;
-      })
+      });
     } else if (this.filterLanguage === 'en') {
       this.recipeService.getEnglishRecipes().subscribe((data: Recipe[]) => {
         this.recipes = data;
-      })}
-    else {
+      });
+    } else {
+      this.recipeService.getAllRecipes().subscribe((data: Recipe[]) => {
+        this.recipes = data;
+      });
+    }
+  }
+  
+  filterRecipes() {
     this.recipeService.getAllRecipes().subscribe((data: Recipe[]) => {
-      this.recipes = data;
-      console.log(this.recipes);
-
+      let filteredRecipes = data;
+  
+      if (this.filterPending) {
+        filteredRecipes = filteredRecipes.filter(recipe => !recipe.approved);
+      }
+  
+      if (this.searchTermRecipes) {
+        const lowerCaseSearchTerm = this.searchTermRecipes.toLowerCase();
+        filteredRecipes = filteredRecipes.filter(recipe =>
+          recipe.title.toLowerCase().includes(lowerCaseSearchTerm)
+        );
+      }
+  
+      if (this.filterLanguage === 'hu') {
+        filteredRecipes = filteredRecipes.filter(recipe => recipe.language === 'hu');
+      } else if (this.filterLanguage === 'en') {
+        filteredRecipes = filteredRecipes.filter(recipe => recipe.language === 'en');
+      }
+  
+      this.recipes = filteredRecipes;
     });
   }
-  }
+  
 
   onIngredientChange(event: Event, ingredient: Ingredient) {
     const checkbox = event.target as HTMLInputElement;
@@ -349,7 +377,7 @@ export class RecipesListComponent {
     this.recipeService.toggleFeaturedRecipe(recipe).subscribe(
       (response) => { 
         console.log(response);
-        this.getRecipes();
+
       },
       (error) => {
         console.error(error);
@@ -390,25 +418,5 @@ export class RecipesListComponent {
     this.filterPending = !this.filterPending;
     this.getRecipes();
   }
-  filterRecipes() {
-    this.recipeService.getAllRecipes().subscribe((data: Recipe[]) => {
-      let filteredRecipes = data;
-      if (this.filterPending) {
-        filteredRecipes = filteredRecipes.filter(recipe => !recipe.approved);
-      }
-      if (this.searchTermRecipes) {
-        const lowerCaseSearchTerm = this.searchTermRecipes.toLowerCase();
-        filteredRecipes = filteredRecipes.filter(recipe =>
-          recipe.title.toLowerCase().includes(lowerCaseSearchTerm)
-        );
-      }
-      if (this.filterLanguage === 'hu') {
-        filteredRecipes = filteredRecipes.filter(recipe => recipe.language === 'hu');
-      } else if (this.filterLanguage === 'en') {
-        filteredRecipes = filteredRecipes.filter(recipe => recipe.language === 'en');
-      }
   
-      this.recipes = filteredRecipes;
-    });
-  }
 }
