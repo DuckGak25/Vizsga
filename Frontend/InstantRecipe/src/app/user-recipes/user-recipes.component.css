@@ -1,310 +1,370 @@
-.content {
-    min-height: 100vh;
-    padding-top: 6rem;
+.list-card {
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  border-radius: 20px;
+  padding: 10px;
+  margin-bottom: 5px;
+  transition: all 0.3s ease-in-out;
+  background-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+* {
+  font-weight: 600;
+  color: black;
+
+}
+
+h2, h1 {
+  font-weight: 700;
+}
+
+editor {
+  border-radius: 16px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+table {
+  border: none;
+  width: 100%;
+}
+
+.col {
+  vertical-align: middle;
+  text-align: center;
+}
+
 
 .card {
-    border-radius: 20px;
-    background-color: rgba(255, 255, 255, 0.25);
-    border: 1px solid rgba(255, 255, 255, 0.32);
-    backdrop-filter: blur(6.1px);
-
-    margin: 0 auto;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  backdrop-filter: blur(6.1px);
+  
 }
 
-.list-card {
-    align-items: center;
-    border: 1px solid #ddd;
-    border-radius: 20px;
-    padding: 10px;
+.content {
+  height: fit-content;
+  min-height: 100vh;
+  border-radius: 30px;
+  width: 95%;
+  margin: 0 auto;
+  padding-top: 6rem;
+  padding-bottom: 1rem;
+
+}
+
+.ingredientTable {
+  margin: 20px auto;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.ingredientTable th, .ingredientTable td {
+
+  text-align: left;
+
+}
+
+.ingredientTable button {
+  height: 45px;
+  border-radius: 16px;
+}
+
+.ingredient {
+  border-radius: 16px;
+  margin-bottom: 10px;
+}
+
+
+
+button {
+  margin-right: 10px;
+  border-radius: 16px;
+  height: 45px;
+  padding: 5px 10px;
+  vertical-align: middle;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.modal {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(5px);
+  padding: 20px;
+  border-radius: 15px;
+  z-index: 1000;
+}
+
+.modal-content {
+  max-width: 500px;
+  background-color: rgba(255, 255, 255, 0.25) !important;
+  border: 1px solid rgba(255, 255, 255, 0.32) !important;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+:host ::ng-deep .modal-content {
+  background-color: rgba(255, 255, 255, 0.25) !important;
+  border: 1px solid rgba(255, 255, 255, 0.32) !important;
+
+}
+
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #333;
+}
+
+.close:hover {
+  color: red;
+}
+
+.recipecard {
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 400;
+  width: 100%;
+  max-width: 350px;
+  height: 500px;
+  margin: 20px auto;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: transform 0.3s ease-in-out;
+}
+
+
+.edit-recipe h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 30px;
+}
+
+
+
+.recipecard:hover {
+  transform: scale(1.01);
+}
+
+tbody, td, tfoot, th, thead, tr {
+  border-color: none;
+  border-style: none;
+  border-width: 0;
+}
+
+.recipe-header {
+  width: 100%;
+  height: 80px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  border-radius: 20px 20px 0 0;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  color: #fff;
+  font-weight: bold;
+}
+
+.star {
+  vertical-align: middle;
+  visibility: hidden;
+  cursor: pointer;
+  height: 30px;
+}
+
+.star:before {
+  content: url("/assets/images/icons/bookmark.png");
+  position: absolute;
+  height: 30px;
+  visibility: visible;
+}
+
+.star:checked:before {
+  content: url("/assets/images/icons/bookmark.fill.png");
+  height: 30px;
+  position: absolute;
+}
+
+.checkboxing {
+  display: flex;
+  gap: 10px;
+}
+
+.checkboxing input {
+  display: none;
+}
+
+.checkboxing label {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 15px;
+  border: 2px solid rgba(169, 32, 32, 0.3);
+  transition: border-color 0.3s, background-color 0.3s;
+}
+
+.checkboxing input:checked + label {
+  border-color: rgba(23, 178, 142, 0.814);
+  background-color: rgba(230, 255, 230, 0.9);
+}
+
+.form-check {
+  display: inline-flex;
+  align-items: center;
+}
+
+.selected-ingredients td{
+  width: 30%;
+}
+.form-control {
+  width: 100%;
+  margin: 0 auto;
+  height: 45px;
+  margin-bottom: 10px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.612);
+  background-color: rgba(255, 255, 255, 0.389);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+
+    color: rgb(0, 0, 0);
+}
+
+tr {
+  border: none;
+  border-style: none;
+  border-color: none;
+}
+
+.form-control:focus {
+  background-color: rgba(255, 255, 255, 0.389);
+  border: 1px solid rgba(255, 255, 255, 0.612);
+  color: rgb(0, 0, 0);
+}
+
+*,*:before,*:after{
+  box-sizing:border-box;
+  transition:.15s ease-in-out;
+  }
+  
+  #toggles{
+  width:60px;
+  margin:20px auto;
+  text-align:center;
+  }
+  
+  .ios-toggle,.ios-toggle:active{
+  display: none;
+  }
+  
+  .checkbox-label{
+  display:block;
+  position:relative;
+  padding:10px;
+  margin-bottom:20px;
+  font-size:12px;
+  line-height:16px;
+  width:100%;
+  height:36px;
+  border-radius:18px;
+  background:#f8f8f860;
+  cursor:pointer;
+  }
+  
+  .checkbox-label:before{
+  content:'';
+  display:block;
+  position:absolute;
+  z-index:1;
+  line-height:34px;
+  text-indent:40px;
+  height:36px;
+  width:36px;
+  border-radius:100%;
+  top:0px;
+  left:0px;
+  right:auto;
+  background:white;
+  box-shadow:0 3px 3px rgba(0,0,0,.2),0 0 0 2px #dddddd;
+  }
+  
+  td button {
+    width: 100%;
     margin-bottom: 5px;
-    transition: all 0.3s ease-in-out;
-    background-color: #ffffffb8;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   }
-  
-  
-  .col {
-    vertical-align: middle;
-    text-align: center;
+
+  .ios-toggle:checked + .checkbox-label:before{
+  left:calc(100% - 36px);
+  box-shadow:0 0 0 2px transparent,0 3px 3px rgba(0,0,0,.3);
   }
-  
-  .card {
-    border-radius: 20px;
-    
-    
+  #checkbox1 + .checkbox-label, #checkbox2 + .checkbox-label{
+    box-shadow:inset 0 0 0 0px rgba(255,90,0,1),0 0 0 2px #dddddd;
   }
-  
-  .content {
-    height: fit-content;
-    min-height: 100vh;
-    border-radius: 30px;
-    width: 95%;
-    margin: 0 auto;
-    padding-top: 6rem;
-    padding-bottom: 1rem;
-  
+  #checkbox1:checked + .checkbox-label, #checkbox2:checked + .checkbox-label{
+    box-shadow:inset 0 0 0 18px rgba(255,90,0,1),0 0 0 2px rgba(255,90,0,1);
   }
-  
-  .ingredientTable {
-    margin: 20px auto;
-    border-collapse: collapse;
-    width: 100%;
+  * {
+    user-select: none;
   }
+
   
-  .ingredientTable th, .ingredientTable td {
-    padding: 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
+  .table-hover thead tr {
+    border-radius: 16px 16px 0 0;
   }
-  
-  .ingredientTable th {
-    background-color: #f1f1f1;
-    font-weight: bold;
-  }
-  
-  button {
-    margin-right: 10px;
-    border-radius: 5px;
-    padding: 5px 10px;
-    vertical-align: middle;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    transition: all 0.2s ease-in-out;
-  }
-  
-  button:hover {
-    opacity: 0.8;
-  }
-  
-  .modal {
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    margin: 0 auto;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(5px);
-    padding: 20px;
-    border-radius: 10px;
-    z-index: 1000;
-  }
-  
-  .modal-content {
-    max-width: 500px;
-    background: white;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
-    text-align: center;
-  }
-  
-  .close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 24px;
-    cursor: pointer;
-    color: #333;
-  }
-  
-  .close:hover {
-    color: red;
-  }
-  
-  .recipecard {
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 18px;
-    font-weight: 400;
-    width: 100%;
-    max-width: 350px;
-    height: 500px;
-    margin: 20px auto;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    transition: transform 0.3s ease-in-out;
-  }
-  
-  
-  
-  
-  .recipecard:hover {
-    transform: scale(1.01);
-  }
-  
-  .recipe-header {
-    width: 100%;
-    height: 80px;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(10px);
-    border-radius: 20px 20px 0 0;
-    display: flex;
-    align-items: center;
-    padding-left: 20px;
-    color: #fff;
-    font-weight: bold;
-  }
-  
-  .star {
-    vertical-align: middle;
-    visibility: hidden;
-    cursor: pointer;
-    height: 30px;
-  }
-  
-  .star:before {
-    content: url("/assets/images/icons/bookmark.png");
-    position: absolute;
-    height: 30px;
-    visibility: visible;
-  }
-  
-  .star:checked:before {
-    content: url("/assets/images/icons/bookmark.fill.png");
-    height: 30px;
-    position: absolute;
-  }
-  
-  .checkboxing {
-    display: flex;
-    gap: 10px;
-  }
-  
-  .checkboxing input {
-    display: none;
-  }
-  
-  .checkboxing label {
-    margin: 0;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    padding: 8px 12px;
-    border-radius: 15px;
-    border: 2px solid rgba(169, 32, 32, 0.3);
-    transition: border-color 0.3s, background-color 0.3s;
-  }
-  
-  .checkboxing input:checked + label {
-    border-color: rgba(23, 178, 142, 0.814);
-    background-color: rgba(230, 255, 230, 0.9);
-  }
-  
-  
-  
-  .form-control{
-  
-    margin: 0 auto;
-    height: 55px;
-    border-radius: 16px;
-    margin-bottom: 5px;
-  }
-  
-  .form-check {
-    display: inline-flex;
-    align-items: center;
-  }
-  
-  .selected-ingredients td{
-    width: 30%;
-  }
-  
-  
-  *,*:before,*:after{
-    box-sizing:border-box;
-    transition:.15s ease-in-out;
+
+  @media (max-width: 768px) {
+    .content {
+      width: 95%;
+
     }
-    
-    #toggles{
-    width:60px;
-    margin:20px auto;
-    text-align:center;
-    }
-    
-    .ios-toggle,.ios-toggle:active{
-    display: none;
-    }
-    
-    .checkbox-label{
-    display:block;
-    position:relative;
-    padding:10px;
-    margin-bottom:20px;
-    font-size:12px;
-    line-height:16px;
-    width:100%;
-    height:36px;
-    border-radius:18px;
-    background:#f8f8f8;
-    cursor:pointer;
-    }
-    
-    .checkbox-label:before{
-    content:'';
-    display:block;
-    position:absolute;
-    z-index:1;
-    line-height:34px;
-    text-indent:40px;
-    height:36px;
-    width:36px;
-    border-radius:100%;
-    top:0px;
-    left:0px;
-    right:auto;
-    background:white;
-    box-shadow:0 3px 3px rgba(0,0,0,.2),0 0 0 2px #dddddd;
-    }
-    
-    .ios-toggle:checked + .checkbox-label:before{
-    left:calc(100% - 36px);
-    box-shadow:0 0 0 2px transparent,0 3px 3px rgba(0,0,0,.3);
-    }
-    #checkbox1 + .checkbox-label, #checkbox2 + .checkbox-label{
-      box-shadow:inset 0 0 0 0px rgba(255,90,0,1),0 0 0 2px #dddddd;
-    }
-    #checkbox1:checked + .checkbox-label, #checkbox2:checked + .checkbox-label{
-      box-shadow:inset 0 0 0 18px rgba(255,90,0,1),0 0 0 2px rgba(255,90,0,1);
-    }
-    * {
-      user-select: none;
+    .ingredient-container {
+      flex-direction: column-reverse;
+  }
+  
+    .col {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 10px;
     }
   
-    
-    
-  
-    @media (max-width: 768px) {
-      .content {
-        width: 95%;
-  
-      }
-    
-      .col {
-        width: 100%;
-        text-align: center;
-        margin-bottom: 10px;
-      }
-    
-      .recipecard {
-        width: 90%;
-        height: auto;
-      }
-    
-      .ingredientTable th, .ingredientTable td {
-        padding: 10px;
-        font-size: 14px;
-      }
-    
-      button {
-        width: 100%;
-        margin-bottom: 5px;
-      }
+    .recipecard {
+      width: 90%;
+      height: auto;
     }
-    
+  
+    .ingredientsTable td,
+    .ingredient-list td {
+      display: block;
+      width: 100%;
+    }
+  
+    button {
+      width: 100%;
+      margin-bottom: 5px;
+    }
+  }
+  

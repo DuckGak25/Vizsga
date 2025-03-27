@@ -55,7 +55,9 @@ class RecipeIngredientController extends ResponseController
 
 
     public function deleteIngredient(Request $request) {
-        if (Gate::allows("user")) {
+        $user = auth()->user();
+
+        if (!$user) {
             return $this->sendError("Autentikációs hiba", "Nincs jogosultsága", 401);
         }
         $recipe_id = $request->query('recipe_id');

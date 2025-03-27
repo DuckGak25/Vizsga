@@ -55,7 +55,7 @@ h1, p, li, label {
   height: fit-content;
   border-radius: 20px;
   padding: 20px;
-  background-color: #eeecebd8;
+
   background-color: rgba(255, 255, 255, 0.25);
   border: 1px solid rgba(255, 255, 255, 0.32);
   backdrop-filter: blur(6.1px);
@@ -72,6 +72,10 @@ h1, p, li, label {
   background-color: rgba(255, 255, 255, 0.25);
   border: 1px solid rgba(255, 255, 255, 0.32);
   backdrop-filter: blur(6.1px);
+}
+
+.onlymobile {
+  display: none;
 }
 
 .card {
@@ -146,6 +150,12 @@ h1, p, li, label {
 
   }
 
+  .onlymobile {
+    display: inline-flex;
+    width: 100%;
+    margin-top: 10px;
+  }
+
   .nav button {
     margin: 17px auto;
     border-radius: 14px;
@@ -194,7 +204,7 @@ h1, p, li, label {
 
 
 
-.recipes .card .form-check {
+.recipeheader .form-check {
   display: inline-flex;
   align-items: center;
   margin-bottom: 5px;
@@ -304,7 +314,7 @@ button {
   box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
   text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
   border-radius: 16px;
-  height: 45px;
+  min-height: 45px;
 }
 
 

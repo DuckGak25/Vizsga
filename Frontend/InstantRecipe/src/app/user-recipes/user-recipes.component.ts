@@ -58,6 +58,7 @@ export class UserRecipesComponent {
   categorizedIngredients: { [key: string]: Set<Ingredient> } = {};
   pendingRecipes: any[] = [];
   filterLanguage: string = '';
+  searchTitle = '';
   showModal: boolean = false;
   actLang = "Magyar";
     recipeIngredient: RecipeIngredient = {
@@ -118,6 +119,7 @@ export class UserRecipesComponent {
       this.searchForRecipes = content.searchForRecipes || '';
       this.closeButton = content.closeButton || '';
       this.pendingRecipesTitle = content.pendingRecipes || '';
+      this.searchTitle = content.searchTitle || '';
 
 
     });

@@ -4,7 +4,7 @@ import { Recipe } from '../models/recipe.model';
 import { ViewportScroller } from '@angular/common';
 import { RecipeService } from '../services/recipe.service';
 import { ConfigService } from '../services/config.service';
-
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 @Component({
   selector: 'app-pantry',
   templateUrl: './pantry.component.html',
@@ -35,7 +35,7 @@ export class PantryComponent {
   AND = "";
   OR = "";
 
-  constructor(private recipeService: RecipeService, private config: ConfigService, private vps:ViewportScroller, private cdRef: ChangeDetectorRef) {
+  constructor(private recipeService: RecipeService, private config: ConfigService, private vps:ViewportScroller, private cdRef: ChangeDetectorRef, private breakpointObserver: BreakpointObserver) {
     this.langSign = config.langSign
     this.toggleRecipes();
     this.recipeService.getIngredients().subscribe((data: Ingredient[]) => {
@@ -53,6 +53,10 @@ export class PantryComponent {
       this.allRecipes = data.filter(recipe => recipe.language === this.langSign);
       this.filteredRecipes = this.allRecipes;
       this.cdRef.detectChanges(); 
+    });
+
+    this.breakpointObserver.observe(['(min-width: 769px)']).subscribe(result => {
+      this.showRecipes = false;
     });
 
     

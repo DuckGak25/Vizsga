@@ -82,63 +82,63 @@
   
                             </div>
                             </div>
-                            <div class="selected-ingredients mt-3 ml-4 row">
-                              <h2>{{ingredientsTitle}}</h2>
-                              <div class="ingredient-list mt-3 col" >
-                                <input type="text" [(ngModel)]="searchTerm" name="search" [placeholder]="searchForIngredients" class="form-control mb-3 mt-3" />
-                                <button type="button" (click)="clearSelectedIngredients()" class="btn btn-danger mb-3">
-                                  {{deleteSelected}}
-                                </button>
-                                <div *ngIf="searchTerm !== ''">
-                                  <div *ngFor="let category of categorizedIngredients | keyvalue">
-                                    <h2 *ngIf="filterIngredients(category.value).length > 0">{{ category.key }}</h2>
-                                    <div *ngFor="let ingredient of filterIngredients(category.value)" class="form-check">
-                                      <div class="checkboxing">
-                                        <input type="checkbox" [value]="ingredient" [id]="'ingredient-' + ingredient.id" (change)="onIngredientChange($event, ingredient)" class="ingredient"/>
-                                        <label [for]="'ingredient-' + ingredient.id">{{ ingredient.name }}</label>
-                                      </div>
+                            <h2 >{{ingredientsTitle}}</h2>
+                          <div class="selected-ingredients mt-2 ml-4 row ingredient-container">
+                            <div class="ingredient-list mt-2 col" >
+                              <h3>{{searchTitle}}</h3>
+                              <input type="text" [(ngModel)]="searchTerm" name="search" [placeholder]="searchForIngredients" class="form-control mb-3 " />
+                              <button type="button" (click)="clearSelectedIngredients()" class="btn btn-danger mb-3">
+                                {{deleteSelected}}
+                              </button>
+                              <div *ngIf="searchTerm !== ''">
+                                <div *ngFor="let category of categorizedIngredients | keyvalue">
+                                  <h2 *ngIf="filterIngredients(category.value).length > 0">{{ category.key }}</h2>
+                                  <div *ngFor="let ingredient of filterIngredients(category.value)" class="form-check">
+                                    <div class="checkboxing">
+                                      <input type="checkbox" [value]="ingredient" [id]="'ingredient-' + ingredient.id" (change)="onIngredientChange($event, ingredient)" class="ingredient"/>
+                                      <label [for]="'ingredient-' + ingredient.id">{{ ingredient.name }}</label>
                                     </div>
                                   </div>
-                                  <div *ngIf="!categorizedIngredients">
-                                    nincs ilyen hozzávaló
-                                  </div>
                                 </div>
-                                
+                                <div *ngIf="!categorizedIngredients">
+                                  nincs ilyen hozzávaló
                                 </div>
-  
-                                <div class="col">
-                                  <table class="table table-hover ingredientTable">
-                                    <thead>
-                                      <tr>
-                                        <th scope="col">{{ingredientName}}</th>
-                                        <th scope="col">{{quantity}}</th>
-                                        <th scope="col">{{operations}}</th>
-                                      </tr>
-                                    </thead>
-                                    <tbody>
-                                      <tr *ngFor="let ingredient of recipe.ingredients">
-                                        <td>{{ ingredient.name }}</td>
-                                        <td>{{ ingredient.pivot?.quantity }}</td>
-                                        <td>
-                                          <button class="btn btn-danger" (click)="deleteIngredientFromRecipe(ingredient)">{{deleteButton}}</button>
-                                        </td>
-                                      </tr>
-                                      <tr *ngFor="let ingredient of selectedIngredients">
-                                        <td >{{ ingredient.name }}</td>
-                                        <td >
-                                          <input type="text" name="quantity" [(ngModel)]="ingredientQuantities[ingredient.id]" (ngModelChange)="updateIngredientQuantity(ingredient.id, $event)" [placeholder]="quantity" class="form-control"/>
-                                        </td>
-                                        <td>
-                                          <button class="btn btn-danger" (click)="removeIngredient(ingredient)">{{[remove]}}</button>
-                                        </td>
-                                      </tr>
-                                  </table>
-                                </div>
-  
                               </div>
-                              <button (click)="saveRecipe(recipe)" class="btn btn-primary" type="submit" style="width: 100%;">{{saveButton}}</button>
+                              
+                              </div>
+
+                              <div class="col">
+                                <h3>{{selectedIngredientsTitle}}</h3>
+                                <table class="table ingredientTable mt-2" >
+                                  
+                                  <tbody>
+                                    <tr *ngFor="let ingredient of recipe.ingredients" class="ingredient">
+                                      <td><input type="text" [(ngModel)]="ingredient.name" class="form-control" [placeholder]="ingredientName" readonly></td>
+                                      <td >
+                                        <input type="text" [value]="ingredient.pivot?.quantity"  [placeholder]="ingredient.pivot?.quantity" class="form-control" readonly/>
+                                      </td>
+                                      <td>
+                                        <button class="btn btn-danger" (click)="deleteIngredientFromRecipe(ingredient)">{{deleteButton}}</button>
+                                      </td>
+                                    </tr>
+                                    <tr *ngFor="let ingredient of selectedIngredients" class="ingredient">
+                                      <td ><input type="text" [(ngModel)]="ingredient.name" class="form-control" [placeholder]="ingredientName" readonly></td>
+                                      <td >
+                                        <input type="text" [(ngModel)]="ingredientQuantities[ingredient.id]" (ngModelChange)="updateIngredientQuantity(ingredient.id, $event)" [placeholder]="quantity" class="form-control"/>
+                                      </td>
+                                      <td>
+                                        <button class="btn btn-danger" style="width: 100%;" (click)="removeIngredient(ingredient)">{{[remove]}}</button>
+                                      </td>
+                                    </tr>
+                                </table>
+                              </div>
+
                             </div>
+                            <button (click)="saveRecipe(recipe)"  class="btn btn-primary" type="submit" style="width: 100%;">{{saveButton}}</button>
                           </div>
+                        </div>
+  
+
             </div>
     </div>
     </div>
@@ -147,8 +147,6 @@
     <div class="modal-body">
       <p>{{modalContent}}</p>
     </div>
-    <div class="modal-footer">
       <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">{{closeButton}}</button>
-    </div>
   </ng-template>
   

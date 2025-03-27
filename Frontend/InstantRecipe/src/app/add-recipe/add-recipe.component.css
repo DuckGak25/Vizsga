@@ -111,15 +111,10 @@
     gap: 20px;
 }
 
-/* Mobil nézet: Fordított sorrend */
 @media (max-width: 768px) {
     .ingredient-container {
         flex-direction: column-reverse;
     }
-}
-
-
-  @media (max-width: 768px) {
     .card {
       padding: 20px;
     }
