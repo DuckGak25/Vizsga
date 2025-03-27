@@ -16,9 +16,9 @@ import { FooterComponent } from './footer/footer.component';
 import { AdminComponent } from './admin/admin.component';
 import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { AddRecipeComponent } from './add-recipe/add-recipe.component';
-import { RecipesListComponent } from './admin_components/recipes-list/recipes-list.component';
-import { UsersComponent } from './admin_components/users/users.component';
-import { IngredientsListComponent } from './admin_components/ingredients-list/ingredients-list.component';
+import { RecipesListComponent } from './components/recipes-list/recipes-list.component';
+import { UsersComponent } from './components/users/users.component';
+import { IngredientsListComponent } from './components/ingredients-list/ingredients-list.component';
 import { UserRecipesComponent } from './user-recipes/user-recipes.component';
 
 
