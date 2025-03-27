@@ -158,7 +158,7 @@ export class RecipesListComponent {
     })
   }
 
-
+  
   editRecipe(recipe: Recipe) {
     if (!this.selectedRecipeId) {
       this.selectedRecipeId = recipe.id;

@@ -56,4 +56,6 @@ Route::middleware(['auth:sanctum'])->group( function () {
     Route::put("/toggle-featured", [ RecipeController::class, "toggleFeatured" ]);
     Route::put("/approve-recipe", [ RecipeController::class, "approveRecipe" ]);
     Route::get("/pendingrecipes", [ RecipeController::class, "getNotApprovedRecipes" ]);
+
+    Route::put("/modifyquantity", [ RecipeIngredientController::class, "modifyQuantity" ]);
 });

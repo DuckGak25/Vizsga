@@ -53,6 +53,36 @@ class RecipeIngredientController extends ResponseController
         return $this->sendResponse(new RecipeResource($recipeIngredient), 'Sikeres recept hozzávaló törlés');
     }
 
+    public function modifyQuantity(RecipeIngredientRequest $request) {
+        $user = auth()->user();
+    
+        if (!$user) {
+            return $this->sendError("Autentikációs hiba", "Nincs jogosultsága", 401);
+        }
+
+        $recipe_id = $request->input('recipe_id');
+        $ingredient_id = $request->input('ingredient_id');
+        $quantity = $request->input('quantity');
+    
+        if (!$recipe_id || !$ingredient_id || !$quantity) {
+            return $this->sendResponse('Adathiba', 'Nem található recept hozzávaló', 404);
+        }
+    
+        $recipeIngredient = RecipeIngredient::where('recipe_id', $recipe_id)
+            ->where('ingredient_id', $ingredient_id)
+            ->first();
+    
+        if (!$recipeIngredient) {
+            return $this->sendResponse('Adathiba', 'Nincs ilyen recept hozzávaló', 404);
+        }
+    
+        $recipeIngredient->quantity = $quantity;
+        $recipeIngredient->save();
+    
+        return $this->sendResponse(new RecipeResource($recipeIngredient), 'Sikeres recept hozzávaló módosítás');
+    }
+    
+
 
     public function deleteIngredient(Request $request) {
         $user = auth()->user();
