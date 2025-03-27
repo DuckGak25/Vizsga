@@ -42,7 +42,9 @@ Route::middleware(['auth:sanctum'])->group( function () {
     Route::post('/addingredient', [IngredientController::class, 'addIngredient']);
     Route::put('/modifyingredient', [IngredientController::class, 'modifyIngredient']);
     Route::delete('/destroyingredient/{id}', [IngredientController::class, 'destroyIngredient']);
+    
     Route::get('/getingredients', [IngredientController::class, 'getIngredients']);
+
     Route::get('/getingredient/{id}', [IngredientController::class, 'getIngredient']);
     Route::get('/ingredients', [IngredientController::class, 'getIngredients']);
 

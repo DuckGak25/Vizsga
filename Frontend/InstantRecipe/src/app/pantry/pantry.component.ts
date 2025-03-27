@@ -1,9 +1,9 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { RecipeService } from '../recipe.service';
 import { Ingredient } from '../models/ingredient.model';
 import { Recipe } from '../models/recipe.model';
-import { ConfigService } from '../config.service';
 import { ViewportScroller } from '@angular/common';
+import { RecipeService } from '../services/recipe.service';
+import { ConfigService } from '../services/config.service';
 
 @Component({
   selector: 'app-pantry',

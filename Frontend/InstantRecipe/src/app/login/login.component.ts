@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { ConfigService } from '../config.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
+import { ConfigService } from '../services/config.service';
 
 @Component({
   selector: 'app-login',

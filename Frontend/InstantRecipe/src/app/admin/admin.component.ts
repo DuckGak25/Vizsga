@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { ConfigService } from '../config.service';
 import { Router } from '@angular/router';
-import { RecipeService } from '../recipe.service';
+import { ConfigService } from '../services/config.service';
+import { RecipeService } from '../services/recipe.service';
 
 @Component({
   selector: 'app-admin',
@@ -19,10 +19,10 @@ export class AdminComponent {
   pendingText = ""
 
   constructor(private config: ConfigService, private router: Router, private recipeService: RecipeService) {
-    this.getPendingRecipes();
   }
-
+  
   ngOnInit() {
+    this.getPendingRecipes();
     this.loadContent();
   }
 

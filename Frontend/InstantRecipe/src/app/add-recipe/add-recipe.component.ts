@@ -1,12 +1,14 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { RecipeService } from '../recipe.service';
+
 import { Ingredient } from '../models/ingredient.model';
 import { Recipe } from '../models/recipe.model';
 import { RawEditorOptions } from 'tinymce';
 import { CheckboxControlValueAccessor } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
-import { ConfigService } from '../config.service';
+
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { RecipeService } from '../services/recipe.service';
+import { ConfigService } from '../services/config.service';
 
 @Component({
   selector: 'app-add-recipe',

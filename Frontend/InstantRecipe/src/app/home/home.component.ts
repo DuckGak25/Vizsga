@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ConfigService } from '../config.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import AOS from 'aos';
-import { RecipeService } from '../recipe.service';
 import { Recipe } from '../models/recipe.model';
 import { AuthService } from '../services/auth.service';
+import { ConfigService } from '../services/config.service';
+import { RecipeService } from '../services/recipe.service';
 
 
 @Component({

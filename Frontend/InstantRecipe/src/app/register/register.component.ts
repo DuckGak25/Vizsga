@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { ConfigService } from '../config.service';
+import { ConfigService } from '../services/config.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
@@ -86,7 +86,11 @@ export class RegisterComponent {
   
     if (!this.name || !this.email || !this.password || !this.confirm_password) {
       this.registerError.show = true;
-      this.registerError.message = 'Minden mezőt ki kell tötlteni!';
+      if (this.langSign === 'hu') {
+        this.registerError.message = 'Minden mezőt ki kell tölteni!';
+      } else if (this.langSign === 'en') {
+        this.registerError.message = 'Please fill all fields!';
+      }
       return;
     }
   

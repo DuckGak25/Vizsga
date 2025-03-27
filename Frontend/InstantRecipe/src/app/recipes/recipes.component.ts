@@ -1,9 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { RecipeService } from '../recipe.service';
 import { Recipe } from '../models/recipe.model';
 import AOS from 'aos';
 import { Ingredient } from '../models/ingredient.model';
-import { ConfigService } from '../config.service';
+import { RecipeService } from '../services/recipe.service';
+import { ConfigService } from '../services/config.service';
+
 
 @Component({
   selector: 'app-recipes',

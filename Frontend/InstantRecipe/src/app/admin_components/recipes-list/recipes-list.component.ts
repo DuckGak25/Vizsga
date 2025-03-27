@@ -1,6 +1,5 @@
 import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
-import { ConfigService } from '../../config.service';
-import { RecipeService } from '../../recipe.service';
+
 import { Recipe } from '../../models/recipe.model';
 import AOS from 'aos';
 import { Ingredient } from '../../models/ingredient.model';
@@ -9,6 +8,8 @@ import { RecipeIngredient } from '../../models/recipe-ingredient.model';
 import { Pipe, PipeTransform } from '@angular/core';
 import { ViewportScroller } from '@angular/common';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ConfigService } from '../../services/config.service';
+import { RecipeService } from '../../services/recipe.service';
 
 
 @Component({
@@ -51,7 +52,6 @@ export class RecipesListComponent {
   everyRecipe = "";
   langSign = ""
   pendingRecipesTitle=""
-  recipesLoaded = false;
 
   recipes: Recipe[] = [];
   selectedIngredients: Set<Ingredient> = new Set();
@@ -92,14 +92,13 @@ export class RecipesListComponent {
 
   constructor(private config: ConfigService, private recipeService: RecipeService, private vps:ViewportScroller, private modalService: NgbModal) {
     this.getIngredientsList();
+    
     this.langSign = config.langSign
   }
   
   ngOnInit() {
-    if (!this.recipes.length && !this.recipesLoaded) {
-      this.getRecipes();
-    }
     this.loadContent();
+    this.getRecipes();
 
   }
   openModal() {
@@ -226,7 +225,7 @@ export class RecipesListComponent {
   } 
 
   getRecipes() {
-    if (this.filterPending || this.searchTermRecipes !== '') {
+    if (this.filterPending || this.searchTermRecipes != '') {
       this.filterRecipes();
     } else if (this.filterLanguage === 'hu') {
       this.recipeService.getHungarianRecipes().subscribe((data: Recipe[]) => {
@@ -239,33 +238,9 @@ export class RecipesListComponent {
     } else {
       this.recipeService.getAllRecipes().subscribe((data: Recipe[]) => {
         this.recipes = data;
+        console.log(this.recipes);
       });
     }
-  }
-  
-  filterRecipes() {
-    this.recipeService.getAllRecipes().subscribe((data: Recipe[]) => {
-      let filteredRecipes = data;
-  
-      if (this.filterPending) {
-        filteredRecipes = filteredRecipes.filter(recipe => !recipe.approved);
-      }
-  
-      if (this.searchTermRecipes) {
-        const lowerCaseSearchTerm = this.searchTermRecipes.toLowerCase();
-        filteredRecipes = filteredRecipes.filter(recipe =>
-          recipe.title.toLowerCase().includes(lowerCaseSearchTerm)
-        );
-      }
-  
-      if (this.filterLanguage === 'hu') {
-        filteredRecipes = filteredRecipes.filter(recipe => recipe.language === 'hu');
-      } else if (this.filterLanguage === 'en') {
-        filteredRecipes = filteredRecipes.filter(recipe => recipe.language === 'en');
-      }
-  
-      this.recipes = filteredRecipes;
-    });
   }
   
 
@@ -377,7 +352,7 @@ export class RecipesListComponent {
     this.recipeService.toggleFeaturedRecipe(recipe).subscribe(
       (response) => { 
         console.log(response);
-
+        this.getRecipes();
       },
       (error) => {
         console.error(error);
@@ -418,5 +393,25 @@ export class RecipesListComponent {
     this.filterPending = !this.filterPending;
     this.getRecipes();
   }
+  filterRecipes() {
+    this.recipeService.getAllRecipes().subscribe((data: Recipe[]) => {
+      let filteredRecipes = data;
+      if (this.filterPending) {
+        filteredRecipes = filteredRecipes.filter(recipe => !recipe.approved);
+      }
+      if (this.searchTermRecipes) {
+        const lowerCaseSearchTerm = this.searchTermRecipes.toLowerCase();
+        filteredRecipes = filteredRecipes.filter(recipe =>
+          recipe.title.toLowerCase().includes(lowerCaseSearchTerm)
+        );
+      }
+      if (this.filterLanguage === 'hu') {
+        filteredRecipes = filteredRecipes.filter(recipe => recipe.language === 'hu');
+      } else if (this.filterLanguage === 'en') {
+        filteredRecipes = filteredRecipes.filter(recipe => recipe.language === 'en');
+      }
   
+      this.recipes = filteredRecipes;
+    });
+  }
 }

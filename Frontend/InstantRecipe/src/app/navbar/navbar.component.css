@@ -18,12 +18,13 @@ nav {
   transform: translateX(-50%);
 }
 
-#navPrimary .nav-link {
+#navPrimary .nav-link, .dropdown-item {
   font-family: "Secondary-Font-Bold", "NotoSans-Bold", sans-serif;
   line-height: 3.3rem;
   text-align: center;
   font-weight: 600;
   color: rgb(0, 0, 0);
+  border: 1px solid transparent;
   border-radius: 16px;
   font-size: 20px;
   padding: 2px 16px;
@@ -33,11 +34,11 @@ nav {
   transition: background-color 0.3s, border 0.3s, box-shadow 0.3s;
 }
 
-#navPrimary .nav-link:hover {
-  background-color: rgba(255, 255, 255, 0.25);
+#navPrimary .nav-link:hover, .dropdown-item:hover {
   vertical-align: middle;
+  background-color: rgba(255, 255, 255, 0.25) !important;
   border: 1px solid rgba(255, 255, 255, 0.32);
-  color: rgb(0, 0, 0);
+  color: rgb(0, 0, 0) !important;
 }
 
 
@@ -72,7 +73,7 @@ nav {
   font-family: "Secondary-Font-Bold", "NotoSans-Bold", sans-serif;
   line-height: 3.3rem;
   text-align: center;
-  font-weight: 200;
+  font-weight: 600;
   color: rgb(0, 0, 0);
   font-size: 20px;
   padding: 0 20px;
@@ -85,30 +86,33 @@ nav {
   font-family: "Secondary-Font-Bold", "NotoSans-Bold", sans-serif;
   line-height: 3.3rem;
   text-align: center;
-  font-weight: 200;
+  font-weight: 600;
   font-size: 20px;
   cursor: pointer;
 }
 
 .dropdown-menu:hover .dropdown-item:hover {
-  background-color: rgb(255, 255, 255);
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  backdrop-filter: blur(6.1px);
+  border-radius: 16px;
   color: rgb(0, 0, 0);
   transition: background-color 0.3s;
 }
+
 
 .dropdown-menu {
   background-color: rgba(255, 255, 255, 0.25);
   border-radius: 16px;
   border: 1px solid rgba(255, 255, 255, 0.32);
-  padding: 0;
-  margin-top: 8px;
-  border: 0;
-  border-radius: 0;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+
+  padding: 20px;
+  margin-top: 16px;
   visibility: hidden; 
   opacity: 0; 
   transition: opacity 0.3s, visibility 0.3s; 
   right: 0;
-  line-height: 3.3rem;
+  line-height: 3.4rem;
   width: fit-content;
   max-height: 0;
   overflow: hidden;
@@ -124,9 +128,6 @@ nav {
   transform: translateY(0); 
 }
 
-.dropdown-item:hover {
-  background-color: rgba(23, 23, 23, 0.8) 
-}
 
 /* Mobil nézet */
 @media (max-width: 991px) {  
@@ -214,6 +215,11 @@ nav {
 
   .dropdown-menu {
     background: none;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+    opacity: 0;
     max-height: 0;
     opacity: 0;
     transform: translateY(-20px);

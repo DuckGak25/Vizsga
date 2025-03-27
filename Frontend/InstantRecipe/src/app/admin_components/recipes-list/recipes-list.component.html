@@ -171,11 +171,9 @@
   </div>
   </div>
 </div>
-<ng-template #content let-modal>
+<ng-template #content let-modal class="modal-content">
   <div class="modal-body">
     <p>{{modalContent}}</p>
   </div>
-  <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">{{closeButton}}</button>
-  </div>
 </ng-template>

@@ -1,7 +1,7 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
-import { ConfigService } from '../config.service';
 import { AuthService } from '../services/auth.service';
+import { ConfigService } from '../services/config.service';
 
 @Component({
   selector: 'app-navbar',

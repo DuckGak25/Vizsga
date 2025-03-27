@@ -1,9 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
-import { ConfigService } from '../../config.service';
-import { RecipeService } from '../../recipe.service';
+
+
 import { Ingredient } from '../../models/ingredient.model';
 import { lastValueFrom } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ConfigService } from '../../services/config.service';
+import { RecipeService } from '../../services/recipe.service';
 
 @Component({
   selector: 'app-ingredients-list',
@@ -80,9 +82,9 @@ export class IngredientsListComponent {
       const response = await this.recipeService.postIngredients(ingredient).toPromise();
       console.log('Ingredient added successfully', response);
       if (this.langSign === "hu") {
-        this.modalContent = "Sikeresen hozzáadtad a hozzávalót!"
+        this.modalContent = "Sikeresen hozzáadtad a következő hozzávalót:"
       } else {
-        this.modalContent = "Successfully added the ingredient!"
+        this.modalContent = "Successfully added the ingredient:"
       }
       
       await this.getIngredients();

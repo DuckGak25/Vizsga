@@ -1,13 +1,13 @@
 import { Component, ViewChild } from '@angular/core';
-import { ConfigService } from '../config.service';
 import { Router } from '@angular/router';
-import { RecipeService } from '../recipe.service';
 import { Ingredient } from '../models/ingredient.model';
 import { Recipe } from '../models/recipe.model';
 import { RawEditorOptions } from 'tinymce';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ViewportScroller } from '@angular/common';
 import { RecipeIngredient } from '../models/recipe-ingredient.model';
+import { ConfigService } from '../services/config.service';
+import { RecipeService } from '../services/recipe.service';
 
 @Component({
   selector: 'app-user-recipes',

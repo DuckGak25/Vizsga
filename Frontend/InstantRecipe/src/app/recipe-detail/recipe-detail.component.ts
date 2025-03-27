@@ -1,10 +1,10 @@
 // src/app/components/recipe-detail/recipe-detail.component.ts
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { RecipeService } from '../recipe.service';
 import { Recipe } from '../models/recipe.model';
 import { Ingredient } from '../models/ingredient.model';
-import { ConfigService } from '../config.service';
+import { RecipeService } from '../services/recipe.service';
+import { ConfigService } from '../services/config.service';
 
 @Component({
   selector: 'app-recipe-detail',

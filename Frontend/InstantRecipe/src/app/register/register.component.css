@@ -58,6 +58,11 @@ input::placeholder {
     color: black;
 }
 
+* {
+    font-weight: 600;
+
+}
+
 .alert {
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
