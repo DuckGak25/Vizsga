@@ -202,7 +202,11 @@ export class UserRecipesComponent {
           }
         },
         error: (error) => {
-          this.modalContent = 'Hiba a recept törlésekor';
+          if (this.langSign === "hu") {
+            this.modalContent = `Hiba a recept törlésekor: ${recipe.title}`;
+          } else {
+            this.modalContent = `Problem while deleting the recipe: ${recipe.title}`;
+          }
   
           console.error('Hiba a recept törlése közben', error);
           this.openModal();
