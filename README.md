@@ -51,7 +51,11 @@ Adjuk ki a következő parancsot:
 ```sh
 npm install
 ```
-
+### 2. Frontend indítása  
+Ezután futtathatjuk:  
+```sh
+ng serve -o
+```
 ---
 
 ## Használatra kész  
