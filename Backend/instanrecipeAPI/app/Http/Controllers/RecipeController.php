@@ -23,7 +23,7 @@ class RecipeController extends ResponseController
     {
         $user = auth()->user();
 
-        if (!$user) {
+        if (Gate::allows("user")) {
             return $this->sendError("Autentikációs hiba", "Nincs jogosultsága", 401);
         }
         $recipes = Recipe::with('ingredients', 'user')->get();
@@ -40,6 +40,7 @@ class RecipeController extends ResponseController
     }
 
     public function getEnglishRecipes() {
+        
         $englishRecipes = Recipe::where('language', 'en')->with('ingredients', 'user')->get();
         return response()->json($englishRecipes);
     }
